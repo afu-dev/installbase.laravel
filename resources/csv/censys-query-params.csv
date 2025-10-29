@@ -1,0 +1,12 @@
+protocol,fields
+default,"last_updated_at,services.port,services.transport_protocol,dns.names,dns.reverse_dns.names,autonomous_system.asn,autonomous_system.name,autonomous_system.organization,whois.organization.name,whois.network.name,location.country_code,location.city"
+modbus,"services.modbus.mei_response.objects.key,services.modbus.mei_response.objects.value"
+modbustcp,"services.modbus.mei_response.objects.key,services.modbus.mei_response.objects.value"
+bacnet,"services.bacnet.application_software_revision,services.bacnet.description,services.bacnet.firmware_revision,services.bacnet.instance_number,services.bacnet.location,services.bacnet.model_name,services.bacnet.object_name,services.bacnet.vendor_id,services.bacnet.vendor_name"
+eip,"services.parsed.eip.identity.device_type,services.parsed.eip.identity.device_type_code,services.parsed.eip.identity.product_code,services.parsed.eip.identity.product_name,services.parsed.eip.identity.revision,services.parsed.eip.identity.serial_number,services.parsed.eip.identity.socket_addr,services.parsed.eip.identity.socket_port,services.parsed.eip.identity.state,services.parsed.eip.identity.status,services.parsed.eip.identity.vendor_id,services.parsed.eip.identity.vendor_name"
+http,"services.http.response.html_title,services.tls.certificates.leaf_data.subject_dn,services.tls.certificates.leaf_data.issuer_dn"
+http/https,"services.http.response.html_title,services.tls.certificates.leaf_data.subject_dn,services.tls.certificates.leaf_data.issuer_dn"
+https,"services.http.response.html_title,services.tls.certificates.leaf_data.subject_dn,services.tls.certificates.leaf_data.issuer_dn"
+snmp,"services.snmp.oid_system.desc,services.snmp.versions"
+opcua,"services.parsed.opc_ua.endpoints.server.application_uri,services.parsed.opc_ua.endpoints.server.product_uri,services.parsed.opc_ua.endpoints.security_mode"
+mms,"services.mms.vendor,services.mms.model,services.mms.revision"

@@ -1,0 +1,1135 @@
+ID	Product	Protocol	Fingerprint	F. Type	Shodan	Censys	Fingerprint Type	Fingerprint proposed by	Support	Status	BITSIGHT COMMENTS	Implemented on	Provided by Schneider	Remarks (Schneider)	Groma Implemented Date	Groma JIRA Ticket	Groma CPE	CPE Review (SE)
+1	ION 7650	HTTP/HTTPS	Basic realm="7650 ION"		Y		IT	Schneider Electric	Supported	Not Implemented	Supported in Groma		9/13/2024			RP-220849: Basic realm fingerprint for 7650 ION
+2	ION 7650	HTTP/HTTPS	http.html_hash:672627340	HTML Hash	Y		IT	Schneider Electric	Supported	Implemented		10/9/2024	9/13/2024			RP-220849: Basic realm fingerprint for 7650 ION
+3	ION 7650	HTTP/HTTPS	title:"PowerLogic ION 7650"	HTML Title	Y		IT	Schneider Electric	Supported	Implemented		10/9/2024	9/13/2024			RP-220849: Basic realm fingerprint for 7650 ION
+4	ION 7650	HTTP/HTTPS	services.http.response.html_title: "PowerLogic ION 7650"	HTML Title		Y	IT	Schneider Electric	Supported	Duplicate	Duplicates ID 3		9/13/2024			RP-220849: Basic realm fingerprint for 7650 ION
+5	ION 7650	SNMP	Description: Schneider Electric - ION7650		Y		IT	Schneider Electric	Supported	Implemented		7/3/2024	9/13/2024			RP-220849: Basic realm fingerprint for 7650 ION
+6	ION 7650	SNMP	services.snmp.oid_system.desc="Schneider Electric - ION7650"			Y	IT	Schneider Electric	Supported	Duplicate	Duplicates ID 5		9/13/2024			RP-220849: Basic realm fingerprint for 7650 ION
+7	ION 7650	General	services.software.uniform_resource_identifier: `cpe:2.3:h:schneider-electric:powerlogic_ion_7650:*:*:*:*:*:*:*:*`			Y	IT	Schneider Electric	Unsupported	Won't do	Censys product fingerprint		9/13/2024			RP-220849: Basic realm fingerprint for 7650 ION
+8	ION 7650	General	services.software.product=`PowerLogic ION 7650`			Y	IT	Schneider Electric	Unsupported	Not Implemented	Possible Smartfingerprint implementation		9/13/2024			RP-220849: Basic realm fingerprint for 7650 ION
+9	PowerLogic P5	SSH	"PowerLogic" port:22		Y		IT	Schneider Electric	Unsupported	Not Implemented	Possible Smartfingerprint implementation		9/13/2024
+10	PowerLogic PM800	General	"PowerLogic"		Y		IT	Schneider Electric	Unsupported	Review	Too generic. Needs review from Schneider Electric team.		9/13/2024
+11	Power Monitoring Expert	HTTP/HTTPS	http.favicon.hash:1317073961	Favicon	Y		IT	Schneider Electric	Supported	Implemented		5/9/2024	9/13/2024			RP-220915: Adding fingerprints for Power Monitoring Expert
+12	SE products	HTTP/HTTPS	http.favicon.hash:487597720	Favicon	Y		IT	Schneider Electric	Supported	Implemented		5/31/2023	12/12/2022	Type of SE products to be identified
+13	Power Monitoring Expert	HTTP/HTTPS	http.title:"Power Monitoring Expert"	HTML Title	Y		IT	Schneider Electric	Supported	Implemented		5/9/2024	5/1/2024		9/25/2024	https://bitsight.atlassian.net/browse/RP-195006	cpe:/a:schneider-electric:ecostruxure_power_monitoring_expert:-
+14	EcoStruxure EV Charging Expert	HTTP/HTTPS	http.title:"EcoStruxure"	HTML Title	Y		IT	Schneider Electric	Supported	Implemented		5/8/2024	9/13/2024
+15	EcoStruxure Plant Plug-In - Cloud-to-Edge	HTTP/HTTPS	http.title:"EcoStruxure"	HTML Title	Y		IT	Schneider Electric	Supported	Implemented		5/8/2024	9/13/2024
+16	EcoStruxure Manufacturing Compliance Advisor	HTTP/HTTPS	http.title:"EcoStruxure"	HTML Title	Y		IT	Schneider Electric	Supported	Implemented		5/8/2024	9/13/2024
+17	EcoStruxure IT Custom Solutions	HTTP/HTTPS	http.title:"EcoStruxure"	HTML Title	Y		IT	Schneider Electric	Supported	Implemented		5/8/2024	9/13/2024
+18	EcoStruxure™ Building Advisor Connect	HTTP/HTTPS	http.title:"EcoStruxure"	HTML Title	Y		IT	Schneider Electric	Supported	Implemented		5/8/2024	9/13/2024
+19	EcoStruxure Manufacturing Compliance Advisor	HTTP/HTTPS	http.favicon.hash:-1620132891	Favicon	Y		IT	Schneider Electric	Supported	Implemented		10/9/2024	9/13/2024
+20	EcoStruxure™ Building Advisor Connect	HTTP/HTTPS	http.favicon.hash:2071213254	Favicon	Y		IT	Schneider Electric	Supported	Implemented		10/9/2024	9/13/2024
+21	PM5560	General	PM5560	Prod. Reference			IT	Schneider Electric	Unsupported	Review	Too generic. Needs review from Schneider Electric team.		9/13/2024			RP-220914: Adding fingerprints for PM5560
+22	PM5560	HTTP/HTTPS	http.title:PM5560		Y		IT	Schneider Electric	Supported	Implemented		10/9/2024	9/13/2024			RP-220914: Adding fingerprints for PM5560
+23	PM5560	Modbus	Device Identification: Schneider Electric PM5560		Y		OT	Schneider Electric	Supported	Implemented		8/16/2023	9/13/2024			RP-220914: Adding fingerprints for PM5560
+24	PM5560	EIP	product:"PM5560"		Y		OT	Schneider Electric	Supported	Implemented		10/10/2024	9/13/2024			RP-220914: Adding fingerprints for PM5560
+25	PM5560	BacNet	Object Name: PM5560		Y		OT	Schneider Electric	Supported	Implemented		10/10/2024	9/13/2024			RP-220914: Adding fingerprints for PM5560
+26	PM5560	EIP	services.banner_hex:*504D35353630*			Y	OT	Schneider Electric	Unsupported	Won't do	Prone to FPs, other type of fingerprint will produce better results.		9/13/2024			RP-220914: Adding fingerprints for PM5560
+27	PM5560	BacNet	Object Name: PM5560			Y	OT	Schneider Electric	Supported	Duplicate	Duplicates ID 25		9/13/2024			RP-220914: Adding fingerprints for PM5560
+28	Galaxy VS	HTTP/HTTPS	title:"UPS Network Management Card 4"		Y		IT	Schneider Electric	Supported	Implemented		10/9/2024	9/13/2024			RP-220916: Adding fingerprints for Galaxy VS
+29	Galaxy VS	HTTP/HTTPS	services.http.response.html_title: "UPS Network Management Card 4"			Y	IT	Schneider Electric	Supported	Duplicate	Duplicates ID 28		9/13/2024			RP-220916: Adding fingerprints for Galaxy VS
+30	Link150	SNMP	Name: LINK150		Y	Y	IT	Schneider Electric	Supported	Implemented		10/9/2024	9/13/2024			RP-220917: Adding fingerprints for Link150
+31	Link150	Modbus	Device Identification: EGX150		Y	Y	OT	Schneider Electric	Supported	Implemented		7/7/2023	9/13/2024			RP-220917: Adding fingerprints for Link150
+32	PowerLogic ION 8650 	HTTP/HTTPS	hash:-1746176263	Login Page Hash	Y		IT	Schneider Electric	Supported	Implemented		10/9/2024	9/13/2024			RP-220926: Adding fingerprints for PowerLogic ION 8650
+33	PowerLogic ION 8650 	HTTP/HTTPS	http.html:"<title>PowerLogic ION 8650</title>"	Title	Y		IT	Schneider Electric	Supported	Implemented		6/27/2024	9/13/2024			RP-220926: Adding fingerprints for PowerLogic ION 8650
+34	PowerLogic ION 8650 	HTTP/HTTPS	services.http.response.headers: (key: "WWW-Authenticate" and value.headers: "Basic realm=8650 ION")			Y	IT	Schneider Electric	Unsupported	Not Implemented	Possible Smartfingerprint implementation		9/13/2024			RP-220926: Adding fingerprints for PowerLogic ION 8650
+35	PowerLogic ION 8650 	HTTP/HTTPS	services.http.response.html_tags: "PowerLogic ION 8650"			Y	IT	Schneider Electric	Unsupported	Review	Too generic. Needs review from Schneider Electric team.		9/13/2024			RP-220926: Adding fingerprints for PowerLogic ION 8650
+36	ION 7400	HTTP/HTTPS	ssl:"ION7400"	SSL Certificate	Y		IT	Schneider Electric	Supported	Implemented		10/9/2024	9/13/2024			RP-220928: Adding fingerprints for ION 7400
+37	ION 7400	HTTP/HTTPS	services.tls.certificate.parsed.issuer.common_name: "ION7400"	SSL Certificate		Y	IT	Schneider Electric	Supported	Implemented		10/9/2024	9/13/2024			RP-220928: Adding fingerprints for ION 7400
+38	ION 9000	HTTP/HTTPS	ssl:"ION9000"	SSL Certificate	Y		IT	Schneider Electric	Supported	Implemented		10/9/2024	9/13/2024			RP-220930: Adding fingerprints for ION 9000
+39	ION 9000	HTTP/HTTPS	services.tls.certificate.parsed.issuer.common_name: "ION9000"	SSL Certificate		Y	IT	Schneider Electric	Supported	Implemented		10/9/2024	9/13/2024			RP-220930: Adding fingerprints for ION 9000
+40	BMEH582040	Modbus	Device Identification: Schneider Electric BME H58 2040		Y		OT	Schneider Electric	Supported	Implemented		8/16/2023	9/13/2024
+41	BMEH582040	Modbus	CPU module: BME H58 2040		Y		OT	Schneider Electric	Supported	Not Implemented			9/13/2024
+42	BMENOC0301	SNMP	Name: BMENOC0301		Y		IT	Schneider Electric	Supported	Implemented		5/31/2023	9/13/2024
+43	BMENOC0301	SNMP	 Description: * BMENOC0301 *		Y		IT	Schneider Electric	Supported	Implemented		5/31/2023	9/13/2024
+44	BMENOC0301	EIP	Product name: BMENOC0301		Y		OT	Schneider Electric	Supported	Implemented		5/31/2023	9/13/2024
+45	PowerLogic ION 8000	HTTP/HTTPS	http.favicon.hash:586189054	Favicon	Y		IT	Schneider Electric	Supported	Implemented		10/9/2024	9/13/2024
+46	PM8000	General	"PM8000"		Y		IT	Schneider Electric	Unsupported	Review	Too generic. Needs review from Schneider Electric team.		9/13/2024
+47	Modicon M241	OPCUA	services.parsed.opc_ua.endpoints.server.application_uri="urn::SchneiderElectric:M241-251UaServer"			Y	OT	Schneider Electric	Supported	Implemented		7/1/2024	9/13/2024
+48	EcoStruxure™ Automation Expert	OPCUA	services.parsed.opc_ua.endpoints.server.application_uri=`urn:SchneiderElectric:EcoRT`			Y	OT	Schneider Electric	Supported	Implemented		10/10/2024	9/13/2024
+49	NMC2	FTP	services.ftp.banner="*AP963*"			Y	IT	Schneider Electric	Supported	Implemented	Implemented as a set of 45 more specific FTP fingerprints (review)	7/13/2023	9/13/2024
+50	NMC2	FTP	AP963* Network Management Card AOS		Y		IT	Schneider Electric	Supported	Implemented	Implemented as a set of 45 more specific FTP fingerprints (review)	7/13/2023	9/13/2024
+51	NMC2	SNMP	MN:AP963*		Y		IT	Schneider Electric	Supported	Implemented			9/13/2024
+52	NMC3	FTP	services.ftp.banner="*AP964*"			Y	IT	Schneider Electric	Supported	Implemented	Implemented as a set of 45 more specific FTP fingerprints (review)	7/13/2023	9/13/2024
+53	NMC3	SNMP	MN:AP964*		Y		IT	Schneider Electric	Supported	Implemented			9/13/2024
+54	NMC3	FTP	AP964* Network Management Card AOS		Y		IT	Schneider Electric	Supported	Implemented	Implemented as a set of 45 more specific FTP fingerprints (review)	7/13/2023	9/13/2024
+55	NMC4	HTTP/HTTPS	services.http.response.html_title: "UPS Network Management Card 4"			Y	IT	Schneider Electric	Supported	Duplicate	Duplicates ID 28		9/13/2024
+56	NMC4	HTTP/HTTPS	http.html_hash:2099027000	HTML Hash	Y		IT	Schneider Electric	Supported	Implemented		10/9/2024	9/13/2024
+57	NMC4	HTTP/HTTPS	title:"UPS Network Management Card 4"	HTML Title	Y		IT	Schneider Electric	Supported	Duplicate	Duplicates ID 28		9/13/2024
+58	NMC2 / NMC3	SNMP	Description: APC Web/SNMP Management Card		Y		IT	Schneider Electric	Supported	Implemented		6/27/2024	9/13/2024
+59	NMC2 / NMC3	SNMP	services.snmp.oid_system.desc: "APC Web/SNMP Management Card*"			Y	IT	Schneider Electric	Supported	Duplicate	Duplicates ID 58		9/13/2024
+60	PM800	HTTP	"PowerLogic" "PM800"	Basic realm	Y		IT	Schneider Electric	Unsupported	Not Implemented			9/13/2024
+61	PM800	HTTP	http.html_hash:2039835388	hash	Y		IT	Schneider Electric	Supported	Implemented		7/12/2023	9/13/2024
+62	PM800	HTTP	PowerLogic port:80				IT	Schneider Electric	Unsupported	Review	Too generic. Needs review from Schneider Electric team.		9/13/2024
+63	ION7650	HTTP	services.http.response.html_tags="<title>PowerLogic ION 7650</title>"	html_tag		Y	IT	Schneider Electric	Supported	Duplicate	Duplicates ID 3		9/13/2024
+64	ION7650	HTTP	services.http.response.html_title="PowerLogic ION 7650"	html_title		Y	IT	Schneider Electric	Supported	Duplicate	Duplicates ID 8		9/13/2024
+65	ION7650	HTTP	services.software.product="PowerLogic ION 7650"	product		Y	IT	Schneider Electric	Supported	Implemented		10/9/2024	9/13/2024
+66	ION7650	HTTP	services.software.version="3.10" and services.software.vendor="Schneider Electric"	Version + vendor		Y	IT	Schneider Electric	Unsupported	Not Implemented	Possible Smartfingerprint implementation		9/13/2024
+67	ION7650	HTTP	services.http.response.body_hashes="sha1:aaea3e092f896caf85bd92aebb53fb0d7953ee1f"	hash		Y	IT	Schneider Electric	Unsupported	Implemented	Murmurhash implemented 672627340 (Duplicates row 2)	10/9/2024	9/13/2024
+68	ION7650	HTTP	services.software.version="3.10" and services.software.vendor="Schneider Electric"	hash		Y	IT	Schneider Electric	Unsupported	Duplicate	Duplicates ID 66		9/13/2024
+69	ION8650	HTTP	services.http.response.html_tags="<title>PowerLogic ION 8600</title>"	html_tag		Y	IT	Schneider Electric	Supported	Duplicate	Duplicates ID 79		9/13/2024
+70	ION8650	HTTP	services.software.product="PowerLogic ION 8600"	product		Y	IT	Schneider Electric	Supported	Implemented		10/9/2024	9/13/2024
+71	ION8650	HTTP	services.http.response.body_hashes="sha1:c1545b771c577c3284cabc1f002eac33ec6e1a69"	hash		Y	IT	Schneider Electric	Unsupported	Not Implemented	Possible translation to murmur hash		9/13/2024
+72	ION8650	HTTP	services.http.response.body_hashes="sha256:fb7a3be8986974c88362b703c65f395a71415fede4e4973ff12f8fb4d317e6a6"	hash		Y	IT	Schneider Electric	Unsupported	Not Implemented	Possible translation to murmur hash		9/13/2024
+73	ION8650	HTTP	services.http.response.body_hashes="sha256:1024813e4972ce3f7c5e265590413607fbc1e750d8d41a70d230d10d24354e2a"	hash		Y	IT	Schneider Electric	Unsupported	Not Implemented	Possible translation to murmur hash		9/13/2024
+74	ION8650	HTTP	services.http.response.body_hashes="sha1:e04d5850672456aace8273ed10a1f6786969a679"	hash		Y	IT	Schneider Electric	Unsupported	Not Implemented	Possible translation to murmur hash		9/13/2024
+75	ION8650	HTTP	services.http.response.body_hashes="sha1:c7ecf8b50e3cd8492d01292452642617e49c23a0"	hash		Y	IT	Schneider Electric	Unsupported	Not Implemented	Possible translation to murmur hash		9/13/2024
+76	ION8650	HTTP	services.http.response.body_hashes="sha256:78fe0a79a97adb0958b9dc5d979dbc4766df840911a50d5d000b7a69a3c138e3"	hash		Y	IT	Schneider Electric	Unsupported	Not Implemented	Possible translation to murmur hash		9/13/2024
+77	ION8650	HTTP	services.http.response.body_hashes="sha256:7eda790c76b436802e7bce9046270c49e4b9aa8da0710446dc58acbec9e94df1"	hash		Y	IT	Schneider Electric	Unsupported	Not Implemented	Possible translation to murmur hash		9/13/2024
+78	ION8650	HTTP	services.http.response.body_hashes="sha1:d5c19dec857237015a7f4ab0dd4704bf1f6b8e8c"	hash		Y	IT	Schneider Electric	Unsupported	Not Implemented	Possible translation to murmur hash		9/13/2024
+79	ION8650	HTTP	services.http.response.html_title="PowerLogic ION 8600"	html_title		Y	IT	Schneider Electric	Supported	Implemented		6/27/2024	9/13/2024
+80	ION9000	HTTP	services.software.product="PowerLogic Power Meter" and "ION9000"	product		Y	IT	Schneider Electric	Unsupported	Not Implemented	Possible Smartfingerprint implementation		9/13/2024
+81	ION9000	HTTP	services.tls.certificates.leaf_data.issuer.common_name:"ION9000"	tls Certificate 		Y	IT	Schneider Electric	Supported	Implemented		10/9/2024	9/13/2024
+82	ION9000	HTTP	services.http.response.body_hashes="sha1:a4bf9e4604b62c24f1eff844dcf8f32217ab74c3" and services.tls.certificates.leaf_data.issuer.common_name:"ION9000"	hash + tls certificate		Y	IT	Schneider Electric	Unsupported	Not Implemented	Possible Smartfingerprint implementation		9/13/2024
+83	ION9000	HTTP	services.http.response.body_hashes="sha256:98a3cb299a5577b7b18fecb88bccf8c5780463329f5d2738df513a95d4b8c666" and services.tls.certificates.leaf_data.issuer.common_name:"ION9000"	hash + tls certificate		Y	IT	Schneider Electric	Unsupported	Not Implemented	Possible Smartfingerprint implementation		9/13/2024
+84	ION7400	HTTP	services.http.response.body_hashes="sha1:a4bf9e4604b62c24f1eff844dcf8f32217ab74c3" and services.tls.certificates.leaf_data.issuer.common_name:"ION7400"	hash + tls certificate		Y	IT	Schneider Electric	Unsupported	Not Implemented	Possible Smartfingerprint implementation		9/13/2024
+85	ION7400	HTTP	services.http.response.body_hashes="sha256:98a3cb299a5577b7b18fecb88bccf8c5780463329f5d2738df513a95d4b8c666" and services.tls.certificates.leaf_data.issuer.common_name:"ION7400"	hash + tls certificate		Y	IT	Schneider Electric	Unsupported	Not Implemented	Possible Smartfingerprint implementation		9/13/2024
+86	PM8000	HTTP	services.http.response.body_hashes="sha1:a4bf9e4604b62c24f1eff844dcf8f32217ab74c3" and services.tls.certificates.leaf_data.issuer.common_name:"PM8000"	hash + tls certificate		Y	IT	Schneider Electric	Unsupported	Not Implemented	Possible Smartfingerprint implementation		9/13/2024
+87	PM8000	HTTP	services.http.response.body_hashes="sha256:98a3cb299a5577b7b18fecb88bccf8c5780463329f5d2738df513a95d4b8c666" and services.tls.certificates.leaf_data.issuer.common_name:"PM8000"	hash + tls certificate		Y	IT	Schneider Electric	Unsupported	Not Implemented	Possible Smartfingerprint implementation		9/13/2024
+88	ION7400	HTTP	services.http.response.favicons.hashes="md5:95db983278a0c04695b2e6775a65a8da" and services.tls.certificates.leaf_data.issuer.common_name:"ION7400"	hash + tls certificate		Y	IT	Schneider Electric	Unsupported	Not Implemented	Possible Smartfingerprint implementation		9/13/2024
+89	ION9000	HTTP	services.http.response.favicons.hashes="md5:95db983278a0c04695b2e6775a65a8da" and services.tls.certificates.leaf_data.issuer.common_name:"ION9000"	favicon hash + tls certificate		Y	IT	Schneider Electric	Unsupported	Not Implemented	Possible Smartfingerprint implementation		9/13/2024
+90	PM8000	HTTP	services.http.response.favicons.hashes="md5:95db983278a0c04695b2e6775a65a8da" and services.tls.certificates.leaf_data.issuer.common_name:"PM8000"	hash + tls certificate		Y	IT	Schneider Electric	Unsupported	Not Implemented	Possible Smartfingerprint implementation		9/13/2024
+91	ION7400	HTTP	services.http.response.favicons.hashes="sha256:625fdabb80fcd63114fdd15a0e1a3c4b24583b92537131fb4d69907638b7b516" and services.tls.certificates.leaf_data.issuer.common_name:"ION7400"	hash + tls certificate		Y	IT	Schneider Electric	Unsupported	Not Implemented	Possible Smartfingerprint implementation		9/13/2024
+92	PM8000	HTTP	services.http.response.favicons.hashes="sha256:625fdabb80fcd63114fdd15a0e1a3c4b24583b92537131fb4d69907638b7b516" and services.tls.certificates.leaf_data.issuer.common_name:"PM8000"	hash + tls certificate		Y	IT	Schneider Electric	Unsupported	Not Implemented	Possible Smartfingerprint implementation		9/13/2024
+93	ION9000	HTTP	services.http.response.favicons.hashes="sha256:625fdabb80fcd63114fdd15a0e1a3c4b24583b92537131fb4d69907638b7b516" and services.tls.certificates.leaf_data.issuer.common_name:"ION9000"	favicon hash + tls certificate		Y	IT	Schneider Electric	Unsupported	Not Implemented	Possible Smartfingerprint implementation		9/13/2024
+94	ION7400	HTTP	services.http.response.favicons.name="data:image/x-icon;base64,AAABAAEAEBAAAAEACABoBQA...AAAAAAAAAAAAAAAAAAABAAA=" and services.tls.certificates.leaf_data.issuer.common_name:"ION7400"	hash + tls certificate		Y	IT	Schneider Electric	Unsupported	Not Implemented	Possible Smartfingerprint implementation		9/13/2024
+95	PM8000	HTTP	services.http.response.favicons.name="data:image/x-icon;base64,AAABAAEAEBAAAAEACABoBQA...AAAAAAAAAAAAAAAAAAABAAA=" and services.tls.certificates.leaf_data.issuer.common_name:"PM8000"	hash + tls certificate		Y	IT	Schneider Electric	Unsupported	Not Implemented	Possible Smartfingerprint implementation		9/13/2024
+96	ION9000	HTTP	services.http.response.favicons.name="data:image/x-icon;base64,AAABAAEAEBAAAAEACABoBQA...AAAAAAAAAAAAAAAAAAABAAA=" and services.tls.certificates.leaf_data.issuer.common_name:"ION9000"	favicon hash + tls certificate		Y	IT	Schneider Electric	Unsupported	Not Implemented	Possible Smartfingerprint implementation		9/13/2024
+97	PM800	HTTP	Basic realm="PowerLogic® PM800 "	Basic realm		Y	IT	Schneider Electric	Supported	Duplicate	Duplicates ID 60		9/13/2024
+98	PM800	HTTP	services.http.response.body_hash="sha1:4a0ce7771f79aaa328cfe0886d58110ff5f53239"	hash		Y	IT	Schneider Electric	Unsupported	Not Implemented	Possible translation to murmur hash		9/13/2024
+99	PM800	HTTP	services.http.response.body_hashes="sha256:898c29396b76487e58ff7597d156b59edd3b3f22e86b49e11cc2ab10d745ea88"	hash		Y	IT	Schneider Electric	Unsupported	Not Implemented	Possible translation to murmur hash		9/13/2024
+100	EGX100	HTTP	services.http.response.headers: (key: `WWW-Authenticate` and value.headers: `Basic realm="EGX100"`)	http header		Y	IT	Schneider Electric	Unsupported	Not Implemented	Possible Smartfingerprint implementation		9/13/2024
+101	Power Monitoring Expert	HTTP	services.http.response.html_tags="<title>Power Monitoring Expert</title>"	html tag		Y	IT	Schneider Electric	Supported	Duplicate	Duplicates ID 13		9/13/2024			RP-220915: Adding fingerprints for Power Monitoring Expert
+102	Power Monitoring Expert	HTTP	services.http.response.html_title="Power Monitoring Expert"	html title		Y	IT	Schneider Electric	Supported	Duplicate	Duplicates ID 13		9/13/2024			RP-220915: Adding fingerprints for Power Monitoring Expert
+103	Power Monitoring Expert	HTTP	services.http.response.favicons.hashes="md5:7ea72e05c52490e2c9e1512832214271" and services.http.response.html_title="Power Monitoring Expert"	Favicon + hmtl title		Y	IT	Schneider Electric	Unsupported	Not Implemented	Possible Smartfingerprint implementation		9/13/2024			RP-220915: Adding fingerprints for Power Monitoring Expert
+104	Power Operation	HTTP	services.http.response.html_tags="<title>Power Operation</title>"	html tag		Y	IT	Schneider Electric	Supported	Duplicate	Duplicates ID 105		9/13/2024
+105	Power Operation	HTTP	services.http.response.html_title="Power Operation"	html title		Y	IT	Schneider Electric	Supported	Implemented		10/9/2024	9/13/2024
+106	EcoStruxure Site Server 	HTTP	services.http.response.html_tags="<title>Site Server</title>"	html tag		Y	IT	Schneider Electric	Supported	Duplicate	Duplicates ID 108		9/13/2024
+107	EcoStruxure Site Server 	HTTP	services.http.response.html_title="Site Server"	html title		Y	IT	Schneider Electric	Supported	Implemented		10/9/2024	9/13/2024
+108	EcoStruxure Site Server 	HTTP	services.http.response.favicons.hashes="md5:7ea72e05c52490e2c9e1512832214271" and services.http.response.html_title="Site Server"	Favicon + hmtl title		Y	IT	Schneider Electric	Unsupported	Not Implemented	Possible Smartfingerprint implementation		9/13/2024
+109	EcoStruxure Site Server 	HTTP/HTTPS	services.http.response.html_tags="<title>Site Server</title>"	html title			IT	Schneider Electric	Supported	Duplicate	Duplicates ID 108		9/13/2024
+110	PAS	HTTP/HTTPS	services.http.response.html_tags="<title>panel-server-webadmin</title>"	html title			IT	Schneider Electric	Supported	Duplicate	Duplicates ID 112		9/13/2024
+111	PAS	HTTP/HTTPS	services.http.response.html_title="panel-server-webadmin"	html title			IT	Schneider Electric	Supported	Implemented		10/9/2024	9/13/2024
+112	PAS800	HTTP	services.tls.certificates.leaf_data.subject.organizational_unit="PAS800"	?		Y	IT	Schneider Electric	Supported	Not Implemented			9/13/2024
+113	PAS800	HTTP	services.http.response.html_tags="<title>panel-server-webadmin</title>" and services.tls.certificates.leaf_data.subject.organizational_unit="PAS800"	html_title + tls certificate		Y	IT	Schneider Electric	Unsupported	Not Implemented	Possible Smartfingerprint implementation		9/13/2024
+114	PAS600	HTTP	services.http.response.html_tags="<title>panel-server-webadmin</title>" and services.tls.certificates.leaf_data.subject.organizational_unit:"PAS600"	html_title + tls certificate		Y	IT	Schneider Electric	Unsupported	Not Implemented	Possible Smartfingerprint implementation		9/13/2024
+115	PAS600	HTTP	services.tls.certificates.leaf_data.subject.organizational_unit:"PAS600"	?		Y	IT	Schneider Electric	Unsupported	Not Implemented			9/13/2024
+116	PAS400	HTTP	services.tls.certificates.leaf_data.subject.organizational_unit:"PAS400"	?		Y	IT	Schneider Electric	Unsupported	Not Implemented			9/13/2024
+117	PAS400	HTTP	services.http.response.html_tags="<title>panel-server-webadmin</title>" and services.tls.certificates.leaf_data.subject.organizational_unit:"PAS400"	html_title + tls certificate		Y	IT	Schneider Electric	Unsupported	Not Implemented	Possible Smartfingerprint implementation		9/13/2024
+118	PAS800P	HTTP	services.tls.certificates.leaf_data.subject.organizational_unit="PAS800P"	tls Certificate 		Y	IT	Schneider Electric	Unsupported	Not Implemented			9/13/2024
+119	PAS800L	HTTP	services.tls.certificates.leaf_data.subject.organizational_unit="PAS800L"	tls Certificate 		Y	IT	Schneider Electric	Unsupported	Not Implemented			9/13/2024
+120	PAS600L	HTTP	services.tls.certificates.leaf_data.subject.organizational_unit="PAS600L"	tls Certificate 		Y	IT	Schneider Electric	Unsupported	Not Implemented			9/13/2024
+121	PAS600	HTTP	services.http.response.html_title="panel-server-webadmin" and services.tls.certificates.leaf_data.subject.organizational_unit:"PAS600"	html_title + tls certificate		Y	IT	Schneider Electric	Unsupported	Not Implemented	Possible Smartfingerprint implementation		9/13/2024
+122	PAS600L	HTTP	services.http.response.html_title="panel-server-webadmin" and services.tls.certificates.leaf_data.subject.organizational_unit:"PAS600L"	html_title + tls certificate		Y	IT	Schneider Electric	Unsupported	Not Implemented	Possible Smartfingerprint implementation		9/13/2024
+123	PAS800L	HTTP	services.http.response.html_title="panel-server-webadmin" and services.tls.certificates.leaf_data.subject.organizational_unit:"PAS800L"	html_title + tls certificate		Y	IT	Schneider Electric	Unsupported	Not Implemented	Possible Smartfingerprint implementation		9/13/2024
+124	PAS800	HTTP	services.http.response.html_title="panel-server-webadmin" and services.tls.certificates.leaf_data.subject.organizational_unit="PAS800"	html_title + tls certificate		Y	IT	Schneider Electric	Unsupported	Not Implemented	Possible Smartfingerprint implementation		9/13/2024
+125	PAS400	HTTP	services.http.response.html_title="panel-server-webadmin" and services.tls.certificates.leaf_data.subject.organizational_unit="PAS400"	html_title + tls certificate		Y	IT	Schneider Electric	Unsupported	Not Implemented	Possible Smartfingerprint implementation		9/13/2024
+126	Easergy Flair 200C	HTTP	services.http.response.html_tags="<title>Easergy Flair 200C</title>"	html tag		Y	IT	Schneider Electric	Supported	Duplicate	Duplicates ID 127		9/13/2024
+127	Easergy Flair 200C	HTTP	services.http.response.html_title="Easergy Flair 200C"	html title		Y	IT	Schneider Electric	Supported	Implemented		10/9/2024	9/13/2024
+128	Easergy Flair 200C	HTTP	services.http.response.body_hashes="sha256:869f52f29ce027f4a1399f91b15e79d6a763a171241fb32944a955c02731941d"	hash		Y	IT	Schneider Electric	Unsupported	Not Implemented	Possible translation to murmur hash		9/13/2024
+129	Easergy Flair 200C	HTTP	services.http.response.body_hashes="sha1:554f7af58d4fd043ee75188f1866d6aebdaac91d"	hash		Y	IT	Schneider Electric	Unsupported	Not Implemented	Possible translation to murmur hash		9/13/2024
+130	Easergy T300		services.tls.certificates.leaf_data.issuer.organizational_unit="Energy" and "T300"	tls Certificate 		Y	IT	Schneider Electric	Unsupported	Not Implemented			9/13/2024
+131	Easergy relays 	MMS	services.mms.model="S61850 for Easergy Relays"	mms model 		Y	OT	Schneider Electric	Supported	Implemented		10/31/2023	9/13/2024
+132	EasergyT200		services.http.response.html_tags="<title>Easergy T200</title>"	html tag		Y	IT	Schneider Electric	Supported	Duplicate	Duplicates ID 133		9/13/2024
+133	EasergyT200		services.http.response.html_title="Easergy T200"	html title		Y	IT	Schneider Electric	Supported	Implemented		10/9/2024	9/13/2024
+134	Com'X		services.tls.certificates.leaf_data.issuer.common_name="ComX"	tls Certificate 		Y	IT	Schneider Electric	Supported	Implemented		10/9/2024	9/13/2024
+135	Com'X		services.tls.certificates.leaf_data.issuer.organizational_unit="Gateways & Energy Servers"	tls Certificate 		Y	IT	Schneider Electric	Unsupported	Not Implemented			9/13/2024
+136	Com'X		services.http.response.body_hashes="sha256:9b4cfd6283812467a1ba759e532c32a0d501ceb21da0cebe169a694945857fd9"	hash		Y	IT	Schneider Electric	Unsupported	Not Implemented	Murmurhash -227488376		9/13/2024
+137	Com'X		services.http.response.body_hashes="sha1:59456e476c955dd8d7524eed64fa1ec278e02c81"	hash		Y	IT	Schneider Electric	Unsupported	Duplicate	Murmurhash -227488376 (Duplicates ID 136)		9/13/2024
+138	Com'X		services.http.response.body_hashes="sha1:3acd27943371645495b0facea35227ecf56c7125" and services.tls.certificates.leaf_data.subject.common_name="ComX"	hash			IT	Schneider Electric	Unsupported	Not Implemented	Will use murmurhash (review)		9/13/2024
+139	Com'X		services.tls.certificates.leaf_data.subject.common_name="ComX"	tls Certificate 		Y	IT	Schneider Electric	Supported	Duplicate	Duplicates ID 134		9/13/2024
+140	Com'X		services.tls.certificates.leaf_data.subject.organizational_unit="Gateways & Energy Servers"	tls Certificate 		Y	IT	Schneider Electric	Unsupported	Not Implemented			9/13/2024
+141	Com'X 510		services.tls.certificates.leaf_data.names="ComX510"	tls Certificate 		Y	IT	Schneider Electric	Unsupported	Not Implemented			9/13/2024
+142	Com'X 510		services.tls.certificates.leaf_data.issuer.common_name="ComX510"	tls Certificate 		Y	IT	Schneider Electric	Supported	Implemented		10/9/2024	9/13/2024
+143	Com'X 510		services.http.response.body_hashes="sha1:3acd27943371645495b0facea35227ecf56c7125" and services.tls.certificates.leaf_data.names="ComX510"	tls Certificate + hash		Y	IT	Schneider Electric	Unsupported	Not Implemented	Will use murmurhash (review)		9/13/2024
+144	Com'X200		services.tls.certificates.leaf_data.names="ComX200"	tls certificate		Y	IT	Schneider Electric	Supported	Not Implemented			9/13/2024
+145	Com'X200		services.http.response.body_hashes="sha1:3acd27943371645495b0facea35227ecf56c7125" and services.tls.certificates.leaf_data.names="ComX200"	hash + tls certificate		Y	IT	Schneider Electric	Unsupported	Not Implemented	Will use murmurhash (review)		9/13/2024
+146	Enerlin'X iRIO		("iRIO") and services.software.vendor=`Microsoft`	Basic realm + vendor		Y	IT	Schneider Electric	Unsupported	Not Implemented	Possible Smartfingerprint implementation		9/13/2024
+147	Enerlin'X iRIO		("iRIO") and services.software.vendor=`DD-WRT`	Basic realm + vendor		Y	IT	Schneider Electric	Unsupported	Not Implemented	Possible Smartfingerprint implementation		9/13/2024
+148	Enerlin'X iRIO		services.http.response.html_tags="<title>Schneider Electric Telecontrol - Industrial Web Control</title>"	html tag		Y	IT	Schneider Electric	Unsupported	Duplicate			9/13/2024
+149	Enerlin'X iRIO		services.http.response.html_title="Schneider Electric Telecontrol - Industrial Web Control"	html title		Y	IT	Schneider Electric	Supported	Implemented		6/27/2024	9/13/2024
+150	Enerlin'X iRIO		("iRIO") and services.http.response.html_title="Schneider Electric Telecontrol - Industrial Web Control"	baisc realm + html title 		Y	IT	Schneider Electric	Unsupported	Not Implemented	Possible Smartfingerprint implementation		9/13/2024
+151	Enerlin'X iRIO		title:"Schneider Electric Telecontrol - Industrial Web Control"	html title	Y		IT	Schneider Electric	Supported	Duplicate	Duplicates ID 149		9/13/2024
+152	Enerlin'X iRIO		http.favicon.hash:-1324056836 title:"Schneider Electric Telecontrol - Industrial Web Control"	favicon	Y		IT	Schneider Electric	Unsupported	Not Implemented	Possible Smartfingerprint implementation		9/13/2024
+153	EGX300		services.snmp.oid_system.desc="Schneider Electric - EGX300"	service 		Y	IT	Schneider Electric	Supported	Implemented		7/3/2024	9/13/2024
+154	EGX100		services.http.response.headers: (key: `WWW-Authenticate` and value.headers: `Basic realm="EGX100"`)	Basic Realm		Y	IT	Schneider Electric	Unsupported	Not Implemented	Possible Smartfingerprint implementation		9/13/2024
+155	ION7400		services.tls.certificates.leaf_data.issuer.common_name:"ION7400"	tls certificate		Y	IT	Schneider Electric	Supported	Implemented		10/9/2024	9/13/2024
+156	PM5000		services.http.response.html_title="Meter Insights - Schneider Electric"	html title		Y	IT	Schneider Electric	Supported	Implemented		10/9/2024	9/13/2024
+157	PM5560		services.http.response.html_title="PM5560"	hmtl title		Y	IT	Schneider Electric	Supported	Duplicate	Duplicates ID 22		9/13/2024			RP-220914: Adding fingerprints for PM5560
+158	PM5560		services.bacnet.model_name="PM5560"	service 		Y	IT	Schneider Electric	Supported	Duplicate			9/13/2024			RP-220914: Adding fingerprints for PM5560
+159	PM5560		services.http.response.html_tags="<title>PM5560</title>"	html tag		Y	IT	Schneider Electric	Supported	Duplicate	Duplicates ID 22		9/13/2024			RP-220914: Adding fingerprints for PM5560
+160	PM5560		services.http.response.html_title="PM5560" and services.http.response.favicons.hashes="md5:89167393768668c72fab6a9f025b5da6" and "schneider electric"	html title + favicon		Y	IT	Schneider Electric	Unsupported	Not Implemented	Possible Smartfingerprint implementation		9/13/2024			RP-220914: Adding fingerprints for PM5560
+161	PM5560		services.http.response.body_hash="sha1:becd0c60aa243b2bdb6d66fedbf346bae99524f4"	hash		Y	IT	Schneider Electric	Unsupported	Not Implemented	Murmurhash -1474351623		9/13/2024			RP-220914: Adding fingerprints for PM5560
+162	Acti9 PowerTag Link		services.http.response.headers: (key: `Set-Cookie` and value.headers: `Product-Name=PowerTag Link`)	headers		Y	IT	Schneider Electric	Unsupported	Not Implemented	Possible Smartfingerprint implementation		9/13/2024
+163	Acti9 PowerTag Link		services.http.response.headers: (key: `Set-Cookie` and value.headers: `Product-Range=Acti9`)	headers		Y	IT	Schneider Electric	Unsupported	Not Implemented	Possible Smartfingerprint implementation		9/13/2024
+164	Acti9 PowerTag Link		services.http.response.body_hashes="sha1:b57132d8bd0c819dede30666c82023953b822915"	hash		Y	IT	Schneider Electric	Unsupported	Not Implemented	Murmurhash 406219648		9/13/2024
+165	Acti9 PowerTag Link		services.http.response.headers: (key: `Set-Cookie` and value.headers: `Product-Name=PowerTag Link HD`)	headers		Y	IT	Schneider Electric	Unsupported	Not Implemented	Possible Smartfingerprint implementation		9/13/2024
+166	S61850 for VAMP Relays		services.mms.model="S61850 for VAMP Relays"	service 		Y	IT	Schneider Electric	Supported	Implemented		5/8/2024	9/13/2024
+167	M262		services.tls.certificates.leaf_data.issuer.common_name="TM262-10"	tls certificate		Y	IT	Schneider Electric	Supported	Duplicate	Duplicates ID 394		9/13/2024
+168	M262		services.tls.certificates.leaf_data.issuer.common_name="TM262-10"	tls certificate		Y	IT	Schneider Electric	Supported	Duplicate	Duplicates ID 394		9/13/2024
+169	Power Chute		services.tls.certificates.leaf_data.issuer.organization="APC by Schneider Electric"	tls certificate		Y	IT	Schneider Electric	Supported	Implemented		10/9/2024	9/13/2024
+170	EcoStruxure XR Operator Advisor		services.http.response.html_title="EcoStruxure™ XR Operator Advisor"	html title		Y	IT	Schneider Electric	Supported	Implemented		10/9/2024	9/13/2024
+171	EcoStruxure XR Operator Advisor		services.http.response.html_tags="<title>EcoStruxure™ XR Operator Advisor</title>"	html title		Y	IT	Schneider Electric	Supported	Duplicate	Duplicates ID 171		9/13/2024
+172	EcoStruxure XR Operator Advisor		services.http.response.body_hash="sha1:6e392e185881ed65ec5560292650cafdc10b5d49"	hash		Y	IT	Schneider Electric	Unsupported	Not Implemented	Will use murmurhash (review)		9/13/2024
+173	EcoStruxure XR Operator Advisor		services.http.response.body_hashes="sha1:8565864f7cc67df457cbf0b87e49d5bc05d749d9"	hash		Y	IT	Schneider Electric	Unsupported	Not Implemented	Will use murmurhash (review)		9/13/2024
+174	Power Advisor		Power Advisor and "Schneider"	basic realm combination		Y	IT	Schneider Electric	Unsupported	Not Implemented	Possible Smartfingerprint implementation		9/13/2024
+175	SpaceLynk		services.software.product="SpaceLYnk Firmware"	product		Y	IT	Schneider Electric	Supported	Implemented		10/9/2024	9/13/2024
+176	SpaceLynk		services.tls.certificates.leaf_data.subject_dn="CN=spaceLYnk"	tls certificate		Y	IT	Schneider Electric	Supported	Not Implemented	Requires changes in the data pipeline		9/13/2024
+177	SpaceLynk		services.tls.certificates.leaf_data.issuer.common_name="spaceLYnk"	tls certificate		Y	IT	Schneider Electric	Supported	Implemented		10/9/2024	9/13/2024
+178	Power Operation 		services.http.response.html_title="Power Operation"	html title		Y	IT	Schneider Electric	Supported	Duplicate	Duplicates ID 106		9/13/2024
+179	Power Operation 		services.http.response.html_tags="<title>Power Operation</title>"	html tag		Y	IT	Schneider Electric	Supported	Duplicate	Duplicates ID 106		9/13/2024
+180	SpaceLogic C-Bus Home Controller		(services.software.vendor="Schneider Electric") and services.software.product=`SpaceLogic C-Bus Home Controller`	vendor + product		Y	IT	Schneider Electric	Unsupported	Not Implemented	Possible Smartfingerprint implementation		9/13/2024
+181	Wiser		services.tls.certificates.leaf_data.issuer.common_name="Wiser for KNX"	tls certificate		Y	IT	Schneider Electric	Supported	Implemented		6/27/2024	9/13/2024
+182	Wiser		services.tls.certificates.leaf_data.subject.common_name="Wiser for KNX"	tls certificate		Y	IT	Schneider Electric	Supported	Implemented	Implemented as a match on all certificate data	6/27/2024	9/13/2024
+183	Wiser		services.tls.certificates.leaf_data.subject_dn="CN=Wiser for KNX"	tls certificate		Y	IT	Schneider Electric	Supported	Implemented	Implemented as a match on all certificate data	6/27/2024	9/13/2024
+184	Wiser		services.tls.certificates.leaf_data.issuer_dn="CN=Wiser for KNX"	tls certificate		Y	IT	Schneider Electric	Supported	Implemented	Implemented as a match on all certificate data	6/27/2024	9/13/2024
+185	Wiser		services.http.response.body_hashes="sha1:4787b4c012ebe0f56bc4733de4af2d4c2aace62b" and services.tls.certificates.leaf_data.issuer_dn="CN=Wiser for KNX"	hash + tls certificate		Y	IT	Schneider Electric	Unsupported	Not Implemented	Possible Smartfingerprint implementation		9/13/2024
+186	Easergy relays 		Model: S61850 for Easergy Relays	Model	Y		IT	Schneider Electric	Supported	Implemented	No protocol information. Implemented as product fingerprint and for IEC61850 protocol.	7/13/2023	9/13/2024
+187	Easergy relays 		hash:-510269654	hash	Y		IT	Schneider Electric	Supported	Implemented	No matches	10/9/2024	9/13/2024
+188	Easergy T300		Easergy T300	Basic realm	Y		IT	Schneider Electric	Supported	Not Implemented	Supported in Groma		9/13/2024
+189	PM5111		hash:-1461446935	hash	Y		IT	Schneider Electric	Supported	Implemented	No matches	10/9/2024	9/13/2024
+190	PM5111		Device Identification: Schneider Electric PM5111	Device identification	Y		IT	Schneider Electric	Supported	Implemented	Implemented as Modbus fingerprint	8/16/2023	9/13/2024
+191	PM5111		product:"PM5111"	product	Y		IT	Schneider Electric	Supported	Implemented		10/9/2024	9/13/2024
+192	PM5110		Device Identification: Schneider Electric PM5110	Device identification	Y		IT	Schneider Electric	Supported	Implemented	Implemented as Modbus fingerprint	8/16/2023	9/13/2024
+193	PM5110		product:"PM5110"	product	Y		IT	Schneider Electric	Supported	Implemented		10/9/2024	9/13/2024
+194	PM5563		Device Identification: Schneider Electric PM5563	Device identification	Y		IT	Schneider Electric	Supported	Implemented	Implemented as Modbus fingerprint	8/16/2023	9/13/2024
+195	PM5563		product:"PM5563" port:47808	product	Y		IT	Schneider Electric	Supported	Implemented	Implemented as Bacnet fingerprint	3/6/2024	9/13/2024
+196	PM5563		product:"PM5563" port:502	product	Y		IT	Schneider Electric	Supported	Duplicate	Duplicates ID 194		9/13/2024
+197	PM5563		hash:-387867850	hash	Y		IT	Schneider Electric	Supported	Not Implemented			9/13/2024
+198	PM5563		hash:1662550786	hash	Y		IT	Schneider Electric	Supported	Not Implemented			9/13/2024
+199	ION 	SQL	Instance Name: ION	instance	Y		IT	Schneider Electric	Supported	Implemented		9/22/2023	12/12/2022
+200	ION7400/PM8000	HTTP	http.favicon.hash:586189054	favicon	Y		IT	Schneider Electric	Supported	Duplicate	Duplicate ID 45		9/13/2024
+201	ION8650	SSH	ION8650	Basic realm	Y		IT	Schneider Electric	Supported	Not Implemented	Supported in Groma		9/13/2024
+202	ION8650		title:"PowerLogic ION 8650"	html title	Y		IT	Schneider Electric	Supported	Duplicate	Duplicate ID 33		9/13/2024
+203	ION8650		SSH-2.0-ION8650	?	Y		IT	Schneider Electric	Unsupported	Not Implemented			9/13/2024
+204	ION7650	HTTP	title:"PowerLogic ION 7650"	html title			IT	Schneider Electric	Supported	Duplicate	Duplicates ID 3		9/13/2024
+205	EGX100		WWW-Authenticate: Basic realm="EGX100"	basic realm 	Y		IT	Schneider Electric	Supported	Not Implemented	Supported in Groma		9/13/2024
+206	EGX150		EGX150	basic realm	Y		IT	Schneider Electric	Supported	Not Implemented	Supported in Groma		9/13/2024
+207	Power Monitoring Expert	HTTP	title:"Power Monitoring Expert"	html title	Y		IT	Schneider Electric	Supported	Duplicate	Dupplicates ID 13		9/13/2024			RP-220915: Adding fingerprints for Power Monitoring Expert
+208	Power Monitoring Expert	HTTP	title:"Power Monitoring Expert" http.favicon.hash:1317073961	html title	Y		IT	Schneider Electric	Supported	Duplicate	Duplicates ID 207		9/13/2024			RP-220915: Adding fingerprints for Power Monitoring Expert
+209	Site server	HTTP	http.favicon.hash:1317073961 title:"Site Server"	favicon	Y		IT	Schneider Electric	Unsupported	Not Implemented	Possible Smartfingerprint implementation		9/13/2024
+210	Démo Power Operation		Location: https://demo.ecostruxure-power-operation.se.app/WebHmi	?	Y		IT	Schneider Electric	Unsupported	Not Implemented	Possible Smartfingerprint implementation		9/13/2024
+211	PAS800L		Device Identification: Schneider Electric PAS800L	Device identification	Y		IT	Schneider Electric	Supported	Implemented	Implemented as modbus fingerprint	10/9/2024	9/13/2024
+212	PAS800L		PAS800L/	basic realm (strict)	Y		IT	Schneider Electric	Supported	Not Implemented	Supported in Groma		9/13/2024
+213	PAS800		PAS800/	basic realm (strict)	Y		IT	Schneider Electric	Supported	Not Implemented	Supported in Groma		9/13/2024
+214	PAS600		PAS600/	basic realm (strict)	Y		IT	Schneider Electric	Supported	Not Implemented	Supported in Groma		9/13/2024
+215	PAS600L		PAS600L/	basic realm (strict)	Y		IT	Schneider Electric	Supported	Not Implemented	Supported in Groma		9/13/2024
+216	PAS400		PAS400/	basic realm (strict)	Y		IT	Schneider Electric	Supported	Not Implemented	Supported in Groma		9/13/2024
+217	PM5330		product:"PM5330"	product	Y		IT	Schneider Electric	Supported	Implemented		10/9/2024	9/13/2024
+218	Easergy P5		Easergy-P5	basic realm	Y		IT	Schneider Electric	Supported	Not Implemented	Supported in Groma		9/13/2024
+219	Easergy T300		Easergy port:8443	basic realm + port	Y		IT	Schneider Electric	Unsupported	Not Implemented	Possible Smartfingerprint implementation		9/13/2024
+220	Old ethernet gateway		product:"Allegro RomPager" port:80 title:"Log In"	product + port + html title	Y		IT	Schneider Electric	Unsupported	Not Implemented	Possible Smartfingerprint implementation		9/13/2024
+221	PM5560	SNMP	hash:133098726	hash	Y		IT	Schneider Electric	Unsupported	Review	Needs review from Schneider Electric team.More details		9/13/2024			RP-220914: Adding fingerprints for PM5560
+222	PM5500	HTTP	WWW-Authenticate: Basic realm="PM5500"	basic realm	Y		IT	Schneider Electric	Supported	Not Implemented	Supported in Groma		9/13/2024
+223	PM5500		hash:1741371136	hash	Y		IT	Schneider Electric	Supported	Not Implemented			9/13/2024
+224	EGX300		"EGX300"	basic realm	Y		IT	Schneider Electric	Supported	Not Implemented	Supported in Groma		9/13/2024
+225	EGX150		"EGX150"	basic realm	Y		IT	Schneider Electric	Supported	Not Implemented	Supported in Groma		9/13/2024
+226	EGX400		"EGX400"	basic realm	Y		IT	Schneider Electric	Supported	Not Implemented	Supported in Groma		9/13/2024
+227	EGX200		"EGX200"	basic realm	Y		IT	Schneider Electric	Supported	Not Implemented	Supported in Groma		9/13/2024
+228	PM5560		pm5560	basic realm	Y		IT	Schneider Electric	Supported	Not Implemented	Supported in Groma		9/13/2024			RP-220914: Adding fingerprints for PM5560
+229	PM5560	UDP	Model Name: PM5560	model	Y		IT	Schneider Electric	Supported	Duplicate	Duplicates other fingerprints. No protocol specified also		9/13/2024			RP-220914: Adding fingerprints for PM5560
+230	PM5560	SNMP	Description: Schneider Electric - PM5560 "SNMP"	Description	Y		IT	Schneider Electric	Supported	Implemented	Implemented as "Schneider Electric - PM5560" snmp fingerprint	7/3/2024	9/13/2024			RP-220914: Adding fingerprints for PM5560
+231	PM5560	HTTP	http.favicon.hash:487597720 title:"PM5560"	favicon	Y		IT	Schneider Electric	Unsupported	Not Implemented	Possible Smartfingerprint implementation		9/13/2024			RP-220914: Adding fingerprints for PM5560
+232	PM5560		title:"PM5560"	html title	Y		IT	Schneider Electric	Supported	Duplicate	Same as the one in row 159		9/13/2024			RP-220914: Adding fingerprints for PM5560
+233	PM5560	UDP	product:"PM5560" port:47808	product + port 	Y		IT	Schneider Electric	Supported	Duplicate	Duplicates ID 235		9/13/2024			RP-220914: Adding fingerprints for PM5560
+234	PM5560		product:"PM5560" port:502	product + port 	Y		IT	Schneider Electric	Supported	Duplicate	Duplicates ID 235		9/13/2024			RP-220914: Adding fingerprints for PM5560
+235	PM5560	Modbus TCP	Device Identification: Schneider Electric PM5560	Device identification	Y		OT	Schneider Electric	Supported	Implemented		8/16/2023	9/13/2024			RP-220914: Adding fingerprints for PM5560
+236	PM5560	UDP	Product name: PM5560	Product	Y		IT	Schneider Electric	Supported	Implemented		10/9/2024	9/13/2024			RP-220914: Adding fingerprints for PM5560
+237	PM5560	Modbus TCP	product:"Schneider Electric" version:"PM5560"	Product + version	Y		OT	Schneider Electric	Supported	Duplicate	Duplicates ID 235		9/13/2024			RP-220914: Adding fingerprints for PM5560
+238	PM5561	HTTP	hash:650390232	hash	Y		IT	Schneider Electric	Supported	Not Implemented			9/13/2024
+239	PM5560	HTTP	hash:2038846960	hash	Y		IT	Schneider Electric	Supported	Not Implemented			9/13/2024			RP-220914: Adding fingerprints for PM5560
+240	PM5320	HTTP	hash:-1632565563	hash	Y		IT	Schneider Electric	Supported	Not Implemented			9/13/2024
+241	PM5561	HTTP	hash:-315174708	hash	Y		IT	Schneider Electric	Supported	Not Implemented			9/13/2024
+242	PM5562	HTTP	hash:-1512920408	hash	Y		IT	Schneider Electric	Supported	Not Implemented			9/13/2024
+243	Enerlin'X iRIO	HTTP	http.favicon.hash:-1324056836	favicon 	Y		IT	Schneider Electric	Supported	Implemented	Implemented ("Telecontrol")	5/31/2023	12/12/2022
+244	PM5562	Modbus TCP	product:"Schneider Electric" version:"PM5562"	product + verison 	Y		OT	Schneider Electric	Supported	Implemented	Implemented as "Schneider Electric PM5562"	10/9/2024	9/13/2024
+245	PM5562	UDP	product:"PM5562" port 47808	product + port	Y		IT	Schneider Electric	Supported	Implemented		3/5/2024	9/13/2024
+246	PM5562	UDP	Product name: PM5562	product	Y		IT	Schneider Electric	Supported	Implemented		10/9/2024	9/13/2024
+247	PM5562	Modbus TCP	product:"PM5562" port:502	product + port	Y		OT	Schneider Electric	Supported	Duplicate	Duplicates ID 244		9/13/2024
+248	PowerLogic Vamp 	IEC61850	Vamp product:"S61850 for VAMP Relays"	basic	Y		OT	Schneider Electric	Supported	Implemented		5/8/2024	9/13/2024
+249	PowerLogic Vamp 	IEC61850	hash:-1327757089	hash	Y		OT	Schneider Electric	Supported	Not Implemented			9/13/2024
+250	Augmented Operator Advisor 	HTTP	Augmented Operator Advisor	Basic realm	Y		IT	Schneider Electric	Supported	Not Implemented	Supported in Groma		9/13/2024
+251	Smart UPS	TCP 	"Smart-UPS"	Basic realm	Y		IT	Schneider Electric	Research in-progress	Not Implemented	protocol: apcupsd		9/13/2024
+252	Smart-UPS 500	APCUPSd	MODEL : Smart-UPS 500	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+253	Smart-UPS 500	APCUPSd	MODEL : Smart-UPS 500 port:3551	Product + Port	Y		IT	Schneider Electric	Research in-progress	Duplicate	Duplicates ID 252		9/13/2024
+254	BACK-UPS ES 550	APCUPSd	UPSNAME : BACK-UPS ES 550	Product	Y		IT	Schneider Electric	Research in-progress	Won't do	We can only use the fields MODEL and APCMODEL to fingerprint UPS' models. Other fields are not reliable		9/13/2024
+255	BACK-UPS ES 550	APCUPSd	UPSNAME : BACK-UPS ES 550 port:3551	Product + Port	Y		IT	Schneider Electric	Research in-progress	Duplicate	Duplicates ID 254		9/13/2024
+256	SMART-UPS 700	APCUPSd	MODEL : SMART-UPS 700	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+257	Smart-UPS 750	APCUPSd	MODEL : Smart-UPS 750	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+258	Smart-UPS 750 RM	APCUPSd	MODEL : Smart-UPS 750 RM	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+259	Smart-UPS 750 XL	APCUPSd	MODEL : Smart-UPS 750 XL	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+260	Smart-UPS 1000	APCUPSd	MODEL : Smart-UPS 1000	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+261	Smart-UPS 1000 RM	APCUPSd	MODEL : Smart-UPS 1000 RM	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+262	Smart-UPS RT 1000 XL	APCUPSd	MODEL : Smart-UPS RT 1000 XL	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+263	Smart-UPS X 1000	APCUPSd	MODEL : Smart-UPS X 1000	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+264	Smart-UPS C 1000	APCUPSd	MODEL : Smart-UPS C 1000	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+265	SMART-UPS 1400 RM	APCUPSd	MODEL : SMART-UPS 1400 RM	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+266	SMART-UPS 1400 RM XL	APCUPSd	MODEL : SMART-UPS 1400 RM XL	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+267	Smart-UPS 1500	APCUPSd	MODEL : Smart-UPS 1500	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+268	Smart-UPS C 1500	APCUPSd	MODEL : Smart-UPS C 1500	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+269	Smart-UPS X 1500	APCUPSd	MODEL : Smart-UPS X 1500	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+270	Back-UPS RS 1500G	APCUPSd	MODEL : Back-UPS RS 1500G	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+271	Smart-UPS 1500 RM	APCUPSd	MODEL : Smart-UPS 1500 RM	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+272	Smart-UPS 1500 DLJ2	APCUPSd	MODEL : Smart-UPS 1500 DLJ2	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+273	Smart-UPS 1500 RM DLJ2	APCUPSd	MODEL : Smart-UPS 1500 RM DLJ2	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+274	Smart-UPS C 2000	APCUPSd	MODEL : Smart-UPS C 2000	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+275	Smart-UPS RT 2000 XL	APCUPSd	MODEL : Smart-UPS RT 2000 XL	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+276	Smart-UPS X 2000	APCUPSd	MODEL : Smart-UPS X 2000	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+277	Smart-UPS 2200	APCUPSd	MODEL : Smart-UPS 2200	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+278	Smart-UPS 2200 RM	APCUPSd	MODEL : Smart-UPS 2200 RM	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+279	Smart-UPS 2200 RM XL	APCUPSd	MODEL : Smart-UPS 2200 RM XL	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+280	Smart-UPS 2200 XL	APCUPSd	MODEL : Smart-UPS 2200 XL	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+281	Smart-UPS 2200 BI	APCUPSd	MODEL : Smart-UPS 2200 BI	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+282	Smart-UPS RT 2200 XL	APCUPSd	MODEL : Smart-UPS RT 2200 XL	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+283	Smart-UPS 3000	APCUPSd	MODEL : Smart-UPS 3000	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+284	Smart-UPS 3000 RM	APCUPSd	MODEL : Smart-UPS 3000 RM	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+285	Smart-UPS 3000 RM XL	APCUPSd	MODEL : Smart-UPS 3000 RM XL	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+286	Smart-UPS 5000	APCUPSd	MODEL : Smart-UPS 5000	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+287	Smart-UPS SRT 5000	APCUPSd	MODEL : Smart-UPS SRT 5000	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+288	SMART-UPS 5000 RM	APCUPSd	MODEL : SMART-UPS 5000 RM	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+289	Smart-UPS RT 6000 RM XL	APCUPSd	MODEL : Smart-UPS RT 6000 RM XL	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+290	Smart-UPS RT 10000 XL	APCUPSd	MODEL : Smart-UPS RT 10000 XL	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+291	Smart-UPS RT 10000 RM XL	APCUPSd	MODEL : Smart-UPS RT 10000 RM XL	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+292	Smart-UPS SC420	APCUPSd	MODEL : Smart-UPS SC420	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+293	Smart-UPS SC620	APCUPSd	MODEL : Smart-UPS SC620	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+294	Smart-UPS SRT	APCUPSd	MODEL : Smart-UPS SRT	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+295	SRV 1KRI	APCUPSd	MODEL : SRV 1KRI	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+296	Smart-UPS VT 40 kVA	APCUPSd	MODEL : Smart-UPS VT 40 kVA	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+297	APC Smart UPS (any)	APCUPSd	DRIVER : APC Smart UPS (any)	Product	Y		IT	Schneider Electric	Research in-progress	Won't do	We can only use the fields MODEL and APCMODEL to fingerprint UPS' models. Other fields are not reliable		9/13/2024
+298	SNMP UPS Driver	APCUPSd	MODEL : SNMP UPS Driver	Product	Y		IT	Schneider Electric	Research in-progress	Won't do	Not a valid model		9/13/2024
+299	APC Smart UPS (any)	APCUPSd	DRIVER: APC Smart UPS (any)	Product	Y		IT	Schneider Electric	Research in-progress	Won't do	We can only use the fields MODEL and APCMODEL to fingerprint UPS' models. Other fields are not reliable		9/13/2024
+300	Back-UPS	TCP 	"Back-UPS"	Product	Y		IT	Schneider Electric	Research in-progress	Not Implemented			9/13/2024
+301	Back-UPS CS 350	APCUPSd	MODEL : Back-UPS CS 350	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+302	Back-UPS CS 500	APCUPSd	MODEL : Back-UPS CS 500	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+303	Back-UPS ES 525	APCUPSd	MODEL : Back-UPS ES 525	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+304	BACK-UPS ES 550	APCUPSd	UPSNAME : BACK-UPS ES 550	Product	Y		IT	Schneider Electric	Research in-progress	Won't do	We can only use the fields MODEL and APCMODEL to fingerprint UPS' models. Other fields are not reliable		9/13/2024
+305	Back-UPS ES 550G	APCUPSd	MODEL : Back-UPS ES 550G	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+306	Back-UPS ES 600M1	APCUPSd	MODEL : Back-UPS ES 600M1	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+307	Back-UPS ES 600G	APCUPSd	MODEL : Back-UPS ES 600G	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+308	Back-UPS ES 600P	APCUPSd	MODEL : Back-UPS ES 600P	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+309	Back-UPS ES 600N	APCUPSd	MODEL : Back-UPS ES 600N	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+310	Back-UPS 650	APCUPSd	MODEL : Back-UPS 650	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+311	Back-UPS CS 650	APCUPSd	MODEL : Back-UPS CS 650	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+312	Back-UPS XS 650CI	APCUPSd	MODEL : Back-UPS XS 650CI	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+313	Back-UPS ES 650G1	APCUPSd	MODEL : Back-UPS ES 650G1	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+314	Back-UPS RS  650MI	APCUPSd	MODEL : Back-UPS RS  650MI	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+315	Back-UPS NS 650M1	APCUPSd	MODEL : Back-UPS NS 650M1	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+316	Back-UPS BK650M2-CH	APCUPSd	MODEL : Back-UPS BK650M2-CH	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+317	Back-UPS NS 675M1	APCUPSd	MODEL : Back-UPS NS 675M1	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+318	Back-UPS ES 700	APCUPSd	MODEL : Back-UPS ES 700	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+319	Back-UPS ES 700G	APCUPSd	MODEL : Back-UPS ES 700G	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+320	Back-UPS XS 700U	APCUPSd	MODEL : Back-UPS XS 700U	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+321	Back-UPS ES 725	APCUPSd	MODEL : Back-UPS ES 725	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+322	Back-UPS ES 750	APCUPSd	MODEL : Back-UPS ES 750	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+323	Back-UPS ES 750G	APCUPSd	MODEL : Back-UPS ES 750G	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+324	Back-UPS BX750MI	APCUPSd	MODEL : Back-UPS BX750MI	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+325	Back-UPS BR  800	APCUPSd	MODEL : Back-UPS BR  800	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+326	Back-UPS XS 850M	APCUPSd	MODEL : Back-UPS XS 850M	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+327	Back-UPS ES 850G2	APCUPSd	MODEL : Back-UPS ES 850G2	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+328	Back-UPS RS  900MI	APCUPSd	MODEL : Back-UPS RS  900MI	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+329	Back-UPS RS 900G	APCUPSd	MODEL : Back-UPS RS 900G	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+330	Back-UPS XS 950U	APCUPSd	MODEL : Back-UPS XS 950U	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+331	Back-UPS BX950MI	APCUPSd	MODEL : Back-UPS BX950MI	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+332	Back-UPS RS 1000	APCUPSd	MODEL : Back-UPS RS 1000	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+333	Back-UPS XS 1000M	APCUPSd	MODEL : Back-UPS XS 1000M	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+334	Back-UPS RS1000G	APCUPSd	MODEL : Back-UPS RS1000G	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+335	Back-UPS RS 1000MS	APCUPSd	MODEL : Back-UPS RS 1000MS	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+336	Back-UPS BR1000G	APCUPSd	MODEL : Back-UPS BR1000G	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+337	Back-UPS NS1080G	APCUPSd	MODEL : Back-UPS NS1080G	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+338	Back-UPS NS 1100M2	APCUPSd	MODEL : Back-UPS NS 1100M2	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+339	Back-UPS XS 1100CI	APCUPSd	MODEL : Back-UPS XS 1100CI	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+340	Back-UPS XS 1200	APCUPSd	MODEL : Back-UPS XS 1200	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+341	Back-UPS RS 1200G	APCUPSd	MODEL : Back-UPS RS 1200G	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+342	Back-UPS RS 1200SI	APCUPSd	MODEL : Back-UPS RS 1200SI	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+343	Back-UPS BX1200MI	APCUPSd	MODEL : Back-UPS BX1200MI	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+344	Back-UPS NS 1250	APCUPSd	MODEL : Back-UPS NS 1250	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+345	Back-UPS RS 1300G	APCUPSd	MODEL : Back-UPS RS 1300G	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+346	Back-UPS BR1300G	APCUPSd	MODEL : Back-UPS BR1300G	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+347	Back-UPS XS 1300 LCD	APCUPSd	MODEL : Back-UPS XS 1300 LCD	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+348	Back-UPS NS 1350G	APCUPSd	MODEL : Back-UPS NS 1350G	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+349	Back-UPS XS 1350M	APCUPSd	MODEL : Back-UPS XS 1350M	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+350	Back-UPS RS 1350MS	APCUPSd	MODEL : Back-UPS RS 1350MS	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+351	Back-UPS NS 1350M2	APCUPSd	MODEL : Back-UPS NS 1350M2	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+352	Back-UPS NS 1375M2	APCUPSd	MODEL : Back-UPS NS 1375M2	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+353	Back-UPS XS 1400U	APCUPSd	MODEL : Back-UPS XS 1400U	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+354	Back-UPS RS 1500	APCUPSd	MODEL : Back-UPS RS 1500	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+355	Back-UPS RS 1500G	APCUPSd	MODEL : Back-UPS RS 1500G	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+356	Back-UPS XS 1500M	APCUPSd	MODEL : Back-UPS XS 1500M	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+357	Back-UPS XS 1500G	APCUPSd	MODEL : Back-UPS XS 1500G	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+358	Back-UPS RS 1500MS	APCUPSd	MODEL : Back-UPS RS 1500MS	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+359	Back-UPS RS 1500MS2	APCUPSd	MODEL : Back-UPS RS 1500MS2	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+360	Back-UPS BR1500G	APCUPSd	MODEL : Back-UPS BR1500G	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+361	Back-UPS NS 1500M2	APCUPSd	MODEL : Back-UPS NS 1500M2	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+362	Back-UPS RS 1500 LCD	APCUPSd	MODEL : Back-UPS RS 1500 LCD	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+363	Back-UPS RS 1600SI	APCUPSd	MODEL : Back-UPS RS 1600SI	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+364	Back-UPS BX1600MI	APCUPSd	MODEL : Back-UPS BX1600MI	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+365	Back-UPS BX2200MI	APCUPSd	MODEL : Back-UPS BX2200MI	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+366	SYMMETRA	TCP 	SYMMETRA	Basic realm	Y		IT	Schneider Electric	Supported	Not Implemented	Supported in Groma		9/13/2024
+367	Symmetra 160K	APCUPSd	MODEL : Symmetra 160K	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+368	Symmetra 40K	APCUPSd	MODEL : Symmetra 40K	Product	Y		IT	Schneider Electric	Research in-progress	Implemented		7/10/2025	9/13/2024
+369	ATV Range	HTTP	services.http.response.html_title="Altivar Login"	html title		Y	IT	Schneider Electric	Supported	Implemented	Implemented ("Altivar")	6/27/2024	9/13/2024
+370	ATV Range	HTTP	services.http.response.html_tags="<title>Altivar Login</title>"	html tag		Y	IT	Schneider Electric	Supported	Duplicate	Duplicates ID 369		9/13/2024
+371	Clear SCADA 	HTTP	services.software.product="ClearSCADA"	product 		Y	IT	Schneider Electric	Unsupported	Won't do	Censys product fingerprint		9/13/2024
+372	Clear SCADA 	HTTP	services.tls.certificates.leaf_data.issuer.organizational_unit="ClearSCADA"	tls certificate		Y	IT	Schneider Electric	Supported	Implemented		10/9/2024	9/13/2024
+373	Clear SCADA 	HTTP	services.tls.certificates.leaf_data.subject.organizational_unit="ClearSCADA"	tls certificate		Y	IT	Schneider Electric	Supported	Not Implemented			9/13/2024
+374	Clear SCADA 	HTTP	services.software.uniform_resource_identifier="cpe:2.3:a:schneider-electric:clearscada:\*:\*:\*:\*:\*:\*:\*:\*"			Y	IT	Schneider Electric	Unsupported	Won't do	Censys product fingerprint		9/13/2024
+375	GEO SCADA	HTTP	services.software.uniform_resource_identifier="cpe:2.3:a:schneider-electric:ecostruxure_geo_scada_expert:\*:\*:\*:\*:\*:\*:\*:\*"	ressource identifier		Y	IT	Schneider Electric	Unsupported	Won't do	Censys product fingerprint		9/13/2024
+376	GEO SCADA	HTTP	services.software.product="EcoStruxure Geo SCADA Expert"	product		Y	IT	Schneider Electric	Unsupported	Won't do	Censys product fingerprint		9/13/2024
+377	EcoStruxure Architeture builder	HTTP	services.http.response.html_tags="<title>DAB - Digital Architecture Builder</title>"	html tag			IT	Schneider Electric	Supported	Duplicate	Duplicates ID 379		9/13/2024
+378	Architecture builder	HTTP	services.http.response.html_title="DAB - Digital Architecture Builder"	html title		Y	IT	Schneider Electric	Supported	Implemented		10/9/2024	9/13/2024
+379	Augmented Operator Advisor 	HTTP	services.http.response.favicons.hashes="md5:c9664db8280ffbce9677166905eacf2c"	favicon 		Y	IT	Schneider Electric	Unsupported	Not Implemented	Will use murmurhash (review)		9/13/2024
+380	Augmented Operator Advisor 	HTTP	services.http.response.favicons.hashes="sha256:e3392bcf859c630550d4d0d5d5f14343f300aa5dec3eaff1c35053944055809a"	favicon 		Y	IT	Schneider Electric	Unsupported	Not Implemented	Will use murmurhash (review)		9/13/2024
+381	Augmented Operator Advisor 	HTTP	services.http.response.body_hashes="sha1:83b00e89d4bc0fc16010cdc24c9d7fbbf1fbcd70"	hash		Y	IT	Schneider Electric	Unsupported	Not Implemented	Will use murmurhash (review)		9/13/2024
+382	Automation Expert	HTTP	services.tls.certificates.leaf_data.issuer.common_name="EcoStruxure Automation Expert Portal Certification Authority"	tls certificate		Y	IT	Schneider Electric	Supported	Implemented		10/9/2024	9/13/2024
+383	Automation Expert	HTTP	services.tls.certificates.leaf_data.subject.common_name="EcoStruxure Automation Expert Portal"	tls certificate		Y	IT	Schneider Electric	Supported	Not Implemented			9/13/2024
+384	Autonomous Production Advisor	HTTP	services.http.response.html_tags="<meta name=\"description\" content=\"Autonomous Production Advisor\"/>"	html tag		Y	IT	Schneider Electric	Unsupported	Not Implemented			9/13/2024
+385	Autonomous Production Advisor	HTTP	services.http.response.favicons.hashes="md5:14dcb858050aa844a1acc1e1f9b457f5"	favicon 		Y	IT	Schneider Electric	Unsupported	Not Implemented	Will use murmurhash (review)		9/13/2024
+386	Power SCADA Operation	HTTP	services.http.response.html_tags="<title>Power Operation Lite</title>"	html tag		Y	IT	Schneider Electric	Supported	Duplicate	Duplicates ID 387		9/13/2024
+387	Power SCADA Operation	HTTP	services.http.response.html_title="Power Operation Lite"	html title		Y	IT	Schneider Electric	Supported	Implemented		10/9/2024	9/13/2024
+388	FactoryCast TSX 		services.http.response.body_hashes="sha1:adb9c17b2bdf97f179d12bbdde3f0165736948db"	hash		Y	IT	Schneider Electric	Unsupported	Not Implemented	Will use murmurhash (review)		9/13/2024
+389	Modicon M580	Modbus TCP	services.extended_service_name="MODBUS" and "FactoryCast" and "BME H58 2040"	service + basic realm		Y	OT	Schneider Electric	Unsupported	Not Implemented	Possible Smartfingerprint implementation		9/13/2024
+390	Modicon M580	HTTP	services.http.response.html_title="Schneider Electric Magelis HMI"	html title		Y	IT	Schneider Electric	Supported	Implemented		10/9/2024	9/13/2024			RP-220732: schneider-electric:modicon_m580_firmware
+391	Modicon M580	HTTP	services.http.response.html_tags="<title>Schneider Electric Magelis HMI</title>"	html tag		Y	IT	Schneider Electric	Supported	Duplicate	Duplicates ID 390		9/13/2024			RP-220732: schneider-electric:modicon_m580_firmware
+392	Modicon M262	OPCUA	services.parsed.opc_ua.endpoints.server.application_uri="urn:Schneider:M262:Application"	parsed certificate		Y	OT	Schneider Electric	Supported	Implemented		7/1/2024	9/13/2024
+393	Modicon M262	OPCUA	services.parsed.opc_ua.endpoints.server.product_uri="schneider:M262"	parsed certificate		Y	OT	Schneider Electric	Supported	Implemented		7/1/2024	9/13/2024
+394	Modicon M262	HTTP	services.tls.certificates.leaf_data.issuer.common_name="TM262-10"	tls certificate		Y	IT	Schneider Electric	Supported	Implemented		10/9/2024	9/13/2024
+395	Modicon M262	SNMP	services.snmp.oid_system.name="TM262-10"	system name		Y	IT	Schneider Electric	Supported	Implemented		10/9/2024	9/13/2024
+396	Modicon M262	SNMP	services.snmp.oid_system.desc="SCHNEIDER M262 Fast Ethernet TCP/IP"	system description		Y	IT	Schneider Electric	Supported	Implemented	Implemented as "SCHNEIDER M262"	7/3/2024	9/13/2024
+397	EcoStruxure Machine Advisor	HTTP	services.http.response.html_tags="<title>EcoStruxure&trade; Machine Advisor Code Analysis</title>"	html tag		Y	IT	Schneider Electric	Supported	Duplicate	Duplicates ID 401		9/13/2024
+398	EcoStruxure Machine Advisor	HTTP	services.http.response.html_tags="<meta name=\"og:title\" property=\"og:title\" content=\"EcoStruxure™ Machine Advisor Code Analysis\">"	html tag		Y	IT	Schneider Electric	Unsupported	Not Implemented			9/13/2024
+399	EcoStruxure Machine Advisor	HTTP	services.http.response.favicons.hashes="sha256:7db18fcc0b26dd3154b5c9fe1df3f652a15c6c3649fb9e4a8fba64148d98c7cd"	favicon		Y	IT	Schneider Electric	Unsupported	Not Implemented	Will use murmurhash (review)		9/13/2024
+400	EcoStruxure Machine Advisor	HTTP	services.http.response.html_title="EcoStruxure&trade; Machine Advisor Code Analysis"	html title		Y	IT	Schneider Electric	Supported	Implemented		10/9/2024	9/13/2024
+401	EcoStruxure Machine Advisor	HTTP	services.tls.certificates.leaf_data.names="dev-ecostruxure-machine-advisor-codeanalysis.se.app"	tls certificate		Y	IT	Schneider Electric	Supported	Not Implemented			9/13/2024
+402	EcoStruxure Machine Advisor	HTTP	services.tls.certificates.leaf_data.subject.common_name="dev-ecostruxure-machine-advisor-codeanalysis.se.app"	tls certificate		Y	IT	Schneider Electric	Supported	Not Implemented	Requires changes in the data pipeline		9/13/2024
+403	EcoStruxure Machine Advisor	HTTP	services.tls.certificates.leaf_data.subject_dn="C=FR, ST=Île-de-France, L=Rueil-Malmaison, O=Schneider Electric Industries SAS, CN=pentest-ecostruxure-machine-advisor-codeanalysis.se.app"	tls certificate		Y	IT	Schneider Electric	Supported	Not Implemented			9/13/2024
+404	EcoStruxure Machine Advisor	HTTP	services.tls.certificates.leaf_data.subject.common_name="pentest-ecostruxure-machine-advisor-codeanalysis.se.app"	tls certificate		Y	IT	Schneider Electric	Supported	Not Implemented	Requires changes in the data pipeline		9/13/2024
+405	EcoStruxure Machine Advisor	HTTP	services.tls.certificates.leaf_data.names="pentest-ecostruxure-machine-advisor-auth.se.app"	tls certificate		Y	IT	Schneider Electric	Supported	Not Implemented			9/13/2024
+406	EcoStruxure Machine Advisor	HTTP	services.tls.certificates.leaf_data.subject_dn="C=FR, ST=Île-de-France, L=Rueil-Malmaison, O=Schneider Electric Industries SAS, CN=pentest-ecostruxure-machine-advisor-auth.se.app"	tls certificate		Y	IT	Schneider Electric	Supported	Not Implemented	Requires changes in the data pipeline		9/13/2024
+407	EcoStruxure Machine Advisor	HTTP	services.tls.certificates.leaf_data.subject.common_name="pentest-ecostruxure-machine-advisor-auth.se.app"	tls certificate		Y	IT	Schneider Electric	Supported	Not Implemented	Requires changes in the data pipeline		9/13/2024
+408	EcoStruxure Machine Advisor	HTTP	services.tls.certificates.leaf_data.names="dev-ecostruxure-machine-advisor-auth.se.app"	tls certificate		Y	IT	Schneider Electric	Supported	Not Implemented			9/13/2024
+409	EcoStruxure Machine Advisor	HTTP	services.tls.certificates.leaf_data.subject_dn="C=FR, ST=Île-de-France, L=Rueil-Malmaison, O=Schneider Electric Industries SAS, CN=dev-ecostruxure-machine-advisor-auth.se.app"	tls certificate		Y	IT	Schneider Electric	Supported	Not Implemented			9/13/2024
+410	EcoStruxure Machine Advisor	HTTP	services.tls.certificates.leaf_data.subject.common_name="dev-ecostruxure-machine-advisor-auth.se.app"	tls certificate		Y	IT	Schneider Electric	Supported	Not Implemented	Requires changes in the data pipeline		9/13/2024
+411	EcoStruxure Machine Advisor	HTTP	services.tls.certificates.leaf_data.names="ecostruxure-machine-advisor-auth.se.app"	tls certificate		Y	IT	Schneider Electric	Supported	Not Implemented			9/13/2024
+412	EcoStruxure Machine Advisor	HTTP	services.tls.certificates.leaf_data.subject_dn="C=FR, ST=Île-de-France, L=Rueil-Malmaison, O=Schneider Electric Industries SAS, CN=ecostruxure-machine-advisor-auth.se.app"	tls certificate		Y	IT	Schneider Electric	Supported	Not Implemented	Requires changes in the data pipeline		9/13/2024
+413	EcoStruxure Machine Advisor	HTTP	services.tls.certificates.leaf_data.subject.common_name="ecostruxure-machine-advisor-auth.se.app"	tls certificate		Y	IT	Schneider Electric	Supported	Not Implemented	Requires changes in the data pipeline		9/13/2024
+414	EcoStruxure Machine Advisor	HTTP	services.tls.certificates.leaf_data.names="qa-ecostruxure-machine-advisor-auth.se.app"	tls certificate		Y	IT	Schneider Electric	Supported	Not Implemented			9/13/2024
+415	EcoStruxure Machine Advisor	HTTP	services.tls.certificates.leaf_data.subject.common_name="qa-ecostruxure-machine-advisor-auth.se.app"	tls certificate		Y	IT	Schneider Electric	Supported	Not Implemented	Requires changes in the data pipeline		9/13/2024
+416	Modicon M172	HTTP	services.http.response.headers: (key: `Server` and value.headers: `m172 /Schneider Electric`)	http header		Y	IT	Schneider Electric	Unsupported	Not Implemented	Possible Smartfingerprint implementation		9/13/2024
+417	Modicon M580	EIP	services.parsed.eip.identity.product_name="BMENOC0311"	product name		Y	OT	Schneider Electric	Supported	Implemented		5/31/2023	9/13/2024			RP-220732: schneider-electric:modicon_m580_firmware
+418	Modicon M580	SNMP	services.snmp.oid_system.desc="Product: BMENOC0311 - Factory Cast Ethernet Module, FwId 02.16"	system description		Y	IT	Schneider Electric	Supported	Implemented	Matching all BMENOC0311	5/31/2023	9/13/2024			RP-220732: schneider-electric:modicon_m580_firmware
+419	Modicon M580	SNMP	services.snmp.oid_system.name="BMENOC0311"	system name		Y	IT	Schneider Electric	Supported	Implemented		5/31/2023	9/13/2024			RP-220732: schneider-electric:modicon_m580_firmware
+420	Modicon M580	HTTP	services.http.response.html_tags="<title>FactoryCast Login</title>"	html tag		Y	IT	Schneider Electric	Supported	Duplicate	Duplicates ID 422		9/13/2024			RP-220732: schneider-electric:modicon_m580_firmware
+421	Modicon M580	HTTP	services.http.response.html_title="FactoryCast Login"	html title		Y	IT	Schneider Electric	Supported	Implemented		10/9/2024	9/13/2024			RP-220732: schneider-electric:modicon_m580_firmware
+422	Modicon FactoryCast Gateway 	SNMP	services.snmp.oid_system.desc="SCHNEIDER TSX ETG3021 FactoryCast HMI Gateway Module"	system description		Y	IT	Schneider Electric	Supported	Implemented		7/3/2024	9/13/2024
+423	Modicon FactoryCast Gateway 	SNMP	services.snmp.oid_system.name="TSX ETG 3021"	system name		Y	IT	Schneider Electric	Supported	Implemented		10/9/2024	9/13/2024
+424	Modicon FactoryCast Gateway 	SNMP	services.snmp.oid_system.desc="SCHNEIDER TSX ETG3000 FactoryCast HMI Gateway Module"	system description		Y	IT	Schneider Electric	Supported	Implemented		10/9/2024	9/13/2024
+425	Modicon FactoryCast Gateway 	SNMP	services.snmp.oid_system.name="TSX ETG 3000"	system name		Y	IT	Schneider Electric	Supported	Implemented		10/9/2024	9/13/2024
+426	Modicon FactoryCast Web Server 	SNMP	services.snmp.oid_system.desc="SCHNEIDER TSX Premium TSX ETY5103 FactoryCast Fast Ethernet Communication Module"	system description		Y	IT	Schneider Electric	Supported	Implemented		10/9/2024	9/13/2024
+427	Modicon FactoryCast Web Server 	SNMP	services.snmp.oid_system.name="ETY5103 Module"	system name		Y	IT	Schneider Electric	Supported	Implemented		10/9/2024	9/13/2024
+428	SE Lab management	HTTP	services.http.response.html_title="SE - Lab Management"	html title		Y	IT	Schneider Electric	Supported	Implemented		10/9/2024	9/13/2024
+429	SE Lab management	HTTP	services.tls.certificates.leaf_data.names="www.se-labmanagement.com"	t		Y	IT	Schneider Electric	Supported	Not Implemented			9/13/2024
+430	SE Lab management	HTTP	services.tls.certificates.leaf_data.names="se-labmanagement.com"	tls certificate		Y	IT	Schneider Electric	Supported	Not Implemented			9/13/2024
+431	Modicon M241	SNMP	services.snmp.oid_system.name="TM241CE24T_U"	system name		Y	IT	Schneider Electric	Supported	Implemented		10/9/2024	9/13/2024
+432	Modicon M241	SNMP	services.snmp.oid_system.desc="SCHNEIDER M241-51 Fast Ethernet TCP/IP"	system description		Y	IT	Schneider Electric	Supported	Implemented	Matching SCHNEIDER M241-51	7/3/2024	9/13/2024
+433	Modicon M241	HTTP	services.tls.certificates.leaf_data.issuer.common_name="TM241CE40T_U"	tls certificate		Y	IT	Schneider Electric	Supported	Implemented		10/9/2024	9/13/2024
+434	Modicon M241	OPCUA	services.parsed.opc_ua.endpoints.server.application_uri="urn::SchneiderElectric:M241-251UaServer"	application uri		Y	OT	Schneider Electric	Supported	Duplicate			9/13/2024
+435	Modicon M241	OPCUA	services.parsed.opc_ua.endpoints.server.product_uri="urn:SchneiderElectric:M241-251UaServer"	product uri		Y	OT	Schneider Electric	Supported	Implemented		7/1/2024	9/13/2024
+436	Modicon M241	SNMP	services.snmp.oid_system.name="TM241CE40T_U"	system name		Y	IT	Schneider Electric	Supported	Implemented		10/9/2024	9/13/2024
+437	Modicon M241	HTTP	services.tls.certificates.leaf_data.issuer.common_name="TM241CE40R"	tls certificate		Y	IT	Schneider Electric	Supported	Implemented		10/9/2024	9/13/2024
+438	Modicon M241		M241 and "Schneider"	Basic realms		Y	IT	Schneider Electric	Unsupported	Not Implemented	Possible Smartfingerprint implementation		9/13/2024
+439	Modicon M241	HTTP	services.tls.certificates.leaf_data.issuer.common_name="TM241CE24R"	tls certificate		Y	IT	Schneider Electric	Supported	Implemented		10/9/2024	9/13/2024
+440	Modicon M241	HTTP	services.http.response.body_hash="sha1:2d44cbb1a27f031046875b4101cc4916f02a0636"	hash		Y	IT	Schneider Electric	Unsupported	Not Implemented	Will use murmurhash (review)		9/13/2024
+441	Modicon M262	OPCUA	services.parsed.opc_ua.endpoints.server.application_uri="urn:Schneider:M262:Application"	parsed certificate		Y	OT	Schneider Electric	Supported	Duplicate			9/13/2024
+442	Modicon M262	OPCUA	services.parsed.opc_ua.endpoints.server.product_uri="schneider:M262"	parsed certificate		Y	OT	Schneider Electric	Supported	Duplicate			9/13/2024
+443	Modicon M262	SNMP	services.snmp.oid_system.desc="SCHNEIDER M262 Fast Ethernet TCP/IP"	system system.desc=""		Y	IT	Schneider Electric	Supported	Duplicate	Matching SCHNEIDER M262. Same as row 396		9/13/2024
+444	Modicon M262	HTTP	services.tls.certificates.leaf_data.issuer.common_name="TM262-10"	tls certificate		Y	IT	Schneider Electric	Supported	Duplicate	Duplicates ID 394		9/13/2024
+445	Modicon M262	HTTP	services.tls.certificates.leaf_data.subject.common_name="TM262-10"	tls certificate		Y	IT	Schneider Electric	Supported	Not Implemented	Requires changes in the data pipeline		9/13/2024
+446	Modicon M262	HTTP	services.http.response.body_hash="sha1:06d7fddbab9b51f31f5ce27471d8d136c2c39c56"			Y	IT	Schneider Electric	Unsupported	Not Implemented	Will use murmurhash (review)		9/13/2024
+447	Modicon M580	SNMP	services.snmp.oid_system.desc="Modicon M580 - P58 1020 Processor - DIO"			Y	IT	Schneider Electric	Supported	Implemented	Matching Modicon M580	7/3/2024	9/13/2024			RP-220732: schneider-electric:modicon_m580_firmware
+448	Modicon M580	SNMP	services.snmp.oid_system.name="BMEP581020"	system name		Y	IT	Schneider Electric	Supported	Implemented		7/13/2023	9/13/2024			RP-220732: schneider-electric:modicon_m580_firmware
+449	Modicon M580	HTTP	services.software.uniform_resource_identifier="cpe:2.3:h:schneider-electric:modicon_m580:\*:\*:\*:\*:\*:\*:\*:\*"	ressource identifier		Y	IT	Schneider Electric	Unsupported	Won't do	Censys product fingerprint		9/13/2024
+450	Modicon M580	HTTP	services.software.product="modicon_m580"	product		Y	IT	Schneider Electric	Supported	Implemented		10/9/2024	9/13/2024			RP-220732: schneider-electric:modicon_m580_firmware
+451	Modicon M580	EIP	services.parsed.eip.identity.product_name="BMEP581020"	identity.p		Y	OT	Schneider Electric	Supported	Implemented		7/13/2023	9/13/2024			RP-220732: schneider-electric:modicon_m580_firmware
+452	conext Combox	HTTP	services.http.response.html_tags="<title>Conext ComBox</title>"	html tag		Y	IT	Schneider Electric	Supported	Duplicate	Duplicates ID 455		9/13/2024
+453	conext Combox	HTTP	services.http.response.body_hash="sha1:28b46cafc17dbf2a8bca7cec15e309a058c217c8"	hash		Y	IT	Schneider Electric	Unsupported	Not Implemented	Will use murmurhash (review)		9/13/2024
+454	conext Combox	HTTP	services.http.response.html_title="Conext ComBox"	html title		Y	IT	Schneider Electric	Supported	Implemented		10/9/2024	9/13/2024
+455	Modicon Premium	HTTP	services.software.uniform_resource_identifier="cpe:2.3:h:schneider-electric:conext_combox:\*:\*:\*:\*:\*:\*:\*:\*"	ressource identifier		Y	IT	Schneider Electric	Unsupported	Won't do	Censys product fingerprint		9/13/2024
+456	Modicon Premium	HTTP	services.software.product="Conext ComBox"	product		Y	IT	Schneider Electric	Supported	Implemented		5/8/2025	9/13/2024
+457	Modicon Premium	SNMP	"services.snmp.oid_system.desc=""SCHNEIDER TSX Premium TSX ETY_PORT Fast Ethernet TCP/IP Communication Module""
+desc=""SCHNEIDER TSX Premium TSX ETY system.desc="""			Y	IT	Schneider Electric	Supported	Implemented	Matching SCHNEIDER TSX Premium TSX ETY_PORT	7/3/2024	9/13/2024
+458	Modicon Premium	SNMP	services.snmp.oid_system.name="ETY_PORT Module"	system name		Y	IT	Schneider Electric	Supported	Implemented		10/9/2024	9/13/2024
+459	Modicon TM3	HTTP	services.http.response.html_tags="<title>TM3 Bus Coupler IO Configurator</title>"	html tag		Y	IT	Schneider Electric	Supported	Duplicate	Duplicates ID 461		9/13/2024
+460	Modicon TM3	HTTP	services.http.response.html_title="TM3 Bus Coupler IO Configurator"	html title		Y	IT	Schneider Electric	Supported	Implemented		10/9/2024	9/13/2024
+461	Modicon TM3	HTTP	services.tls.certificates.leaf_data.issuer.common_name="TM3BCEIP"	tls certificate		Y	IT	Schneider Electric	Supported	Implemented		10/9/2024	9/13/2024
+462	Modicon TM3	HTTP	services.tls.certificates.leaf_data.names="tm3.schneider.com"	leaf data.names		Y	IT	Schneider Electric	Supported	Not Implemented			9/13/2024
+463	Harmony Family SCU	Codesys v3	device_name="HMISCUxB5"				OT	Bitsight	Supported	Implemented		11/27/2024
+464	Harmony Family GTU	Codesys v3	device_name="HMIG2U_DT351"				OT	Bitsight	Supported	Implemented		11/27/2024
+465	Harmony Family GTU	Codesys v3	device_name="HMIG2U_DT651"				OT	Bitsight	Supported	Implemented		11/27/2024
+466	Harmony Family GTU	Codesys v3	device_name="HMIG3U_DT542"				OT	Bitsight	Supported	Implemented		11/27/2024
+467	Harmony Family GTU	Codesys v3	device_name="HMIG3U_DT551"				OT	Bitsight	Supported	Implemented		11/27/2024
+468	Harmony Family GTU	Codesys v3	device_name="HMIG3U_DT732"				OT	Bitsight	Supported	Implemented		11/27/2024
+469	Harmony Family GTU	Codesys v3	device_name="HMIG5U2_HMIDT642"				OT	Bitsight	Supported	Implemented		11/27/2024
+470	Harmony Family GTU	Codesys v3	device_name="HMIG5U2_HMIDT752"				OT	Bitsight	Supported	Implemented		11/27/2024
+471	Harmony Family GTU	Codesys v3	device_name="HMIG5U_DT542"				OT	Bitsight	Supported	Implemented		11/27/2024
+472	Harmony Family GTO	Codesys v3	device_name="HMIGTO1310"				OT	Bitsight	Supported	Implemented		11/27/2024
+473	Harmony Family GTO	Codesys v3	device_name="HMIGTO2310/2315"				OT	Bitsight	Supported	Implemented		11/27/2024
+474	Harmony Family GTO	Codesys v3	device_name="HMIGTO3510"				OT	Bitsight	Supported	Implemented		11/27/2024
+475	Harmony Family GTO	Codesys v3	device_name="HMIGTO4310"				OT	Bitsight	Supported	Implemented		11/27/2024
+476	Harmony Family GTO	Codesys v3	device_name="HMIGTO5310/5315"				OT	Bitsight	Supported	Implemented		11/27/2024
+477	Harmony Family GTO	Codesys v3	device_name="HMIGTO6310/6315"				OT	Bitsight	Supported	Implemented		11/27/2024
+478	Harmony Family STU	Codesys v3	device_name="HMIS5T"				OT	Bitsight	Supported	Implemented		11/27/2024
+479	Harmony Easy GXU	Codesys v3	device_name="HMIGXU3512"				OT	Bitsight	Supported	Implemented		11/27/2024
+480	Harmony P6	Codesys v3	device_name="HMIP6"				OT	Bitsight	Supported	Implemented		11/27/2024
+481	Harmony iPC	Codesys v3	device_name="HMIPSPx7"				OT	Bitsight	Supported	Implemented		11/27/2024
+482	Harmony Famuly STO & STU	Codesys v3	device_name="HMISTO531/532"				OT	Bitsight	Supported	Implemented		11/27/2024
+483	Modicon Family M241	Codesys v3	device_name="TM241CE40T_U"				OT	Bitsight	Supported	Implemented		11/27/2024
+484	Modicon Family M241	Codesys v3	device_name="TM241CE40R"				OT	Bitsight	Supported	Implemented		11/27/2024
+485	Modicon Family M241	Codesys v3	device_name="TM241CEC24T_U"				OT	Bitsight	Supported	Implemented		11/27/2024
+486	Modicon Family M241	Codesys v3	device_name="TM241CE24R"				OT	Bitsight	Supported	Implemented		11/27/2024
+487	Modicon Family M241	Codesys v3	device_name="TM241CE24T_U"				OT	Bitsight	Supported	Implemented		11/27/2024
+488	Modicon Family M241	Codesys v3	device_name="TM241C24R"				OT	Bitsight	Supported	Implemented		11/27/2024
+489	Modicon Family M241	Codesys v3	device_name="TM241C24T_U"				OT	Bitsight	Supported	Implemented		11/27/2024
+490	Modicon Family M241	Codesys v3	device_name="TM241C40T_U"				OT	Bitsight	Supported	Implemented		11/27/2024
+491	Modicon Family M241	Codesys v3	device_name="TM241CEC24R"				OT	Bitsight	Supported	Implemented		11/27/2024
+492	Modicon Family M251	Codesys v3	device_name="TM251MESE"				OT	Bitsight	Supported	Implemented		11/27/2024
+493	Modicon Family M251	Codesys v3	device_name="TM251MESC"				OT	Bitsight	Supported	Implemented		11/27/2024
+494	Modicon Family M238	Codesys v3	device_name="TM238LDD24DT"				OT	Bitsight	Supported	Implemented		11/27/2024
+495	Modicon Family M238	Codesys v3	device_name="TM238LDD24DT"				OT	Bitsight	Supported	Implemented		11/27/2024
+496	Modicon Family M258	Codesys v3	device_name="TM258LD42DT"				OT	Bitsight	Supported	Implemented		11/27/2024
+497	Modicon Family M258	Codesys v3	device_name="TM258LF42DR"				OT	Bitsight	Supported	Implemented		11/27/2024
+498	Modicon Family M258	Codesys v3	device_name="TM258LF42DT"				OT	Bitsight	Supported	Implemented		11/27/2024
+499	Modicon Family M258	Codesys v3	device_name="TM258LF42DT4L"				OT	Bitsight	Supported	Implemented		11/27/2024
+500	Modicon Family M258	Codesys v3	device_name="TM258LF66DT4L"				OT	Bitsight	Supported	Implemented		11/27/2024
+501	Modicon Family M262	Codesys v3	device_name="TM262-10"				OT	Bitsight	Supported	Implemented		11/27/2024
+502	Modicon Family M262	Codesys v3	device_name="TM262-15"				OT	Bitsight	Supported	Implemented		11/27/2024
+503	Modicon Family M262	Codesys v3	device_name="TM262-20"				OT	Bitsight	Supported	Implemented		11/27/2024
+504	Modicon Family M262	Codesys v3	device_name="TM262-25"				OT	Bitsight	Supported	Implemented		11/27/2024
+505	Modicon LM078	Codesys v3	device_name="LMC 078"				OT	Bitsight	Supported	Implemented		11/27/2024
+506	PacDrive 3 (Motion controller)	Codesys v3	device_name="LMC 802C"				OT	Bitsight	Supported	Implemented		11/27/2024
+507	Modicon Family LM058	Codesys v3	device_name="LMC058LF42"				OT	Bitsight	Supported	Implemented		11/27/2024
+508	Modicon Family LM058	Codesys v3	device_name="LMC058LF42S0"				OT	Bitsight	Supported	Implemented		11/27/2024
+509	Harmony Family XBTGT	Codesys v3	device_name="XBTGT5340"				OT	Bitsight	Supported	Implemented		11/27/2024
+510	Harmony Family XBTGT	Codesys v3	device_name="XBTGT7340"				OT	Bitsight	Supported	Implemented		11/27/2024
+511	Power Monitoring Expert	HTTP	http.title:"Power Monitoring Expert"				IT	Schneider Electric	Supported	Duplicate			9/13/2024			RP-220915: Adding fingerprints for Power Monitoring Expert
+512	Power Monitoring Expert	HTTP	http.favicon.hash:1317073961				IT	Schneider Electric	Supported	Duplicate			5/1/2024			RP-220915: Adding fingerprints for Power Monitoring Expert
+513	Power Monitoring Expert	HTTP	http.html_hash:-1516855526 http.favicon.hash:1317073961				IT	Schneider Electric	Unsupported	Not Implemented	Possible Smartfingerprint implementation		5/1/2024			RP-220915: Adding fingerprints for Power Monitoring Expert
+514	Power Monitoring Expert	HTTP	http.html_hash:-1309909714 http.favicon.hash:1317073961				IT	Schneider Electric	Unsupported	Not Implemented	Possible Smartfingerprint implementation		5/1/2024			RP-220915: Adding fingerprints for Power Monitoring Expert
+515	Power Monitoring Expert	HTTP	http.html_hash:52874656 http.favicon.hash:1317073961				IT	Schneider Electric	Unsupported	Not Implemented	Possible Smartfingerprint implementation		5/1/2024			RP-220915: Adding fingerprints for Power Monitoring Expert
+516	EV Charging Expert	HTTP	http.favicon.hash:487597720 http.title:"EcoStruxure"				IT	Schneider Electric	Unsupported	Not Implemented	Possible Smartfingerprint implementation		5/1/2024
+517	SE Webpages	HTTP	http.favicon.hash:487597720				IT	Schneider Electric	Supported	Duplicate			5/1/2024
+518	APC by Schneider Electric		APC by Schneider Electric				IT	Schneider Electric	Supported	Duplicate	Duplicates ID 169		12/5/2023
+519	APC Embedded PowerNet SNMP Agent	SNMP	APC Embedded PowerNet SNMP Agent (FW v3.0.1 SW v2.2.4.a, HW C4, MOD: AP9605, Mfg: , SN				IT	Schneider Electric	Supported	Implemented		5/8/2025	12/5/2023
+520	APC Embedded PowerNet SNMP Agent	SNMP	APC Embedded PowerNet SNMP Agent (FW v3.0.2 SW v2.2.4.a, HW ged~, MOD: AP9605, Mfg: , SN				IT	Schneider Electric	Supported	Duplicate	Duplicates ID 519		12/5/2023
+521	APC Embedded PowerNet SNMP Agent	SNMP	APC Embedded PowerNet SNMP Agent (SW v2.0.3, HW v2.0B, Mod: , Mfg: , SN				IT	Schneider Electric	Supported	Duplicate	Duplicates ID 519		12/5/2023
+522	APC Embedded PowerNet SNMP Agent	SNMP	APC Embedded PowerNet SNMP Agent (SW v2.2, HW vB2, Mod: , Mfg: , SN: , Agent Loader v1.0)				IT	Schneider Electric	Supported	Duplicate	Duplicates ID 519		12/5/2023
+523	APC Environmental Management System 	SNMP	APC Environmental Management System (MB:v3.6.9 PF:v2.6.4 PN:apc_hw02_aos_264.bin AF1:v2.6.7 AN1:apc_hw02_ems_267.bin MN				IT	Schneider Electric	Supported	Implemented		7/3/2024	12/5/2023
+524	APC Environmental Manager 	SNMP	APC Environmental Manager (MB:v3.8.0 PF:v3.0.2 PN:apc_hw03_aos_302.bin AF1:v3.0.1 AN1:apc_hw03_mem_301.bin MN				IT	Schneider Electric	Supported	Implemented		7/3/2024	12/5/2023
+525	APC Environmental Manager 	SNMP	APC Environmental Manager (MB:v3.8.0 PF:v3.0.3 PN:apc_hw03_aos_303.bin AF1:v3.0.4 AN1:apc_hw03_mem_304.bin MN				IT	Schneider Electric	Supported	Duplicate	Fingerprint implemented with product name		12/5/2023
+526	APC Environmental Monitoring Unit 	SNMP	APC Environmental Monitoring Unit (MB:v3.6.3 PF:v2.2.2 PN:apc_hw02_aos_222.bin AF1:v2.2.2 AN1:apc_hw02_ems_222.bin MN				IT	Schneider Electric	Supported	Implemented		5/8/2025	12/5/2023
+527	APC Environmental Monitoring Unit 	SNMP	APC Environmental Monitoring Unit (MB:v3.6.4 PF:v2.2.5 PN:apc_hw02_aos_225.bin AF1:v2.2.5 AN1:apc_hw02_ems_225.bin MN				IT	Schneider Electric	Supported	Duplicate	Fingerprint implemented with product name		12/5/2023
+528	APC Environmental Monitoring Unit 	SNMP	APC Environmental Monitoring Unit (MB:v3.6.6 PF:v2.6.1 PN:apc_hw02_aos_261.bin AF1:v2.6.1 AN1:apc_hw02_ems_261.bin MN:				IT	Schneider Electric	Supported	Duplicate	Fingerprint implemented with product name		12/5/2023
+529	APC Environmental Monitoring Unit 	SNMP	APC Environmental Monitoring Unit (MB:v3.6.6 PF:v2.6.1 PN:apc_hw02_aos_261.bin AF1:v2.6.2 AN1:apc_hw02_ems_262.bin MN				IT	Schneider Electric	Supported	Duplicate	Fingerprint implemented with product name		12/5/2023
+530	APC Environmental Monitoring Unit 	SNMP	APC Environmental Monitoring Unit (MB:v3.6.9 PF:v2.6.4 PN:apc_hw02_aos_264.bin AF1:v2.6.7 AN1:apc_hw02_ems_267.bin MN				IT	Schneider Electric	Supported	Duplicate	Fingerprint implemented with product name		12/5/2023
+531	APC Industrial login		APC Industrial login					Schneider Electric	Unsupported	Review	Too generic. Needs review from Schneider Electric team.		12/5/2023
+532	APC InfraStruXure Manager		APC InfraStruXure Manager (MB:v3.6.0c AF1:v4.6.1.23 AN1:isx MN					Schneider Electric	Unsupported	Won't do	Too generic. Needs review from Schneider Electric team.		12/5/2023
+533	APC InfraStruXure Manager		APC InfraStruXure Manager (MB:v3.6.0c AF1:v4.7.0.275 AN1:isx MN					Schneider Electric	Unsupported	Won't do	Too generic. Needs review from Schneider Electric team.		12/5/2023
+534	APC IP Gateway for Analog KVM		APC IP Gateway for Analog KVM					Schneider Electric	Unsupported	Won't do	Too generic. Needs review from Schneider Electric team.		12/5/2023
+535	APC KOTLAREK Manager Console		APC KOTLAREK Manager Console , Version : 1.01e02					Schneider Electric	Unsupported	Won't do	Too generic. Needs review from Schneider Electric team.		12/5/2023	11 Aug - It appears as a customized product name.
+536	APC KUSZ Manager Console		APC KUSZ Manager Console , Version : 1.01e02					Schneider Electric	Unsupported	Won't do	Too generic. Needs review from Schneider Electric team.		12/5/2023	11 Aug - It appears as a customized product name.
+537	APC MasterSwitch PDU		APC MasterSwitch PDU					Schneider Electric	Unsupported	Review	Too generic. Needs review from Schneider Electric team.		12/5/2023	1 instance observed
+538	APC NetBotz Rack Access PX-HID		APC NetBotz Rack Access PX-HID (MB:v3.8.6 PF:v3.5.4 PN:apc_hw02_aos_354.bin AF1:v3.5.3 AN1:apc_hw02_pxhid_353.bin MN					Schneider Electric	Unsupported	Won't do	Too generic. Needs review from Schneider Electric team.		12/5/2023
+539	APC Pediatrics #1 TA 608 Gen3		APC Pediatrics #1 TA 608 Gen3					Schneider Electric	Unsupported	Review	Too generic. Needs review from Schneider Electric team.		12/5/2023	11 Aug - It appears as a customized product name.
+540	APC Pediatrics #2 Rye Rd. TA 608 Gen3		APC Pediatrics #2 Rye Rd. TA 608 Gen3					Schneider Electric	Unsupported	Review	Too generic. Needs review from Schneider Electric team.		12/5/2023	11 Aug - It appears as a customized product name.
+541	APC Smart-UPS RT IMAP Server		APC Smart-UPS RT IMAP Server					Schneider Electric	Unsupported	Review	Too generic. Needs review from Schneider Electric team.		12/5/2023
+542	APC Smart-UPS RT POP3 Server		APC Smart-UPS RT POP3 Server					Schneider Electric	Unsupported	Review	Too generic. Needs review from Schneider Electric team.		12/5/2023	1 instance observed
+543	APC SNMP Agent	SNMP	APC SNMP Agent				IT	Schneider Electric	Supported	Implemented		7/3/2024	12/5/2023
+544	APC Switched Rack PDU	SNMP	APC Switched Rack PDU				IT	Schneider Electric	Supported	Implemented		5/8/2025	12/5/2023
+545	APC Switched Rack PDU	SNMP	APC Switched Rack PDU (MB:v3.6.4				IT	Schneider Electric	Supported	Duplicate	Fingerprint implemented with product name		12/5/2023
+546	APC Switched Rack PDU	SNMP	APC Switched Rack PDU (MB:v3.6.6				IT	Schneider Electric	Supported	Duplicate	Fingerprint implemented with product name		12/5/2023
+547	APC Switched Rack PDU	SNMP	APC Switched Rack PDU (MB:v3.6.8				IT	Schneider Electric	Supported	Duplicate	Fingerprint implemented with product name		12/5/2023
+548	APC Switched Rack PDU	SNMP	APC Switched Rack PDU (MB:v3.7.0				IT	Schneider Electric	Supported	Duplicate	Fingerprint implemented with product name		12/5/2023
+549	apc ups modbus		apc ups modbus					Schneider Electric		Not Implemented	Not enough information		12/5/2023
+550	APC VCPS 		APC VCPS (asdts03)					Schneider Electric		Not Implemented	Not enough information		12/5/2023
+551	APC Web/SNMP Management Card	SNMP	APC Web/SNMP Management Card				IT	Schneider Electric	Supported	Duplicate	Duplicates ID 58		12/5/2023
+552	APC Web/SNMP Management Card	SNMP	APC Web/SNMP Management Card (MB:v3.0.2				IT	Schneider Electric	Supported	Duplicate	Duplicates ID 59		12/5/2023
+553	APC Web/SNMP Management Card	SNMP	APC Web/SNMP Management Card (MB:v3.0.5				IT	Schneider Electric	Supported	Duplicate	Duplicates ID 60		12/5/2023
+554	APC Web/SNMP Management Card	SNMP	APC Web/SNMP Management Card (MB:v3.2.0 				IT	Schneider Electric	Supported	Duplicate	Duplicates ID 61		12/5/2023
+555	APC Web/SNMP Management Card	SNMP	APC Web/SNMP Management Card (MB:v3.3.2				IT	Schneider Electric	Supported	Duplicate	Duplicates ID 62		12/5/2023
+556	APC Web/SNMP Management Card	SNMP	APC Web/SNMP Management Card (MB:v3.4.4				IT	Schneider Electric	Supported	Duplicate	Duplicates ID 63		12/5/2023
+557	APC Web/SNMP Management Card	SNMP	APC Web/SNMP Management Card (MB:v3.6.2				IT	Schneider Electric	Supported	Duplicate	Duplicates ID 64		12/5/2023
+558	APC Web/SNMP Management Card	SNMP	APC Web/SNMP Management Card (MB:v3.6.3				IT	Schneider Electric	Supported	Duplicate	Duplicates ID 65		12/5/2023
+559	APC Web/SNMP Management Card	SNMP	APC Web/SNMP Management Card (MB:v3.6.4				IT	Schneider Electric	Supported	Duplicate	Duplicates ID 66		12/5/2023
+560	APC Web/SNMP Management Card	SNMP	APC Web/SNMP Management Card (MB:v3.6.7				IT	Schneider Electric	Supported	Duplicate	Duplicates ID 67		12/5/2023
+561	APC Web/SNMP Management Card	SNMP	APC Web/SNMP Management Card (MB:v3.6.8				IT	Schneider Electric	Supported	Duplicate	Duplicates ID 68		12/5/2023
+562	APC Web/SNMP Management Card	SNMP	APC Web/SNMP Management Card (MB:v3.8.3				IT	Schneider Electric	Supported	Duplicate	Duplicates ID 69		12/5/2023
+563	APC Web/SNMP Management Card	SNMP	APC Web/SNMP Management Card (MB:v3.8.6				IT	Schneider Electric	Supported	Duplicate	Duplicates ID 70		12/5/2023
+564	APC Web/SNMP Management Card	SNMP	APC Web/SNMP Management Card (MB:v3.9.2				IT	Schneider Electric	Supported	Duplicate	Duplicates ID 71		12/5/2023
+565	APC Web/SNMP Management Card	SNMP	APC Web/SNMP Management Card (MB:v4.0.1				IT	Schneider Electric	Supported	Duplicate	Duplicates ID 72		12/5/2023
+566	APC Web/SNMP Management Card	SNMP	APC Web/SNMP Management Card (MB:v4.0.6				IT	Schneider Electric	Supported	Duplicate	Duplicates ID 73		12/5/2023
+567	APC Web/SNMP Management Card	SNMP	APC Web/SNMP Management Card (MB:v4.1.0				IT	Schneider Electric	Supported	Duplicate	Duplicates ID 74		12/5/2023
+568	APC ZYGMUNT Manager Console		APC ZYGMUNT Manager Console , Version : 1.01e02					Schneider Electric	Unsupported	Review	Too generic. Needs review from Schneider Electric team.		12/5/2023
+569	SE	All	"schneider electric"					Schneider Electric	Supported	Implemented	Brand name	9/13/2023	9/13/2024
+570	SE	HTTP/HTTPS	http.favicon.hash:"487597720"				IT	Schneider Electric	Supported	Duplicate	Duplicates ID 12		9/13/2024
+571	SE	HTTP/HTTPS	http.favicon.hash:"-1324056836"				IT	Schneider Electric	Supported	Duplicate	Duplicates ID 243		9/13/2024
+572	TAC XENTA	HTTP/HTTPS	product:"TAC XENTA"				IT	Schneider Electric	Supported	Implemented		5/31/2023	12/12/2022
+573	Unity M1 PLC	Modbus	"171 CBU"				OT	Schneider Electric	Supported	Implemented		5/31/2023	12/12/2022
+574	PMS Server	SQL Server	"Instance name: ION"				IT	Schneider Electric	Supported	Duplicate	Duplicates ID 199		9/13/2024
+575	BACnet bCX1	BACnet	"bCX1-CR"				OT	Schneider Electric	Supported	Implemented		6/14/2023	12/12/2022
+576	APC	HTTP/HTTPS	Set-Cookie: C0=apc; path=/				IT	Schneider Electric	Unsupported	Review	Too generic. Needs review from Schneider Electric team.		12/12/2022	APC device login web page
+577	APC	HTTP/HTTPS	http.html_hash:"-1313120712"				IT	Schneider Electric	Supported	Implemented		5/31/2023	12/12/2022
+578	APC	FTP	hash:"-1802139803"				IT	Schneider Electric	Supported	Implemented		5/31/2023	12/12/2022
+579	APC	SNMP	"APC Management Card"				IT	Schneider Electric	Supported	Implemented		7/13/2023	12/12/2022
+580	APC	FTP	"Network Management Card AOS"				IT	Schneider Electric	Supported	Duplicate	We have multiple fingerprints that match		9/13/2024
+581	APC	Telnet	hash:"-361535261"				IT	Schneider Electric	Supported	Implemented		5/31/2023	12/12/2022
+582	APC	FTP	"APC FTP server ready"				IT	Schneider Electric	Supported	Implemented		7/12/2023	12/12/2022
+583	APC	HTTP/HTTPS	WWW-Authenticate: Basic realm="Switched Rack PDU"				IT	Schneider Electric	Supported	Review	Too generic. Needs review from Schneider Electric team.		12/12/2022
+584	Wiser	HTTP/HTTPS	http.favicon.hash:"1171058325 "				IT	Schneider Electric	Supported	Implemented		5/31/2023	12/12/2022
+585	Wiser	Many	"Wiser for KNX"				IT	Schneider Electric	Supported	Implemented		6/27/2024	12/12/2022
+586	homelynk/spacelynk	HTTP/HTTPS	http.html_hash:"2043454874"				IT	Schneider Electric	Supported	Implemented		6/15/2023	12/12/2022			RP-220511: schneider-electric:homelynk
+587	homelynk/spacelynk	mDNS	"Web Server on homeLYnk"				IT	Schneider Electric	Supported	Implemented		5/31/2023	12/12/2022			RP-220511: schneider-electric:homelynk
+588	homelynk/spacelynk	HTTP/HTTPS	http.html_hash:"476466420"				IT	Schneider Electric	Supported	Implemented		6/15/2023	12/12/2022			RP-220511: schneider-electric:homelynk
+589	homelynk/spacelynk	KNX	"Friendly Name: homeLYnk"				OT	Schneider Electric	Supported	Implemented		7/13/2023	12/12/2022			RP-220511: schneider-electric:homelynk
+590	homelynk/spacelynk	Many	"homelynk"					Schneider Electric	Supported	Duplicate			12/12/2022			RP-220511: schneider-electric:homelynk
+591	homelynk/spacelynk	Many	"spacelynk"					Schneider Electric	Supported	Duplicate			12/12/2022			RP-220511: schneider-electric:homelynk
+592	homelynk/spacelynk	HTTP/HTTPS	http.html_hash:"1311541407"				IT	Schneider Electric	Supported	Implemented		6/15/2023	12/12/2022			RP-220511: schneider-electric:homelynk
+593	homelynk/spacelynk	KNX	"Friendly Name: spaceLYnk"				OT	Schneider Electric	Supported	Implemented		7/13/2023	12/12/2022			RP-220511: schneider-electric:homelynk
+594	homelynk/spacelynk	mDNS	"Web Server on spaceLYnk"				IT	Schneider Electric	Supported	Implemented		6/15/2023	12/12/2022			RP-220511: schneider-electric:homelynk
+595	homelynk/spacelynk	Many	"spacelogic"					Schneider Electric	Supported	Duplicate			12/12/2022			RP-220511: schneider-electric:homelynk
+596	Building Automation	Many	"smartstruxure"					Schneider Electric	Supported	Implemented	Implemented on bacnet	7/12/2023	12/12/2022
+597	Building Automation	Many	"smartx"					Schneider Electric	Supported	Implemented	Implemented on bacnet	3/6/2024	12/12/2022
+598	Building Automation	Many	product:"AS-P"					Schneider Electric	Supported	Implemented		5/31/2023	12/12/2022
+599	Building Automation	HTTP/HTTPS	ssl.cert.issuer.cn:"buildings.schneider-electric.com"				IT	Schneider Electric	Supported	Implemented		5/8/2025	12/12/2022
+600	Building Operation WebStation	HTTP/HTTPS	http.favicon.hash:"979634648"				IT	Schneider Electric	Supported	Implemented		5/31/2023	12/12/2022
+601	Building Operation WebStation	HTTP/HTTPS	http.html_hash:"-2013353135"				IT	Schneider Electric	Supported	Implemented		5/31/2023	12/12/2022
+602	Building Operation WebStation	HTTP/HTTPS	http.html_hash:"94846730"				IT	Schneider Electric	Supported	Implemented		5/31/2023	12/12/2022
+603	Building Operation WebStation	HTTP/HTTPS	http.html_hash:"128851332"				IT	Schneider Electric	Supported	Implemented		5/31/2023	12/12/2022
+604	Building Operation WebStation	HTTP/HTTPS	http.html_hash:"413637504 "				IT	Schneider Electric	Supported	Implemented		5/31/2023	12/12/2022
+605	Building Operation WebStation	HTTP/HTTPS	http.html_hash:"-1430271781"				IT	Schneider Electric	Supported	Implemented		5/31/2023	12/12/2022
+606	Building Operation WebStation	HTTP/HTTPS	http.html_hash:"1626209058"				IT	Schneider Electric	Supported	Implemented		5/31/2023	12/12/2022
+607	Building Operation WebStation	HTTP/HTTPS	http.html_hash:"238073671 "				IT	Schneider Electric	Supported	Implemented		5/31/2023	12/12/2022
+608	Building Operation WebStation	HTTP/HTTPS	http.html_hash:"-462506990 "				IT	Schneider Electric	Supported	Implemented		5/31/2023	12/12/2022
+609	Building Operation WebStation	HTTP/HTTPS	http.html_hash:"191082746"				IT	Schneider Electric	Supported	Implemented		5/31/2023	12/12/2022
+610	Building Operation WebStation	HTTP/HTTPS	http.html_hash:"284320488 "				IT	Schneider Electric	Supported	Implemented		5/31/2023	12/12/2022
+611	Building Operation WebStation	HTTP/HTTPS	http.html_hash:"478184061 "				IT	Schneider Electric	Supported	Implemented		5/31/2023	12/12/2022
+612	Building Operation WebStation	HTTP/HTTPS	http.html_hash:"-931033233 "				IT	Schneider Electric	Supported	Implemented		5/31/2023	12/12/2022
+613	Building Operation WebStation	HTTP/HTTPS	http.html_hash:"-964618971 "				IT	Schneider Electric	Supported	Implemented		5/31/2023	12/12/2022
+614	Building Operation WebStation	HTTP/HTTPS	http.html_hash:"1077736195"				IT	Schneider Electric	Supported	Implemented		5/31/2023	12/12/2022
+615	Building Operation WebStation	HTTP/HTTPS	http.html_hash:"-1800498136"				IT	Schneider Electric	Supported	Implemented		5/31/2023	12/12/2022
+616	Building Operation WebStation	HTTP/HTTPS	http.html_hash:"80110417"				IT	Schneider Electric	Supported	Implemented		5/31/2023	12/12/2022
+617	Building Operation WebStation	HTTP/HTTPS	http.html_hash:"-936338200 "				IT	Schneider Electric	Supported	Implemented		5/31/2023	12/12/2022
+618	Building Operation WebStation	HTTP/HTTPS	http.html_hash:"-1042368163"				IT	Schneider Electric	Supported	Implemented		5/31/2023	12/12/2022
+619	Building Operation WebStation	HTTP/HTTPS	http.favicon.hash:"405460413 "				IT	Schneider Electric	Supported	Implemented		5/31/2023	12/12/2022
+620	Building Operation WebStation	HTTP/HTTPS	http.html_hash:"-690399271"				IT	Schneider Electric	Supported	Implemented		5/31/2023	12/12/2022
+621	Building Operation WebStation	HTTP/HTTPS	http.html_hash:"-670292267 "				IT	Schneider Electric	Supported	Implemented		5/31/2023	12/12/2022
+622	Building Operation WebStation	HTTP/HTTPS	http.html_hash:"-1746810543"				IT	Schneider Electric	Supported	Implemented		5/31/2023	12/12/2022
+623	Building Operation WebStation	HTTP/HTTPS	http.html_hash:"-2108633118 "				IT	Schneider Electric	Supported	Implemented		5/31/2023	12/12/2022
+624	Building Operation WebStation	HTTP/HTTPS	http.html_hash:"-267782259"				IT	Schneider Electric	Supported	Implemented		5/31/2023	12/12/2022
+625	Building Operation WebStation	HTTP/HTTPS	http.html_hash:"-63857874"				IT	Schneider Electric	Supported	Implemented		5/31/2023	12/12/2022
+626	Building Operation WebStation	HTTP/HTTPS	http.html_hash:"1073252740"				IT	Schneider Electric	Supported	Implemented		5/31/2023	12/12/2022
+627	Building Operation WebStation	HTTP/HTTPS	http.html_hash:"-201616151"				IT	Schneider Electric	Supported	Implemented		5/31/2023	12/12/2022
+628	Building Operation WebStation	HTTP/HTTPS	http.html_hash:"-551798660"				IT	Schneider Electric	Supported	Implemented		5/31/2023	12/12/2022
+629	Building Operation WebStation	HTTP/HTTPS	http.html_hash:"486043710"				IT	Schneider Electric	Supported	Implemented		5/31/2023	12/12/2022
+630	Building Operation WebStation	HTTP/HTTPS	http.html_hash:"990452750"				IT	Schneider Electric	Supported	Implemented		5/31/2023	12/12/2022
+631	Building Operation WebStation	HTTP/HTTPS	http.html_hash:"1701245003"				IT	Schneider Electric	Supported	Implemented		5/31/2023	12/12/2022
+632	Building Operation WebStation	HTTP/HTTPS	http.html_hash:"-436449073"				IT	Schneider Electric	Supported	Implemented		5/31/2023	12/12/2022
+633	Building Operation WebStation	HTTP/HTTPS	http.html_hash:"-6818952d31"				IT	Schneider Electric	Supported	Implemented		5/31/2023	12/12/2022
+634	Building Operation WebStation	HTTP/HTTPS	http.html_hash:"240154672 "				IT	Schneider Electric	Supported	Implemented		5/31/2023	12/12/2022
+635	Building Operation WebStation	HTTP/HTTPS	http.html_hash:"-1869005933"				IT	Schneider Electric	Supported	Implemented		5/31/2023	12/12/2022
+636	Building Operation WebStation	HTTP/HTTPS	http.html_hash:"1669211190"				IT	Schneider Electric	Supported	Implemented		5/31/2023	12/12/2022
+637	Building Operation WebStation	HTTP/HTTPS	http.html_hash:"683042071"				IT	Schneider Electric	Supported	Implemented		5/31/2023	12/12/2022
+638	Building Operation WebStation	HTTP/HTTPS	http.html_hash:"1233973864"				IT	Schneider Electric	Supported	Implemented		5/31/2023	12/12/2022
+639	Building Operation WebStation	HTTP/HTTPS	http.html_hash:"2040687232"				IT	Schneider Electric	Supported	Implemented		5/31/2023	12/12/2022
+640	Building Operation WebStation	HTTP/HTTPS	http.favicon.hash:"-726281229"				IT	Schneider Electric	Supported	Implemented		5/31/2023	12/12/2022
+641	Building Automation	HTTP/HTTPS	ssl.cert.issuer.cn:"webservice@Schneider Electric Buildings Operation"				IT	Schneider Electric	Supported	Implemented		5/31/2023	12/12/2022
+642	BMEP581020	EIP/SNMP	"BMEP581020"				OT	Schneider Electric	Supported	Duplicate	Duplicates ID 448		12/12/2022
+643	BMEP582020	EIP/SNMP	"BMEP582020"				OT	Schneider Electric	Supported	Implemented		5/8/2025	12/12/2022
+644	BMEP582040	EIP/SNMP	"BMEP582040"				OT	Schneider Electric	Supported	Implemented		5/8/2025	12/12/2022
+645	BMEP583020	EIP/SNMP	"BMEP583020"				OT	Schneider Electric	Supported	Implemented		5/8/2025	12/12/2022
+646	BMEP583040	EIP/SNMP	"BMEP583040"				OT	Schneider Electric	Supported	Implemented		5/8/2025	12/12/2022
+647	BMEP584020	EIP/SNMP	"BMEP584020"				OT	Schneider Electric	Supported	Implemented		5/8/2025	12/12/2022
+648	BMEP584040	EIP/SNMP	"BMEP584040"				OT	Schneider Electric	Supported	Implemented		5/8/2025	12/12/2022
+649	BMEP585040	EIP/SNMP	"BMEP585040"				OT	Schneider Electric	Supported	Implemented		5/8/2025	12/12/2022
+650	BMEP586040	EIP/SNMP	"BMEP586040"				OT	Schneider Electric	Supported	Implemented		5/8/2025	12/12/2022
+651	BMEH582040	EIP/SNMP	"BMEH582040"				OT	Schneider Electric	Supported	Implemented		7/13/2023	12/12/2022
+652	BMEH582040K	EIP/SNMP	"BMEH582040K"				OT	Schneider Electric	Supported	Duplicate	Duplicate ID 651		12/12/2022
+653	BMEH584040	EIP/SNMP	"BMEH584040"				OT	Schneider Electric	Supported	Implemented		5/8/2025	12/12/2022
+654	BMEH584040K	EIP/SNMP	"BMEH584040K"				OT	Schneider Electric	Supported	Duplicate	Duplicate ID 653		12/12/2022
+655	BMEH586040	EIP/SNMP	"BMEH586040"				OT	Schneider Electric	Supported	Implemented		7/13/2023	12/12/2022
+656	BMEH582040C	EIP/SNMP	"BMEH582040C"				OT	Schneider Electric	Supported	Duplicate	Duplicate ID 651		12/12/2022
+657	BMEH584040C	EIP/SNMP	"BMEH584040C"				OT	Schneider Electric	Supported	Duplicate	Duplicate ID 653		12/12/2022
+658	BMEH586040C	EIP/SNMP	"BMEH586040C"				OT	Schneider Electric	Supported	Duplicate	Duplicate ID 655		12/12/2022
+659	BMEP581020H	EIP/SNMP	"BMEP581020H"				OT	Schneider Electric	Supported	Implemented		5/8/2025	12/12/2022
+660	BMEP582020H	EIP/SNMP	"BMEP582020H"				OT	Schneider Electric	Supported	Implemented		5/8/2025	12/12/2022
+661	BMEP582040H	EIP/SNMP	"BMEP582040H"				OT	Schneider Electric	Supported	Implemented		5/8/2025	12/12/2022
+662	BMEP585040C	EIP/SNMP	"BMEP585040C"				OT	Schneider Electric	Supported	Implemented		5/8/2025	12/12/2022
+663	BMEP586040C	EIP/SNMP	"BMEP586040C"				OT	Schneider Electric	Supported	Duplicate	Duplicate ID 650		12/12/2022
+664	BMEP582040S	EIP/SNMP	"BMEP582040S"				OT	Schneider Electric	Supported	Implemented		5/8/2025	12/12/2022
+665	BMEP584040S	EIP/SNMP	"BMEP584040S"				OT	Schneider Electric	Supported	Implemented		5/8/2025	12/12/2022
+666	BMEP586040S	EIP/SNMP	"BMEP586040S"				OT	Schneider Electric	Supported	Duplicate	Duplicate ID 650		12/12/2022
+667	BMEP58CPROS3	EIP/SNMP	"BMEP58CPROS3"				OT	Schneider Electric	Supported	Implemented		5/8/2025	12/12/2022
+668	BMEH582040S	EIP/SNMP	"BMEH582040S"				OT	Schneider Electric	Supported	Duplicate	Duplicate ID 651		12/12/2022
+669	BMEH584040S	EIP/SNMP	"BMEH584040S"				OT	Schneider Electric	Supported	Implemented	Duplicate ID 653	5/8/2025	12/12/2022
+670	BMEH586040S	EIP/SNMP	"BMEH586040S"				OT	Schneider Electric	Supported	Duplicate	Duplicate ID 655		12/12/2022
+671	BMENOC0301	EIP/SNMP	"BMENOC0301"				OT	Schneider Electric	Supported	Duplicate	Duplicate ID 44		12/12/2022
+672	BMENOC0301C	EIP/SNMP	"BMENOC0301C"				OT	Schneider Electric	Supported	Duplicate	Duplicate ID 44		12/12/2022
+673	BMENOC0311	EIP/SNMP	"BMENOC0311"				OT	Schneider Electric	Supported	Duplicate	Duplicate ID 417		12/12/2022
+674	BMENOC0311C	EIP/SNMP	"BMENOC0311C"				OT	Schneider Electric	Supported	Duplicate	Duplicate ID 417		12/12/2022
+675	BMENOC0321	EIP/SNMP	"BMENOC0321"				OT	Schneider Electric	Supported	Implemented		5/8/2025	12/12/2022
+676	BMENOC0321C	EIP/SNMP	"BMENOC0321C"				OT	Schneider Electric	Supported	Duplicate	Duplicate ID 675		12/12/2022		6/17/2025	RP-220414: modicon_bmenoc_0311
+677	BMENUA0100	EIP/SNMP	"BMENUA0100"				OT	Schneider Electric	Supported	Implemented		7/12/2023	12/12/2022
+678	BMENOP0300	EIP/SNMP	"BMENOP0300"				OT	Schneider Electric	Supported	Implemented		5/8/2025	12/12/2022
+679	BMENOP0300C	EIP/SNMP	"BMENOP0300C"				OT	Schneider Electric	Supported	Duplicate	Duplicate ID 678		12/12/2022
+680	BMENOR2200H	EIP/SNMP	"BMENOR2200H"				OT	Schneider Electric	Supported	Implemented		5/8/2025	12/12/2022
+681	BMXNGD0100	EIP/SNMP	"BMXNGD0100"				OT	Schneider Electric	Supported	Implemented		5/8/2025	12/12/2022
+682	BMEP581020	Modbus	product:"BME P58 1020"				OT	Schneider Electric	Supported	Implemented		5/31/2023	12/12/2022
+683	BMEP582020	Modbus	product:"BME P58 2020"				OT	Schneider Electric	Supported	Implemented		5/31/2023	12/12/2022
+684	BMEP582040	Modbus	product:"BME P58 2040"				OT	Schneider Electric	Supported	Implemented		5/31/2023	12/12/2022
+685	BMEP583020	Modbus	product:"BME P58 3020"				OT	Schneider Electric	Supported	Implemented		5/31/2023	12/12/2022
+686	BMEP583040	Modbus	product:"BME P58 3040"				OT	Schneider Electric	Supported	Not Implemented			12/12/2022
+687	BMEP584020	Modbus	product:"BME P58 4020"				OT	Schneider Electric	Supported	Not Implemented			12/12/2022
+688	BMEP584040	Modbus	product:"BME P58 4040"				OT	Schneider Electric	Supported	Implemented		5/31/2023	12/12/2022
+689	BMEP585040	Modbus	product:"BME P58 5040"				OT	Schneider Electric	Supported	Not Implemented			12/12/2022
+690	BMEP586040	Modbus	product:"BME P58 6040"				OT	Schneider Electric	Supported	Implemented		5/31/2023	12/12/2022
+691	BMEH582040	Modbus	product:"BME H58 2040"				OT	Schneider Electric	Supported	Duplicate	Duplicate ID 40		12/12/2022
+692	BMEH582040K	Modbus	product:"BME H58 2040K"				OT	Schneider Electric	Supported	Duplicate	Duplicate ID 40		12/12/2022
+693	BMEH584040	Modbus	product:"BME H58 4040"				OT	Schneider Electric	Supported	Implemented		5/31/2023	12/12/2022
+694	BMEH584040K	Modbus	product:"BME H58 4040K"				OT	Schneider Electric	Supported	Duplicate	Duplicate ID 693		12/12/2022
+695	BMEH586040	Modbus	product:"BME H58 6040"				OT	Schneider Electric	Supported	Not Implemented			12/12/2022
+696	BMEH582040C	Modbus	product:"BME H58 2040C"				OT	Schneider Electric	Supported	Duplicate	Duplicate ID 40		12/12/2022
+697	BMEH584040C	Modbus	product:"BME H58 4040C"				OT	Schneider Electric	Supported	Not Implemented			12/12/2022
+698	BMEH586040C	Modbus	product:"BME H58 6040C"				OT	Schneider Electric	Supported	Duplicate	Duplicates ID 695		12/12/2022
+699	BMEP582040S	Modbus	product:"BME P58 2040S"				OT	Schneider Electric	Supported	Duplicate	Duplicates ID 684		12/12/2022
+700	BMEP584040S	Modbus	product:"BME P58 4040S"				OT	Schneider Electric	Supported	Duplicate	Duplicates ID 688		12/12/2022
+701	BMEP586040S	Modbus	product:"BME P58 6040S"				OT	Schneider Electric	Supported	Duplicate	Duplicates ID 690		12/12/2022
+702	BMEH582040S	Modbus	product:"BME H58 2040S"				OT	Schneider Electric	Supported	Not Implemented			12/12/2022
+703	BMEH584040S	Modbus	product:"BME H58 4040S"				OT	Schneider Electric	Supported	Duplicate	Duplicate ID 693		12/12/2022
+704	BMEH586040S	Modbus	product:"BME H58 6040S"				OT	Schneider Electric	Supported	Duplicate	Duplicates ID 695		12/12/2022
+705	BMXNOR0200	Modbus/SNMP	"BMX NOR 0200"				OT	Schneider Electric	Supported	Implemented		7/13/2023	12/12/2022
+706	BMXNOC0401	Modbus/SNMP	"BMX NOC 0401"				OT	Schneider Electric	Supported	Implemented		5/31/2023	12/12/2022
+707	BMXNOE0100	Modbus/SNMP	"BMX NOE 0100"				OT	Schneider Electric	Supported	Implemented		5/31/2023	12/12/2022
+708	BMXNOE0110	Modbus/SNMP	"BMX NOE 0110"				OT	Schneider Electric	Supported	Implemented		5/31/2023	12/12/2022
+709	BMXP3420102	Modbus/SNMP	"BMX P34 20102"				OT	Schneider Electric	Supported	Implemented		5/31/2023	12/12/2022
+710	BMXP341000	Modbus/SNMP	"BMX P34 1000"				OT	Schneider Electric	Supported	Implemented		7/13/2023	12/12/2022
+711	BMXP3420302	Modbus/SNMP	"BMX P34 20302"				OT	Schneider Electric	Supported	Implemented		5/31/2023	12/12/2022
+712	BMXP342020	Modbus/SNMP	"BMX P34 2020"				OT	Schneider Electric	Supported	Implemented		7/13/2023	12/12/2022
+713	BMXP342000	Modbus/SNMP	"BMX P34 2000"				OT	Schneider Electric	Supported	Implemented		5/31/2023	12/12/2022
+714	EcoStruxure IT Gateway	HTTP/HTTPS	http.html_hash:"-1031428829"				IT	Schneider Electric	Supported	Implemented		5/31/2023	12/12/2022
+715	EcoStruxure IT Gateway	HTTP/HTTPS	http.html_hash:"-1580585892"				IT	Schneider Electric	Supported	Implemented		5/31/2023	12/12/2022
+716	EcoStruxure IT Gateway	HTTP/HTTPS	ssl:"EcoStruxureITGateway"				IT	Schneider Electric	Supported	Implemented		5/8/2025	12/12/2022
+717	Ecostruxure Augmented Operator Advisor	HTTP/HTTPS	http.html_hash:"-1889775782"				IT	Schneider Electric	Supported	Implemented		5/31/2023	12/12/2022
+718	Ecostruxure IT Custom Solutions	HTTP/HTTPS	http.html_hash:"2127513622"				IT	Schneider Electric	Supported	Implemented		5/31/2023	12/12/2022
+719	Ecostruxure Control Advisor	HTTP/HTTPS	http.html_hash:"884344763"				IT	Schneider Electric	Supported	Implemented		5/31/2023	12/12/2022
+720	Ecostruxure Machine Advisor	HTTP/HTTPS	http.html_hash:"-840036624"				IT	Schneider Electric	Supported	Implemented		5/31/2023	12/12/2022
+721	Ecostruxure EV Charging Expert	HTTP/HTTPS	http.html_hash:"-1305679329"				IT	Schneider Electric	Supported	Implemented		5/31/2023	12/12/2022
+722	Ecostruxure EV Charging Expert	HTTP/HTTPS	ssl.cert.issuer.cn:"evlinklms"				IT	Schneider Electric	Supported	Implemented		5/31/2023	12/12/2022
+723	AS-B 24L	BACnet	model:"AS-B 24L"				OT	Bitsight	Supported	Implemented		3/5/2025
+724	MP-C-24A	BACnet	model:"MP-C-24A"				OT	Bitsight	Supported	Implemented		3/5/2025
+725	PM5562	BACnet	model:"PM5562"				OT	Bitsight	Supported	Implemented		3/5/2025
+726	Modicon TM3	Modbus	device_identification:"TM3BCEIP"				OT	Bitsight	Supported	Implemented		3/5/2025
+727	Modicon M221	Modbus	device_identification:"TM221ME16T"				OT	Bitsight	Supported	Implemented		3/5/2025
+728	Modicon M221	Modbus	device_identification:"TM221M16R"				OT	Bitsight	Supported	Implemented		3/5/2025
+729	Harmony ST6	Modbus	device_identification:"HMISTM6200"				OT	Bitsight	Supported	Implemented		3/5/2025
+730	Schneider Electric NF3500	Modbus	device_identification:"Schneider Electric NF3500"				OT	Bitsight	Supported	Implemented		3/5/2025
+731	PowerLogic PM5000 - PM5561	EIP	product_name:"PM5561"				OT	Bitsight	Supported	Implemented		3/5/2025
+732	PowerLogic PM5000 - PM5580	EIP	product_name:"PM5580"				OT	Bitsight	Supported	Implemented		3/5/2025
+733	Logic controller-Modicon M241	EIP	product_name:"TM241CE24T_U"				OT	Bitsight	Supported	Implemented		3/5/2025
+734	Modicon Family M-221	EIP	product_name:"TM221CE16T"				OT	Bitsight	Supported	Implemented		3/5/2025
+735	Modicon Family M-221	EIP	product_name:"TM221ME16R"				OT	Bitsight	Supported	Implemented		3/5/2025
+736	Modicon M262	EIP	product_name:"TM262-10"				OT	Bitsight	Supported	Implemented		3/5/2025
+737	Modicon M241	EIP	product_name:"TM241CE40R"				OT	Bitsight	Supported	Implemented		3/5/2025
+738	Modicon Family M258	EIP	product_name:"TM258LF66DT4L"				OT	Bitsight	Supported	Implemented		3/5/2025
+739	Altivar Process ATV900	EIP	product_name:"ATV930D90N4"				OT	Bitsight	Supported	Implemented		3/5/2025
+740	General fingerprint to match Schneider Electric products	KNX	device_mac_vendor:"Schneider Electric"				OT	Bitsight	Supported	Implemented		3/5/2025
+741	SmartX Controller AS-B 24HL	BACnet	model:"AS-B 24HL"				OT	Bitsight	Supported	Implemented		3/17/2025
+742	SpaceLogic SXWRCF16C10001	BACnet	model:"RP-C-16C-F-230V"				OT	Bitsight	Supported	Implemented		3/17/2025
+743	SpaceLogic C-Bus	BACnet	model:"LSS5500SHAC"				OT	Bitsight	Supported	Implemented		3/17/2025
+744	PowerLogic PM1000	BACnet	appsoft:"PRG:power_meter_pm1000_schneider"				OT	Bitsight	Supported	Implemented		3/17/2025
+745	Substation S40	Modbus	device_identification:"(EAN13)3303430596806"				OT	Bitsight	Supported	Implemented		3/17/2025
+746	Substation S42	Modbus	device_identification:"(EAN13)3303430596820"				OT	Bitsight	Supported	Implemented		3/17/2025
+747	Substation T42	Modbus	device_identification:"(EAN13)3303430596844"				OT	Bitsight	Supported	Implemented		3/17/2025
+748	Modicon M580	Modbus	device_identification:"BMEP586040"				OT	Bitsight	Supported	Implemented		3/17/2025				RP-220732: schneider-electric:modicon_m580_firmware
+749	PM1200	Modbus	device_identification:"SCHNEIDER ELECTRIC PM1200"				OT	Bitsight	Supported	Implemented		3/17/2025
+750	Zelio Logic SR3	Modbus	device_identification:"SCHNEIDER Electric SR3"				OT	Bitsight	Supported	Implemented		3/17/2025
+751	Modicon BMECRA31210	Modbus	device_identification:"BME CRA31210"				OT	Bitsight	Supported	Implemented		3/17/2025
+752	Modicon BMECRA31210	Modbus	device_identification:"BMECRA31210"				OT	Bitsight	Supported	Implemented		3/17/2025
+753	Modicon BMKC8020301	Modbus	device_identification:"BMK C80 20301"				OT	Bitsight	Supported	Implemented		3/17/2025
+754	Modicon BMXPRA0100	Modbus	device_identification:"BMX PRA0100"				OT	Bitsight	Supported	Implemented		3/17/2025
+755	Modicon BMXPRA0100	Modbus	device_identification:"BMXPRA0100"				OT	Bitsight	Supported	Implemented		3/17/2025
+756	Transformer TR	Modbus	device_identification:"Schneider Electric 15212"				OT	Bitsight	Supported	Implemented		3/17/2025
+757	Altivar Machine ATV320	Modbus	device_identification:"Schneider Electric ATV320"				OT	Bitsight	Supported	Implemented		3/17/2025
+758	Altivar Machine ATV340	Modbus	device_identification:"Schneider Electric ATV340"				OT	Bitsight	Supported	Implemented		3/17/2025
+759	Altivar Machine ATV630	Modbus	device_identification:"Schneider Electric ATV630"				OT	Bitsight	Supported	Implemented		3/17/2025
+760	Altivar Machine ATV930	Modbus	device_identification:"Schneider Electric ATV930"				OT	Bitsight	Supported	Implemented		3/17/2025
+761	Harmony GTU HMIDT642	Modbus	device_identification:"HMIDT642"				OT	Bitsight	Supported	Implemented		3/17/2025
+762	Harmony GTU HMIG5U2	Modbus	device_identification:"HMIG5U2"				OT	Bitsight	Supported	Implemented		3/17/2025
+763	Harmony GTO HMIGTO3510	Modbus	device_identification:"HMIGTO3510"				OT	Bitsight	Supported	Implemented		3/17/2025
+764	Harmony GXU HMIGXU3512	Modbus	device_identification:"HMIGXU3512"				OT	Bitsight	Supported	Implemented		3/17/2025
+765	Modicon LMC058	Modbus	device_identification:"LMC058LF42S0"				OT	Bitsight	Supported	Implemented		3/17/2025
+766	Modicon LMC078	Modbus	device_identification:"LMC078"				OT	Bitsight	Supported	Implemented		3/17/2025
+767	LV434002	Modbus	device_identification:"LV434002"				OT	Bitsight	Supported	Implemented		3/17/2025
+768	EasyLogic EM6400NG+RS-485	Modbus	device_identification:"METSEEM6400NGRSCL1"				OT	Bitsight	Supported	Implemented		3/17/2025
+769	EcoStruxure PAS400	Modbus	device_identification:"Schneider Electric PAS400"				OT	Bitsight	Supported	Implemented		3/17/2025
+770	EcoStruxure PAS600	Modbus	device_identification:"Schneider Electric PAS600"				OT	Bitsight	Supported	Implemented		3/17/2025
+771	EcoStruxure PAS800	Modbus	device_identification:"Schneider Electric PAS800"				OT	Bitsight	Supported	Implemented		3/17/2025
+772	PowerLogic PM5330	Modbus	device_identification:"Schneider Electric PM5330"				OT	Bitsight	Supported	Implemented		3/17/2025
+773	PowerLogic PM710	Modbus	device_identification:"Schneider Electric PM710"				OT	Bitsight	Supported	Implemented		3/17/2025
+774	Conext CL 25000E PVSCL25E	Modbus	device_identification:"Schneider Electric PVSCL25E"				OT	Bitsight	Supported	Implemented		3/17/2025
+775	Modicon TSXP575634M	Modbus	device_identification:"SAS TSX P57 5634M"				OT	Bitsight	Supported	Implemented		3/17/2025
+776	Modicon M221	Modbus	device_identification:"TM221C24T"				OT	Bitsight	Supported	Implemented		3/17/2025
+777	Modicon M251	Modbus	device_identification:"TM251MDESE"				OT	Bitsight	Supported	Implemented		3/17/2025
+778	Modicon M258	Modbus	device_identification:"TM258LD42D"				OT	Bitsight	Supported	Implemented		3/17/2025
+779	Modicon M262	Modbus	device_identification:"TM262-20"				OT	Bitsight	Supported	Implemented		3/17/2025
+780	Harmony XBTGT	Modbus	device_identification:"XBTGT4330"				OT	Bitsight	Supported	Implemented		3/17/2025
+781	PowerLogic ION 7650	ION	device_type:"7650" OR secure_ion:"Supported - Cert CN: ION7650-.*"				OT	Bitsight	Supported	Implemented		5/5/2025
+782	PowerLogic ION 8650	ION	device_type:"8650" OR secure_ion:"Supported - Cert CN: ION8650-.*"				OT	Bitsight	Supported	Implemented		5/5/2025
+783	PowerLogic ION 7400	ION	device_type:"7400" OR secure_ion:"Supported - Cert CN: ION7400-.*"				OT	Bitsight	Supported	Implemented		5/5/2025
+784	PowerLogic ION 8600	ION	device_type:"8600" OR secure_ion:"Supported - Cert CN: ION8600-.*"				OT	Bitsight	Supported	Implemented		5/5/2025
+785	PowerLogic ION 8000	ION	device_type:"8000" OR secure_ion:"Supported - Cert CN: ION8000-.*"				OT	Bitsight	Supported	Implemented		5/5/2025
+786	PowerLogic ION 9000	ION	device_type:"9000" OR secure_ion:"Supported - Cert CN: ION9000-.*"				OT	Bitsight	Supported	Implemented		5/5/2025
+787	PowerLogic ION 7330	ION	device_type:"7330" OR secure_ion:"Supported - Cert CN: ION7330-.*"				OT	Bitsight	Supported	Implemented		5/5/2025
+788	PowerLogic ION 7550	ION	device_type:"7550" OR secure_ion:"Supported - Cert CN: ION7550-.*"				OT	Bitsight	Supported	Implemented		5/5/2025
+789	PowerLogic ION 7550-RTU	ION	device_type:"7550-?RTU" OR secure_ion:"Supported - Cert CN: ION7550-?RTU-.*"				OT	Bitsight	Supported	Implemented		5/5/2025
+790	PowerLogic ION 8800	ION	device_type:"8800" OR secure_ion:"Supported - Cert CN: ION8800-.*"				OT	Bitsight	Supported	Implemented		5/5/2025
+791	PowerLogic ION 8500	ION	device_type:"8500" OR secure_ion:"Supported - Cert CN: ION8500-.*"				OT	Bitsight	Supported	Implemented		5/5/2025
+792	PowerLogic ION 8300	ION	device_type:"8300" OR secure_ion:"Supported - Cert CN: ION8300-.*"				OT	Bitsight	Supported	Implemented		5/5/2025
+793	Data Center Expert	HTTP/HTTPS	title:"Data Center Expert"	HTML title	Y		IT	Schneider Electric	Supported	Implemented		5/29/2025	5/2/2025	Added on 02 May 2025
+794	Data Center Expert	HTTP/HTTPS	title:"Data Center Expert"	General		Y	IT	Schneider Electric	Unsupported	Review	Too generic. Needs review from Schneider Electric team.		5/2/2025	Added on 02 May 2025
+795	Data Center Expert	HTTP/HTTPS	http.favicon.hash:-621618652	Favicon	Y		IT	Schneider Electric	Supported	Implemented		5/29/2025	5/2/2025	Added on 02 May 2025
+796	PowerChute Network Shutdown	HTTP/HTTPS	title:"Powerchute"	HTML title	Y		IT	Schneider Electric	Supported	Implemented		5/29/2025	5/2/2025	Added on 02 May 2025
+797	NetBotz Network Monitoring	HTTP/HTTPS	title:"Netbotz"	HTML title	Y		IT	Schneider Electric	Supported	Implemented		5/29/2025	5/2/2025	Added on 02 May 2025
+798	EcoStruxure IT Expert	HTTP/HTTPS	title:"Log On" http.favicon.hash:487597720	HTML Title + Favicon	Y		IT	Schneider Electric	Unsupported	Not Implemented			5/2/2025	Added on 02 May 2025
+799	EcoStruxure IT Expert	HTTP/HTTPS	services.http.response.html_title:"Log On" and "EcoStruxure"	HTML Title + Keyword		Y	IT	Schneider Electric	Unsupported	Not Implemented			5/2/2025	Added on 02 May 2025
+800	AS-B 24 Hand	BACnet	model:"AS-B 24 Hand"				OT	Bitsight		Implemented		3/6/2024
+801	AS-B 24	BACnet	model:"AS-B 24"				OT	Bitsight		Implemented		3/6/2024
+802	AS-B 36 Hand	BACnet	model:"AS-B 36 Hand"				OT	Bitsight		Implemented		3/6/2024
+803	AS-B 36	BACnet	model:"AS-B 36"				OT	Bitsight		Implemented		3/6/2024
+804	Building Operation Automation Server	BACnet	model:"Building Operation Automation Server"				OT	Bitsight		Implemented		3/6/2024
+805	Building Operation Enterprise Server	BACnet	model:"Building Operation Enterprise Server"				OT	Bitsight		Implemented		3/6/2024
+806	Building Operation Automation Server Premium	BACnet	model:"Building Operation Automation Server Premium"				OT	Bitsight		Implemented		3/6/2024
+807	ES	BACnet	model:"ES"				OT	Bitsight		Implemented		3/6/2024
+808	homeLYnk	BACnet	model:"homeLYnk"				OT	Bitsight		Implemented		3/6/2024				RP-220511: schneider-electric:homelynk
+809	MP-C-15A	BACnet	model:"MP-C-15A"				OT	Bitsight		Implemented		8/10/2023
+810	MP-C-18A	BACnet	model:"MP-C-18A"				OT	Bitsight		Implemented		3/6/2024
+811	SpaceLogic MP-C Controller	BACnet	model:"MP-C-24A"				OT	Bitsight		Implemented		3/5/2024
+812	PowerLogic PM5000 - PM5561	BACnet	model:"PM5561"				OT	Bitsight		Implemented		3/6/2024
+813	PowerLogic PM5000 - PM5563	BACnet	model:"PM5563"				OT	Bitsight		Implemented		3/6/2024
+814	PowerLogic PM5000 - PM5320	BACnet	model:"PM5320"				OT	Bitsight		Implemented		3/6/2024
+815	PowerLogic PM5000 - PM5340	BACnet	model:"PM5340"				OT	Bitsight		Implemented		3/6/2024
+816	PowerLogic PM5000 - PM5580	BACnet	model:"PM5580"				OT	Bitsight		Implemented		3/6/2024
+817	SmartX Controller AS-P	BACnet	model:"SmartX Controller AS-P"				OT	Bitsight		Implemented		3/6/2024
+818	SmartX Controller AS-B 24 Hand	BACnet	model:"SmartX Controller AS-B 24 Hand"				OT	Bitsight		Implemented		3/6/2024
+819	SmartX Controller AS-B 24	BACnet	model:"SmartX Controller AS-B 24"				OT	Bitsight		Implemented		3/6/2024
+820	SmartX Controller AS-B 36 Hand	BACnet	model:"SmartX Controller AS-B 36 Hand"				OT	Bitsight		Implemented		3/6/2024
+821	SmartX Controller AS-B 36	BACnet	model:"SmartX Controller AS-B 36"				OT	Bitsight		Implemented		3/6/2024
+822	SpaceLYnk	BACnet	model:"spaceLYnk"				OT	Bitsight		Implemented		3/6/2024
+823	Network Management Card	FTP	AP4421 Network Management Card AOS	FTP data			IT	Bitsight		Implemented		7/13/2023
+824	Network Management Card	FTP	AP4423 Network Management Card AOS	FTP data			IT	Bitsight		Implemented		7/13/2023
+825	Network Management Card	FTP	AP4424 Network Management Card AOS	FTP data			IT	Bitsight		Implemented		7/13/2023
+826	Network Management Card	FTP	AP4434 Network Management Card AOS	FTP data			IT	Bitsight		Implemented		7/13/2023
+827	Network Management Card	FTP	AP7721 Network Management Card AOS	FTP data			IT	Bitsight		Implemented		7/13/2023
+828	Network Management Card	FTP	AP7723 Network Management Card AOS	FTP data			IT	Bitsight		Implemented		7/13/2023
+829	IP-IO-UIO5DOFA4	BACnet	IP-IO-UIO5DOFA4				OT	Bitsight		Implemented		3/6/2024
+830	MP-C-36A	BACnet	MP-C-35A				OT	Bitsight		Implemented		3/6/2024
+831	RPC-C-12B-F-14V	BACnet	RPC-C-12B-F-14V				OT	Bitsight		Implemented		3/6/2024
+832	Network Management Card	FTP	AP7724 Network Management Card AOS	FTP data			IT	Bitsight		Implemented		7/13/2023
+833	Network Management Card	FTP	AP7750A Network Management Card AOS	FTP data			IT	Bitsight		Implemented		7/13/2023
+834	Network Management Card	FTP	AP7811 Network Management Card AOS	FTP data			IT	Bitsight		Implemented		7/13/2023				RP-220418: SNMP based AP Series
+835	Network Management Card	FTP	AP7811B Network Management Card AOS	FTP data			IT	Bitsight		Implemented		7/13/2023				RP-220418: SNMP based AP Series
+836	Network Management Card	FTP	AP7821 Network Management Card AOS	FTP data			IT	Bitsight		Implemented		7/13/2023				RP-220418: SNMP based AP Series
+837	Network Management Card	FTP	AP7830 Network Management Card AOS	FTP data			IT	Bitsight		Implemented		7/13/2023				RP-220418: SNMP based AP Series
+838	Network Management Card	FTP	AP7831 Network Management Card AOS	FTP data			IT	Bitsight		Implemented		7/13/2023				RP-220418: SNMP based AP Series
+839	Network Management Card	FTP	AP7840 Network Management Card AOS	FTP data			IT	Bitsight		Implemented		7/13/2023				RP-220418: SNMP based AP Series
+840	Network Management Card	FTP	AP7841 Network Management Card AOS	FTP data			IT	Bitsight		Implemented		7/13/2023				RP-220418: SNMP based AP Series
+841	Network Management Card	FTP	AP7851 Network Management Card AOS	FTP data			IT	Bitsight		Implemented		7/13/2023				RP-220418: SNMP based AP Series
+842	Network Management Card	FTP	AP7852 Network Management Card AOS	FTP data			IT	Bitsight		Implemented		7/13/2023				RP-220418: SNMP based AP Series
+843	Network Management Card	FTP	AP7853 Network Management Card AOS	FTP data			IT	Bitsight		Implemented		7/13/2023				RP-220418: SNMP based AP Series
+844	Network Management Card	FTP	AP7862 Network Management Card AOS	FTP data			IT	Bitsight		Implemented		7/13/2023				RP-220418: SNMP based AP Series
+845	Network Management Card	FTP	AP7900 Network Management Card AOS	FTP data			IT	Bitsight		Implemented		7/13/2023				RP-220418: SNMP based AP Series
+846	Network Management Card	FTP	AP7900B Network Management Card AOS	FTP data			IT	Bitsight		Implemented		7/13/2023				RP-220418: SNMP based AP Series
+847	Network Management Card	FTP	AP7901 Network Management Card AOS	FTP data			IT	Bitsight		Implemented		7/13/2023				RP-220418: SNMP based AP Series
+848	Network Management Card	FTP	AP7901B Network Management Card AOS	FTP data			IT	Bitsight		Implemented		7/13/2023				RP-220418: SNMP based AP Series
+849	Network Management Card	FTP	AP7902 Network Management Card AOS	FTP data			IT	Bitsight		Implemented		7/13/2023				RP-220418: SNMP based AP Series
+850	Network Management Card	FTP	AP7911 Network Management Card AOS	FTP data			IT	Bitsight		Implemented		7/13/2023				RP-220418: SNMP based AP Series
+851	Network Management Card	FTP	AP7911A Network Management Card AOS	FTP data			IT	Bitsight		Implemented		7/13/2023				RP-220418: SNMP based AP Series
+852	Network Management Card	FTP	AP7911B Network Management Card AOS	FTP data			IT	Bitsight		Implemented		7/13/2023				RP-220418: SNMP based AP Series
+853	Network Management Card	FTP	AP7920 Network Management Card AOS	FTP data			IT	Bitsight		Implemented		7/13/2023				RP-220418: SNMP based AP Series
+854	Network Management Card	FTP	AP7920B Network Management Card AOS	FTP data			IT	Bitsight		Implemented		7/13/2023				RP-220418: SNMP based AP Series
+855	Network Management Card	FTP	AP7921 Network Management Card AOS	FTP data			IT	Bitsight		Implemented		7/13/2023				RP-220418: SNMP based AP Series
+856	Network Management Card	FTP	AP7921B Network Management Card AOS	FTP data			IT	Bitsight		Implemented		7/13/2023				RP-220418: SNMP based AP Series
+857	Network Management Card	FTP	AP7922 Network Management Card AOS	FTP data			IT	Bitsight		Implemented		7/13/2023				RP-220418: SNMP based AP Series
+858	Network Management Card	FTP	AP7930 Network Management Card AOS	FTP data			IT	Bitsight		Implemented		7/13/2023				RP-220418: SNMP based AP Series
+859	Network Management Card	FTP	AP7931 Network Management Card AOS	FTP data			IT	Bitsight		Implemented		7/13/2023				RP-220418: SNMP based AP Series
+860	Network Management Card	FTP	AP7932 Network Management Card AOS	FTP data			IT	Bitsight		Implemented		7/13/2023				RP-220418: SNMP based AP Series
+861	Network Management Card	FTP	AP7940 Network Management Card AOS	FTP data			IT	Bitsight		Implemented		7/13/2023				RP-220418: SNMP based AP Series
+862	Network Management Card	FTP	AP7941 Network Management Card AOS	FTP data			IT	Bitsight		Implemented		7/13/2023				RP-220418: SNMP based AP Series
+863	Network Management Card	FTP	AP7951 Network Management Card AOS	FTP data			IT	Bitsight		Implemented		7/13/2023				RP-220418: SNMP based AP Series
+864	Network Management Card	FTP	AP7952 Network Management Card AOS	FTP data			IT	Bitsight		Implemented		7/13/2023				RP-220418: SNMP based AP Series
+865	Network Management Card	FTP	AP7953 Network Management Card AOS	FTP data			IT	Bitsight		Implemented		7/13/2023				RP-220418: SNMP based AP Series
+866	Network Management Card	FTP	AP7954 Network Management Card AOS	FTP data			IT	Bitsight		Implemented		7/13/2023				RP-220418: SNMP based AP Series
+867	Network Management Card	FTP	AP7960 Network Management Card AOS	FTP data			IT	Bitsight		Implemented		7/13/2023				RP-220418: SNMP based AP Series
+868	Network Management Card	FTP	AP8481 Network Management Card AOS	FTP data			IT	Bitsight		Implemented		7/13/2023
+869	Network Management Card	FTP	AP8632 Network Management Card AOS	FTP data			IT	Bitsight		Implemented		7/13/2023
+870	Network Management Card	FTP	AP8641 Network Management Card AOS	FTP data			IT	Bitsight		Implemented		7/13/2023
+871	Network Management Card	FTP	AP8641X629 Network Management Card AOS	FTP data			IT	Bitsight		Implemented		7/13/2023
+872	Network Management Card	FTP	AP8653 Network Management Card AOS	FTP data			IT	Bitsight		Implemented		7/13/2023
+873	Network Management Card	FTP	AP8832 Network Management Card AOS	FTP data			IT	Bitsight		Implemented		7/13/2023
+874	Network Management Card	FTP	AP8841 Network Management Card AOS	FTP data			IT	Bitsight		Implemented		7/13/2023
+875	Network Management Card	FTP	AP8853 Network Management Card AOS	FTP data			IT	Bitsight		Implemented		7/13/2023
+876	Network Management Card	FTP	AP8858NA3 Network Management Card AOS	FTP data			IT	Bitsight		Implemented		7/13/2023
+877	Network Management Card	FTP	AP8881 Network Management Card AOS	FTP data			IT	Bitsight		Implemented		7/13/2023
+878	Network Management Card	FTP	AP8930 Network Management Card AOS	FTP data			IT	Bitsight		Implemented		7/13/2023				RP-220418: SNMP based AP Series
+879	Network Management Card	FTP	AP8932 Network Management Card AOS	FTP data			IT	Bitsight		Implemented		7/13/2023				RP-220418: SNMP based AP Series
+880	Network Management Card	FTP	AP8941 Network Management Card AOS	FTP data			IT	Bitsight		Implemented		7/13/2023				RP-220418: SNMP based AP Series
+881	Network Management Card	FTP	AP8953 Network Management Card AOS	FTP data			IT	Bitsight		Implemented		7/13/2023				RP-220418: SNMP based AP Series
+882	Network Management Card	FTP	AP8953Q Network Management Card AOS	FTP data			IT	Bitsight		Implemented		7/13/2023				RP-220418: SNMP based AP Series
+883	Network Management Card	FTP	AP8959 Network Management Card AOS	FTP data			IT	Bitsight		Implemented		7/13/2023				RP-220418: SNMP based AP Series
+884	Network Management Card	FTP	AP8959EU3 Network Management Card AOS	FTP data			IT	Bitsight		Implemented		7/13/2023				RP-220418: SNMP based AP Series
+885	Network Management Card	FTP	AP8959NA3 Network Management Card AOS	FTP data			IT	Bitsight		Implemented		7/13/2023				RP-220418: SNMP based AP Series
+886	Network Management Card	FTP	AP9319 Network Management Card AOS	FTP data			IT	Bitsight		Implemented		7/13/2023
+887	Network Management Card	FTP	AP9320 Network Management Card AOS	FTP data			IT	Bitsight		Implemented		7/13/2023
+888	Network Management Card	FTP	AP9340 Network Management Card AOS	FTP data			IT	Bitsight		Implemented		7/13/2023
+889	Network Management Card	FTP	AP9537SUM Network Management Card AOS	FTP data			IT	Bitsight		Implemented		7/13/2023
+890	Network Management Card	FTP	AP9538 Network Management Card AOS	FTP data			IT	Bitsight		Implemented		7/13/2023
+891	Network Management Card	FTP	AP9617 Network Management Card AOS	FTP data			IT	Bitsight		Implemented		7/13/2023
+892	Network Management Card	FTP	AP9618 Network Management Card AOS	FTP data			IT	Bitsight		Implemented		7/13/2023
+893	Network Management Card	FTP	AP9619 Network Management Card AOS	FTP data			IT	Bitsight		Implemented		7/13/2023
+894	Network Management Card	FTP	AP9630 Network Management Card AOS	FTP data			IT	Bitsight		Implemented		7/13/2023
+895	Network Management Card	FTP	AP9630CH Network Management Card AOS	FTP data			IT	Bitsight		Implemented		7/13/2023
+896	Network Management Card	FTP	AP9630FJ Network Management Card AOS	FTP data			IT	Bitsight		Implemented		7/13/2023
+897	Network Management Card	FTP	AP9630J Network Management Card AOS	FTP data			IT	Bitsight		Implemented		7/13/2023
+898	Network Management Card	FTP	AP9630JN Network Management Card AOS	FTP data			IT	Bitsight		Implemented		7/13/2023
+899	Network Management Card	FTP	AP9631 Network Management Card AOS	FTP data			IT	Bitsight		Implemented		7/13/2023
+900	Network Management Card	FTP	AP9631CH Network Management Card AOS	FTP data			IT	Bitsight		Implemented		7/13/2023
+901	Network Management Card	FTP	AP9635CH Network Management Card AOS	FTP data			IT	Bitsight		Implemented		7/13/2023
+902	Network Management Card	FTP	AP9640 Network Management Card AOS	FTP data			IT	Bitsight		Implemented		7/13/2023
+903	Network Management Card	FTP	AP9641 Network Management Card AOS	FTP data			IT	Bitsight		Implemented		7/13/2023
+904	Citect Ftp Server ready	FTP	Citect Ftp Server ready	FTP data			IT	Bitsight		Implemented		7/12/2023
+905	Schneider Automation, Inc. - Modbus Bridge	FTP	Schneider Automation, Inc. - Modbus Bridge	FTP data			IT	Bitsight		Implemented		6/27/2024
+906	(EAN13)3303430597803	Modbus	\(EAN13\)3303430597803				OT	Bitsight		Implemented		8/10/2023
+907	(EAN13)3303430597810	Modbus	\(EAN13\)3303430597810				OT	Bitsight		Implemented		8/10/2023
+908	(EAN13)3303430597674	Modbus	\(EAN13\)3303430597674				OT	Bitsight		Implemented		8/16/2024
+909	cpe:2.3:h:schneider-electric:modicon_momentum_171cbu98090:-:*:*:*:*:*:*:*	Modbus	171 CBU 98090				OT	Bitsight		Implemented		5/31/2023
+910	cpe:2.3:h:schneider-electric:modicon_momentum_171cbu98091:-:*:*:*:*:*:*:*	Modbus	171 CBU 98091				OT	Bitsight		Implemented		5/31/2023
+911	cpe:2.3:a:schneider-electric:quantum_ethernet_module_140cpu65150:*:*:*:*:*:*:*:*,cpe:2.3:o:schneider-electric:140cpu65150_firmware:-:*:*:*:*:*:*:*,cpe:2.3:h:schneider-electric:140cpu65150:-:*:*:*:*:*:*:*	Modbus	Schneider Electric SAS 140 CPU 651				OT	Bitsight		Implemented		7/13/2023
+912	cpe:2.3:h:schneider-electric:modicon_quantum_140noe77101:-:*:*:*:*:*:*:*	Modbus	Schneider Electric SAS 140 NOE 771				OT	Bitsight		Implemented		5/31/2023
+913	499TWD01100/interface-module-twido-connexium-1-port-10baset-or-100basetx/	Modbus	Schneider Electric SAS 499TWD01100				OT	Bitsight		Implemented		5/31/2023
+914	Square D 15103	Modbus	Square D 15103				OT	Bitsight		Implemented		6/14/2023
+915	Square D 15211	Modbus	Square D 15211				OT	Bitsight		Implemented		6/14/2023
+916	Schneider Electric 15210	Modbus	Schneider Electric 15210				OT	Bitsight		Implemented		8/16/2023
+917	Schneider Electric 15211	Modbus	Schneider Electric 15211				OT	Bitsight		Implemented		8/16/2023
+918	Square D PM210	Modbus	Square D PM210				OT	Bitsight		Implemented		6/14/2023
+919	Schneider Electric EGX100MG	Modbus	Schneider Electric EGX100MG				OT	Bitsight		Implemented		8/16/2023
+920	Schneider Electric EGX150	Modbus	Schneider Electric EGX150				OT	Bitsight		Implemented		7/7/2023
+921	Schneider Electric EGX300	Modbus	Schneider Electric EGX300				OT	Bitsight		Implemented		6/14/2023
+922	Schneider Electric EGX300SD	Modbus	Schneider Electric EGX300SD				OT	Bitsight		Implemented		6/14/2023
+923	Schneider Electric EGX400	Modbus	Schneider Electric EGX400				OT	Bitsight		Implemented		8/16/2023
+924	Merlin Gerin (EAN13)0000000000000	Modbus	Merlin Gerin \(EAN13\)0000000000000				OT	Bitsight		Implemented		6/14/2023
+925	Merlin Gerin PM750	Modbus	Merlin Gerin PM750				OT	Bitsight		Implemented		6/14/2023
+926	Schneider Electric PM750	Modbus	Schneider Electric PM750				OT	Bitsight		Implemented		8/16/2023
+927	modicon_tm221ce16r	Modbus	TM221CE16R				OT	Bitsight		Implemented		5/31/2023
+928	TM200CE24R	Modbus	TM200CE24R				OT	Bitsight		Implemented		6/14/2023
+929	OTB 1E0 DM9LP	Modbus	OTB 1E0 DM9LP				OT	Bitsight		Implemented		6/14/2023
+930	modicon_tsxety4103	Modbus	Schneider Electric SAS TSXETY4103				OT	Bitsight		Implemented		7/13/2023
+931	TWDLMDA20DRT	Modbus	TWDLMDA20DRT				OT	Bitsight		Implemented		6/13/2023
+932	TWDLCAE40DRF	Modbus	TWDLCAE40DRF				OT	Bitsight		Implemented		6/13/2023
+933	TELEMECANIQUE TWDLMDA20D-K	Modbus	TWDLMDA20D-K				OT	Bitsight		Implemented		6/14/2023
+934	TWDLCAA24DRF	Modbus	TWDLCAA24DRF				OT	Bitsight		Implemented		6/14/2023
+935	TWDLCAA40DRF	Modbus	TWDLCAA40DRF				OT	Bitsight		Implemented		6/14/2023
+936	Modicon Family M-221	Modbus	TM221CE24T				OT	Bitsight		Implemented		8/16/2023
+937	Modicon Family M-221	Modbus	TM221CE40T				OT	Bitsight		Implemented		8/16/2023
+938	Modicon Family M-221	Modbus	TM221ME32TK				OT	Bitsight		Implemented		8/16/2023
+939	Modicon Family M-221	Modbus	TM221CE24R				OT	Bitsight		Implemented		8/16/2023
+940	Modicon Family M-221	Modbus	TM221CE40R				OT	Bitsight		Implemented		8/16/2023
+941	controller M200 40	Modbus	TM200CE40U				OT	Bitsight		Implemented		8/16/2023
+942	TM168B23	Modbus	TM168B23				OT	Bitsight		Implemented		8/16/2023
+943	Zelio Logic SR2/SR3	Modbus	TELEMECANIQUE SR3 NET01				OT	Bitsight		Implemented		8/10/2023
+944	TELEMECANIQUE ATV31HU15N4 5157	Modbus	TELEMECANIQUE ATV31HU15N4 5157				OT	Bitsight		Implemented		6/14/2023
+945	TELEMECANIQUE ATV31HU22N4 5154	Modbus	TELEMECANIQUE ATV31HU22N4 5154				OT	Bitsight		Implemented		6/14/2023
+946	TELEMECANIQUE ATV31HU30N4 5150	Modbus	TELEMECANIQUE ATV31HU30N4 5150				OT	Bitsight		Implemented		6/14/2023
+947	TELEMECANIQUE ATV31HU30N4 5153	Modbus	TELEMECANIQUE ATV31HU30N4 5153				OT	Bitsight		Implemented		6/14/2023
+948	TELEMECANIQUE ATV31HU30N4 5154	Modbus	TELEMECANIQUE ATV31HU30N4 5154				OT	Bitsight		Implemented		6/14/2023
+949	TELEMECANIQUE ATV31HU30N4 5157	Modbus	TELEMECANIQUE ATV31HU30N4 5157				OT	Bitsight		Implemented		6/14/2023
+950	TELEMECANIQUE ATV31HU40N4 5154	Modbus	TELEMECANIQUE ATV31HU40N4 5154				OT	Bitsight		Implemented		6/14/2023
+951	TELEMECANIQUE ATV31HU55N4 1203	Modbus	TELEMECANIQUE ATV31HU55N4 1203				OT	Bitsight		Implemented		6/14/2023
+952	TELEMECANIQUE ATV31HU55N4 5154	Modbus	TELEMECANIQUE ATV31HU55N4 5154				OT	Bitsight		Implemented		6/14/2023
+953	STB NIP 2212	Modbus	STB NIP 2212				OT	Bitsight		Implemented		8/16/2023
+954	Schneider Electric PM5320	Modbus	Schneider Electric PM5320				OT	Bitsight		Implemented		8/16/2023
+955	Schneider Electric PM8000	Modbus	Schneider Electric PM8000				OT	Bitsight		Implemented		8/16/2023
+956	Schneider Electric SMT10020	Modbus	Schneider Electric SMT10020				OT	Bitsight		Implemented		8/16/2023
+957	XBTGT4340	Modbus	XBTGT4340				OT	Bitsight		Implemented		8/16/2023
+958	A9MEM3455	Modbus	A9MEM3455				OT	Bitsight		Implemented		8/16/2023
+959	A9MEM1541	Modbus	A9MEM1541				OT	Bitsight		Implemented		8/16/2023
+960	A9MEM3155	Modbus	A9MEM3155				OT	Bitsight		Implemented		8/16/2023
+961	A9MEM3150	Modbus	A9MEM3150				OT	Bitsight		Implemented		8/16/2023
+962	ATV630D18N4	Modbus	ATV630D18N4				OT	Bitsight		Implemented		8/16/2023
+963	ATV630D22N4	Modbus	ATV630D22N4				OT	Bitsight		Implemented		8/16/2023
+964	ATV630U75N4	Modbus	ATV630U75N4				OT	Bitsight		Implemented		8/16/2023
+965	ATV320U55N4B	Modbus	ATV320U55N4B				OT	Bitsight		Implemented		8/16/2023
+966	ATV650D11N4E	Modbus	ATV650D11N4E				OT	Bitsight		Implemented		8/16/2023
+967	A9MEM1590	Modbus	A9MEM1590				OT	Bitsight		Implemented		8/16/2023
+968	ATV630D15N4	Modbus	ATV630D15N4				OT	Bitsight		Implemented		8/16/2023
+969	A9XMWA20	Modbus	A9XMWA20				OT	Bitsight		Implemented		8/16/2023
+970	A9XMWD100	Modbus	A9XMWD100				OT	Bitsight		Implemented		8/16/2023
+971	A9MEM3255	Modbus	A9MEM3255				OT	Bitsight		Implemented		8/16/2023
+972	A9MEM3250	Modbus	A9MEM3250				OT	Bitsight		Implemented		8/16/2023
+973	A9MEM3350	Modbus	A9MEM3350				OT	Bitsight		Implemented		8/16/2023
+974	A9MEM1520	Modbus	A9MEM1520				OT	Bitsight		Implemented		8/16/2023
+975	A9MEM1560	Modbus	A9MEM1560				OT	Bitsight		Implemented		8/16/2023
+976	A9XMWD20	Modbus	A9XMWD20				OT	Bitsight		Implemented		8/16/2023
+977	ATV320U30N4C	Modbus	ATV320U30N4C				OT	Bitsight		Implemented		8/16/2023
+978	ATV320U40N4C	Modbus	ATV320U40N4C				OT	Bitsight		Implemented		8/16/2023
+979	ATV320U22N4B	Modbus	ATV320U22N4B				OT	Bitsight		Implemented		8/16/2023
+980	TM258LD42DT4L	Modbus	TM258LD42DT4L				OT	Bitsight		Implemented		8/16/2023
+981	TM241C40R	Modbus	TM241C40R				OT	Bitsight		Implemented		8/16/2023
+982	TM200CE40T	Modbus	TM200CE40T				OT	Bitsight		Implemented		8/16/2023
+983	METSEPM3250	Modbus	METSEPM3250				OT	Bitsight		Implemented		8/16/2023
+984	METSEPM2230	Modbus	METSEPM2230				OT	Bitsight		Implemented		8/16/2023
+985	Schneider Electric T200	Modbus	Schneider Electric T200				OT	Bitsight		Implemented		8/16/2023
+986	TM238LFDC24DTS0	Modbus	TM238LFDC24DTS0				OT	Bitsight		Implemented		8/16/2023
+987	Schneider Electric EBX200	Modbus	Schneider Electric EBX200				OT	Bitsight		Implemented		8/16/2023
+988	Schneider Electric EBX510	Modbus	Schneider Electric EBX510				OT	Bitsight		Implemented		8/16/2023
+989	Schneider Electric ION7400	Modbus	Schneider Electric ION7400				OT	Bitsight		Implemented		8/16/2023
+990	Schneider Electric LV434000	Modbus	Schneider Electric LV434000				OT	Bitsight		Implemented		8/16/2023
+991	Schneider Electric PM2230	Modbus	Schneider Electric PM2230				OT	Bitsight		Implemented		8/16/2023
+992	Schneider Electric PM5340	Modbus	Schneider Electric PM5340				OT	Bitsight		Implemented		8/16/2023
+993	Schneider Electric PM5561	Modbus	Schneider Electric PM5561				OT	Bitsight		Implemented		8/16/2023
+994	Schneider Electric PM5562	Modbus	Schneider Electric PM5562				OT	Bitsight		Implemented		10/9/2024
+995	Schneider Electric PM5580	Modbus	Schneider Electric PM5580				OT	Bitsight		Implemented		8/16/2023
+996	TM200CE32R	Modbus	TM200CE32R				OT	Bitsight		Implemented		8/16/2023
+997	TM200CE24T	Modbus	TM200CE24T				OT	Bitsight		Implemented		8/16/2023
+998	TM221C16T	Modbus	TM221C16T				OT	Bitsight		Implemented		8/16/2023
+999	TM200C60R	Modbus	TM200C60R				OT	Bitsight		Implemented		8/16/2023
+1000	Schneider Electric LV851001	Modbus	Schneider Electric LV851001				OT	Bitsight		Implemented		8/16/2023
+1001	Schneider Electric TSXETG100	Modbus	Schneider Electric TSXETG100				OT	Bitsight		Implemented		8/16/2023
+1002	Schneider Electric W320	Modbus	Schneider Electric W320				OT	Bitsight		Implemented		8/16/2023
+1003	Schneider Electric NF3000	Modbus	Schneider Electric NF3000				OT	Bitsight		Implemented		8/16/2023
+1004	Schneider Electric EcoStruxure PAS600L	Modbus	Schneider Electric PAS600L				OT	Bitsight		Implemented		8/16/2023
+1005	Schneider Electric EcoStruxure PAS600L	Modbus	Schneider-Electric PAS600L				OT	Bitsight		Implemented		8/16/2023
+1006	Schneider Electric PAS800P	Modbus	Schneider Electric PAS800P				OT	Bitsight		Implemented		8/16/2023
+1007	TM221M16T	Modbus	TM221M16T				OT	Bitsight		Implemented		8/16/2023
+1008	TM221M32TK	Modbus	TM221M32TK				OT	Bitsight		Implemented		8/16/2023
+1009	TM221CE40U	Modbus	TM221CE40U				OT	Bitsight		Implemented		8/16/2023
+1010	TM200CE40R	Modbus	TM200CE40R				OT	Bitsight		Implemented		8/16/2023
+1011	Schneider Electric SAS TSXETY5103	Modbus	Schneider Electric SAS TSXETY5103				OT	Bitsight		Implemented		8/16/2023
+1012	Schneider Electric TM262-10	Modbus	Schneider Electric TM262-10				OT	Bitsight		Implemented		8/16/2023
+1013	Schneider Electric METSEPM2120	Modbus	Schneider Electric METSEPM2120				OT	Bitsight		Implemented		8/16/2023
+1014	Schneider Electric EGX200	Modbus	Schneider Electric EGX200				OT	Bitsight		Implemented		8/16/2023
+1015	Schneider Electric METSEPM3255	Modbus	Schneider Electric METSEPM3255				OT	Bitsight		Implemented		8/16/2023
+1016	Schneider Electric TM241C24R	Modbus	Schneider Electric TM241C24R				OT	Bitsight		Implemented		8/16/2023
+1017	Schneider Electric A9XMSB11	Modbus	Schneider Electric A9XMSB11				OT	Bitsight		Implemented		8/16/2023
+1018	Schneider Electric A9XMZA08	Modbus	Schneider Electric A9XMZA08				OT	Bitsight		Implemented		8/16/2023
+1019	Schneider Electric ATV630C13N4	Modbus	Schneider Electric ATV630C13N4				OT	Bitsight		Implemented		8/16/2023
+1020	Schneider Electric 15213	Modbus	Schneider Electric 15213				OT	Bitsight		Implemented		8/16/2023
+1021	Schneider Electric HMIG2U_DT642	Modbus	Schneider Electric HMIG2U_DT642				OT	Bitsight		Implemented		8/16/2023
+1022	Schneider Electric HMIGTO2310/2315	Modbus	Schneider Electric HMIGTO2310/2315				OT	Bitsight		Implemented		8/16/2023
+1023	Schneider Electric HMIGTO6310/6315	Modbus	Schneider Electric HMIGTO6310/6315				OT	Bitsight		Implemented		8/16/2023
+1024	Schneider Electric HMIG5U2_HMIDT752	Modbus	Schneider Electric HMIG5U2_HMIDT752				OT	Bitsight		Implemented		8/16/2023
+1025	Schneider Electric HMIGTO1310	Modbus	Schneider Electric HMIGTO1310				OT	Bitsight		Implemented		8/16/2023
+1026	Schneider Electric HMIBMU	Modbus	Schneider Electric HMIBMU				OT	Bitsight		Implemented		8/16/2023
+1027	Schneider Electric HMIGTO4310	Modbus	Schneider Electric HMIGTO4310				OT	Bitsight		Implemented		8/16/2023
+1028	Schneider Electric HMIG3U_DT732	Modbus	Schneider Electric HMIG3U_DT732				OT	Bitsight		Implemented		8/16/2023
+1029	Schneider Electric HMIGTO5310/5315	Modbus	Schneider Electric HMIGTO5310/5315				OT	Bitsight		Implemented		8/16/2023
+1030	Schneider Electric HMIS5T	Modbus	Schneider Electric HMIS5T				OT	Bitsight		Implemented		8/16/2023
+1031	Schneider Electric HMIG3U_DT351	Modbus	Schneider Electric HMIG3U_DT351				OT	Bitsight		Implemented		8/16/2023
+1032	Schneider Electric HMISCUxB5	Modbus	Schneider Electric HMISCUxB5				OT	Bitsight		Implemented		8/16/2023
+1033	Schneider Electric A9XMEA08	Modbus	Schneider Electric A9XMEA08				OT	Bitsight		Implemented		8/16/2023
+1034	Schneider Electric PAS600T	Modbus	Schneider Electric PAS600T				OT	Bitsight		Implemented		8/16/2023
+1035	Schneider Electric ION9000	Modbus	Schneider Electric ION9000				OT	Bitsight		Implemented		8/16/2023
+1036	Schneider Electric EBX210	Modbus	Schneider Electric EBX210				OT	Bitsight		Implemented		8/16/2023
+1037	Schneider Electric NF2000	Modbus	Schneider Electric NF2000				OT	Bitsight		Implemented		8/16/2023
+1038	Schneider Electric P3U30	Modbus	Schneider Electric P3U30				OT	Bitsight		Implemented		8/16/2023
+1039	Schneider Electric SAS TSX P57 4634M	Modbus	Schneider Electric SAS TSX P57 4634M				OT	Bitsight		Implemented		8/16/2023
+1040	Schneider Electric EGX100SD	Modbus	Schneider Electric EGX100SD				OT	Bitsight		Implemented		8/16/2023
+1041	Schneider Electric STB NIP 2311	Modbus	Schneider Electric STB NIP 2311				OT	Bitsight		Implemented		8/16/2023
+1042	Schneider Electric	iec-61850	ACE850				OT	Bitsight		Implemented		6/20/2024
+1043	Modicon M241-251	OPCUA	M241-251 UA Server				OT	Bitsight		Implemented		7/1/2024
+1044	cpe:2.3:a:schneider-electric:pro-face_blue:*:*:*:*:*:*:*:*	OPCUA	Pro-face				OT	Bitsight		Implemented		7/1/2024
+1045	cpe:2.3:a:schneider-electric:pro-face_blue:*:*:*:*:*:*:*:*	OPCUA	BLUE_OPCUA_Server				OT	Bitsight		Implemented		7/1/2024
+1046	Modicon Family M238	Codesys V3	TM238LFDC24DT				OT	Bitsight		Implemented		11/27/2024
+1047	cpe:2.3:h:schneider-electric:powerlogic_ion7550RTU:-:*:*:*:*:*:*:*	ION	7550RTU				OT	Bitsight		Implemented		3/27/2025
+1048	AVEVA instance	ms-sql-monitor	Instance Name: AVEVA				IT	Bitsight		Implemented		7/3/2024
+1049	cpe:2.3:a:apc:switched_rack_pdu_firmware:-:*:*:*:*:*:*:*	SNMP	AN1:apc_hw02_rpdu_265.bin MN:AP7920				IT	Bitsight		Implemented		7/12/2023
+1050	APC Metered Rack PDU	SNMP	APC Metered Rack PDU				IT	Bitsight		Implemented		7/3/2024
+1051	SCHNEIDER M262 Fast Ethernet TCP/IP	SNMP	Modicon_M262				IT	Bitsight		Implemented		6/27/2024
+1052	SCHNEIDER M258 Fast Ethernet TCP/IP	SNMP	SCHNEIDER M258				IT	Bitsight		Implemented		7/3/2024
+1053	SCHNEIDER TSX Premium TSX ETY4103 Fast Ethernet TCP/IP Communication Module	SNMP	SCHNEIDER TSX Premium TSX ETY4103				IT	Bitsight		Implemented		7/3/2024
+1054	Schneider Quantum, Ethernet TCP/IP Communications Module	SNMP	140-NOE-771-01 Module				IT	Bitsight		Implemented		6/27/2024
+1055	TAC Xenta511	SNMP	TAC Xenta511				IT	Bitsight		Implemented		7/3/2024
+1056	TAC Xenta527	SNMP	TAC Xenta527				IT	Bitsight		Implemented		7/3/2024
+1057	TAC Xenta555	SNMP	TAC Xenta555				IT	Bitsight		Implemented		7/3/2024
+1058	TAC Xenta711	SNMP	TAC Xenta711				IT	Bitsight		Implemented		7/3/2024
+1059	TAC Xenta731	SNMP	TAC Xenta731				IT	Bitsight		Implemented		7/3/2024
+1060	TAC Xenta911	SNMP	TAC Xenta911				IT	Bitsight		Implemented		7/3/2024
+1061	TAC Xenta913	SNMP	TAC Xenta913				IT	Bitsight		Implemented		7/3/2024
+1062	Web Server on Wiser	mDNS	Web Server on Wiser				IT	Bitsight		Implemented		7/3/2024
+1063	WiserHeat	mDNS	WiserHeat				IT	Bitsight		Implemented		7/3/2024
+1064	cpe:2.3:o:schneider-electric:spacelynk_firmware:*:*:*:*:*:*:*:*,cpe:2.3:h:schneider-electric:spacelynk:-:*:*:*:*:*:*:*	KNX	fellerLYnk				OT	Bitsight		Implemented		7/13/2023
+1065	cpe:2.3:h:schneider-electric:ion7300:-:*:*:*:*:*:*:*,cpe:2.3:h:schneider-electric:powerlogic_ion7300:-:*:*:*:*:*:*:*,cpe:2.3:o:schneider-electric:powerlogic_ion7300_firmware:-:*:*:*:*:*:*:*	Telnet	Power Measurement Ltd. Meter ION 7330				IT	Bitsight		Implemented		7/13/2023
+1066	cpe:2.3:h:schneider-electric:powerlogic_ion7550:4.0:*:*:*:*:*:*:*,cpe:2.3:h:schneider-electric:powerlogic_ion7550:5.0:*:*:*:*:*:*:*	Telnet	Power Measurement Ltd. 7550				IT	Bitsight		Implemented		7/13/2023
+1067	cpe:2.3:h:schneider-electric:powerlogic_ion7650:-:*:*:*:*:*:*:*	Telnet	Power Measurement Ltd. 7650				IT	Bitsight		Implemented		7/13/2023
+1068	cpe:2.3:h:schneider-electric:powerlogic_ion8600:-:*:*:*:*:*:*:*	Telnet	Power Measurement Ltd. 8600				IT	Bitsight		Implemented		7/13/2023
+1069	cpe:2.3:h:schneider-electric:powerlogic_ion8650:-:*:*:*:*:*:*:*	Telnet	Power Measurement Ltd. 8650				IT	Bitsight		Implemented		7/13/2023
+1070	cpe:2.3:h:schneider-electric:powerlogic_ion_setup:-:*:*:*:*:*:*:*,cpe:2.3:o:schneider-electric:powerlogic_ion_setup_firmware:*:*:*:*:*:*:*:*	Telnet	Power Measurement Ltd				IT	Bitsight		Implemented		7/13/2023
+1071	cpe:2.3:h:schneider-electric:powerlogic_ion_setup:-:*:*:*:*:*:*:*,cpe:2.3:o:schneider-electric:powerlogic_ion_setup_firmware:*:*:*:*:*:*:*:*	Telnet	Meter ION				IT	Bitsight		Implemented		7/13/2023
+1072	Power/UPS device	Telnet	APC telnet				IT	Bitsight		Implemented		6/27/2023
+1073	Eurotherm T2550	Telnet	Eurotherm T2550				IT	Bitsight		Implemented		7/3/2024
+1074	PELCO login	Telnet	PELCO login				IT	Bitsight		Implemented		7/3/2024
+1075	cpe:2.3:h:schneider-electric:spacelynk:-:*:*:*:*:*:*:*,cpe:2.3:o:schneider-electric:spacelynk_firmware:*:*:*:*:*:*:*:*		homeLYnk - Apps	http_title			IT	Bitsight		Implemented		7/13/2023
+1076	cpe:2.3:h:schneider-electric:spacelynk:-:*:*:*:*:*:*:*,cpe:2.3:o:schneider-electric:spacelynk_firmware:*:*:*:*:*:*:*:*		spaceLYnk - Apps	http_title			IT	Bitsight		Implemented		7/13/2023
+1077	symmetra mw II		symmetra mw II	http_title			IT	Bitsight		Implemented		8/10/2023
+1078	Altivar Process Drive Systems Configurator		Altivar Process Drive Systems Configurator	http_title			IT	Bitsight		Implemented		6/27/2024
+1079	Andover Controls Continuum		Andover Controls Continuum	http_title			IT	Bitsight		Implemented		6/27/2024
+1080	Citect Scada		Citect Scada	http_title			IT	Bitsight		Implemented		6/27/2024
+1081	Eurotherm Series 5000		Eurotherm Series 5000 Web Server	http_title			IT	Bitsight		Implemented		6/27/2024
+1082	Eurotherm Reviewer		Eurotherm Reviewer	http_title			IT	Bitsight		Implemented		6/27/2024
+1083	Log On - Eurotherm Online Services page		Log On - Eurotherm Online Services	http_title			IT	Bitsight		Implemented		6/27/2024
+1084	Feller HomeServer 4		Feller HomeServer 4	http_title			IT	Bitsight		Implemented		6/27/2024
+1085	Feller FacilityServer 4		Feller FacilityServer 4	http_title			IT	Bitsight		Implemented		6/27/2024
+1086	PowerLogic ION 7550RTU		PowerLogic ION 7550RTU	http_title			IT	Bitsight		Implemented		6/27/2024
+1087	OSIsoft FTP		OSIsoft FTP	http_title			IT	Bitsight		Implemented		6/27/2024
+1088	Planon Login		Planon Login	http_title			IT	Bitsight		Implemented		6/27/2024
+1089	Planon Cloud Dashboard		Planon Cloud Dashboard	http_title			IT	Bitsight		Implemented		6/27/2024
+1090	Planon release notes		Planon release notes	http_title			IT	Bitsight		Implemented		6/27/2024
+1091	Planon Anmelden		Planon Anmelden	http_title			IT	Bitsight		Implemented		6/27/2024
+1092	PowerLogic&trade;&nbsp;PM5561		PowerLogic&trade;&nbsp;PM5561	http_title			IT	Bitsight		Implemented		6/27/2024
+1093	XFlow - The telemetry software by Schneider Electric		XFlow - The telemetry software by Schneider Electric	http_title			IT	Bitsight		Implemented		6/27/2024
+1094	SCADA lite - Schneider Electric		SCADA lite - Schneider Electric	http_title			IT	Bitsight		Implemented		6/27/2024
+1095	Special Ethernet Converter from Schneider Electric CZ, s. r. o.		Special Ethernet Converter from Schneider Electric CZ, s. r. o.	http_title			IT	Bitsight		Implemented		6/27/2024
+1096	Ezylog - Schneider Electric		Ezylog - Schneider Electric	http_title			IT	Bitsight		Implemented		6/27/2024
+1097	TAC Vista Webstation - Login		TAC Vista Webstation - Login	http_title			IT	Bitsight		Implemented		6/27/2024
+1098	WISER		WISER	http_title			IT	Bitsight		Implemented		6/27/2024
+1099	Wiser for KNX - Apps		Wiser for KNX - Apps	http_title			IT	Bitsight		Implemented		6/27/2024
+1100	Wiser - Apps		Wiser - Apps	http_title			IT	Bitsight		Implemented		6/27/2024
+1101	Wiser Smart		Wiser Smart	http_title			IT	Bitsight		Implemented		6/27/2024
+1102	Wiser-Durante - Apps		Wiser-Durante - Apps	http_title			IT	Bitsight		Implemented		6/27/2024
+1103	Robijns-KNX-Wiser - Apps		Robijns-KNX-Wiser - Apps	http_title			IT	Bitsight		Implemented		6/27/2024
+1104	cpe:2.3:a:apc:switched_rack_pdu_firmware		-1578593505	hash_data			IT	Bitsight		Implemented		5/31/2023
+1105	TM258LF42DT4L (modbus)		239572307	hash_data			IT	Bitsight		Implemented		5/31/2023
+1106	Schneider Electric TM251MESE V04.00.06.38		659641090	hash_data			IT	Bitsight		Implemented		8/10/2023
+1107	cpe:2.3:a:schneider-electric:ecostruxure_building_operation		webservice@Schneider Electric Buildings Operation	certificate_issuer_cn			IT	Bitsight		Implemented		5/31/2023
+1108	SEVD-2022-039-04		fellerLYnk	certificate_issuer_cn			IT	Bitsight		Implemented		6/29/2023
+1109	EcoStruxure Panel Server		EcoStruxure Panel Server	certificate_issuer_cn			IT	Bitsight		Implemented		10/9/2024
+1110	cpe:2.3:a:schneider-electric:ecostruxure_building_operation		Schneider Electric Buildings Operation server	certificate_issuer_o			IT	Bitsight		Implemented		5/31/2023
+1111	controller M200 40		TM200CE40U	product_name			IT	Bitsight		Implemented		6/14/2023
+1112	Modicon Family M-221		TM221CE24T	product_name			IT	Bitsight		Implemented		6/14/2023
+1113	Modicon Family M-221		TM221CE24R	product_name			IT	Bitsight		Implemented		6/14/2023
+1114	Modicon Family M-221		TM221CE16R	product_name			IT	Bitsight		Implemented		6/14/2023
+1115	Modicon Family M-221		TM221ME32TK	product_name			IT	Bitsight		Implemented		6/14/2023
+1116	Modicon Family M-221		TM221CE40T	product_name			IT	Bitsight		Implemented		6/14/2023
+1117	Modicon Family M-221		TM221CE40R	product_name			IT	Bitsight		Implemented		6/14/2023
+1118	APC Web/SNMP Management Card		American Power Conversion Corp.	product_name			IT	Bitsight		Implemented		6/14/2023
+1119	SAS TSXETY4103		TSXETY4103	product_name			IT	Bitsight		Implemented		6/14/2023
+1120	(EAN13)3303430597810		\(EAN13\)3303430597810	product_name			IT	Bitsight		Implemented		8/15/2023
+1121	(EAN13)3303430597803		\(EAN13\)3303430597803	product_name			IT	Bitsight		Implemented		8/15/2023
+1122	Galaxy 7000 UPS 300kVA	APCUPSd	MODEL : Galaxy 7000 UPS 300kVA	Product			OT	Bitsight		Implemented		7/10/2025
+1123	Smart-UPS (generic)	APCUPSd	MODEL : Smart-UPS	Product			OT	Bitsight		Implemented		7/10/2025
+1124	Smart-UPS 1000	APCUPSd	MODEL : Smart-UPS_1000	Product			OT	Bitsight		Implemented		7/10/2025
+1125	Back-UPS (generic)	APCUPSd	MODEL : Back-UPS	Product			OT	Bitsight		Implemented		7/10/2025
+1126	Galaxy (generic)	APCUPSd	MODEL : Galaxy	Product			OT	Bitsight		Implemented		7/10/2025
+1127	SMART-UPS 700	APCUPSd	MODEL : SMART-UPS 700	Product			OT	Bitsight		Implemented		7/10/2025
+1128	Smart-UPS RT 2400 X	APCUPSd	MODEL : Smart-UPS RT 2400 X	Product			OT	Bitsight		Implemented		7/10/2025
+1129	Smart-UPS RT 3000 R	APCUPSd	MODEL : Smart-UPS RT 3000 R	Product			OT	Bitsight		Implemented		7/10/2025
+1130	Back-UPS ES 550	APCUPSd	MODEL : Back-UPS ES 550	Product			OT	Bitsight		Implemented		7/10/2025
+1131	Symmetra (generic)	APCUPSd	MODEL : Symmetra	Product			OT	Bitsight		Implemented		7/10/2025
+1132	Smart-UPS 1500	APCUPSd	MODEL : Smart-UPS_1500	Product			OT	Bitsight		Implemented		7/10/2025
+1133	Smart-UPS 2200	APCUPSd	MODEL : Smart-UPS_2200	Product			OT	Bitsight		Implemented		7/10/2025
