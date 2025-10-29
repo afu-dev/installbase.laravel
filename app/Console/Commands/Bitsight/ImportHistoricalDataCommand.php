@@ -2,7 +2,9 @@
 
 namespace App\Console\Commands\Bitsight;
 
+use App\Enums\Vendor;
 use App\Models\BitsightExposedAsset;
+use App\Models\ImportError;
 use DateTime;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
@@ -31,6 +33,7 @@ class ImportHistoricalDataCommand extends Command
         $startTime = microtime(true);
 
         $filePath = $this->argument('file_path');
+        $sourceFile = basename($filePath);
 
         if (!file_exists($filePath)) {
             $this->error("File not found: {$filePath}");
@@ -100,8 +103,20 @@ class ImportHistoricalDataCommand extends Command
                 if (empty($date)) $missing[] = 'Date';
                 if (empty($transport)) $missing[] = 'Transport';
 
+                $errorMessage = 'Missing required field(s): ' . implode(', ', $missing);
+
+                // Log to database
+                ImportError::create([
+                    'vendor' => Vendor::BITSIGHT->value,
+                    'source_file' => $sourceFile,
+                    'row_number' => $rowNumber,
+                    'ip' => !empty($ip) ? $ip : null,
+                    'port' => !empty($port) ? (int) floatval($port) : null,
+                    'error_message' => $errorMessage,
+                ]);
+
                 $ipInfo = !empty($ip) ? " (IP: {$ip})" : '';
-                $this->warn("Row #{$rowNumber}{$ipInfo}: missing required field(s): " . implode(', ', $missing));
+                $this->warn("Row #{$rowNumber}{$ipInfo}: {$errorMessage}");
                 $skipped++;
                 continue;
             }
@@ -109,7 +124,19 @@ class ImportHistoricalDataCommand extends Command
             // Parse date (format: "14/04/2024 00:00:00")
             $detectedAt = DateTime::createFromFormat('d/m/Y H:i:s', $date);
             if (!$detectedAt) {
-                $this->warn("Row #{$rowNumber}: invalid date format '{$date}' - skipping");
+                $errorMessage = "Invalid date format: '{$date}'";
+
+                // Log to database
+                ImportError::create([
+                    'vendor' => Vendor::BITSIGHT->value,
+                    'source_file' => $sourceFile,
+                    'row_number' => $rowNumber,
+                    'ip' => $ip,
+                    'port' => !empty($port) ? (int) floatval($port) : null,
+                    'error_message' => $errorMessage,
+                ]);
+
+                $this->warn("Row #{$rowNumber}: {$errorMessage} - skipping");
                 $skipped++;
                 continue;
             }

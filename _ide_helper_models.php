@@ -166,6 +166,35 @@ namespace App\Models{
 namespace App\Models{
 /**
  * @property int $id
+ * @property string $vendor
+ * @property string $source_file
+ * @property int $row_number
+ * @property string|null $ip
+ * @property int|null $port
+ * @property string $error_message
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ImportError newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ImportError newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ImportError query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ImportError whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ImportError whereErrorMessage($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ImportError whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ImportError whereIp($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ImportError wherePort($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ImportError whereRowNumber($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ImportError whereSourceFile($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ImportError whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ImportError whereVendor($value)
+ * @mixin \Eloquent
+ */
+	#[\AllowDynamicProperties]
+	class IdeHelperImportError {}
+}
+
+namespace App\Models{
+/**
+ * @property int $id
  * @property string $product
  * @property string|null $protocol
  * @property string $query
