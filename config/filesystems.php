@@ -75,6 +75,21 @@ return [
             'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
         ],
 
+        'bitsight-input' => [
+            'driver' => env('BITSIGHT_INPUT_DISK_DRIVER', 'local'),
+            'root' => base_path('resources/csv'),
+            'throw' => false,
+            'report' => false,
+            // S3 configuration (used when driver is 's3')
+            'key' => env('AWS_ACCESS_KEY_ID'),
+            'secret' => env('AWS_SECRET_ACCESS_KEY'),
+            'region' => env('AWS_DEFAULT_REGION'),
+            'bucket' => env('BITSIGHT_INPUT_BUCKET'),
+            'url' => env('AWS_URL'),
+            'endpoint' => env('AWS_ENDPOINT'),
+            'use_path_style_endpoint' => env('AWS_USE_PATH_STYLE_ENDPOINT', false),
+        ],
+
     ],
 
     /*

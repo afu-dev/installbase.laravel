@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands\Scan;
 
+use App\Enums\Vendor;
 use App\Models\Execution;
 use App\Models\Query;
 use App\Models\Scan;
@@ -28,6 +29,16 @@ class CreateScanCommand extends Command
      */
     public function handle(): int
     {
+        // Ensure Bitsight Query exists for CSV imports
+        Query::firstOrCreate(
+            ['vendor' => Vendor::BITSIGHT, 'query' => 'weekly'],
+            [
+                'product' => 'Bitsight Weekly CSV',
+                'protocol' => null,
+                'query_type' => 'csv_import',
+            ]
+        );
+
         $queries = Query::all();
 
         if ($queries->isEmpty()) {

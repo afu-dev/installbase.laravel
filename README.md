@@ -71,15 +71,45 @@ while php artisan execution:work; do :; done
 
 #### Supported Vendors
 
-- **Shodan**: Internet-connected device search engine
-- **Censys**: Internet-wide scanning and security intelligence
-- **BitSight**: Security ratings and risk monitoring *(coming soon)*
+- **Shodan**: Internet-connected device search engine (API-based real-time scanning)
+- **Censys**: Internet-wide scanning and security intelligence (API-based real-time scanning)
+- **Bitsight**: Security ratings and exposure data (CSV-based historical import)
+
+#### Bitsight Historical Data Import
+
+Import historical Bitsight exposure data from CSV files:
+
+```bash
+php artisan bitsight:import-historical resources/csv/bitsight_historical_part_1.csv
+```
+
+**Features:**
+- Processes large CSV files (multi-GB) with progress bar and execution time tracking
+- Automatically handles duplicates via unique constraint on (IP, port, detected_at)
+- Batch processing (1000 rows) for memory efficiency
+- Logs malformed rows to `import_errors` table for data quality tracking
+- Historical imports have `execution_id` set to NULL
+
+**Data Quality Monitoring:**
+
+All import errors (missing fields, invalid dates, etc.) are logged to the `import_errors` table:
+
+```sql
+-- View all import errors
+SELECT * FROM import_errors WHERE vendor = 'bitsight';
+
+-- Group errors by type
+SELECT error_message, COUNT(*) as count
+FROM import_errors
+GROUP BY error_message;
+```
 
 #### Data Storage
 
 Scan results are stored in:
-- **Database**: Normalized asset records in `shodan_exposed_assets` and `censys_exposed_assets` tables
+- **Database**: Normalized asset records in `shodan_exposed_assets`, `censys_exposed_assets`, and `bitsight_exposed_assets` tables
 - **Bronze layer** (S3/local): Raw JSON responses organized by vendor, date, and query
+- **Import errors**: Data quality issues logged in `import_errors` table for audit and review
 
 ## Development
 

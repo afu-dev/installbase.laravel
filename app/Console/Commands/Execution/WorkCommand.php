@@ -3,12 +3,16 @@
 namespace App\Console\Commands\Execution;
 
 use App\Enums\Vendor;
+use App\Models\BitsightExposedAsset;
 use App\Models\CensysExposedAsset;
 use App\Models\CensysFieldConfiguration;
 use App\Models\Execution;
+use App\Models\ImportError;
 use App\Models\ShodanExposedAsset;
+use DateTime;
 use Exception;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\String\Slugger\AsciiSlugger;
@@ -49,6 +53,7 @@ class WorkCommand extends Command
             $count = match ($execution->vendorQuery->vendor) {
                 Vendor::SHODAN => $this->scrapShodan($execution),
                 Vendor::CENSYS => $this->scrapCensys($execution),
+                Vendor::BITSIGHT => $this->processBitsight($execution),
             };
 
             $execution->count = $count;
@@ -342,5 +347,205 @@ class WorkCommand extends Command
         }, $hits);
 
         CensysExposedAsset::fillAndInsert($records);
+    }
+
+    private function processBitsight(Execution $execution): int
+    {
+        $this->info('Processing Bitsight CSV import');
+
+        // Determine filename based on scan date and query type
+        $scanDate = $execution->scan->created_at->format('Y_m_d');
+        $period = $execution->vendorQuery->query; // e.g., 'weekly' or 'monthly'
+        $filename = "bitsight_{$period}_{$scanDate}.csv";
+
+        $this->line("Looking for file: {$filename}");
+
+        // Check if file exists in bitsight-input disk
+        $inputDisk = Storage::disk('bitsight-input');
+        if (!$inputDisk->exists($filename)) {
+            throw new Exception("Bitsight CSV file not found: {$filename}");
+        }
+
+        // Store in bronze layer
+        $datePrefix = $execution->scan->created_at->format('Y/m/d');
+        $bronzePath = "bitsight/{$datePrefix}/{$filename}";
+        $bronzeDisk = Storage::disk('bronze');
+
+        $this->line("Copying to bronze layer: {$bronzePath}");
+        $bronzeDisk->put($bronzePath, $inputDisk->get($filename));
+
+        // Read CSV from bronze layer
+        $csvContent = $bronzeDisk->get($bronzePath);
+        $lines = explode("\n", $csvContent);
+
+        if (empty($lines)) {
+            throw new Exception('CSV file is empty');
+        }
+
+        // Parse header
+        $headerLine = array_shift($lines);
+        $header = str_getcsv($headerLine, ',', '"', '');
+        if (!$header) {
+            throw new Exception('Failed to read CSV header');
+        }
+
+        $headerMap = array_flip($header);
+
+        // Validate required columns exist
+        $requiredColumns = ['Ip Str', 'Port', 'Module', 'Date', 'Transport'];
+        foreach ($requiredColumns as $column) {
+            if (!isset($headerMap[$column])) {
+                throw new Exception("CSV missing required column: {$column}");
+            }
+        }
+
+        $this->info('Processing CSV rows...');
+
+        $assets = [];
+        $skipped = 0;
+        $duplicates = 0;
+        $imported = 0;
+        $rowNumber = 1; // Header is row 0
+
+        foreach ($lines as $line) {
+            $rowNumber++;
+
+            // Skip empty lines
+            if (trim($line) === '') {
+                continue;
+            }
+
+            $row = str_getcsv($line, ',', '"', '');
+            if ($row === false || count($row) < count($header)) {
+                continue;
+            }
+
+            // Extract required fields
+            $ip = trim($row[$headerMap['Ip Str']] ?? '');
+            $port = trim($row[$headerMap['Port']] ?? '');
+            $module = trim($row[$headerMap['Module']] ?? '');
+            $date = trim($row[$headerMap['Date']] ?? '');
+            $transport = trim($row[$headerMap['Transport']] ?? '');
+
+            // Validate required fields
+            if (empty($ip) || empty($port) || empty($module) || empty($date) || empty($transport)) {
+                $missing = [];
+                if (empty($ip)) $missing[] = 'Ip Str';
+                if (empty($port)) $missing[] = 'Port';
+                if (empty($module)) $missing[] = 'Module';
+                if (empty($date)) $missing[] = 'Date';
+                if (empty($transport)) $missing[] = 'Transport';
+
+                $errorMessage = 'Missing required field(s): ' . implode(', ', $missing);
+
+                ImportError::create([
+                    'vendor' => Vendor::BITSIGHT->value,
+                    'source_file' => $filename,
+                    'row_number' => $rowNumber,
+                    'ip' => !empty($ip) ? $ip : null,
+                    'port' => !empty($port) ? (int) floatval($port) : null,
+                    'error_message' => $errorMessage,
+                ]);
+
+                $skipped++;
+                continue;
+            }
+
+            // Parse date (format: "14/04/2024 00:00:00")
+            $detectedAt = DateTime::createFromFormat('d/m/Y H:i:s', $date);
+            if (!$detectedAt) {
+                $errorMessage = "Invalid date format: '{$date}'";
+
+                ImportError::create([
+                    'vendor' => Vendor::BITSIGHT->value,
+                    'source_file' => $filename,
+                    'row_number' => $rowNumber,
+                    'ip' => $ip,
+                    'port' => (int) floatval($port),
+                    'error_message' => $errorMessage,
+                ]);
+
+                $skipped++;
+                continue;
+            }
+
+            // Convert port to integer
+            $portInt = (int) floatval($port);
+
+            // Build raw_data from entire row
+            $rawData = [];
+            foreach ($header as $index => $columnName) {
+                $rawData[$columnName] = $row[$index] ?? null;
+            }
+
+            // Build asset record
+            $asset = [
+                'execution_id' => $execution->id,
+                'ip' => $ip,
+                'port' => $portInt,
+                'module' => $module,
+                'detected_at' => $detectedAt->format('Y-m-d H:i:s'),
+                'transport' => $transport,
+                'raw_data' => json_encode($rawData),
+                'entity' => !empty($row[$headerMap['Entity Name']] ?? '') ? trim($row[$headerMap['Entity Name']]) : null,
+                'country_code' => !empty($row[$headerMap['Country Code']] ?? '') ? trim($row[$headerMap['Country Code']]) : null,
+                'city' => !empty($row[$headerMap['City']] ?? '') ? trim($row[$headerMap['City']]) : null,
+                'hostnames' => null,
+                'isp' => null,
+                'os' => null,
+                'asn' => null,
+                'product' => null,
+                'product_sn' => null,
+                'version' => null,
+            ];
+
+            $assets[] = $asset;
+
+            // Insert in batches of 1000
+            if (count($assets) >= 1000) {
+                $this->insertBitsightAssets($assets, $duplicates);
+                $imported += count($assets) - $duplicates;
+                $assets = [];
+            }
+        }
+
+        // Insert any remaining assets
+        if (!empty($assets)) {
+            $beforeCount = $duplicates;
+            $this->insertBitsightAssets($assets, $duplicates);
+            $imported += count($assets) - ($duplicates - $beforeCount);
+        }
+
+        $this->info("Bitsight import completed!");
+        $this->info("Successfully imported: {$imported}");
+
+        if ($duplicates > 0) {
+            $this->warn("Skipped duplicates: {$duplicates}");
+        }
+
+        if ($skipped > 0) {
+            $this->warn("Skipped invalid rows: {$skipped}");
+        }
+
+        return $imported;
+    }
+
+    private function insertBitsightAssets(array &$assets, int &$duplicates): void
+    {
+        DB::transaction(function () use (&$assets, &$duplicates) {
+            foreach ($assets as $asset) {
+                try {
+                    BitsightExposedAsset::create($asset);
+                } catch (\Illuminate\Database\QueryException $e) {
+                    // Check if it's a duplicate key error (unique constraint violation)
+                    if ($e->getCode() === '23000' || str_contains($e->getMessage(), 'Duplicate entry') || str_contains($e->getMessage(), 'UNIQUE constraint failed')) {
+                        $duplicates++;
+                    } else {
+                        // Re-throw if it's a different error
+                        throw $e;
+                    }
+                }
+            }
+        });
     }
 }
