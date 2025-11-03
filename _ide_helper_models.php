@@ -165,6 +165,78 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * Unified exposed assets table - silver/gold layer aggregating data from all vendors.
+ * 
+ * Source tracking via relationships to vendor tables (bitsight_exposed_assets,
+ * shodan_exposed_assets, censys_exposed_assets) using composite key (ip, port).
+ * 
+ * Merge priority: Bitsight > Shodan > Censys for single-value fields.
+ * Hostnames are deduplicated and combined from all vendors.
+ *
+ * @property int $id
+ * @property string $ip
+ * @property int $port
+ * @property string|null $module
+ * @property string $transport
+ * @property \Illuminate\Support\Carbon $first_detected_at
+ * @property \Illuminate\Support\Carbon $last_detected_at
+ * @property string|null $hostnames
+ * @property string|null $entity
+ * @property string|null $isp
+ * @property string|null $country_code
+ * @property string|null $city
+ * @property string|null $os
+ * @property string|null $asn
+ * @property string|null $product
+ * @property string|null $product_sn
+ * @property string|null $version
+ * @property string|null $raw_data
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\BitsightExposedAsset> $bitsightDetections
+ * @property-read int|null $bitsight_detections_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\CensysExposedAsset> $censysDetections
+ * @property-read int|null $censys_detections_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\ShodanExposedAsset> $shodanDetections
+ * @property-read int|null $shodan_detections_count
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ExposedAsset active()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ExposedAsset forIpPort(string $ip, int $port)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ExposedAsset newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ExposedAsset newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ExposedAsset onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ExposedAsset query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ExposedAsset whereAsn($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ExposedAsset whereCity($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ExposedAsset whereCountryCode($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ExposedAsset whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ExposedAsset whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ExposedAsset whereEntity($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ExposedAsset whereFirstDetectedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ExposedAsset whereHostnames($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ExposedAsset whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ExposedAsset whereIp($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ExposedAsset whereIsp($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ExposedAsset whereLastDetectedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ExposedAsset whereModule($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ExposedAsset whereOs($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ExposedAsset wherePort($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ExposedAsset whereProduct($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ExposedAsset whereProductSn($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ExposedAsset whereRawData($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ExposedAsset whereTransport($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ExposedAsset whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ExposedAsset whereVersion($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ExposedAsset withTrashed(bool $withTrashed = true)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|ExposedAsset withoutTrashed()
+ * @mixin \Eloquent
+ */
+	#[\AllowDynamicProperties]
+	class IdeHelperExposedAsset {}
+}
+
+namespace App\Models{
+/**
  * @property int $id
  * @property string $vendor
  * @property string $source_file
