@@ -43,7 +43,7 @@ class WorkCommand extends Command
             ->first();
 
         if (!$execution) {
-            return;
+            return self::FAILURE;
         }
 
         $execution->started_at = now();
@@ -65,6 +65,11 @@ class WorkCommand extends Command
 
         $execution->finished_at = now();
         $execution->save();
+
+        // Sleep 1 second between executions
+        sleep(1);
+
+        return self::SUCCESS;
     }
 
     private function scrapShodan(Execution $execution): int
@@ -430,11 +435,21 @@ class WorkCommand extends Command
             // Validate required fields
             if (empty($ip) || empty($port) || empty($module) || empty($date) || empty($transport)) {
                 $missing = [];
-                if (empty($ip)) $missing[] = 'Ip Str';
-                if (empty($port)) $missing[] = 'Port';
-                if (empty($module)) $missing[] = 'Module';
-                if (empty($date)) $missing[] = 'Date';
-                if (empty($transport)) $missing[] = 'Transport';
+                if (empty($ip)) {
+                    $missing[] = 'Ip Str';
+                }
+                if (empty($port)) {
+                    $missing[] = 'Port';
+                }
+                if (empty($module)) {
+                    $missing[] = 'Module';
+                }
+                if (empty($date)) {
+                    $missing[] = 'Date';
+                }
+                if (empty($transport)) {
+                    $missing[] = 'Transport';
+                }
 
                 $errorMessage = 'Missing required field(s): ' . implode(', ', $missing);
 

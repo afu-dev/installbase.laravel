@@ -47,7 +47,7 @@ class CleanupExposedAssets extends Command
             $this->warn("[DRY RUN] Would soft delete {$count} detected exposure(s)");
             $this->table(
                 ['IP', 'Port', 'Module', 'Last Detected'],
-                $query->limit(10)->get()->map(fn($exposure) => [
+                $query->limit(10)->get()->map(fn ($exposure) => [
                     $exposure->ip,
                     $exposure->port,
                     $exposure->module ?? 'N/A',

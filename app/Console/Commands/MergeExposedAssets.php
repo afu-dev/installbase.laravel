@@ -144,8 +144,7 @@ class MergeExposedAssets extends Command
         Collection $bitsightAssets,
         Collection $shodanAssets,
         Collection $censysAssets
-    ): array
-    {
+    ): array {
         $grouped = [];
 
         foreach ($bitsightAssets as $asset) {
@@ -180,8 +179,7 @@ class MergeExposedAssets extends Command
         Collection $bitsightAssets,
         Collection $shodanAssets,
         Collection $censysAssets
-    ): array
-    {
+    ): array {
         $grouped = [];
 
         foreach ($bitsightAssets as $asset) {
@@ -302,7 +300,7 @@ class MergeExposedAssets extends Command
         }
 
         // Remove duplicates and empty values
-        $allHostnames = array_filter(array_unique($allHostnames), fn($hostname) => !empty(trim($hostname)));
+        $allHostnames = array_filter(array_unique($allHostnames), fn ($hostname) => !empty(trim($hostname)));
 
         return !empty($allHostnames) ? implode(';', $allHostnames) : null;
     }

@@ -97,11 +97,21 @@ class ImportHistoricalDataCommand extends Command
             // Skip rows with missing required fields
             if (empty($ip) || empty($port) || empty($module) || empty($date) || empty($transport)) {
                 $missing = [];
-                if (empty($ip)) $missing[] = 'Ip Str';
-                if (empty($port)) $missing[] = 'Port';
-                if (empty($module)) $missing[] = 'Module';
-                if (empty($date)) $missing[] = 'Date';
-                if (empty($transport)) $missing[] = 'Transport';
+                if (empty($ip)) {
+                    $missing[] = 'Ip Str';
+                }
+                if (empty($port)) {
+                    $missing[] = 'Port';
+                }
+                if (empty($module)) {
+                    $missing[] = 'Module';
+                }
+                if (empty($date)) {
+                    $missing[] = 'Date';
+                }
+                if (empty($transport)) {
+                    $missing[] = 'Transport';
+                }
 
                 $errorMessage = 'Missing required field(s): ' . implode(', ', $missing);
 

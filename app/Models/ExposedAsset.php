@@ -9,13 +9,10 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * @deprecated This model is deprecated. Use DetectedExposure and Attribution instead.
- *
  * The exposed_assets table has been replaced by a normalized schema:
  * - DetectedExposure: Core detection data (IP+Port level)
  * - Attribution: Network/location context (IP level)
- *
  * This model remains for backward compatibility only and will be removed in a future version.
- *
  * @mixin IdeHelperExposedAsset
  */
 class ExposedAsset extends Model
