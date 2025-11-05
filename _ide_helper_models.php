@@ -14,6 +14,81 @@
 namespace App\Models{
 /**
  * @property int $id
+ * @property string $entity
+ * @property string|null $sector
+ * @property string|null $entity_country
+ * @property string|null $url
+ * @property string|null $point_of_contact
+ * @property string|null $type_of_account
+ * @property string|null $account_manager
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Account newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Account newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Account query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Account whereAccountManager($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Account whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Account whereEntity($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Account whereEntityCountry($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Account whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Account wherePointOfContact($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Account whereSector($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Account whereTypeOfAccount($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Account whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Account whereUrl($value)
+ * @mixin \Eloquent
+ */
+	#[\AllowDynamicProperties]
+	class IdeHelperAccount {}
+}
+
+namespace App\Models{
+/**
+ * @property int $id
+ * @property string $ip
+ * @property string|null $entity
+ * @property string|null $sector
+ * @property string|null $domain
+ * @property string|null $hostnames
+ * @property string|null $isp
+ * @property string|null $asn
+ * @property string|null $whois
+ * @property string|null $city
+ * @property string|null $country_code
+ * @property string|null $source_of_attribution
+ * @property \Illuminate\Support\Carbon|null $last_exposure_at
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\DetectedExposure> $detectedExposures
+ * @property-read int|null $detected_exposures_count
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Attribution forIp(string $ip)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Attribution newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Attribution newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Attribution query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Attribution whereAsn($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Attribution whereCity($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Attribution whereCountryCode($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Attribution whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Attribution whereDomain($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Attribution whereEntity($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Attribution whereHostnames($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Attribution whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Attribution whereIp($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Attribution whereIsp($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Attribution whereLastExposureAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Attribution whereSector($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Attribution whereSourceOfAttribution($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Attribution whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Attribution whereWhois($value)
+ * @mixin \Eloquent
+ */
+	#[\AllowDynamicProperties]
+	class IdeHelperAttribution {}
+}
+
+namespace App\Models{
+/**
+ * @property int $id
  * @property int|null $execution_id
  * @property string $ip
  * @property int $port
@@ -135,6 +210,85 @@ namespace App\Models{
 namespace App\Models{
 /**
  * @property int $id
+ * @property string $country_code2
+ * @property string|null $country_code3
+ * @property string $country
+ * @property string|null $region
+ * @property string|null $ciso_region
+ * @property string|null $ciso_zone
+ * @property string|null $operation_zone
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Country newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Country newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Country query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Country whereCisoRegion($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Country whereCisoZone($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Country whereCountry($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Country whereCountryCode2($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Country whereCountryCode3($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Country whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Country whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Country whereOperationZone($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Country whereRegion($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Country whereUpdatedAt($value)
+ * @mixin \Eloquent
+ */
+	#[\AllowDynamicProperties]
+	class IdeHelperCountry {}
+}
+
+namespace App\Models{
+/**
+ * Detected exposures table - normalized core detection data (IP+Port).
+ * 
+ * Links to Attribution model via IP for network/location context.
+ * Source tracking via relationships to vendor tables (bitsight_exposed_assets,
+ * shodan_exposed_assets, censys_exposed_assets) using composite key (ip, port).
+ *
+ * @property int $id
+ * @property string $ip
+ * @property int $port
+ * @property string $transport
+ * @property string|null $module
+ * @property \Illuminate\Support\Carbon $first_detected_at
+ * @property \Illuminate\Support\Carbon $last_detected_at
+ * @property \Illuminate\Support\Carbon|null $deleted_at
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @property-read \App\Models\Attribution|null $attribution
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\BitsightExposedAsset> $bitsightDetections
+ * @property-read int|null $bitsight_detections_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\CensysExposedAsset> $censysDetections
+ * @property-read int|null $censys_detections_count
+ * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\ShodanExposedAsset> $shodanDetections
+ * @property-read int|null $shodan_detections_count
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|DetectedExposure forIpPort(string $ip, int $port)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|DetectedExposure newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|DetectedExposure newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|DetectedExposure onlyTrashed()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|DetectedExposure query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|DetectedExposure whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|DetectedExposure whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|DetectedExposure whereFirstDetectedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|DetectedExposure whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|DetectedExposure whereIp($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|DetectedExposure whereLastDetectedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|DetectedExposure whereModule($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|DetectedExposure wherePort($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|DetectedExposure whereTransport($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|DetectedExposure whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|DetectedExposure withTrashed(bool $withTrashed = true)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|DetectedExposure withoutTrashed()
+ * @mixin \Eloquent
+ */
+	#[\AllowDynamicProperties]
+	class IdeHelperDetectedExposure {}
+}
+
+namespace App\Models{
+/**
+ * @property int $id
  * @property int $scan_id
  * @property int $query_id
  * @property \Illuminate\Support\Carbon|null $started_at
@@ -165,68 +319,24 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- * Unified exposed assets table - silver/gold layer aggregating data from all vendors.
+ * @deprecated This model is deprecated. Use DetectedExposure and Attribution instead.
  * 
- * Source tracking via relationships to vendor tables (bitsight_exposed_assets,
- * shodan_exposed_assets, censys_exposed_assets) using composite key (ip, port).
+ * The exposed_assets table has been replaced by a normalized schema:
+ * - DetectedExposure: Core detection data (IP+Port level)
+ * - Attribution: Network/location context (IP level)
  * 
- * Merge priority: Bitsight > Shodan > Censys for single-value fields.
- * Hostnames are deduplicated and combined from all vendors.
- *
- * @property int $id
- * @property string $ip
- * @property int $port
- * @property string|null $module
- * @property string $transport
- * @property \Illuminate\Support\Carbon $first_detected_at
- * @property \Illuminate\Support\Carbon $last_detected_at
- * @property string|null $hostnames
- * @property string|null $entity
- * @property string|null $isp
- * @property string|null $country_code
- * @property string|null $city
- * @property string|null $os
- * @property string|null $asn
- * @property string|null $product
- * @property string|null $product_sn
- * @property string|null $version
- * @property string|null $raw_data
- * @property \Illuminate\Support\Carbon|null $deleted_at
- * @property \Illuminate\Support\Carbon|null $created_at
- * @property \Illuminate\Support\Carbon|null $updated_at
+ * This model remains for backward compatibility only and will be removed in a future version.
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\BitsightExposedAsset> $bitsightDetections
  * @property-read int|null $bitsight_detections_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\CensysExposedAsset> $censysDetections
  * @property-read int|null $censys_detections_count
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\ShodanExposedAsset> $shodanDetections
  * @property-read int|null $shodan_detections_count
- * @method static \Illuminate\Database\Eloquent\Builder<static>|ExposedAsset active()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|ExposedAsset forIpPort(string $ip, int $port)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|ExposedAsset newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|ExposedAsset newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|ExposedAsset onlyTrashed()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|ExposedAsset query()
- * @method static \Illuminate\Database\Eloquent\Builder<static>|ExposedAsset whereAsn($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|ExposedAsset whereCity($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|ExposedAsset whereCountryCode($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|ExposedAsset whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|ExposedAsset whereDeletedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|ExposedAsset whereEntity($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|ExposedAsset whereFirstDetectedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|ExposedAsset whereHostnames($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|ExposedAsset whereId($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|ExposedAsset whereIp($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|ExposedAsset whereIsp($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|ExposedAsset whereLastDetectedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|ExposedAsset whereModule($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|ExposedAsset whereOs($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|ExposedAsset wherePort($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|ExposedAsset whereProduct($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|ExposedAsset whereProductSn($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|ExposedAsset whereRawData($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|ExposedAsset whereTransport($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|ExposedAsset whereUpdatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|ExposedAsset whereVersion($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|ExposedAsset withTrashed(bool $withTrashed = true)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|ExposedAsset withoutTrashed()
  * @mixin \Eloquent
@@ -262,6 +372,33 @@ namespace App\Models{
  */
 	#[\AllowDynamicProperties]
 	class IdeHelperImportError {}
+}
+
+namespace App\Models{
+/**
+ * @property int $id
+ * @property string $module
+ * @property string|null $protocol
+ * @property string|null $severity
+ * @property string|null $description
+ * @property string|null $modifier
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Protocol newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Protocol newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Protocol query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Protocol whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Protocol whereDescription($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Protocol whereId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Protocol whereModifier($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Protocol whereModule($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Protocol whereProtocol($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Protocol whereSeverity($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Protocol whereUpdatedAt($value)
+ * @mixin \Eloquent
+ */
+	#[\AllowDynamicProperties]
+	class IdeHelperProtocol {}
 }
 
 namespace App\Models{
