@@ -4,42 +4,30 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
- * @deprecated This model is deprecated. Use DetectedExposure and Attribution instead.
+ * Detected exposures table - normalized core detection data (IP+Port).
  *
- * The exposed_assets table has been replaced by a normalized schema:
- * - DetectedExposure: Core detection data (IP+Port level)
- * - Attribution: Network/location context (IP level)
+ * Links to Attribution model via IP for network/location context.
+ * Source tracking via relationships to vendor tables (bitsight_exposed_assets,
+ * shodan_exposed_assets, censys_exposed_assets) using composite key (ip, port).
  *
- * This model remains for backward compatibility only and will be removed in a future version.
- *
- * @mixin IdeHelperExposedAsset
+ * @mixin IdeHelperDetectedExposure
  */
-class ExposedAsset extends Model
+class DetectedExposure extends Model
 {
     use SoftDeletes;
 
     protected $fillable = [
         'ip',
         'port',
-        'module',
         'transport',
+        'module',
         'first_detected_at',
         'last_detected_at',
-        'hostnames',
-        'entity',
-        'isp',
-        'country_code',
-        'city',
-        'os',
-        'asn',
-        'product',
-        'product_sn',
-        'version',
-        'raw_data',
     ];
 
     protected function casts(): array
@@ -48,6 +36,14 @@ class ExposedAsset extends Model
             'first_detected_at' => 'datetime',
             'last_detected_at' => 'datetime',
         ];
+    }
+
+    /**
+     * Get the attribution data for this detected exposure's IP.
+     */
+    public function attribution(): BelongsTo
+    {
+        return $this->belongsTo(Attribution::class, 'ip', 'ip');
     }
 
     /**
@@ -78,7 +74,7 @@ class ExposedAsset extends Model
     }
 
     /**
-     * Get list of vendors that have detected this asset.
+     * Get list of vendors that have detected this exposure.
      *
      * @return array<string> Array of vendor names (e.g., ['bitsight', 'shodan'])
      */
@@ -102,7 +98,7 @@ class ExposedAsset extends Model
     }
 
     /**
-     * Scope query to find asset by IP and Port.
+     * Scope query to find exposure by IP and Port.
      */
     public function scopeForIpPort(Builder $query, string $ip, int $port): Builder
     {
