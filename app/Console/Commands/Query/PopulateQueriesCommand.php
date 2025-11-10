@@ -3,7 +3,6 @@
 namespace App\Console\Commands\Query;
 
 use App\Enums\Vendor;
-use App\Models\Execution;
 use App\Models\Query;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
@@ -124,7 +123,6 @@ class PopulateQueriesCommand extends Command
 
         $this->info('Truncating and inserting ' . count($queries) . ' queries...');
         DB::transaction(function () use ($queries) {
-            Execution::truncate();
             Query::truncate();
             Query::fillAndInsert($queries);
         });
