@@ -15,9 +15,9 @@ return new class () extends Migration {
             $table->foreignId('execution_id')->constrained();
             $table->string('ip');
             $table->integer('port');
-            $table->string('module');
+            $table->string('module')->nullable();
             $table->dateTime('detected_at');
-            $table->text('raw_data');
+            $table->text('raw_data')->nullable();
             $table->text('hostnames')->nullable();
             $table->string('entity')->nullable();
             $table->string('isp')->nullable();
@@ -25,7 +25,7 @@ return new class () extends Migration {
             $table->string('city')->nullable();
             $table->string('os')->nullable();
             $table->string('asn')->nullable();
-            $table->string('transport');
+            $table->string('transport')->nullable();
             $table->string('product')->nullable();
             $table->string('product_sn')->nullable();
             $table->string('version')->nullable();

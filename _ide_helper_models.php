@@ -92,7 +92,7 @@ namespace App\Models{
  * @property int|null $execution_id
  * @property string $ip
  * @property int $port
- * @property string $module
+ * @property string|null $module
  * @property \Illuminate\Support\Carbon $detected_at
  * @property string $raw_data
  * @property string|null $hostnames
@@ -102,7 +102,7 @@ namespace App\Models{
  * @property string|null $city
  * @property string|null $os
  * @property string|null $asn
- * @property string $transport
+ * @property string|null $transport
  * @property string|null $product
  * @property string|null $product_sn
  * @property string|null $version
@@ -154,7 +154,7 @@ namespace App\Models{
  * @property string|null $city
  * @property string|null $os
  * @property string|null $asn
- * @property string $transport
+ * @property string|null $transport
  * @property string|null $product
  * @property string|null $product_sn
  * @property string|null $version
@@ -291,12 +291,13 @@ namespace App\Models{
  * @property int $id
  * @property int $scan_id
  * @property int $query_id
+ * @property string|null $source_file
  * @property \Illuminate\Support\Carbon|null $started_at
  * @property \Illuminate\Support\Carbon|null $finished_at
  * @property int $count
+ * @property int $errored
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property int $errored
  * @property-read \App\Models\Scan $scan
  * @property-read \App\Models\Query $vendorQuery
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Execution newModelQuery()
@@ -309,6 +310,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Execution whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Execution whereQueryId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Execution whereScanId($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Execution whereSourceFile($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Execution whereStartedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Execution whereUpdatedAt($value)
  * @mixin \Eloquent
@@ -320,11 +322,9 @@ namespace App\Models{
 namespace App\Models{
 /**
  * @deprecated This model is deprecated. Use DetectedExposure and Attribution instead.
- * 
  * The exposed_assets table has been replaced by a normalized schema:
  * - DetectedExposure: Core detection data (IP+Port level)
  * - Attribution: Network/location context (IP level)
- * 
  * This model remains for backward compatibility only and will be removed in a future version.
  * @property-read \Illuminate\Database\Eloquent\Collection<int, \App\Models\BitsightExposedAsset> $bitsightDetections
  * @property-read int|null $bitsight_detections_count
@@ -463,7 +463,7 @@ namespace App\Models{
  * @property string|null $city
  * @property string|null $os
  * @property string|null $asn
- * @property string $transport
+ * @property string|null $transport
  * @property string|null $product
  * @property string|null $product_sn
  * @property string|null $version

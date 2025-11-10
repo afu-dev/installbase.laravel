@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 /**
  * Detected exposures table - normalized core detection data (IP+Port).
- *
+ * 
  * Links to Attribution model via IP for network/location context.
  * Source tracking via relationships to vendor tables (bitsight_exposed_assets,
  * shodan_exposed_assets, censys_exposed_assets) using composite key (ip, port).
