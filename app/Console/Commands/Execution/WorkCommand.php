@@ -38,13 +38,18 @@ class WorkCommand extends Command
      */
     public function handle()
     {
+        $executionCount = Execution::whereNull("started_at")->count();
+
         $execution = Execution::with('vendorQuery')
             ->whereNull('started_at')
             ->first();
 
-        if (!$execution) {
+        if ($executionCount === 0 || !$execution) {
+            $this->error("No execution found (execution count: $executionCount)");
             return self::FAILURE;
         }
+
+        $this->info("Execution left to do: <comment>$executionCount</comment>");
 
         $execution->started_at = now();
         $execution->save();
@@ -76,7 +81,7 @@ class WorkCommand extends Command
     {
         $query = $execution->vendorQuery->query;
 
-        $this->info("Processing Shodan query: $query");
+        $this->info("Processing <comment>Shodan</comment> query: <comment>$query</comment>");
 
         // Validate API key
         $apiKey = config('services.shodan.api_key');
@@ -107,7 +112,7 @@ class WorkCommand extends Command
         $total = $data['total'];
         $totalPages = (int)ceil($total / 100);
 
-        $this->info("Total results: $total | Total pages: $totalPages");
+        $this->info("Total results: <comment>$total</comment> | Total pages: <comment>$totalPages</comment>");
 
         // Save only the matches array from the first page
         $storage->put("$destinationFolder/page_001.json", json_encode($data['matches'], JSON_PRETTY_PRINT));
@@ -143,7 +148,7 @@ class WorkCommand extends Command
             }
         }
 
-        $this->info("Completed Shodan query processing - Total hits: $total");
+        $this->info("Completed <comment>Shodan</comment> query processing - Total hits: <comment>$total</comment>");
 
         return $total;
     }
@@ -152,7 +157,7 @@ class WorkCommand extends Command
     {
         $query = $execution->vendorQuery->query;
 
-        $this->info("Processing Censys query: $query");
+        $this->info("Processing <comment>Censys</comment> query: <comment>$query</comment>");
 
         // Validate API credentials
         $apiId = config('services.censys.api_id');
@@ -186,7 +191,7 @@ class WorkCommand extends Command
         $total = $result['total'];
         $totalPages = (int) ceil($total / 100);
 
-        $this->info("Total results: $total | Total pages: $totalPages");
+        $this->info("Total results: <comment>$total</comment> | Total pages: <comment>$totalPages</comment>");
 
         // Store first page
         $storage->put("$destinationFolder/page_001.json", json_encode($result['hits'], JSON_PRETTY_PRINT));
@@ -220,7 +225,7 @@ class WorkCommand extends Command
             $cursor = $result['next_cursor'] ?? null;
         }
 
-        $this->info("Completed Censys query processing - Total hits: $total");
+        $this->info("Completed <comment>Censys</comment> query processing - Total hits: <comment>$total</comment>");
 
         return $total;
     }
@@ -358,10 +363,11 @@ class WorkCommand extends Command
     {
         $this->info('Processing Bitsight CSV import');
 
-        // Determine filename based on scan date and query type
-        $scanDate = $execution->scan->created_at->format('Y_m_d');
-        $period = $execution->vendorQuery->query; // e.g., 'weekly' or 'monthly'
-        $filename = "bitsight_{$period}_{$scanDate}.csv";
+        // Get filename from execution
+        $filename = $execution->source_file;
+        if (empty($filename)) {
+            throw new Exception("Execution does not have a source_file specified");
+        }
 
         $this->line("Looking for file: {$filename}");
 
@@ -371,16 +377,8 @@ class WorkCommand extends Command
             throw new Exception("Bitsight CSV file not found: {$filename}");
         }
 
-        // Store in bronze layer
-        $datePrefix = $execution->scan->created_at->format('Y/m/d');
-        $bronzePath = "bitsight/{$datePrefix}/{$filename}";
-        $bronzeDisk = Storage::disk('bronze');
-
-        $this->line("Copying to bronze layer: {$bronzePath}");
-        $bronzeDisk->put($bronzePath, $inputDisk->get($filename));
-
-        // Read CSV from bronze layer
-        $csvContent = $bronzeDisk->get($bronzePath);
+        // Read CSV from input disk
+        $csvContent = $inputDisk->get($filename);
         $lines = explode("\n", $csvContent);
 
         if (empty($lines)) {
@@ -397,7 +395,7 @@ class WorkCommand extends Command
         $headerMap = array_flip($header);
 
         // Validate required columns exist
-        $requiredColumns = ['Ip Str', 'Port', 'Module', 'Date', 'Transport'];
+        $requiredColumns = ['Ip Str', 'Port', 'Date'];
         foreach ($requiredColumns as $column) {
             if (!isset($headerMap[$column])) {
                 throw new Exception("CSV missing required column: {$column}");
@@ -433,7 +431,7 @@ class WorkCommand extends Command
             $transport = trim($row[$headerMap['Transport']] ?? '');
 
             // Validate required fields
-            if (empty($ip) || empty($port) || empty($module) || empty($date) || empty($transport)) {
+            if (empty($ip) || empty($port) || empty($date)) {
                 $missing = [];
                 if (empty($ip)) {
                     $missing[] = 'Ip Str';
@@ -441,14 +439,8 @@ class WorkCommand extends Command
                 if (empty($port)) {
                     $missing[] = 'Port';
                 }
-                if (empty($module)) {
-                    $missing[] = 'Module';
-                }
                 if (empty($date)) {
                     $missing[] = 'Date';
-                }
-                if (empty($transport)) {
-                    $missing[] = 'Transport';
                 }
 
                 $errorMessage = 'Missing required field(s): ' . implode(', ', $missing);
@@ -498,9 +490,9 @@ class WorkCommand extends Command
                 'execution_id' => $execution->id,
                 'ip' => $ip,
                 'port' => $portInt,
-                'module' => $module,
+                'module' => !empty($module) ? $module : null,
                 'detected_at' => $detectedAt->format('Y-m-d H:i:s'),
-                'transport' => $transport,
+                'transport' => !empty($transport) ? $transport : null,
                 'raw_data' => json_encode($rawData),
                 'entity' => !empty($row[$headerMap['Entity Name']] ?? '') ? trim($row[$headerMap['Entity Name']]) : null,
                 'country_code' => !empty($row[$headerMap['Country Code']] ?? '') ? trim($row[$headerMap['Country Code']]) : null,
@@ -541,6 +533,15 @@ class WorkCommand extends Command
         if ($skipped > 0) {
             $this->warn("Skipped invalid rows: {$skipped}");
         }
+
+        // Move file to bronze layer after successful import
+        $datePrefix = $execution->scan->created_at->format('Y/m/d');
+        $bronzePath = "bitsight/{$datePrefix}/{$filename}";
+        $bronzeDisk = Storage::disk('bronze');
+
+        $this->line("Moving to bronze layer: {$bronzePath}");
+        $bronzeDisk->put($bronzePath, $inputDisk->get($filename));
+        $inputDisk->delete($filename);
 
         return $imported;
     }

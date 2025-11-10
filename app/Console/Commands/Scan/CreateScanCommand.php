@@ -7,6 +7,7 @@ use App\Models\Execution;
 use App\Models\Query;
 use App\Models\Scan;
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\Storage;
 
 class CreateScanCommand extends Command
 {
@@ -30,11 +31,12 @@ class CreateScanCommand extends Command
     public function handle(): int
     {
         // Ensure Bitsight Query exists for CSV imports
-        Query::firstOrCreate(
-            ['vendor' => Vendor::BITSIGHT, 'query' => 'weekly'],
+        $bitsightQuery = Query::firstOrCreate(
+            ['vendor' => Vendor::BITSIGHT],
             [
-                'product' => 'Bitsight Weekly CSV',
+                'product' => 'Bitsight CSV Import',
                 'protocol' => null,
+                'query' => null,
                 'query_type' => 'csv_import',
             ]
         );
@@ -48,15 +50,47 @@ class CreateScanCommand extends Command
 
         $scan = Scan::create();
 
-        $executions = $queries->map(fn ($query) => [
-            'scan_id' => $scan->id,
-            'query_id' => $query->id,
-        ])->toArray();
+        $executions = [];
+
+        foreach ($queries as $query) {
+            // For Bitsight, create one execution per CSV file in the input directory
+            if ($query->vendor === Vendor::BITSIGHT) {
+                $csvFiles = Storage::disk('bitsight-input')->files();
+                $csvFiles = array_filter($csvFiles, fn ($file) => str_ends_with(strtolower($file), '.csv'));
+
+                if (empty($csvFiles)) {
+                    $this->warn('No CSV files found in bitsight-input directory. Skipping Bitsight executions.');
+                    continue;
+                }
+
+                foreach ($csvFiles as $filename) {
+                    $executions[] = [
+                        'scan_id' => $scan->id,
+                        'query_id' => $query->id,
+                        'source_file' => basename($filename),
+                    ];
+                }
+
+                $this->info("Found " . count($csvFiles) . " Bitsight CSV file(s) to process.");
+            } else {
+                // For other vendors, create a single execution
+                $executions[] = [
+                    'scan_id' => $scan->id,
+                    'query_id' => $query->id,
+                    'source_file' => null,
+                ];
+            }
+        }
+
+        if (empty($executions)) {
+            $this->error('No executions to create. Cannot create scan.');
+            return self::FAILURE;
+        }
 
         Execution::fillAndInsert($executions);
 
         $this->info("Scan ID: {$scan->id}");
-        $this->info("Executions created: {$queries->count()}");
+        $this->info("Executions created: " . count($executions));
 
         return self::SUCCESS;
     }

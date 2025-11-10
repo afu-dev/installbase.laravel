@@ -10,6 +10,14 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
  */
 class Execution extends Model
 {
+    protected $fillable = [
+        'scan_id',
+        'query_id',
+        'source_file',
+        'started_at',
+        'finished_at',
+    ];
+
     protected function casts(): array
     {
         return [
