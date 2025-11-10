@@ -31,7 +31,7 @@ class CreateScanCommand extends Command
     public function handle(): int
     {
         // Ensure Bitsight Query exists for CSV imports
-        $bitsightQuery = Query::firstOrCreate(
+        Query::firstOrCreate(
             ['vendor' => Vendor::BITSIGHT],
             [
                 'product' => 'Bitsight CSV Import',
