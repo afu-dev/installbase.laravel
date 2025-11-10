@@ -117,7 +117,7 @@ class PopulateQueriesCommand extends Command
             'id' => 99999,
             'product' => 'Bitsight CSV Import',
             'protocol' => null,
-            'query' => null,
+            'query' => 'csv_import',
             'query_type' => 'csv_import',
             'vendor' => Vendor::BITSIGHT->value,
         ];
