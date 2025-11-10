@@ -111,6 +111,16 @@ class PopulateQueriesCommand extends Command
             return 1;
         }
 
+        // Add Bitsight CSV import query
+        $queries[] = [
+            'id' => 99999,
+            'product' => 'Bitsight CSV Import',
+            'protocol' => null,
+            'query' => null,
+            'query_type' => 'csv_import',
+            'vendor' => Vendor::BITSIGHT->value,
+        ];
+
         $this->info('Truncating and inserting ' . count($queries) . ' queries...');
         DB::transaction(function () use ($queries) {
             Query::truncate();
