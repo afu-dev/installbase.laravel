@@ -77,7 +77,7 @@ return [
 
         'bitsight-input' => [
             'driver' => env('BITSIGHT_INPUT_DISK_DRIVER', 'local'),
-            'root' => base_path('resources/csv'),
+            'root' => base_path('resources/csv/bitsight/input'),
             'throw' => false,
             'report' => false,
             // S3 configuration (used when driver is 's3')

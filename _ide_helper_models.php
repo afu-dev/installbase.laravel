@@ -160,7 +160,7 @@ namespace App\Models{
  * @property string|null $version
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\Execution $execution
+ * @property-read \App\Models\Execution|null $execution
  * @method static \Illuminate\Database\Eloquent\Builder<static>|CensysExposedAsset newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|CensysExposedAsset newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|CensysExposedAsset query()
@@ -249,7 +249,8 @@ namespace App\Models{
  * @property int $id
  * @property string $ip
  * @property int $port
- * @property string $transport
+ * @property \App\Enums\Vendor $source
+ * @property string|null $transport
  * @property string|null $module
  * @property \Illuminate\Support\Carbon $first_detected_at
  * @property \Illuminate\Support\Carbon $last_detected_at
@@ -276,6 +277,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|DetectedExposure whereLastDetectedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|DetectedExposure whereModule($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|DetectedExposure wherePort($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|DetectedExposure whereSource($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|DetectedExposure whereTransport($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|DetectedExposure whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|DetectedExposure withTrashed(bool $withTrashed = true)
@@ -298,8 +300,8 @@ namespace App\Models{
  * @property int $errored
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\Scan $scan
- * @property-read \App\Models\Query $vendorQuery
+ * @property-read \App\Models\Scan|null $scan
+ * @property-read \App\Models\Query|null $vendorQuery
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Execution newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Execution newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Execution query()
@@ -469,7 +471,7 @@ namespace App\Models{
  * @property string|null $version
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \App\Models\Execution $execution
+ * @property-read \App\Models\Execution|null $execution
  * @method static \Illuminate\Database\Eloquent\Builder<static>|ShodanExposedAsset newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|ShodanExposedAsset newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|ShodanExposedAsset query()

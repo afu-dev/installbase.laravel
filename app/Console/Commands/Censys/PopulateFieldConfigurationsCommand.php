@@ -27,7 +27,7 @@ class PopulateFieldConfigurationsCommand extends Command
      */
     public function handle()
     {
-        $filePath = resource_path('csv/censys-query-params.csv');
+        $filePath = resource_path('csv/schema/censys-query-params.csv');
 
         if (!file_exists($filePath)) {
             $this->error("File not found: {$filePath}");
@@ -86,10 +86,8 @@ class PopulateFieldConfigurationsCommand extends Command
         }
 
         $this->info('Truncating and inserting ' . count($configurations) . ' configurations...');
-        DB::transaction(function () use ($configurations) {
-            CensysFieldConfiguration::truncate();
-            CensysFieldConfiguration::fillAndInsert($configurations);
-        });
+        CensysFieldConfiguration::truncate();
+        CensysFieldConfiguration::fillAndInsert($configurations);
 
         $count = CensysFieldConfiguration::count();
         $this->info("Successfully imported $count configurations.");

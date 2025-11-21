@@ -12,7 +12,7 @@ return new class () extends Migration {
     {
         Schema::create('bitsight_exposed_assets', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('execution_id')->nullable()->constrained();
+            $table->foreignId('execution_id')->nullable();
             $table->string('ip');
             $table->integer('port');
             $table->string('module')->nullable();

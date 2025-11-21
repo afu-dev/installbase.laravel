@@ -361,6 +361,9 @@ class WorkCommand extends Command
 
     private function processBitsight(Execution $execution): int
     {
+        $startTime = microtime(true);
+        $batchSize = 10000;
+
         $this->info('Processing Bitsight CSV import');
 
         // Get filename from execution
@@ -377,18 +380,32 @@ class WorkCommand extends Command
             throw new Exception("Bitsight CSV file not found: {$filename}");
         }
 
-        // Read CSV from input disk
-        $csvContent = $inputDisk->get($filename);
-        $lines = explode("\n", $csvContent);
+        // Get total line count for progress tracking (local files only)
+        $totalLines = null;
+        try {
+            $filePath = $inputDisk->path($filename);
+            $totalLines = (int) trim(shell_exec("wc -l < " . escapeshellarg($filePath)));
+        } catch (\Exception $e) {
+            // If path() fails (e.g., S3), we'll track progress without percentage
+            $this->line("Unable to get line count (remote storage?) - will track rows processed");
+        }
 
-        if (empty($lines)) {
+        // Get stream handle for CSV file
+        $stream = $inputDisk->readStream($filename);
+        if (!$stream) {
+            throw new Exception("Failed to open stream for file: {$filename}");
+        }
+
+        // Parse header from stream
+        $headerLine = fgets($stream);
+        if ($headerLine === false) {
+            fclose($stream);
             throw new Exception('CSV file is empty');
         }
 
-        // Parse header
-        $headerLine = array_shift($lines);
-        $header = str_getcsv($headerLine, ',', '"', '');
+        $header = str_getcsv(rtrim($headerLine), ',', '"', '');
         if (!$header) {
+            fclose($stream);
             throw new Exception('Failed to read CSV header');
         }
 
@@ -398,6 +415,7 @@ class WorkCommand extends Command
         $requiredColumns = ['Ip Str', 'Port', 'Date'];
         foreach ($requiredColumns as $column) {
             if (!isset($headerMap[$column])) {
+                fclose($stream);
                 throw new Exception("CSV missing required column: {$column}");
             }
         }
@@ -409,16 +427,18 @@ class WorkCommand extends Command
         $duplicates = 0;
         $imported = 0;
         $rowNumber = 1; // Header is row 0
+        $processedRows = 0;
 
-        foreach ($lines as $line) {
+        while (($line = fgets($stream)) !== false) {
             $rowNumber++;
+            $processedRows++;
 
             // Skip empty lines
             if (trim($line) === '') {
                 continue;
             }
 
-            $row = str_getcsv($line, ',', '"', '');
+            $row = str_getcsv(rtrim($line), ',', '"', '');
             if ($row === false || count($row) < count($header)) {
                 continue;
             }
@@ -508,13 +528,26 @@ class WorkCommand extends Command
 
             $assets[] = $asset;
 
-            // Insert in batches of 1000
-            if (count($assets) >= 1000) {
+            // Insert in batches
+            if (count($assets) >= $batchSize) {
+                $beforeDuplicates = $duplicates;
                 $this->insertBitsightAssets($assets, $duplicates);
-                $imported += count($assets) - $duplicates;
+                $imported += count($assets) - ($duplicates - $beforeDuplicates);
+
+                // Show progress
+                if ($totalLines !== null) {
+                    $progress = round(($processedRows / $totalLines) * 100, 1);
+                    $this->line("Progress: {$progress}% ({$processedRows}/{$totalLines} rows) - Imported: {$imported}, Duplicates: {$duplicates}, Skipped: {$skipped}");
+                } else {
+                    $this->line("Processed: {$processedRows} rows - Imported: {$imported}, Duplicates: {$duplicates}, Skipped: {$skipped}");
+                }
+
                 $assets = [];
             }
         }
+
+        // Close the stream
+        fclose($stream);
 
         // Insert any remaining assets
         if (!empty($assets)) {
@@ -523,8 +556,14 @@ class WorkCommand extends Command
             $imported += count($assets) - ($duplicates - $beforeCount);
         }
 
+        $elapsedTime = microtime(true) - $startTime;
+        $formattedTime = $elapsedTime < 60
+            ? round($elapsedTime, 2) . ' seconds'
+            : gmdate('i:s', (int) $elapsedTime) . ' minutes';
+
         $this->info("Bitsight import completed!");
         $this->info("Successfully imported: {$imported}");
+        $this->info("Execution time: {$formattedTime}");
 
         if ($duplicates > 0) {
             $this->warn("Skipped duplicates: {$duplicates}");
@@ -540,7 +579,14 @@ class WorkCommand extends Command
         $bronzeDisk = Storage::disk('bronze');
 
         $this->line("Moving to bronze layer: {$bronzePath}");
-        $bronzeDisk->put($bronzePath, $inputDisk->get($filename));
+
+        // Use streaming to copy file without loading into memory
+        $sourceStream = $inputDisk->readStream($filename);
+        $bronzeDisk->writeStream($bronzePath, $sourceStream);
+        if (is_resource($sourceStream)) {
+            fclose($sourceStream);
+        }
+
         $inputDisk->delete($filename);
 
         return $imported;

@@ -30,8 +30,8 @@ return new class () extends Migration {
         // Create executions table with all fields from start
         Schema::create('executions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('scan_id')->references('id')->on('scans')->restrictOnDelete();
-            $table->foreignId('query_id')->references('id')->on('queries')->restrictOnDelete();
+            $table->foreignId('scan_id');
+            $table->foreignId('query_id');
             $table->string('source_file')->nullable();
             $table->dateTime('started_at')->nullable();
             $table->dateTime('finished_at')->nullable();

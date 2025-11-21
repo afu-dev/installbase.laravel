@@ -14,13 +14,13 @@ return new class () extends Migration {
         Schema::create('censys_field_configurations', function (Blueprint $table) {
             $table->id();
             $table->string('protocol');
-            $table->string('fields');
+            $table->text('fields');
         });
 
         // Create censys exposed assets table with nullable fields from start
         Schema::create('censys_exposed_assets', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('execution_id')->constrained();
+            $table->foreignId('execution_id');
             $table->string('ip');
             $table->integer('port');
             $table->string('module')->nullable();

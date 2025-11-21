@@ -12,7 +12,7 @@ return new class () extends Migration {
     {
         Schema::create('shodan_exposed_assets', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('execution_id')->constrained();
+            $table->foreignId('execution_id');
             $table->string('ip');
             $table->integer('port');
             $table->string('module')->nullable();

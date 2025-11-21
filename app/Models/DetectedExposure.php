@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Enums\Vendor;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -24,6 +25,7 @@ class DetectedExposure extends Model
     protected $fillable = [
         'ip',
         'port',
+        'source',
         'transport',
         'module',
         'first_detected_at',
@@ -33,6 +35,7 @@ class DetectedExposure extends Model
     protected function casts(): array
     {
         return [
+            'source' => Vendor::class,
             'first_detected_at' => 'datetime',
             'last_detected_at' => 'datetime',
         ];

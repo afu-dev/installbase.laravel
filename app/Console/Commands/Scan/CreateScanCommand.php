@@ -63,11 +63,11 @@ class CreateScanCommand extends Command
                 $this->info("Found " . count($csvFiles) . " Bitsight CSV file(s) to process.");
             } else {
                 // For other vendors, create a single execution
-                $executions[] = [
+                /*$executions[] = [
                     'scan_id' => $scan->id,
                     'query_id' => $query->id,
                     'source_file' => null,
-                ];
+                ];*/
             }
         }
 

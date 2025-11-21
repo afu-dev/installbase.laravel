@@ -122,10 +122,8 @@ class PopulateQueriesCommand extends Command
         ];
 
         $this->info('Truncating and inserting ' . count($queries) . ' queries...');
-        DB::transaction(function () use ($queries) {
-            Query::truncate();
-            Query::fillAndInsert($queries);
-        });
+        Query::truncate();
+        Query::fillAndInsert($queries);
 
         $count = Query::count();
         $this->info("Successfully imported $count queries.");
