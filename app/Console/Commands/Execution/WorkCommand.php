@@ -189,7 +189,7 @@ class WorkCommand extends Command
         $result = $this->censysSearch($apiId, $apiSecret, $apiUrl, $query, $fields);
 
         $total = $result['total'];
-        $totalPages = (int) ceil($total / 100);
+        $totalPages = (int)ceil($total / 100);
 
         $this->info("Total results: <comment>$total</comment> | Total pages: <comment>$totalPages</comment>");
 
@@ -287,14 +287,8 @@ class WorkCommand extends Command
         return implode(',', $fields);
     }
 
-    private function censysSearch(
-        string $apiId,
-        string $apiSecret,
-        string $apiUrl,
-        string $query,
-        string $fields,
-        ?string $cursor = null
-    ): array {
+    private function censysSearch(string $apiId, string $apiSecret, string $apiUrl, string $query, string $fields, ?string $cursor = null): array
+    {
         $payload = [
             'q' => $query,
             'per_page' => 100,
@@ -384,7 +378,7 @@ class WorkCommand extends Command
         $totalLines = null;
         try {
             $filePath = $inputDisk->path($filename);
-            $totalLines = (int) trim(shell_exec("wc -l < " . escapeshellarg($filePath)));
+            $totalLines = (int)trim(shell_exec("wc -l < " . escapeshellarg($filePath)));
         } catch (\Exception $e) {
             // If path() fails (e.g., S3), we'll track progress without percentage
             $this->line("Unable to get line count (remote storage?) - will track rows processed");
@@ -470,7 +464,7 @@ class WorkCommand extends Command
                     'source_file' => $filename,
                     'row_number' => $rowNumber,
                     'ip' => !empty($ip) ? $ip : null,
-                    'port' => !empty($port) ? (int) floatval($port) : null,
+                    'port' => !empty($port) ? (int)floatval($port) : null,
                     'error_message' => $errorMessage,
                 ]);
 
@@ -488,7 +482,7 @@ class WorkCommand extends Command
                     'source_file' => $filename,
                     'row_number' => $rowNumber,
                     'ip' => $ip,
-                    'port' => (int) floatval($port),
+                    'port' => (int)floatval($port),
                     'error_message' => $errorMessage,
                 ]);
 
@@ -497,7 +491,7 @@ class WorkCommand extends Command
             }
 
             // Convert port to integer
-            $portInt = (int) floatval($port);
+            $portInt = (int)floatval($port);
 
             // Build raw_data from entire row
             $rawData = [];
@@ -559,7 +553,7 @@ class WorkCommand extends Command
         $elapsedTime = microtime(true) - $startTime;
         $formattedTime = $elapsedTime < 60
             ? round($elapsedTime, 2) . ' seconds'
-            : gmdate('i:s', (int) $elapsedTime) . ' minutes';
+            : gmdate('i:s', (int)$elapsedTime) . ' minutes';
 
         $this->info("Bitsight import completed!");
         $this->info("Successfully imported: {$imported}");
