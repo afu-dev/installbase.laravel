@@ -9,6 +9,12 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Protocol extends Model
 {
+    protected $primaryKey = 'module';
+
+    public $incrementing = false;
+
+    protected $keyType = 'string';
+
     protected $fillable = [
         'module',
         'protocol',

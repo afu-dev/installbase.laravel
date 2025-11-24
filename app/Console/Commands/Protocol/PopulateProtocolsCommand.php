@@ -5,6 +5,7 @@ namespace App\Console\Commands\Protocol;
 use App\Models\Protocol;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
+use PhpOffice\PhpSpreadsheet\IOFactory;
 
 class PopulateProtocolsCommand extends Command
 {
@@ -20,14 +21,15 @@ class PopulateProtocolsCommand extends Command
      *
      * @var string
      */
-    protected $description = 'Truncate and populate the protocols table from protocols.csv';
+    protected $description = 'Truncate and populate the protocols table from protocol.xlsx';
 
     /**
      * Execute the console command.
      */
     public function handle()
     {
-        $filePath = resource_path('csv/protocols.csv');
+        $filename = "protocol.xlsx";
+        $filePath = resource_path("csv/schema/$filename");
 
         if (!file_exists($filePath)) {
             $this->error("File not found: {$filePath}");
@@ -35,66 +37,59 @@ class PopulateProtocolsCommand extends Command
             return 1;
         }
 
-        $this->info('Reading protocols.csv...');
+        $this->info("Reading $filename...");
 
-        $file = fopen($filePath, 'r', );
-        fgetcsv($file, 0, ',', '"', ''); // Skip header row
+        $reader = IOFactory::createReader("Xlsx");
+        $reader->setReadDataOnly(true);
+        $spreadsheet = $reader->load($filePath);
 
+        $protocolsData = $spreadsheet->getActiveSheet()->toArray();
+
+        if (empty($protocolsData)) {
+            $this->warn('No protocols found to import from the file.');
+            return 1;
+        }
+
+        $headers = true;
         $protocols = [];
-        $skipped = 0;
-        $rowNumber = 1; // Start at 1 (header is row 0)
 
-        while (($row = fgetcsv($file, 0, ',', '"', '')) !== false) {
-            $rowNumber++;
-
-            // Skip empty rows
-            if (empty(array_filter($row))) {
+        foreach ($protocolsData as $protocolData) {
+            if ($headers === true) {
+                $headers = false;
                 continue;
             }
 
-            // Extract fields (assuming CSV columns: module, protocol, severity, description, modifier)
-            $module = trim($row[0] ?? '');
-            $protocol = trim($row[1] ?? '') ?: null;
-            $severity = trim($row[2] ?? '') ?: null;
-            $description = trim($row[3] ?? '') ?: null;
-            $modifier = trim($row[4] ?? '') ?: null;
-
-            // Skip if required field is missing
-            if (empty($module)) {
-                $this->warn("Row #{$rowNumber}: missing required field (module)");
-                $skipped++;
+            $module = $protocolData[0] ? trim($protocolData[0]) : null;
+            if (is_null($module)) {
+                $this->warn('Invalid module value (null), protocol is: ' . $protocolData[1]);
                 continue;
             }
 
-            $protocols[] = [
-                'module' => $module,
-                'protocol' => $protocol,
-                'severity' => $severity,
-                'description' => $description,
-                'modifier' => $modifier,
+            if (isset($protocols[$module])) {
+                $this->warn("Duplicate module value ($module)");
+                continue;
+            }
+
+            $protocols[$module] = [
+                "module" => $module,
+                "protocol" => $protocolData[1] ? trim($protocolData[1]) : null,
+                "modifier" => $protocolData[3] ? trim($protocolData[3]) : null,
+                "severity" => $protocolData[4] ? trim($protocolData[4]) : null,
+                "description" => $protocolData[5] ? trim($protocolData[5]) : null,
             ];
         }
 
-        fclose($file);
-
         if (empty($protocols)) {
             $this->warn('No valid protocols found to import.');
-
             return 1;
         }
 
         $this->info('Truncating and inserting ' . count($protocols) . ' protocols...');
-        DB::transaction(function () use ($protocols) {
-            Protocol::truncate();
-            Protocol::fillAndInsert($protocols);
-        });
+        Protocol::truncate();
+        Protocol::fillAndInsert($protocols);
 
         $count = Protocol::count();
         $this->info("Successfully imported $count protocols.");
-
-        if ($skipped > 0) {
-            $this->warn("Skipped $skipped rows (missing required fields).");
-        }
 
         return 0;
     }

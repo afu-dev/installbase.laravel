@@ -9,6 +9,12 @@ use Illuminate\Database\Eloquent\Model;
  */
 class Account extends Model
 {
+    protected $primaryKey = 'entity';
+
+    public $incrementing = false;
+
+    protected $keyType = 'string';
+
     protected $fillable = [
         'entity',
         'sector',

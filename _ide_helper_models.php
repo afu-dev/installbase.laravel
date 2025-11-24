@@ -13,7 +13,6 @@
 
 namespace App\Models{
 /**
- * @property int $id
  * @property string $entity
  * @property string|null $sector
  * @property string|null $entity_country
@@ -30,7 +29,6 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Account whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Account whereEntity($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Account whereEntityCountry($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Account whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Account wherePointOfContact($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Account whereSector($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Account whereTypeOfAccount($value)
@@ -209,14 +207,13 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- * @property int $id
  * @property string $country_code2
- * @property string|null $country_code3
+ * @property string $country_code3
  * @property string $country
- * @property string|null $region
- * @property string|null $ciso_region
- * @property string|null $ciso_zone
- * @property string|null $operation_zone
+ * @property string $region
+ * @property string $ciso_region
+ * @property string $ciso_zone
+ * @property string $operation_zone
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Country newModelQuery()
@@ -228,7 +225,6 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Country whereCountryCode2($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Country whereCountryCode3($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Country whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Country whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Country whereOperationZone($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Country whereRegion($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Country whereUpdatedAt($value)
@@ -378,9 +374,8 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- * @property int $id
  * @property string $module
- * @property string|null $protocol
+ * @property string $protocol
  * @property string|null $severity
  * @property string|null $description
  * @property string|null $modifier
@@ -391,7 +386,6 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Protocol query()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Protocol whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Protocol whereDescription($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Protocol whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Protocol whereModifier($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Protocol whereModule($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Protocol whereProtocol($value)
