@@ -45,7 +45,12 @@ class CreateScanCommand extends Command
             // For Bitsight, create one execution per CSV file in the input directory
             if ($query->vendor === Vendor::BITSIGHT) {
                 $csvFiles = Storage::disk('bitsight-input')->files();
-                $csvFiles = array_filter($csvFiles, fn ($file) => str_ends_with(strtolower($file), '.csv'));
+                $csvFiles = array_filter($csvFiles, fn($file) => str_ends_with(strtolower($file), '.csv'));
+                if ($query->query_type === "monthly_csv_import") {
+                    $csvFiles = array_filter($csvFiles, fn($file) => str_contains(strtolower($file), 'merged_events'));
+                } elseif ($query->query_type === "historical_csv_import") {
+                    $csvFiles = array_filter($csvFiles, fn($file) => str_contains(strtolower($file), 'historical'));
+                }
 
                 if (empty($csvFiles)) {
                     $this->warn('No CSV files found in bitsight-input directory. Skipping Bitsight executions.');

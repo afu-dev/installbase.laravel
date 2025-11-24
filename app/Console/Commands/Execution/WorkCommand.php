@@ -58,7 +58,10 @@ class WorkCommand extends Command
             $count = match ($execution->vendorQuery->vendor) {
                 Vendor::SHODAN => $this->scrapShodan($execution),
                 Vendor::CENSYS => $this->scrapCensys($execution),
-                Vendor::BITSIGHT => $this->processBitsight($execution),
+                Vendor::BITSIGHT => match ($execution->vendorQuery->query_type) {
+                    "monthly_csv_import" => $this->processBitsightMonthly($execution),
+                    "historical_csv_import" => $this->processBitsightHistorical($execution),
+                },
             };
 
             $execution->count = $count;
@@ -353,12 +356,12 @@ class WorkCommand extends Command
         CensysExposedAsset::fillAndInsert($records);
     }
 
-    private function processBitsight(Execution $execution): int
+    private function processBitsightHistorical(Execution $execution): int
     {
         $startTime = microtime(true);
         $batchSize = 10000;
 
-        $this->info('Processing Bitsight CSV import');
+        $this->info('Processing Bitsight Historical CSV import');
 
         // Get filename from execution
         $filename = $execution->source_file;
@@ -511,6 +514,240 @@ class WorkCommand extends Command
                 'entity' => !empty($row[$headerMap['Entity Name']] ?? '') ? trim($row[$headerMap['Entity Name']]) : null,
                 'country_code' => !empty($row[$headerMap['Country Code']] ?? '') ? trim($row[$headerMap['Country Code']]) : null,
                 'city' => !empty($row[$headerMap['City']] ?? '') ? trim($row[$headerMap['City']]) : null,
+                'hostnames' => null,
+                'isp' => null,
+                'os' => null,
+                'asn' => null,
+                'product' => null,
+                'product_sn' => null,
+                'version' => null,
+            ];
+
+            $assets[] = $asset;
+
+            // Insert in batches
+            if (count($assets) >= $batchSize) {
+                $beforeDuplicates = $duplicates;
+                $this->insertBitsightAssets($assets, $duplicates);
+                $imported += count($assets) - ($duplicates - $beforeDuplicates);
+
+                // Show progress
+                if ($totalLines !== null) {
+                    $progress = round(($processedRows / $totalLines) * 100, 1);
+                    $this->line("Progress: {$progress}% ({$processedRows}/{$totalLines} rows) - Imported: {$imported}, Duplicates: {$duplicates}, Skipped: {$skipped}");
+                } else {
+                    $this->line("Processed: {$processedRows} rows - Imported: {$imported}, Duplicates: {$duplicates}, Skipped: {$skipped}");
+                }
+
+                $assets = [];
+            }
+        }
+
+        // Close the stream
+        fclose($stream);
+
+        // Insert any remaining assets
+        if (!empty($assets)) {
+            $beforeCount = $duplicates;
+            $this->insertBitsightAssets($assets, $duplicates);
+            $imported += count($assets) - ($duplicates - $beforeCount);
+        }
+
+        $elapsedTime = microtime(true) - $startTime;
+        $formattedTime = $elapsedTime < 60
+            ? round($elapsedTime, 2) . ' seconds'
+            : gmdate('i:s', (int)$elapsedTime) . ' minutes';
+
+        $this->info("Bitsight import completed!");
+        $this->info("Successfully imported: {$imported}");
+        $this->info("Execution time: {$formattedTime}");
+
+        if ($duplicates > 0) {
+            $this->warn("Skipped duplicates: {$duplicates}");
+        }
+
+        if ($skipped > 0) {
+            $this->warn("Skipped invalid rows: {$skipped}");
+        }
+
+        // Move file to bronze layer after successful import
+        $datePrefix = $execution->scan->created_at->format('Y/m/d');
+        $bronzePath = "bitsight/{$datePrefix}/{$filename}";
+        $bronzeDisk = Storage::disk('bronze');
+
+        $this->line("Moving to bronze layer: {$bronzePath}");
+
+        // Use streaming to copy file without loading into memory
+        $sourceStream = $inputDisk->readStream($filename);
+        $bronzeDisk->writeStream($bronzePath, $sourceStream);
+        if (is_resource($sourceStream)) {
+            fclose($sourceStream);
+        }
+
+        $inputDisk->delete($filename);
+
+        return $imported;
+    }
+
+    private function processBitsightMonthly(Execution $execution): int
+    {
+        $startTime = microtime(true);
+        $batchSize = 10000;
+
+        $this->info('Processing Bitsight Monthly CSV import');
+
+        // Get filename from execution
+        $filename = $execution->source_file;
+        if (empty($filename)) {
+            throw new Exception("Execution does not have a source_file specified");
+        }
+
+        $this->line("Looking for file: {$filename}");
+
+        // Check if file exists in bitsight-input disk
+        $inputDisk = Storage::disk('bitsight-input');
+        if (!$inputDisk->exists($filename)) {
+            throw new Exception("Bitsight CSV file not found: {$filename}");
+        }
+
+        // Get total line count for progress tracking (local files only)
+        $totalLines = null;
+        try {
+            $filePath = $inputDisk->path($filename);
+            $totalLines = (int)trim(shell_exec("wc -l < " . escapeshellarg($filePath)));
+        } catch (\Exception $e) {
+            // If path() fails (e.g., S3), we'll track progress without percentage
+            $this->line("Unable to get line count (remote storage?) - will track rows processed");
+        }
+
+        // Get stream handle for CSV file
+        $stream = $inputDisk->readStream($filename);
+        if (!$stream) {
+            throw new Exception("Failed to open stream for file: {$filename}");
+        }
+
+        // Parse header from stream
+        $headerLine = fgets($stream);
+        if ($headerLine === false) {
+            fclose($stream);
+            throw new Exception('CSV file is empty');
+        }
+
+        $header = str_getcsv(rtrim($headerLine), ',', '"', '');
+        if (!$header) {
+            fclose($stream);
+            throw new Exception('Failed to read CSV header');
+        }
+
+        $headerMap = array_flip($header);
+
+        // Validate required columns exist
+        $requiredColumns = ['ip_str', 'port', 'date'];
+        foreach ($requiredColumns as $column) {
+            if (!isset($headerMap[$column])) {
+                fclose($stream);
+                throw new Exception("CSV missing required column: {$column}");
+            }
+        }
+
+        $this->info('Processing CSV rows...');
+
+        $assets = [];
+        $skipped = 0;
+        $duplicates = 0;
+        $imported = 0;
+        $rowNumber = 1; // Header is row 0
+        $processedRows = 0;
+
+        while (($line = fgets($stream)) !== false) {
+            $rowNumber++;
+            $processedRows++;
+
+            // Skip empty lines
+            if (trim($line) === '') {
+                continue;
+            }
+
+            $row = str_getcsv(rtrim($line), ',', '"', '');
+            if ($row === false || count($row) < count($header)) {
+                continue;
+            }
+
+            // Extract required fields
+            $ip = trim($row[$headerMap['ip_str']] ?? '');
+            $port = trim($row[$headerMap['port']] ?? '');
+            $module = trim($row[$headerMap['module']] ?? '');
+            $date = trim($row[$headerMap['date']] ?? '');
+            $transport = trim($row[$headerMap['transport']] ?? '');
+
+            // Validate required fields
+            if (empty($ip) || empty($port) || empty($date)) {
+                $missing = [];
+                if (empty($ip)) {
+                    $missing[] = 'ip_str';
+                }
+                if (empty($port)) {
+                    $missing[] = 'port';
+                }
+                if (empty($date)) {
+                    $missing[] = 'date';
+                }
+
+                $errorMessage = 'Missing required field(s): ' . implode(', ', $missing);
+
+                ImportError::create([
+                    'vendor' => Vendor::BITSIGHT->value,
+                    'source_file' => $filename,
+                    'row_number' => $rowNumber,
+                    'ip' => !empty($ip) ? $ip : null,
+                    'port' => !empty($port) ? (int)floatval($port) : null,
+                    'error_message' => $errorMessage,
+                ]);
+
+                $skipped++;
+                continue;
+            }
+
+            // Parse date (format: "2024-04-14")
+            $detectedAt = DateTime::createFromFormat('Y-m-d', $date)->setTime(0, 0, 0);
+            if (!$detectedAt) {
+                $errorMessage = "Invalid date format: '{$date}'";
+
+                ImportError::create([
+                    'vendor' => Vendor::BITSIGHT->value,
+                    'source_file' => $filename,
+                    'row_number' => $rowNumber,
+                    'ip' => $ip,
+                    'port' => (int)floatval($port),
+                    'error_message' => $errorMessage,
+                ]);
+
+                $skipped++;
+                continue;
+            }
+
+            // Convert port to integer
+            $portInt = (int)floatval($port);
+
+            // Build raw_data from entire row
+            $rawData = [];
+            foreach ($header as $index => $columnName) {
+                $rawData[$columnName] = $row[$index] ?? null;
+            }
+
+            // Build asset record
+            // "ip_str","port","transport","module","date","protocol_type","bacnet","dnp3","ethernetip","fox","iec-61850","knx","modbus","opc-ua","codesys","iec-104","ion","apcupsd","http","ssl","ftp","ms-sql-monitor","snmp","mdns","telnet","ebo_info","vendor_name","vendor_match_criteria","fingerprint","entity_name","entity_primary_domain","industry_sector","ci_sector","ci_sector_secondary","ci_sector_tertiary","entity_other_name","entity_other_primary_domain","entity_other_org_address","country_code","country_name"
+            $asset = [
+                'execution_id' => $execution->id,
+                'ip' => $ip,
+                'port' => $portInt,
+                'module' => !empty($module) ? $module : null,
+                'detected_at' => $detectedAt->format('Y-m-d H:i:s'),
+                'transport' => !empty($transport) ? $transport : null,
+                'raw_data' => json_encode($rawData),
+                'entity' => !empty($row[$headerMap['entity_name']] ?? '') ? trim($row[$headerMap['entity_name']]) : null,
+                'country_code' => !empty($row[$headerMap['country_code']] ?? '') ? trim($row[$headerMap['country_code']]) : null,
+                'city' => null, // note: no city in the CSV
                 'hostnames' => null,
                 'isp' => null,
                 'os' => null,
