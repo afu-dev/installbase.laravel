@@ -54,4 +54,11 @@ abstract class AbstractJsonDataParser implements DataParserInterface
     {
         return (bool)$this->extract($key, $default);
     }
+
+    protected function extractJson(string $key, array $default = []): array
+    {
+        $value = $this->extract($key);
+
+        return json_validate($value) ? json_decode($value, true) : $default;
+    }
 }
