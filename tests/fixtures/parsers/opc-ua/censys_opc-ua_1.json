@@ -1,0 +1,72 @@
+{
+    "last_updated_at": "2025-11-17T01:45:53.278Z",
+    "whois": {
+        "organization": {
+            "name": "Turkcell Iletisim Hizmetleri A.S"
+        },
+        "network": {
+            "name": "TURKCELL INTERNET"
+        }
+    },
+    "autonomous_system": {
+        "asn": 16135,
+        "name": "TURKCELL-AS Turkcell A.S."
+    },
+    "ip": "178.242.74.8",
+    "dns": {
+        "names": []
+    },
+    "location": {
+        "city": "Istanbul",
+        "country_code": "TR"
+    },
+    "services": [
+        {
+            "http": {
+                "response": {
+                    "html_title": "Sunny Central"
+                }
+            },
+            "transport_protocol": "TCP",
+            "port": 90
+        },
+        {
+            "transport_protocol": "UDP",
+            "port": 123
+        },
+        {
+            "transport_protocol": "TCP",
+            "port": 2404
+        },
+        {
+            "transport_protocol": "TCP",
+            "port": 2405
+        },
+        {
+            "http": {
+                "response": {
+                    "html_title": "PowerLogic ION 7650"
+                }
+            },
+            "transport_protocol": "TCP",
+            "port": 7080
+        },
+        {
+            "http": {
+                "response": {
+                    "html_title": "Web-based Management"
+                }
+            },
+            "transport_protocol": "TCP",
+            "port": 30080
+        }
+    ],
+    "matched_services": [
+        {
+            "transport_protocol": "TCP",
+            "extended_service_name": "HTTP",
+            "service_name": "HTTP",
+            "port": 7080
+        }
+    ]
+}

@@ -1,0 +1,54 @@
+{
+    "last_updated_at": "2025-11-16T16:58:10.984Z",
+    "autonomous_system": {
+        "asn": 15897,
+        "name": "VODAFONETURKEY"
+    },
+    "whois": {
+        "organization": {
+            "name": "Vodafone Telekomunikasyon A.S."
+        },
+        "network": {
+            "name": "Vodafone Turkey 3G IP Pool"
+        }
+    },
+    "ip": "188.38.103.36",
+    "dns": {
+        "reverse_dns": {
+            "names": [
+                "host89858886.vodafone.com.tr"
+            ]
+        },
+        "names": []
+    },
+    "location": {
+        "city": "Istanbul",
+        "country_code": "TR"
+    },
+    "services": [
+        {
+            "transport_protocol": "TCP",
+            "port": 2404
+        },
+        {
+            "transport_protocol": "TCP",
+            "port": 4444
+        },
+        {
+            "transport_protocol": "TCP",
+            "port": 8088
+        },
+        {
+            "transport_protocol": "TCP",
+            "port": 40080
+        }
+    ],
+    "matched_services": [
+        {
+            "transport_protocol": "TCP",
+            "service_name": "HTTP",
+            "extended_service_name": "HTTP",
+            "port": 40080
+        }
+    ]
+}

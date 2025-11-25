@@ -1,0 +1,47 @@
+{
+    "last_updated_at": "2025-11-16T07:32:34.410Z",
+    "autonomous_system": {
+        "asn": 204274,
+        "name": "AURA-A-S"
+    },
+    "whois": {
+        "organization": {
+            "name": "AURA Fiber A/S"
+        },
+        "network": {
+            "name": "AURA - DHCP Dynamic"
+        }
+    },
+    "ip": "85.184.167.155",
+    "dns": {
+        "reverse_dns": {
+            "names": [
+                "85.184.167.155.static.dhcp.aura-net.dk"
+            ]
+        },
+        "names": []
+    },
+    "location": {
+        "city": "Århus",
+        "country_code": "DK"
+    },
+    "services": [
+        {
+            "transport_protocol": "TCP",
+            "port": 80
+        },
+        {
+            "transport_protocol": "TCP",
+            "port": 443
+        }
+    ],
+    "matched_services": [
+        {
+            "extended_service_name": "HTTPS",
+            "transport_protocol": "TCP",
+            "service_name": "HTTP",
+            "certificate": "77ac5ccfa32435f9337aa87c41b48a137a1b233f4447158e3a405271ad5e7812",
+            "port": 443
+        }
+    ]
+}

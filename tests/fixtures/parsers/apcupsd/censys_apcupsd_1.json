@@ -1,0 +1,47 @@
+{
+    "last_updated_at": "2025-11-17T01:12:27.199Z",
+    "whois": {
+        "organization": {
+            "name": "Bouygues Telecom SA"
+        },
+        "network": {
+            "name": "Pool for Broadband DSL customers"
+        }
+    },
+    "autonomous_system": {
+        "asn": 5410,
+        "name": "BOUYGTEL-ISP"
+    },
+    "ip": "31.32.235.222",
+    "dns": {
+        "reverse_dns": {
+            "names": [
+                "31-32-235-222.abo.bbox.fr"
+            ]
+        },
+        "names": []
+    },
+    "location": {
+        "city": "Strasbourg",
+        "country_code": "FR"
+    },
+    "services": [
+        {
+            "transport_protocol": "TCP",
+            "port": 443
+        },
+        {
+            "transport_protocol": "TCP",
+            "port": 20480
+        }
+    ],
+    "matched_services": [
+        {
+            "service_name": "HTTP",
+            "transport_protocol": "TCP",
+            "certificate": "b5c03b6f406b11cacb6d1c9c83c5397c6013a498879412c30c985e904d3b677f",
+            "extended_service_name": "HTTPS",
+            "port": 20480
+        }
+    ]
+}

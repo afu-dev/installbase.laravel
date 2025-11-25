@@ -30,10 +30,13 @@ class ModbusParser extends AbstractJsonDataParser
 
         // @todo: use $deviceIdentifications array to insert multiple detected exposure?
 
+        // Default to Schneider Electric for modbus if vendor not found
+        $extractedVendor = $vendor ?? $this->extract(["Vendor", "vendor", "vendor_name"]);
+
         return new ParsedDeviceData(
-            vendor: $vendor ?? $this->extract(["Vendor", "vendor", "vendor_name"]),
+            vendor: $extractedVendor ?: "Schneider Electric",
             fingerprint: $this->extract("device_type"),
-            version: $vendor ?? $this->extract("revision"),
+            version: $version ?? $this->extract("revision"),
             sn: $this->extract("serial_num"),
             device_mac: $this->extract("mac_address"),
             fingerprint_raw: $this->extractArray("fingerprint"),

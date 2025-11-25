@@ -1,0 +1,7 @@
+Instance ID: 186678
+Object Name: PM5560_-088368329
+Vendor Name: Schneider Electric
+Application Software: 2.8.3
+Firmware: 1.9.0
+Model Name: PM5560
+Description: PM5560_-088368329

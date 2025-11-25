@@ -1,0 +1,72 @@
+{
+    "last_updated_at": "2025-11-17T01:31:16.509Z",
+    "whois": {
+        "organization": {
+            "name": "Turkcell Iletisim Hizmetleri A.S"
+        },
+        "network": {
+            "name": "TURKCELL INTERNET"
+        }
+    },
+    "autonomous_system": {
+        "asn": 16135,
+        "name": "TURKCELL-AS Turkcell A.S."
+    },
+    "ip": "178.242.65.243",
+    "dns": {
+        "names": []
+    },
+    "location": {
+        "city": "Istanbul",
+        "country_code": "TR"
+    },
+    "services": [
+        {
+            "http": {
+                "response": {
+                    "html_title": ""
+                }
+            },
+            "tls": {
+                "certificates": {
+                    "leaf_data": {
+                        "subject_dn": "C=CN, ST=GuangDong, O=GuangZhou Robustel Technologies Co.\\, Limited, OU=R&T, CN=Web Server, emailAddress=info@robustel.com",
+                        "issuer_dn": "C=CN, ST=GuangDong, O=GuangZhou Robustel Technologies Co.\\, Limited, OU=R&T, CN=Robustel CA, emailAddress=info@robustel.com"
+                    }
+                }
+            },
+            "transport_protocol": "TCP",
+            "port": 443
+        },
+        {
+            "transport_protocol": "TCP",
+            "port": 2404
+        },
+        {
+            "http": {
+                "response": {
+                    "html_title": "Fronius: {{daloState.systemName ? daloState.getDecodedSystemName() : ('WIZARD_TITLE' | translate)}}"
+                }
+            },
+            "transport_protocol": "TCP",
+            "port": 9000
+        },
+        {
+            "http": {
+                "response": {
+                    "html_title": "PowerLogic ION 7650"
+                }
+            },
+            "transport_protocol": "TCP",
+            "port": 40080
+        }
+    ],
+    "matched_services": [
+        {
+            "transport_protocol": "TCP",
+            "service_name": "HTTP",
+            "extended_service_name": "HTTP",
+            "port": 40080
+        }
+    ]
+}

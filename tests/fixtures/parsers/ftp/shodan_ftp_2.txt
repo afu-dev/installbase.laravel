@@ -1,0 +1,53 @@
+220 AP9630 Network Management Card AOS v6.7.2 FTP server ready.
+530 Not logged in.
+502 HELP command not implemented, or not allowed.
+211-Features:
+ AUTH SSL
+ AUTH TLS
+ USER
+ PASS
+ ACCT
+ CWD 
+ CDUP
+ QUIT
+ SMNT
+ REIN
+ PORT
+ PASV
+ TYPE
+ STRU
+ MODE
+ RETR
+ STOR
+ STOU
+ APPE
+ ALLO
+ REST
+ RNFR
+ RNTO
+ ABOR
+ DELE
+ RMD 
+ MKD 
+ PWD 
+ LIST
+ NLST
+ SITE
+ SYST
+ STAT
+ HELP
+ XCWD
+ XCUP
+ XRMD
+ XMKD
+ XPWD
+ EPRT
+ EPSV
+ ADAT
+ PROT
+ PBSZ
+ CCC 
+ ENC 
+ FEAT
+ NOOP
+211 End

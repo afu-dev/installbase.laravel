@@ -1,0 +1,47 @@
+{
+    "last_updated_at": "2025-11-17T06:57:29.970Z",
+    "autonomous_system": {
+        "asn": 3269,
+        "name": "ASN-IBSNAZ"
+    },
+    "whois": {
+        "organization": {
+            "name": "Telecom Italia S.p.A."
+        },
+        "network": {
+            "name": "CURVET SRL UNIPERSONALE"
+        }
+    },
+    "ip": "85.32.179.106",
+    "dns": {
+        "reverse_dns": {
+            "names": [
+                "host-85-32-179-106.business.telecomitalia.it"
+            ]
+        },
+        "names": []
+    },
+    "location": {
+        "city": "Pesaro",
+        "country_code": "IT"
+    },
+    "services": [
+        {
+            "transport_protocol": "TCP",
+            "port": 443
+        },
+        {
+            "transport_protocol": "TCP",
+            "port": 4430
+        }
+    ],
+    "matched_services": [
+        {
+            "service_name": "HTTP",
+            "transport_protocol": "TCP",
+            "certificate": "c4a148013f7b023b84b003e316626c52cbe5ea128a378beabb1a19254073ff2d",
+            "extended_service_name": "HTTPS",
+            "port": 443
+        }
+    ]
+}

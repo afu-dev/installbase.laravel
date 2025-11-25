@@ -1,0 +1,59 @@
+{
+    "last_updated_at": "2025-11-17T03:03:36.624Z",
+    "whois": {
+        "organization": {
+            "name": "Spitfire Network Services Limited"
+        },
+        "network": {
+            "name": "Point to point links for DSL customers"
+        }
+    },
+    "autonomous_system": {
+        "asn": 16082,
+        "name": "SPITFIRE"
+    },
+    "ip": "87.224.91.235",
+    "dns": {
+        "reverse_dns": {
+            "names": [
+                "87-224-91-235.spitfireuk.net"
+            ]
+        },
+        "names": []
+    },
+    "location": {
+        "city": "Ardrossan",
+        "country_code": "GB"
+    },
+    "services": [
+        {
+            "transport_protocol": "TCP",
+            "port": 447
+        },
+        {
+            "transport_protocol": "UDP",
+            "port": 1701
+        },
+        {
+            "transport_protocol": "TCP",
+            "port": 1723
+        },
+        {
+            "transport_protocol": "TCP",
+            "port": 8069
+        },
+        {
+            "transport_protocol": "TCP",
+            "port": 55001
+        }
+    ],
+    "matched_services": [
+        {
+            "service_name": "HTTP",
+            "transport_protocol": "TCP",
+            "certificate": "c4a148013f7b023b84b003e316626c52cbe5ea128a378beabb1a19254073ff2d",
+            "extended_service_name": "HTTPS",
+            "port": 55001
+        }
+    ]
+}

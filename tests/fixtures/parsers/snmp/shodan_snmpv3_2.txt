@@ -1,0 +1,20 @@
+SNMP:
+  Uptime: 3071674050
+  Description: APC Web/SNMP Management Card (MB:v3.9.2 PF:v3.7.4 PN:apc_hw02_aos_374.bin AF1:v3.7.1 AN1:apc_hw02_g2ats_371.bin MN:AP7750A HR:01 SN: 5A1422T07997 MD:05/30/2014)
+  Service: 72
+  Versions:
+    1
+    3
+  Name: KBLA ATS-1
+  Ordescr: The MIB Module from SNMPv2 entities
+  Engineid Format: mac
+  Contact: 1696524978.2424932
+  Oruptime: 0
+  Engine Boots: 178
+  Engineid Data: 00:c0:b7:83:b6:e3
+  Enterprise: 318
+  Objectid: 1.3.6.1.4.1.318.1.3.11
+  Engine Time: 355 days, 12:25:25
+  Orid: 1.3.6.1.6.3.1
+  Enterprise Name: American Power Conversion Corp.
+  Location: KBLA site

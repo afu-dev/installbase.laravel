@@ -1,0 +1,51 @@
+{
+    "last_updated_at": "2025-11-17T08:04:28.239Z",
+    "autonomous_system": {
+        "asn": 20978,
+        "name": "TT_MOBIL Istanbul"
+    },
+    "whois": {
+        "organization": {
+            "name": "TT Mobil Iletisim Hizmetleri A.S"
+        },
+        "network": {
+            "name": "Avea Iletisim Hizmetleri A.S"
+        }
+    },
+    "ip": "46.104.77.242",
+    "dns": {
+        "names": []
+    },
+    "location": {
+        "city": "Mardin",
+        "country_code": "TR"
+    },
+    "services": [
+        {
+            "http": {
+                "response": {
+                    "html_title": "Four-Faith (build 4068:4071M) - Bilgi"
+                }
+            },
+            "transport_protocol": "TCP",
+            "port": 8088
+        },
+        {
+            "http": {
+                "response": {
+                    "html_title": "PowerLogic ION 7650"
+                }
+            },
+            "transport_protocol": "TCP",
+            "port": 40080
+        }
+    ],
+    "matched_services": [
+        {
+            "transport_protocol": "TCP",
+            "extended_service_name": "HTTP",
+            "service_name": "HTTP",
+            "port": 40080
+        }
+    ]
+}

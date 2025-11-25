@@ -1,0 +1,49 @@
+{
+    "last_updated_at": "2025-11-17T03:38:21.628Z",
+    "autonomous_system": {
+        "asn": 5410,
+        "name": "BOUYGTEL-ISP"
+    },
+    "whois": {
+        "organization": {
+            "name": "Bouygues Telecom SA"
+        },
+        "network": {
+            "name": "Pool for Broadband DSL customers"
+        }
+    },
+    "ip": "176.128.94.194",
+    "dns": {
+        "names": []
+    },
+    "location": {
+        "city": "Paris",
+        "country_code": "FR"
+    },
+    "services": [
+        {
+            "transport_protocol": "UDP",
+            "port": 500
+        },
+        {
+            "transport_protocol": "TCP",
+            "port": 2080
+        },
+        {
+            "transport_protocol": "TCP",
+            "port": 3389
+        },
+        {
+            "transport_protocol": "TCP",
+            "port": 8080
+        }
+    ],
+    "matched_services": [
+        {
+            "transport_protocol": "TCP",
+            "service_name": "HTTP",
+            "extended_service_name": "HTTP",
+            "port": 8080
+        }
+    ]
+}

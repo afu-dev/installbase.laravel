@@ -1,0 +1,20 @@
+SNMP:
+  Uptime: 256236873
+  Description: APC Web/SNMP Management Card (MB:v4.2.9 PF:v2.5.0.8 PN:apc_hw21_aos_2.5.0.8.bin AF1:v2.5.0.6 AN1:apc_hw21_su_2.5.0.6.bin MN:AP9640 HR:5 SN: ZA2420030202 MD:05/13/2024) (Embedded PowerNet SNMP Agent SW v2.2 compatible)
+  Service: 72
+  Versions:
+    1
+    3
+  Name: Sentra-Darussaadah-Aceh-UPS
+  Ordescr: The MIB Module from SNMPv2 entities
+  Engineid Format: mac
+  Contact: telkom.id
+  Oruptime: 0
+  Engine Boots: 13
+  Engineid Data: 28:29:86:9c:d6:a7
+  Enterprise: 318
+  Objectid: 1.3.6.1.4.1.318.1.3.27
+  Engine Time: 29 days, 15:46:07
+  Orid: 1.3.6.1.6.3.1
+  Enterprise Name: American Power Conversion Corp.
+  Location: Sentra Darussaadah Aceh

@@ -1,0 +1,68 @@
+{
+    "last_updated_at": "2025-11-16T18:24:54.060Z",
+    "autonomous_system": {
+        "asn": 270051,
+        "name": "PLANET TELECOM COLOMBIA S.A.S"
+    },
+    "whois": {
+        "network": {
+            "name": "PLANET TELECOM COLOMBIA S.A.S"
+        }
+    },
+    "ip": "179.43.0.94",
+    "dns": {
+        "names": []
+    },
+    "location": {
+        "city": "Medellín",
+        "country_code": "CO"
+    },
+    "services": [
+        {
+            "transport_protocol": "TCP",
+            "port": 1022
+        },
+        {
+            "transport_protocol": "TCP",
+            "port": 2000
+        },
+        {
+            "transport_protocol": "TCP",
+            "port": 8291
+        },
+        {
+            "transport_protocol": "TCP",
+            "port": 9009
+        },
+        {
+            "transport_protocol": "TCP",
+            "port": 9010
+        },
+        {
+            "http": {
+                "response": {
+                    "html_title": "Ptc-FRE"
+                }
+            },
+            "transport_protocol": "TCP",
+            "port": 9013
+        },
+        {
+            "http": {
+                "response": {
+                    "html_title": "Conext ComBox"
+                }
+            },
+            "transport_protocol": "TCP",
+            "port": 9014
+        }
+    ],
+    "matched_services": [
+        {
+            "transport_protocol": "TCP",
+            "extended_service_name": "HTTP",
+            "service_name": "HTTP",
+            "port": 9014
+        }
+    ]
+}

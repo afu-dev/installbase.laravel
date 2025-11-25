@@ -1,0 +1,58 @@
+{
+    "last_updated_at": "2025-11-17T01:32:40.217Z",
+    "whois": {
+        "organization": {
+            "name": "Turkcell Iletisim Hizmetleri A.S"
+        },
+        "network": {
+            "name": "TURKCELL INTERNET"
+        }
+    },
+    "autonomous_system": {
+        "asn": 16135,
+        "name": "TURKCELL-AS Turkcell A.S."
+    },
+    "ip": "5.11.167.76",
+    "dns": {
+        "names": []
+    },
+    "location": {
+        "city": "Istanbul",
+        "country_code": "TR"
+    },
+    "services": [
+        {
+            "transport_protocol": "TCP",
+            "port": 80
+        },
+        {
+            "transport_protocol": "TCP",
+            "port": 88
+        },
+        {
+            "transport_protocol": "UDP",
+            "port": 500
+        },
+        {
+            "transport_protocol": "TCP",
+            "port": 4444
+        },
+        {
+            "transport_protocol": "TCP",
+            "port": 8088
+        },
+        {
+            "transport_protocol": "TCP",
+            "port": 40080
+        }
+    ],
+    "matched_services": [
+        {
+            "service_name": "HTTP",
+            "transport_protocol": "TCP",
+            "certificate": "2686bbaf966bb853da38043b0ffd2017bb76e8ed050941aa219b5fcd246b19b0",
+            "extended_service_name": "HTTPS",
+            "port": 40080
+        }
+    ]
+}

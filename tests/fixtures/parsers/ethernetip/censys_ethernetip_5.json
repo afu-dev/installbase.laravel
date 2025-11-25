@@ -1,0 +1,79 @@
+{
+    "last_updated_at": "2025-11-17T03:38:47.312Z",
+    "whois": {
+        "organization": {
+            "name": "Orange Espagne SA"
+        },
+        "network": {
+            "name": "Jazztel triple play services"
+        }
+    },
+    "autonomous_system": {
+        "asn": 12479,
+        "name": "UNI2-AS"
+    },
+    "ip": "37.11.117.126",
+    "dns": {
+        "reverse_dns": {
+            "names": [
+                "126.117.11.37.dynamic.jazztel.es"
+            ]
+        },
+        "names": []
+    },
+    "location": {
+        "city": "Parla",
+        "country_code": "ES"
+    },
+    "services": [
+        {
+            "transport_protocol": "TCP",
+            "port": 80
+        },
+        {
+            "transport_protocol": "UDP",
+            "port": 123
+        },
+        {
+            "transport_protocol": "TCP",
+            "port": 443
+        },
+        {
+            "transport_protocol": "TCP",
+            "port": 554
+        },
+        {
+            "transport_protocol": "TCP",
+            "port": 1105
+        },
+        {
+            "parsed": {
+                "opc_ua": {
+                    "endpoints": [
+                        {
+                            "server": {
+                                "application_uri": "urn::SchneiderElectric:M241-251UaServer",
+                                "product_uri": "urn:SchneiderElectric:M241-251UaServer"
+                            },
+                            "security_mode": "None"
+                        }
+                    ]
+                }
+            },
+            "transport_protocol": "TCP",
+            "port": 4840
+        },
+        {
+            "transport_protocol": "TCP",
+            "port": 8081
+        }
+    ],
+    "matched_services": [
+        {
+            "transport_protocol": "TCP",
+            "service_name": "OPC_UA",
+            "extended_service_name": "OPC_UA",
+            "port": 4840
+        }
+    ]
+}

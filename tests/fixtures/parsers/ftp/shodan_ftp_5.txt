@@ -1,0 +1,4 @@
+220 AP9643 Network Management Card AOS v3.2.0.7 FTP server ready.
+530 Not logged in.
+502 HELP command not implemented, or not allowed.
+500 Syntax error, command unrecognized.

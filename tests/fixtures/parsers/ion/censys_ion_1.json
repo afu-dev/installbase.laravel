@@ -1,0 +1,75 @@
+{
+    "last_updated_at": "2025-11-17T07:32:30.634Z",
+    "autonomous_system": {
+        "asn": 203489,
+        "name": "WIMORE"
+    },
+    "whois": {
+        "organization": {
+            "name": "WiMore S.r.l."
+        },
+        "network": {
+            "name": "WiMORE Network Company Customers"
+        }
+    },
+    "ip": "213.137.48.31",
+    "dns": {
+        "reverse_dns": {
+            "names": [
+                "213-137-48-31.ip.wimore.it"
+            ]
+        },
+        "names": []
+    },
+    "location": {
+        "city": "Scandiano",
+        "country_code": "IT"
+    },
+    "services": [
+        {
+            "transport_protocol": "TCP",
+            "port": 80
+        },
+        {
+            "transport_protocol": "UDP",
+            "port": 137
+        },
+        {
+            "transport_protocol": "TCP",
+            "port": 139
+        },
+        {
+            "transport_protocol": "TCP",
+            "port": 443
+        },
+        {
+            "transport_protocol": "TCP",
+            "port": 445
+        },
+        {
+            "transport_protocol": "TCP",
+            "port": 554
+        },
+        {
+            "transport_protocol": "UDP",
+            "port": 5353
+        },
+        {
+            "transport_protocol": "TCP",
+            "port": 6080
+        },
+        {
+            "transport_protocol": "TCP",
+            "port": 60000
+        }
+    ],
+    "matched_services": [
+        {
+            "certificate": "c4a148013f7b023b84b003e316626c52cbe5ea128a378beabb1a19254073ff2d",
+            "transport_protocol": "TCP",
+            "extended_service_name": "HTTPS",
+            "service_name": "HTTP",
+            "port": 6080
+        }
+    ]
+}

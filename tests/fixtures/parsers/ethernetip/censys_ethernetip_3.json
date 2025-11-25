@@ -1,0 +1,63 @@
+{
+    "last_updated_at": "2025-11-17T06:51:13.292Z",
+    "autonomous_system": {
+        "asn": 27947,
+        "name": "Telconet S.A"
+    },
+    "whois": {
+        "network": {
+            "name": "Clientes Machala"
+        }
+    },
+    "ip": "186.101.102.197",
+    "dns": {
+        "names": []
+    },
+    "location": {
+        "city": "Santa Rosa",
+        "country_code": "EC"
+    },
+    "services": [
+        {
+            "transport_protocol": "TCP",
+            "port": 22
+        },
+        {
+            "transport_protocol": "TCP",
+            "port": 80
+        },
+        {
+            "tls": {
+                "certificates": {
+                    "leaf_data": {
+                        "subject_dn": "C=CA, O=Schneider Electric, CN=ION7400-0f4d55",
+                        "issuer_dn": "C=CA, O=Schneider Electric, CN=ION7400-0f4d55"
+                    }
+                }
+            },
+            "transport_protocol": "TCP",
+            "port": 443
+        },
+        {
+            "transport_protocol": "TCP",
+            "port": 5357
+        },
+        {
+            "transport_protocol": "TCP",
+            "port": 7701
+        },
+        {
+            "transport_protocol": "TCP",
+            "port": 11443
+        }
+    ],
+    "matched_services": [
+        {
+            "extended_service_name": "HTTPS",
+            "transport_protocol": "TCP",
+            "service_name": "HTTP",
+            "certificate": "c4ecd44eab8d2b439071a5a784611f494e7399cc2d5027795babb2b13f9092ad",
+            "port": 443
+        }
+    ]
+}

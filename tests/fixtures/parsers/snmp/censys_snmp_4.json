@@ -1,0 +1,131 @@
+{
+    "last_updated_at": "2025-11-17T09:25:27.294Z",
+    "autonomous_system": {
+        "asn": 16135,
+        "name": "TURKCELL-AS Turkcell A.S."
+    },
+    "whois": {
+        "organization": {
+            "name": "Turkcell Iletisim Hizmetleri A.S"
+        },
+        "network": {
+            "name": "TURKCELL INTERNET"
+        }
+    },
+    "ip": "178.242.207.50",
+    "dns": {
+        "names": []
+    },
+    "location": {
+        "city": "Istanbul",
+        "country_code": "TR"
+    },
+    "services": [
+        {
+            "transport_protocol": "TCP",
+            "port": 2404
+        },
+        {
+            "transport_protocol": "TCP",
+            "port": 5001
+        },
+        {
+            "http": {
+                "response": {
+                    "html_title": "401 Unauthorized"
+                }
+            },
+            "tls": {
+                "certificates": {
+                    "leaf_data": {
+                        "subject_dn": "C=DE, ST=Saxon, L=Dresden, O=NewMedia-NET GmbH, OU=Router, CN=NewMedia-NET GmbH, emailAddress=rd021@router.com",
+                        "issuer_dn": "C=DE, ST=Saxon, L=Dresden, O=NewMedia-NET GmbH, OU=Router, CN=NewMedia-NET GmbH, emailAddress=rd021@router.com"
+                    }
+                }
+            },
+            "transport_protocol": "TCP",
+            "port": 8088
+        },
+        {
+            "transport_protocol": "TCP",
+            "port": 8722
+        },
+        {
+            "http": {
+                "response": {
+                    "html_title": "KACO Web"
+                }
+            },
+            "transport_protocol": "TCP",
+            "port": 9001
+        },
+        {
+            "http": {
+                "response": {
+                    "html_title": "KACO Web"
+                }
+            },
+            "transport_protocol": "TCP",
+            "port": 9002
+        },
+        {
+            "http": {
+                "response": {
+                    "html_title": "KACO Web"
+                }
+            },
+            "transport_protocol": "TCP",
+            "port": 9003
+        },
+        {
+            "http": {
+                "response": {
+                    "html_title": "KACO Web"
+                }
+            },
+            "transport_protocol": "TCP",
+            "port": 9004
+        },
+        {
+            "transport_protocol": "TCP",
+            "port": 10511
+        },
+        {
+            "transport_protocol": "TCP",
+            "port": 10512
+        },
+        {
+            "transport_protocol": "TCP",
+            "port": 10513
+        },
+        {
+            "transport_protocol": "TCP",
+            "port": 10514
+        },
+        {
+            "transport_protocol": "TCP",
+            "port": 10515
+        },
+        {
+            "transport_protocol": "TCP",
+            "port": 10516
+        },
+        {
+            "http": {
+                "response": {
+                    "html_title": "PowerLogic ION 7650"
+                }
+            },
+            "transport_protocol": "TCP",
+            "port": 40080
+        }
+    ],
+    "matched_services": [
+        {
+            "transport_protocol": "TCP",
+            "service_name": "HTTP",
+            "extended_service_name": "HTTP",
+            "port": 40080
+        }
+    ]
+}

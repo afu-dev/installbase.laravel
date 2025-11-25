@@ -1,0 +1,43 @@
+{
+    "last_updated_at": "2025-11-16T23:00:07.870Z",
+    "whois": {
+        "organization": {
+            "name": "Norlys Fibernet"
+        },
+        "network": {
+            "name": "Syd Energi internet - DHCP pooled"
+        }
+    },
+    "autonomous_system": {
+        "asn": 39642,
+        "name": "NORLYS-FIBERNET"
+    },
+    "ip": "212.37.155.7",
+    "dns": {
+        "reverse_dns": {
+            "names": [
+                "212-37-155-7.norlyscustomer.net"
+            ]
+        },
+        "names": []
+    },
+    "location": {
+        "city": "Randers",
+        "country_code": "DK"
+    },
+    "services": [
+        {
+            "transport_protocol": "TCP",
+            "port": 443
+        }
+    ],
+    "matched_services": [
+        {
+            "service_name": "HTTP",
+            "transport_protocol": "TCP",
+            "certificate": "57f5567b5f59be2ca5292342ca35100f5301383d8a984dc0997b638989a0ab49",
+            "extended_service_name": "HTTPS",
+            "port": 443
+        }
+    ]
+}

@@ -1,0 +1,15 @@
+Unit ID: 0
+-- Device Identification: Schneider Electric BME H58 2040 v03.10 
+-- CPU module: BME H58 2040
+-- Project information: Project - 5DDB1779D HHIyp26qrUU=
+cmA7j30G9pbYoFxG9pvIYzsS27XJOsDSpjfhJ2534uQ=
+   V13.1
+-- Project revision: 0.0.71
+-- Project last modified: 2021-09-16 14:02:07
+
+Unit ID: 1
+-- Device Identification: Schneider Electric BME H58 2040 v03.10 
+
+Unit ID: 255
+-- Device Identification: Schneider Electric BME H58 2040 v03.10 
+

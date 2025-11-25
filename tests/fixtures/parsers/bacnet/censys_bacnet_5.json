@@ -1,0 +1,54 @@
+{
+    "last_updated_at": "2025-11-17T01:04:07.289Z",
+    "whois": {
+        "organization": {
+            "name": "VODAFONE-PANAFON HELLENIC TELECOMMUNICATIONS COMPANY SA"
+        },
+        "network": {
+            "name": "vodafoenet Wireless Internet Service"
+        }
+    },
+    "autonomous_system": {
+        "asn": 3329,
+        "name": "HOL-GR Athens, Greece"
+    },
+    "ip": "62.74.190.132",
+    "dns": {
+        "names": []
+    },
+    "location": {
+        "city": "Athens",
+        "country_code": "GR"
+    },
+    "services": [
+        {
+            "transport_protocol": "TCP",
+            "port": 23
+        },
+        {
+            "mms": {
+                "model": "S61850 for Easergy Relays",
+                "revision": "0.0.1",
+                "vendor": "Schneider Electric"
+            },
+            "transport_protocol": "TCP",
+            "port": 102
+        },
+        {
+            "transport_protocol": "TCP",
+            "port": 4430
+        },
+        {
+            "transport_protocol": "TCP",
+            "port": 9001
+        }
+    ],
+    "matched_services": [
+        {
+            "transport_protocol": "TCP",
+            "extended_service_name": "MMS",
+            "service_name": "MMS",
+            "port": 102
+        }
+    ]
+}

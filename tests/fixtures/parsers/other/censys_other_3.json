@@ -1,0 +1,64 @@
+{
+    "last_updated_at": "2025-11-15T03:07:15.827Z",
+    "whois": {
+        "organization": {
+            "name": "Telecom Italia S.p.A."
+        },
+        "network": {
+            "name": "NAS DHCP Pool Genova"
+        }
+    },
+    "autonomous_system": {
+        "asn": 3269,
+        "name": "ASN-IBSNAZ"
+    },
+    "ip": "79.58.196.244",
+    "dns": {
+        "reverse_dns": {
+            "names": [
+                "host-79-58-196-244.business.telecomitalia.it"
+            ]
+        },
+        "names": []
+    },
+    "location": {
+        "city": "Rome",
+        "country_code": "IT"
+    },
+    "services": [
+        {
+            "http": {
+                "response": {
+                    "html_title": "panel-server-webadmin"
+                }
+            },
+            "tls": {
+                "certificates": {
+                    "leaf_data": {
+                        "subject_dn": "O=Schneider Electric, OU=PAS800L, CN=EcoStruxure Panel Server, serialNumber=542340110090",
+                        "issuer_dn": "O=Schneider Electric, OU=PAS800L, CN=EcoStruxure Panel Server, serialNumber=542340110090"
+                    }
+                }
+            },
+            "transport_protocol": "TCP",
+            "port": 211
+        },
+        {
+            "transport_protocol": "TCP",
+            "port": 1521
+        },
+        {
+            "transport_protocol": "TCP",
+            "port": 7170
+        }
+    ],
+    "matched_services": [
+        {
+            "extended_service_name": "HTTPS",
+            "transport_protocol": "TCP",
+            "service_name": "HTTP",
+            "certificate": "26a63dc7d0d26a4911f41688d44aeae6306714ccbdc2fda29921645c61666e68",
+            "port": 211
+        }
+    ]
+}

@@ -1,0 +1,56 @@
+{
+    "last_updated_at": "2025-11-16T21:20:02.029Z",
+    "whois": {
+        "network": {
+            "name": "Andhra Pradesh State FiberNet Limited"
+        }
+    },
+    "autonomous_system": {
+        "asn": 133287,
+        "name": "APSFL-AS Andhra Pradesh State FiberNet Limited"
+    },
+    "ip": "223.196.188.115",
+    "dns": {
+        "names": []
+    },
+    "location": {
+        "city": "Mandapeta",
+        "country_code": "IN"
+    },
+    "services": [
+        {
+            "http": {
+                "response": {
+                    "html_title": "panel-server-webadmin"
+                }
+            },
+            "tls": {
+                "certificates": {
+                    "leaf_data": {
+                        "subject_dn": "O=Schneider Electric, OU=PAS600, CN=EcoStruxure Panel Server, serialNumber=542439610038",
+                        "issuer_dn": "O=Schneider Electric, OU=PAS600, CN=EcoStruxure Panel Server, serialNumber=542439610038"
+                    }
+                }
+            },
+            "transport_protocol": "TCP",
+            "port": 443
+        },
+        {
+            "transport_protocol": "TCP",
+            "port": 502
+        },
+        {
+            "transport_protocol": "TCP",
+            "port": 5357
+        }
+    ],
+    "matched_services": [
+        {
+            "service_name": "HTTP",
+            "transport_protocol": "TCP",
+            "certificate": "8c7562b6a1842f306a7f2727514d1394e969a89679755bf15ae0b2b0ad6e61bd",
+            "extended_service_name": "HTTPS",
+            "port": 443
+        }
+    ]
+}

@@ -1,0 +1,61 @@
+{
+    "last_updated_at": "2025-11-17T05:13:15.722Z",
+    "whois": {
+        "organization": {
+            "name": "Turkcell Iletisim Hizmetleri A.S"
+        },
+        "network": {
+            "name": "TURKCELL INTERNET"
+        }
+    },
+    "autonomous_system": {
+        "asn": 16135,
+        "name": "TURKCELL-AS Turkcell A.S."
+    },
+    "ip": "5.26.206.181",
+    "dns": {
+        "names": []
+    },
+    "location": {
+        "city": "Gaziantep",
+        "country_code": "TR"
+    },
+    "services": [
+        {
+            "transport_protocol": "TCP",
+            "port": 81
+        },
+        {
+            "transport_protocol": "TCP",
+            "port": 2404
+        },
+        {
+            "transport_protocol": "TCP",
+            "port": 2405
+        },
+        {
+            "transport_protocol": "TCP",
+            "port": 2455
+        },
+        {
+            "transport_protocol": "TCP",
+            "port": 8080
+        },
+        {
+            "transport_protocol": "TCP",
+            "port": 40080
+        },
+        {
+            "transport_protocol": "TCP",
+            "port": 40081
+        }
+    ],
+    "matched_services": [
+        {
+            "transport_protocol": "TCP",
+            "extended_service_name": "HTTP",
+            "service_name": "HTTP",
+            "port": 40081
+        }
+    ]
+}

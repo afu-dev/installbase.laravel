@@ -1,0 +1,89 @@
+{
+    "last_updated_at": "2025-11-17T08:19:28.190Z",
+    "whois": {
+        "organization": {
+            "name": "Turk Telekomunikasyon Anonim Sirketi"
+        },
+        "network": {
+            "name": "TT ADSL-TTnet _static_aci"
+        }
+    },
+    "autonomous_system": {
+        "asn": 9121,
+        "name": "TTNET"
+    },
+    "ip": "78.189.115.22",
+    "dns": {
+        "reverse_dns": {
+            "names": [
+                "mail.serinetbilisim.com.tr"
+            ]
+        },
+        "names": []
+    },
+    "location": {
+        "city": "İzmir",
+        "country_code": "TR"
+    },
+    "services": [
+        {
+            "transport_protocol": "UDP",
+            "port": 500
+        },
+        {
+            "transport_protocol": "TCP",
+            "port": 817
+        },
+        {
+            "http": {
+                "response": {
+                    "html_title": "Vigor Login Page"
+                }
+            },
+            "tls": {
+                "certificates": {
+                    "leaf_data": {
+                        "subject_dn": "C=TW, ST=HsinChu, L=HuKou, O=DrayTek Corp., OU=DrayTek Support, CN=Vigor Router",
+                        "issuer_dn": "C=TW, ST=HsinChu, L=HuKou, O=DrayTek Corp., OU=DrayTek Support, CN=Vigor Router"
+                    }
+                }
+            },
+            "transport_protocol": "TCP",
+            "port": 4433
+        },
+        {
+            "transport_protocol": "TCP",
+            "port": 5502
+        },
+        {
+            "http": {
+                "response": {
+                    "html_title": "302 Document moved"
+                }
+            },
+            "transport_protocol": "TCP",
+            "port": 8080
+        },
+        {
+            "http": {
+                "response": {
+                    "html_title": "PowerLogic ION 7650"
+                }
+            },
+            "transport_protocol": "TCP",
+            "port": 40080
+        },
+        {
+            "transport_protocol": "TCP",
+            "port": 52922
+        }
+    ],
+    "matched_services": [
+        {
+            "transport_protocol": "TCP",
+            "service_name": "HTTP",
+            "extended_service_name": "HTTP",
+            "port": 40080
+        }
+    ]
+}

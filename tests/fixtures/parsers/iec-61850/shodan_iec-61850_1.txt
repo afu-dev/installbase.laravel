@@ -1,0 +1,3 @@
+Vendor: VAMP Ltd.
+Model: S61850 for VAMP Relays
+Version: 0.0.1

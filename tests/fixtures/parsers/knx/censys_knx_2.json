@@ -1,0 +1,48 @@
+{
+    "last_updated_at": "2025-11-16T20:30:47.920Z",
+    "whois": {
+        "organization": {
+            "name": "\"DOMINET\" LLC"
+        },
+        "network": {
+            "name": "DOMINET LLC"
+        }
+    },
+    "autonomous_system": {
+        "asn": 41467,
+        "name": "BOYCHENKO-AS"
+    },
+    "ip": "176.121.9.10",
+    "dns": {
+        "names": [
+            "lubep.direct.quickconnect.to"
+        ]
+    },
+    "location": {
+        "city": "Irpin",
+        "country_code": "UA"
+    },
+    "services": [
+        {
+            "http": {
+                "response": {
+                    "html_title": "Conext ComBox"
+                }
+            },
+            "transport_protocol": "TCP",
+            "port": 444
+        },
+        {
+            "transport_protocol": "UDP",
+            "port": 1701
+        }
+    ],
+    "matched_services": [
+        {
+            "transport_protocol": "TCP",
+            "extended_service_name": "HTTP",
+            "service_name": "HTTP",
+            "port": 444
+        }
+    ]
+}

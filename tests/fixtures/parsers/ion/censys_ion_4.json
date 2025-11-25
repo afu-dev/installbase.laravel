@@ -1,0 +1,62 @@
+{
+    "last_updated_at": "2025-11-17T03:30:58.467Z",
+    "autonomous_system": {
+        "asn": 15897,
+        "name": "VODAFONETURKEY"
+    },
+    "whois": {
+        "organization": {
+            "name": "Vodafone Telekomunikasyon A.S."
+        },
+        "network": {
+            "name": "Vodafone Turkey GPRS address pool"
+        }
+    },
+    "ip": "81.6.100.139",
+    "dns": {
+        "reverse_dns": {
+            "names": [
+                "host8239319.vodafone.com.tr"
+            ]
+        },
+        "names": []
+    },
+    "location": {
+        "city": "Istanbul",
+        "country_code": "TR"
+    },
+    "services": [
+        {
+            "transport_protocol": "TCP",
+            "port": 80
+        },
+        {
+            "transport_protocol": "TCP",
+            "port": 4444
+        },
+        {
+            "transport_protocol": "TCP",
+            "port": 40082
+        },
+        {
+            "transport_protocol": "TCP",
+            "port": 40083
+        }
+    ],
+    "matched_services": [
+        {
+            "service_name": "HTTP",
+            "transport_protocol": "TCP",
+            "certificate": "d41d271308fc2867d6e538968178c9c42fc8aeb341ee671bfaa16a9f6995f908",
+            "extended_service_name": "HTTPS",
+            "port": 40082
+        },
+        {
+            "service_name": "HTTP",
+            "transport_protocol": "TCP",
+            "certificate": "d41d271308fc2867d6e538968178c9c42fc8aeb341ee671bfaa16a9f6995f908",
+            "extended_service_name": "HTTPS",
+            "port": 40083
+        }
+    ]
+}

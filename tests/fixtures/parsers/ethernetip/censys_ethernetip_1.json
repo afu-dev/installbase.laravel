@@ -1,0 +1,82 @@
+{
+    "last_updated_at": "2025-11-17T06:26:31.218Z",
+    "autonomous_system": {
+        "asn": 12322,
+        "name": "PROXAD"
+    },
+    "whois": {
+        "organization": {
+            "name": "Free SAS"
+        },
+        "network": {
+            "name": "Proxad / Free SAS"
+        }
+    },
+    "ip": "88.165.155.136",
+    "dns": {
+        "reverse_dns": {
+            "names": [
+                "88-165-155-136.subs.proxad.net"
+            ]
+        },
+        "names": [
+            "ntlt1981.freeboxos.fr",
+            "p9xelh48.fbxos.fr"
+        ]
+    },
+    "location": {
+        "city": "La Turbie",
+        "country_code": "FR"
+    },
+    "services": [
+        {
+            "transport_protocol": "TCP",
+            "port": 80
+        },
+        {
+            "transport_protocol": "TCP",
+            "port": 207
+        },
+        {
+            "transport_protocol": "TCP",
+            "port": 443
+        },
+        {
+            "transport_protocol": "TCP",
+            "port": 554
+        },
+        {
+            "transport_protocol": "TCP",
+            "port": 4270
+        },
+        {
+            "transport_protocol": "TCP",
+            "port": 8000
+        },
+        {
+            "transport_protocol": "TCP",
+            "port": 8219
+        },
+        {
+            "transport_protocol": "TCP",
+            "port": 9972
+        },
+        {
+            "transport_protocol": "TCP",
+            "port": 26159
+        },
+        {
+            "transport_protocol": "TCP",
+            "port": 45431
+        }
+    ],
+    "matched_services": [
+        {
+            "service_name": "HTTP",
+            "transport_protocol": "TCP",
+            "certificate": "5cfb1d038ed73773e5b1eae413042825d21f28e65ecf3b85294a0c3e2b8af7a1",
+            "extended_service_name": "HTTPS",
+            "port": 4270
+        }
+    ]
+}

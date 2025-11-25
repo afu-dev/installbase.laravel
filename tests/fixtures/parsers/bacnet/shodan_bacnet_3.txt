@@ -1,0 +1,7 @@
+Instance ID: 0
+Object Name: PM5560_0000000000
+Vendor Name: Schneider Electric
+Application Software: 2.4.2
+Firmware: 1.9.0
+Model Name: PM5560
+Description: PM5560_0000000000

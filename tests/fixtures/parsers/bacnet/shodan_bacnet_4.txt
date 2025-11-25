@@ -1,0 +1,7 @@
+Instance ID: 250676
+Object Name: PM5560_0214000036
+Vendor Name: Schneider Electric
+Application Software: 4.1.8
+Firmware: 1.9.0
+Model Name: PM5560
+Description: PM5560_0214000036

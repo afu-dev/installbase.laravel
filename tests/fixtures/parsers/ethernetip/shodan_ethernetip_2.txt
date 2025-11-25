@@ -1,0 +1,5 @@
+Product name: PM5560
+Vendor ID: Schneider Electric
+Serial number: 0x23c6d120
+Device type: Generic Device (keyable)
+Device IP: 190.119.138.94

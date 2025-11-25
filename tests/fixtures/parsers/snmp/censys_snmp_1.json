@@ -1,0 +1,75 @@
+{
+    "last_updated_at": "2025-11-17T05:39:10.922Z",
+    "autonomous_system": {
+        "asn": 16135,
+        "name": "TURKCELL-AS Turkcell A.S."
+    },
+    "whois": {
+        "organization": {
+            "name": "Turkcell Iletisim Hizmetleri A.S"
+        },
+        "network": {
+            "name": "TURKCELL INTERNET"
+        }
+    },
+    "ip": "5.11.217.165",
+    "dns": {
+        "names": []
+    },
+    "location": {
+        "city": "Istanbul",
+        "country_code": "TR"
+    },
+    "services": [
+        {
+            "http": {
+                "response": {
+                    "html_title": "Router -> Login"
+                }
+            },
+            "tls": {
+                "certificates": {
+                    "leaf_data": {
+                        "subject_dn": "C=US, ST=VA, L=Dulles, O=InhandNetworks, OU=InRouter, CN=inhandnetworks.com, emailAddress=info@inhandnetworks.com",
+                        "issuer_dn": "C=US, ST=VA, L=Dulles, O=InhandNetworks, OU=InRouter, CN=inhandnetworks.com, emailAddress=info@inhandnetworks.com"
+                    }
+                }
+            },
+            "transport_protocol": "TCP",
+            "port": 443
+        },
+        {
+            "transport_protocol": "UDP",
+            "port": 500
+        },
+        {
+            "transport_protocol": "TCP",
+            "port": 2404
+        },
+        {
+            "transport_protocol": "TCP",
+            "port": 4444
+        },
+        {
+            "transport_protocol": "TCP",
+            "port": 8088
+        },
+        {
+            "http": {
+                "response": {
+                    "html_title": "PowerLogic ION 7650"
+                }
+            },
+            "transport_protocol": "TCP",
+            "port": 40080
+        }
+    ],
+    "matched_services": [
+        {
+            "transport_protocol": "TCP",
+            "extended_service_name": "HTTP",
+            "service_name": "HTTP",
+            "port": 40080
+        }
+    ]
+}

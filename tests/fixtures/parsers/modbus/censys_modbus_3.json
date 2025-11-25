@@ -1,0 +1,42 @@
+{
+    "last_updated_at": "2025-11-15T11:17:46.705Z",
+    "whois": {
+        "organization": {
+            "name": "UAB Consilium Optimum"
+        },
+        "network": {
+            "name": "UAB Consilium optimum"
+        }
+    },
+    "autonomous_system": {
+        "asn": 43700,
+        "name": "CO-AS"
+    },
+    "ip": "185.252.204.92",
+    "dns": {
+        "names": []
+    },
+    "location": {
+        "city": "Vilnius",
+        "country_code": "LT"
+    },
+    "services": [
+        {
+            "transport_protocol": "TCP",
+            "port": 1003
+        },
+        {
+            "transport_protocol": "TCP",
+            "port": 1004
+        }
+    ],
+    "matched_services": [
+        {
+            "service_name": "HTTP",
+            "transport_protocol": "TCP",
+            "certificate": "94f9d639df459c42c747686780607a5af642b7a82865b9e81817156356e6b820",
+            "extended_service_name": "HTTPS",
+            "port": 1004
+        }
+    ]
+}

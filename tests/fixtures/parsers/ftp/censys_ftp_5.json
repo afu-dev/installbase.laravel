@@ -1,0 +1,84 @@
+{
+    "last_updated_at": "2025-11-17T09:14:07.788Z",
+    "whois": {
+        "organization": {
+            "name": "Turkcell Iletisim Hizmetleri A.S"
+        },
+        "network": {
+            "name": "TURKCELL INTERNET"
+        }
+    },
+    "autonomous_system": {
+        "asn": 16135,
+        "name": "TURKCELL-AS Turkcell A.S."
+    },
+    "ip": "5.26.147.28",
+    "dns": {
+        "names": []
+    },
+    "location": {
+        "city": "Istanbul",
+        "country_code": "TR"
+    },
+    "services": [
+        {
+            "transport_protocol": "TCP",
+            "port": 81
+        },
+        {
+            "http": {
+                "response": {
+                    "html_title": "PowerLogic ION 7650"
+                }
+            },
+            "transport_protocol": "TCP",
+            "port": 82
+        },
+        {
+            "http": {
+                "response": {
+                    "html_title": "401 Unauthorized"
+                }
+            },
+            "tls": {
+                "certificates": {
+                    "leaf_data": {
+                        "subject_dn": "C=DE, ST=Saxon, L=Dresden, O=NewMedia-NET GmbH, OU=FOUR-FAITH, CN=NewMedia-NET GmbH, emailAddress=rd021@four-faith.com",
+                        "issuer_dn": "C=DE, ST=Saxon, L=Dresden, O=NewMedia-NET GmbH, OU=FOUR-FAITH, CN=NewMedia-NET GmbH, emailAddress=rd021@four-faith.com"
+                    }
+                }
+            },
+            "transport_protocol": "TCP",
+            "port": 8088
+        },
+        {
+            "http": {
+                "response": {
+                    "html_title": ""
+                }
+            },
+            "tls": {
+                "certificates": {
+                    "leaf_data": {
+                        "subject_dn": "C=CN, ST=Guangdong, L=Shenzhen, O=Huawei, OU=Network Energy, CN=Huawei Network Energy CA, emailAddress=support@huawei.com",
+                        "issuer_dn": "C=CN, O=huawei, OU=Network Energy, CN=NEPL PKI"
+                    }
+                }
+            },
+            "transport_protocol": "TCP",
+            "port": 8443
+        },
+        {
+            "transport_protocol": "TCP",
+            "port": 8722
+        }
+    ],
+    "matched_services": [
+        {
+            "transport_protocol": "TCP",
+            "extended_service_name": "HTTP",
+            "service_name": "HTTP",
+            "port": 82
+        }
+    ]
+}

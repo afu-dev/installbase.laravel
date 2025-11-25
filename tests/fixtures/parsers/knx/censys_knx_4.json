@@ -1,0 +1,77 @@
+{
+    "last_updated_at": "2025-11-17T01:31:19.550Z",
+    "autonomous_system": {
+        "asn": 16135,
+        "name": "TURKCELL-AS Turkcell A.S."
+    },
+    "whois": {
+        "organization": {
+            "name": "Turkcell Iletisim Hizmetleri A.S"
+        },
+        "network": {
+            "name": "TURKCELL INTERNET"
+        }
+    },
+    "ip": "5.26.31.170",
+    "dns": {
+        "names": []
+    },
+    "location": {
+        "city": "Ankara",
+        "country_code": "TR"
+    },
+    "services": [
+        {
+            "http": {
+                "response": {
+                    "html_title": "ArgeDen -> Login"
+                }
+            },
+            "transport_protocol": "TCP",
+            "port": 80
+        },
+        {
+            "transport_protocol": "TCP",
+            "port": 2404
+        },
+        {
+            "transport_protocol": "TCP",
+            "port": 4444
+        },
+        {
+            "http": {
+                "response": {
+                    "html_title": "ArgeDen -> Login"
+                }
+            },
+            "transport_protocol": "TCP",
+            "port": 8080
+        },
+        {
+            "http": {
+                "response": {
+                    "html_title": "ArgeDen -> Login"
+                }
+            },
+            "transport_protocol": "TCP",
+            "port": 14001
+        },
+        {
+            "http": {
+                "response": {
+                    "html_title": "PowerLogic ION 7650"
+                }
+            },
+            "transport_protocol": "TCP",
+            "port": 40080
+        }
+    ],
+    "matched_services": [
+        {
+            "transport_protocol": "TCP",
+            "extended_service_name": "HTTP",
+            "service_name": "HTTP",
+            "port": 40080
+        }
+    ]
+}

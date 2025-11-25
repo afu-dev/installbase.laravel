@@ -1,0 +1,3 @@
+Vendor: Schneider Electric
+Model: S61850 for Easergy Relays
+Version: 0.0.1

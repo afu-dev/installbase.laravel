@@ -1,0 +1,54 @@
+{
+    "last_updated_at": "2025-11-16T18:20:39.260Z",
+    "whois": {
+        "organization": {
+            "name": "VSE NET GmbH"
+        },
+        "network": {
+            "name": "EWR Aktiengesellschaft Worms"
+        }
+    },
+    "autonomous_system": {
+        "asn": 9063,
+        "name": "SAARGATE-AS VSE NET GmbH"
+    },
+    "ip": "176.126.68.20",
+    "dns": {
+        "reverse_dns": {
+            "names": [
+                "020-068-126-176.ip-addr.vsenet.de"
+            ]
+        },
+        "names": [
+            "bb7a40h7rbilsokn.myfritz.net",
+            "rathausof.dyndns.org"
+        ]
+    },
+    "location": {
+        "city": "Nierstein",
+        "country_code": "DE"
+    },
+    "services": [
+        {
+            "transport_protocol": "UDP",
+            "port": 500
+        },
+        {
+            "transport_protocol": "TCP",
+            "port": 5001
+        },
+        {
+            "transport_protocol": "TCP",
+            "port": 5002
+        }
+    ],
+    "matched_services": [
+        {
+            "service_name": "HTTP",
+            "transport_protocol": "TCP",
+            "certificate": "7e82ec67c08b941fd35560353f1e474edb29d43a80f738bea2ad8448cce030d7",
+            "extended_service_name": "HTTPS",
+            "port": 5001
+        }
+    ]
+}

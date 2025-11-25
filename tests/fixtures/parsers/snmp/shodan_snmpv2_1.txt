@@ -1,0 +1,18 @@
+SNMP:
+  Uptime: 775086170
+  Description: APC Web/SNMP Management Card (MB:v3.8.6 PF:v5.1.4 PN:apc_hw05_aos_514.bin AF1:v5.1.1 AN1:apc_hw05_rpdu2g_511.bin MN:AP8841 HR:02 SN: 5A1143E06775 MD:10/23/2011)
+  Service: 72
+  Versions:
+    1
+    3
+  Name: APC01
+  Ordescr: The MIB Module from SNMPv2 entities
+  Contact: noc@truehost.cloud
+  Oruptime: 0
+  Engine Boots: 21
+  Engineid Data: 800000000300c0b75dc15e
+  Enterprise: 2147483648
+  Objectid: 1.3.6.1.4.1.318.1.3.4.6
+  Engine Time: 89 days, 17:01:01
+  Orid: 1.3.6.1.6.3.1
+  Location: 160.C3.01, Digital Realty DFW16, 1232 Alma Rd. Suite 160 Richardson, TX 75081

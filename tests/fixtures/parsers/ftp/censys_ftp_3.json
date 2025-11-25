@@ -1,0 +1,100 @@
+{
+    "last_updated_at": "2025-11-16T21:51:35.692Z",
+    "autonomous_system": {
+        "asn": 29247,
+        "name": "COSMOTE-GR Cosmote Mobile Telecommunications S.A."
+    },
+    "whois": {
+        "organization": {
+            "name": "Ote SA (Hellenic Telecommunications Organisation)"
+        },
+        "network": {
+            "name": "Cosmote Internet Services"
+        }
+    },
+    "ip": "149.210.35.174",
+    "dns": {
+        "reverse_dns": {
+            "names": [
+                "149-210-35-174.mobile.nym.cosmote.net"
+            ]
+        },
+        "names": []
+    },
+    "location": {
+        "city": "Athens",
+        "country_code": "GR"
+    },
+    "services": [
+        {
+            "http": {
+                "response": {
+                    "html_title": "RouterOS"
+                }
+            },
+            "transport_protocol": "TCP",
+            "port": 80
+        },
+        {
+            "http": {
+                "response": {
+                    "html_title": "panel-server-webadmin"
+                }
+            },
+            "tls": {
+                "certificates": {
+                    "leaf_data": {
+                        "subject_dn": "O=Schneider Electric, OU=PAS800, CN=EcoStruxure Panel Server, serialNumber=542426110020",
+                        "issuer_dn": "O=Schneider Electric, OU=PAS800, CN=EcoStruxure Panel Server, serialNumber=542426110020"
+                    }
+                }
+            },
+            "transport_protocol": "TCP",
+            "port": 443
+        },
+        {
+            "http": {
+                "response": {
+                    "html_title": "RouterOS"
+                }
+            },
+            "transport_protocol": "TCP",
+            "port": 9443
+        },
+        {
+            "transport_protocol": "TCP",
+            "port": 10080
+        },
+        {
+            "transport_protocol": "TCP",
+            "port": 10081
+        },
+        {
+            "http": {
+                "response": {
+                    "html_title": "Sunny Central"
+                }
+            },
+            "transport_protocol": "TCP",
+            "port": 10090
+        },
+        {
+            "http": {
+                "response": {
+                    "html_title": "Sunny Central"
+                }
+            },
+            "transport_protocol": "TCP",
+            "port": 10091
+        }
+    ],
+    "matched_services": [
+        {
+            "service_name": "HTTP",
+            "transport_protocol": "TCP",
+            "certificate": "25db2406e2607efc87575e0fa455aa455714eb96eced59e46bd9295b738ce78e",
+            "extended_service_name": "HTTPS",
+            "port": 443
+        }
+    ]
+}

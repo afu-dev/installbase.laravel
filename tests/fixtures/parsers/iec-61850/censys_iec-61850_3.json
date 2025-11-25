@@ -1,0 +1,37 @@
+{
+    "last_updated_at": "2025-11-16T21:40:16.714Z",
+    "autonomous_system": {
+        "asn": 32614,
+        "name": "HDISS-NET"
+    },
+    "whois": {
+        "organization": {
+            "name": "High Desert Internet Services"
+        },
+        "network": {
+            "name": "High Desert Internet Services"
+        }
+    },
+    "ip": "198.244.123.23",
+    "dns": {
+        "names": []
+    },
+    "location": {
+        "city": "Smith",
+        "country_code": "US"
+    },
+    "services": [
+        {
+            "transport_protocol": "TCP",
+            "port": 21
+        }
+    ],
+    "matched_services": [
+        {
+            "transport_protocol": "TCP",
+            "service_name": "FTP",
+            "extended_service_name": "FTP",
+            "port": 21
+        }
+    ]
+}

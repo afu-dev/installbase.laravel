@@ -1,0 +1,71 @@
+{
+    "last_updated_at": "2025-11-16T19:21:38.459Z",
+    "whois": {
+        "organization": {
+            "name": "Turkcell Iletisim Hizmetleri A.S"
+        },
+        "network": {
+            "name": "TURKCELL INTERNET"
+        }
+    },
+    "autonomous_system": {
+        "asn": 16135,
+        "name": "TURKCELL-AS Turkcell A.S."
+    },
+    "ip": "188.59.154.104",
+    "dns": {
+        "names": []
+    },
+    "location": {
+        "city": "Istanbul",
+        "country_code": "TR"
+    },
+    "services": [
+        {
+            "transport_protocol": "UDP",
+            "port": 500
+        },
+        {
+            "tls": {
+                "certificates": {
+                    "leaf_data": {
+                        "subject_dn": "C=DE, ST=BW, L=Mannheim, O=ABB AG, OU=PSN, CN=10.123.1.3, emailAddress=nm.service@de.abb.com",
+                        "issuer_dn": "C=DE, ST=BW, L=Mannheim, O=ABB AG, OU=PSN, CN=10.123.1.3, emailAddress=nm.service@de.abb.com"
+                    }
+                }
+            },
+            "transport_protocol": "TCP",
+            "port": 1080
+        },
+        {
+            "http": {
+                "response": {
+                    "html_title": "PowerLogic ION 7650"
+                }
+            },
+            "transport_protocol": "TCP",
+            "port": 1082
+        },
+        {
+            "transport_protocol": "UDP",
+            "port": 1701
+        },
+        {
+            "http": {
+                "response": {
+                    "html_title": ""
+                }
+            },
+            "transport_protocol": "TCP",
+            "port": 8088
+        }
+    ],
+    "matched_services": [
+        {
+            "transport_protocol": "TCP",
+            "extended_service_name": "HTTP",
+            "service_name": "HTTP",
+            "port": 1082
+        }
+    ]
+}

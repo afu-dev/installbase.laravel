@@ -1,0 +1,47 @@
+{
+    "last_updated_at": "2025-11-16T11:53:50.929Z",
+    "whois": {
+        "organization": {
+            "name": "KPN B.V."
+        },
+        "network": {
+            "name": "Sissy Boy"
+        }
+    },
+    "autonomous_system": {
+        "asn": 1136,
+        "name": "KPN KPN National"
+    },
+    "ip": "92.66.53.186",
+    "dns": {
+        "reverse_dns": {
+            "names": [
+                "92-66-53-186.biz.kpn.net"
+            ]
+        },
+        "names": []
+    },
+    "location": {
+        "city": "Rotterdam",
+        "country_code": "NL"
+    },
+    "services": [
+        {
+            "transport_protocol": "TCP",
+            "port": 8020
+        },
+        {
+            "transport_protocol": "TCP",
+            "port": 8443
+        }
+    ],
+    "matched_services": [
+        {
+            "extended_service_name": "HTTPS",
+            "transport_protocol": "TCP",
+            "service_name": "HTTP",
+            "certificate": "d06c5ad9b2e7122e05ef58fa60328578fdb4c16f277cfce4a83fa68f415dcf89",
+            "port": 8443
+        }
+    ]
+}

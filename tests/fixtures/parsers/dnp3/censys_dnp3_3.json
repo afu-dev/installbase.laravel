@@ -1,0 +1,45 @@
+{
+    "last_updated_at": "2025-11-17T05:25:43.481Z",
+    "autonomous_system": {
+        "asn": 16135,
+        "name": "TURKCELL-AS Turkcell A.S."
+    },
+    "whois": {
+        "organization": {
+            "name": "Turkcell Iletisim Hizmetleri A.S"
+        },
+        "network": {
+            "name": "TURKCELL INTERNET"
+        }
+    },
+    "ip": "178.242.106.45",
+    "dns": {
+        "names": []
+    },
+    "location": {
+        "city": "Istanbul",
+        "country_code": "TR"
+    },
+    "services": [
+        {
+            "transport_protocol": "TCP",
+            "port": 90
+        },
+        {
+            "transport_protocol": "TCP",
+            "port": 1081
+        },
+        {
+            "transport_protocol": "TCP",
+            "port": 2404
+        }
+    ],
+    "matched_services": [
+        {
+            "transport_protocol": "TCP",
+            "extended_service_name": "HTTP",
+            "service_name": "HTTP",
+            "port": 1081
+        }
+    ]
+}

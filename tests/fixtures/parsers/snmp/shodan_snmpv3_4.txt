@@ -1,0 +1,19 @@
+SNMP:
+  Uptime: 126693220
+  Description: APC Web/SNMP Management Card (MB:v4.1.0 PF:v6.5.6 PN:apc_hw05_aos_656.bin AF1:v6.5.6 AN1:apc_hw05_sumx_656.bin MN:AP9630 HR:08 SN: ZA1834007519 MD:08/22/2018) (Embedded PowerNet SNMP Agent SW v2.2 compatible)
+  Service: 72
+  Versions:
+    1
+    3
+  Name: apc0B5B43
+  Ordescr: The MIB Module from SNMPv2 entities
+  Engineid Format: mac
+  Contact: 1696524983.4636645
+  Oruptime: 0
+  Engine Boots: 672
+  Engineid Data: 28:29:86:0b:5b:43
+  Enterprise: 318
+  Objectid: 1.3.6.1.4.1.318.1.3.27
+  Engine Time: 14 days, 13:45:14
+  Orid: 1.3.6.1.6.3.1
+  Enterprise Name: American Power Conversion Corp.
