@@ -9,7 +9,8 @@ abstract class AbstractJsonDataParser implements DataParserInterface
     protected array $jsonData;
     private array $nestedCache = [];
 
-    public function parse(string $rawData): ParsedDeviceData
+    /** @return ParsedDeviceData[] */
+    public function parse(string $rawData): array
     {
         $this->jsonData = json_decode($rawData, true);
 
@@ -20,7 +21,8 @@ abstract class AbstractJsonDataParser implements DataParserInterface
         return $this->parseData();
     }
 
-    abstract protected function parseData(): ParsedDeviceData;
+    /** @return ParsedDeviceData[] */
+    abstract protected function parseData(): array;
 
     protected function extract(string|array $keys, mixed $default = null): mixed
     {

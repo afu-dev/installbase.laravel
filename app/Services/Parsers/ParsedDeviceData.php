@@ -17,8 +17,7 @@ readonly class ParsedDeviceData
         public ?string $secure_power_app = null,
         public ?string $nmc_card_num = null,
         public ?array  $fingerprint_raw = null,
-    )
-    {
+    ) {
     }
 
     public function toArray(): array

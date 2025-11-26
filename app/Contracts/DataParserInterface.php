@@ -6,5 +6,6 @@ use App\Services\Parsers\ParsedDeviceData;
 
 interface DataParserInterface
 {
-    public function parse(string $rawData): ParsedDeviceData;
+    /** @return ParsedDeviceData[] */
+    public function parse(string $rawData): array;
 }
