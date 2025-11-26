@@ -4,7 +4,6 @@ namespace App\Console\Commands\Account;
 
 use App\Models\Account;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\DB;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 
 class PopulateAccountsCommand extends Command

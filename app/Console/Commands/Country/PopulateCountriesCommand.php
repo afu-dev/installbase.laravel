@@ -4,7 +4,6 @@ namespace App\Console\Commands\Country;
 
 use App\Models\Country;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\DB;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 
 class PopulateCountriesCommand extends Command

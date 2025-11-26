@@ -4,7 +4,6 @@ namespace App\Console\Commands\Protocol;
 
 use App\Models\Protocol;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\DB;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 
 class PopulateProtocolsCommand extends Command

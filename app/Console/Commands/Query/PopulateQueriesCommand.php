@@ -5,7 +5,6 @@ namespace App\Console\Commands\Query;
 use App\Enums\Vendor;
 use App\Models\Query;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\DB;
 
 class PopulateQueriesCommand extends Command
 {

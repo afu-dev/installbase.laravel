@@ -11,8 +11,6 @@ use App\Models\Scan;
 use App\Models\ShodanExposedAsset;
 use Illuminate\Console\Command;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Support\Collection as SupportCollection;
 use Symfony\Component\Console\Helper\ProgressBar;
 
 class MergeExposedAssets extends Command
@@ -88,7 +86,7 @@ class MergeExposedAssets extends Command
 
             // Upsert Attribution (one record per IP)
             // Filter out null values to preserve existing data
-            $attributionUpsertData = array_filter($attributionData, fn($value) => $value !== null);
+            $attributionUpsertData = array_filter($attributionData, fn ($value) => $value !== null);
 
             Attribution::updateOrCreate(
                 ['ip' => $ip],
@@ -123,7 +121,7 @@ class MergeExposedAssets extends Command
                 // Prepare upsert data with calculated dates
                 $exposureUpsertData = array_filter(
                     $exposure,
-                    fn($value, $key) => !str_starts_with($key, '_') && $value !== null,
+                    fn ($value, $key) => !str_starts_with($key, '_') && $value !== null,
                     ARRAY_FILTER_USE_BOTH
                 );
 
@@ -155,7 +153,7 @@ class MergeExposedAssets extends Command
         $this->newLine();
         $this->info("--- Processing {$vendor->value} ---");
 
-        $ipQuery = \DB::table((new $modelClass)->getTable())->select("ip");
+        $ipQuery = \DB::table((new $modelClass())->getTable())->select("ip");
 
         foreach ($executionIdsRanges as $executionIdRange) {
             if ($executionIdRange["start"] === $executionIdRange["end"]) {
@@ -360,7 +358,7 @@ class MergeExposedAssets extends Command
 
         // Step 1: Sort exposures by priority (bitsight first, then shodan, then censys)
         $priorityOrder = ['bitsight' => 1, 'shodan' => 2, 'censys' => 3];
-        usort($exposuresData, fn($a, $b) => ($priorityOrder[$a['source']] ?? 999) <=> ($priorityOrder[$b['source']] ?? 999));
+        usort($exposuresData, fn ($a, $b) => ($priorityOrder[$a['source']] ?? 999) <=> ($priorityOrder[$b['source']] ?? 999));
 
         // Step 2: Apply null coalescing for each attribution field
         $entity = null;

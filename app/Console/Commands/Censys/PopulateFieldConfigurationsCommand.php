@@ -4,7 +4,6 @@ namespace App\Console\Commands\Censys;
 
 use App\Models\CensysFieldConfiguration;
 use Illuminate\Console\Command;
-use Illuminate\Support\Facades\DB;
 
 class PopulateFieldConfigurationsCommand extends Command
 {
