@@ -15,9 +15,9 @@ class ApcupsdParserTest extends TestCase
 
         $result = $parser->parse($data);
 
-        $this->assertEquals('not_parsed', $result->vendor);
+        $this->assertEquals('unknown', $result->vendor);
         $this->assertNull($result->fingerprint);
-        $this->assertNull($result->version);
+        $this->assertEquals("3.14.14 (31 May 2016) freebsd", $result->version);
         $this->assertNull($result->sn);
         $this->assertNull($result->device_mac);
         $this->assertNull($result->modbus_project_info);
@@ -37,9 +37,9 @@ class ApcupsdParserTest extends TestCase
 
         $result = $parser->parse($data);
 
-        $this->assertEquals('not_parsed', $result->vendor);
+        $this->assertEquals('unknown', $result->vendor);
         $this->assertNull($result->fingerprint);
-        $this->assertNull($result->version);
+        $this->assertEquals('3.14.14 (31 May 2016) redhat', $result->version);
         $this->assertNull($result->sn);
         $this->assertNull($result->device_mac);
         $this->assertNull($result->modbus_project_info);
@@ -59,9 +59,9 @@ class ApcupsdParserTest extends TestCase
 
         $result = $parser->parse($data);
 
-        $this->assertEquals('not_parsed', $result->vendor);
+        $this->assertEquals('unknown', $result->vendor);
         $this->assertNull($result->fingerprint);
-        $this->assertNull($result->version);
+        $this->assertEquals('3.14.14 (31 May 2016) freebsd', $result->version);
         $this->assertNull($result->sn);
         $this->assertNull($result->device_mac);
         $this->assertNull($result->modbus_project_info);
@@ -81,10 +81,10 @@ class ApcupsdParserTest extends TestCase
 
         $result = $parser->parse($data);
 
-        $this->assertEquals('not_parsed', $result->vendor);
-        $this->assertNull($result->fingerprint);
-        $this->assertNull($result->version);
-        $this->assertNull($result->sn);
+        $this->assertEquals('unknown', $result->vendor);
+        $this->assertEquals(b"Smart-UPS X\x013000", $result->fingerprint);
+        $this->assertEquals('3.14.14 (31 May 2016) freebsd', $result->version);
+        $this->assertEquals('AQ1435235839', $result->sn);
         $this->assertNull($result->device_mac);
         $this->assertNull($result->modbus_project_info);
         $this->assertNull($result->opc_ua_security_policy);
@@ -103,9 +103,9 @@ class ApcupsdParserTest extends TestCase
 
         $result = $parser->parse($data);
 
-        $this->assertEquals('not_parsed', $result->vendor);
+        $this->assertEquals('unknown', $result->vendor);
         $this->assertNull($result->fingerprint);
-        $this->assertNull($result->version);
+        $this->assertEquals('3.14.12 (29 March 2014) redhat', $result->version);
         $this->assertNull($result->sn);
         $this->assertNull($result->device_mac);
         $this->assertNull($result->modbus_project_info);

@@ -10,7 +10,11 @@ class ApcupsdParser extends AbstractJsonDataParser
     protected function parseData(): ParsedDeviceData
     {
         return new ParsedDeviceData(
-            vendor: 'not_parsed',
+            vendor: $this->extractNested(["Apcupsd", "apcupsd"], ["vendor", "Vendor"]) ?? $this->extract(["Vendor", "vendor", "vendor_name"]) ?? "unknown",
+            fingerprint: $this->extractNested(["Apcupsd", "apcupsd"], ["model", "Model"]),
+            version: $this->extractNested(["Apcupsd", "apcupsd"], ["version", "Version"]),
+            sn: $this->extractNested(["Apcupsd", "apcupsd"], ["serialno", "Serialno"]),
+            fingerprint_raw: $this->extract(["Fingerprint", "fingerprint"]),
         );
     }
 }

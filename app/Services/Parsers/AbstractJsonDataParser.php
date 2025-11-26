@@ -7,6 +7,7 @@ use App\Contracts\DataParserInterface;
 abstract class AbstractJsonDataParser implements DataParserInterface
 {
     protected array $jsonData;
+    private array $nestedCache = [];
 
     public function parse(string $rawData): ParsedDeviceData
     {
@@ -29,8 +30,8 @@ abstract class AbstractJsonDataParser implements DataParserInterface
         foreach ($keysArray as $key) {
             $value = data_get($this->jsonData, $key);
 
-            // Return first non-null value found
-            if ($value !== null) {
+            // Return first non-empty value found
+            if (!empty($value)) {
                 return $value;
             }
         }
@@ -55,10 +56,40 @@ abstract class AbstractJsonDataParser implements DataParserInterface
         return (bool)$this->extract($key, $default);
     }
 
-    protected function extractJson(string $key, array $default = []): array
+    protected function extractJson(string|array $keys, array $default = []): array
     {
-        $value = $this->extract($key);
+        $value = $this->extract($keys);
 
         return json_validate($value) ? json_decode($value, true) : $default;
+    }
+
+    protected function extractNested(string|array $parentKeys, string|array $childKeys, mixed $default = null): mixed
+    {
+        $cacheKey = is_array($parentKeys) ? implode('|', $parentKeys) : $parentKeys;
+
+        if (!isset($this->nestedCache[$cacheKey])) {
+            $jsonString = $this->extract($parentKeys);
+            if (empty($jsonString) || !json_validate($jsonString)) {
+                $this->nestedCache[$cacheKey] = $default;
+            } else {
+                $this->nestedCache[$cacheKey] = json_decode($jsonString, true);
+            }
+        }
+
+        $parsedData = $this->nestedCache[$cacheKey];
+        if ($parsedData === null) {
+            return $default;
+        }
+
+        $childKeysArray = is_array($childKeys) ? $childKeys : [$childKeys];
+
+        foreach ($childKeysArray as $key) {
+            $value = data_get($parsedData, $key);
+            if (!empty($value)) {
+                return $value;
+            }
+        }
+
+        return $default;
     }
 }
