@@ -126,22 +126,32 @@ class ValidateParserCommand extends Command
             mkdir($fixtureDir, 0755, true);
         }
 
+        // Determine file extension based on vendor
+        // Shodan uses plain text, Bitsight and Censys use JSON
+        $extension = $vendor === 'shodan' ? 'txt' : 'json';
+
         // Find next available number
-        $existingFixtures = glob("{$fixtureDir}/{$vendor}_{$module}_*.json");
+        $existingFixtures = glob("{$fixtureDir}/{$vendor}_{$module}_*.{$extension}");
         $maxNumber = 0;
 
         foreach ($existingFixtures as $fixture) {
-            if (preg_match("/{$vendor}_{$module}_(\d+)\.json$/", $fixture, $matches)) {
+            if (preg_match("/{$vendor}_{$module}_(\d+)\.{$extension}$/", $fixture, $matches)) {
                 $maxNumber = max($maxNumber, (int)$matches[1]);
             }
         }
 
         $nextNumber = $maxNumber + 1;
-        $fixturePath = "{$fixtureDir}/{$vendor}_{$module}_{$nextNumber}.json";
+        $fixturePath = "{$fixtureDir}/{$vendor}_{$module}_{$nextNumber}.{$extension}";
 
-        // Save raw_data with pretty print
-        $json = json_encode(json_decode($record->raw_data), JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
-        file_put_contents($fixturePath, $json);
+        // Save raw_data based on vendor format
+        if ($vendor === 'shodan') {
+            // Shodan: Save as plain text
+            file_put_contents($fixturePath, $record->raw_data);
+        } else {
+            // Bitsight/Censys: Save as pretty-printed JSON
+            $json = json_encode(json_decode($record->raw_data), JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
+            file_put_contents($fixturePath, $json);
+        }
 
         return $fixturePath;
     }
