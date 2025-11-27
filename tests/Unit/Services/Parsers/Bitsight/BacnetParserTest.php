@@ -20,9 +20,9 @@ class BacnetParserTest extends ParserTestCase
         $this->assertArrayHasKey(0, $result);
         $device = $result[0];
 
-        $this->assertEquals('not_parsed', $device->vendor);
-        $this->assertNull($device->fingerprint);
-        $this->assertNull($device->version);
+        $this->assertEquals('Tridium', $device->vendor);
+        $this->assertEquals('Niagara4 Station', $device->fingerprint);
+        $this->assertEquals('4.13.3.48', $device->version);
         $this->assertNull($device->sn);
         $this->assertNull($device->device_mac);
         $this->assertNull($device->modbus_project_info);
@@ -46,9 +46,9 @@ class BacnetParserTest extends ParserTestCase
         $this->assertArrayHasKey(0, $result);
         $device = $result[0];
 
-        $this->assertEquals('not_parsed', $device->vendor);
-        $this->assertNull($device->fingerprint);
-        $this->assertNull($device->version);
+        $this->assertEquals('Siemens Building Technologies', $device->vendor);
+        $this->assertEquals('Siemens BACnet-Server', $device->fingerprint);
+        $this->assertEquals('1.2.0', $device->version);
         $this->assertNull($device->sn);
         $this->assertNull($device->device_mac);
         $this->assertNull($device->modbus_project_info);
@@ -72,9 +72,9 @@ class BacnetParserTest extends ParserTestCase
         $this->assertArrayHasKey(0, $result);
         $device = $result[0];
 
-        $this->assertEquals('not_parsed', $device->vendor);
-        $this->assertNull($device->fingerprint);
-        $this->assertNull($device->version);
+        $this->assertEquals('Siemens Industry, Inc.', $device->vendor);
+        $this->assertEquals('PXG3.L', $device->fingerprint);
+        $this->assertEquals('FW=01.15.15.144;SVS-200:SBC=10.15;', $device->version);
         $this->assertNull($device->sn);
         $this->assertNull($device->device_mac);
         $this->assertNull($device->modbus_project_info);
@@ -98,9 +98,9 @@ class BacnetParserTest extends ParserTestCase
         $this->assertArrayHasKey(0, $result);
         $device = $result[0];
 
-        $this->assertEquals('not_parsed', $device->vendor);
-        $this->assertNull($device->fingerprint);
-        $this->assertNull($device->version);
+        $this->assertEquals('Siemens Building Technologies', $device->vendor);
+        $this->assertEquals('POS3.67', $device->fingerprint);
+        $this->assertEquals('FW=03.39.03.38:BL=00.05.02.0003;SVS-300.4:SBC=13.24;', $device->version);
         $this->assertNull($device->sn);
         $this->assertNull($device->device_mac);
         $this->assertNull($device->modbus_project_info);
@@ -124,7 +124,7 @@ class BacnetParserTest extends ParserTestCase
         $this->assertArrayHasKey(0, $result);
         $device = $result[0];
 
-        $this->assertEquals('not_parsed', $device->vendor);
+        $this->assertEquals('Error', $device->vendor);
         $this->assertNull($device->fingerprint);
         $this->assertNull($device->version);
         $this->assertNull($device->sn);

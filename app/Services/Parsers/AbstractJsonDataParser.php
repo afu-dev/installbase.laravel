@@ -46,9 +46,9 @@ abstract class AbstractJsonDataParser implements DataParserInterface
         return (int)$this->extract($key, $default);
     }
 
-    protected function extractArray(string $key, array $default = []): array
+    protected function extractArray(string|array $keys, array $default = []): array
     {
-        $value = $this->extract($key);
+        $value = $this->extract($keys);
 
         return is_array($value) ? $value : $default;
     }
@@ -62,7 +62,7 @@ abstract class AbstractJsonDataParser implements DataParserInterface
     {
         $value = $this->extract($keys);
 
-        return json_validate($value) ? json_decode($value, true) : $default;
+        return $value !== null && json_validate($value) ? json_decode($value, true) : $default;
     }
 
     protected function extractNested(string|array $parentKeys, string|array $childKeys, mixed $default = null): mixed

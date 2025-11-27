@@ -138,4 +138,29 @@ class ApcupsdParserTest extends ParserTestCase
         $this->assertNull($device->fingerprint_raw);
     }
 
+    public function test_it_parses_bitsight_apcupsd_data_6(): void
+    {
+        $parser = new ApcupsdParser();
+
+        $data = file_get_contents("tests/fixtures/parsers/apcupsd/bitsight_apcupsd_6.json");
+
+        $result = $parser->parse($data);
+        $this->assertAllDevices($result);
+        $this->assertCount(1, $result);
+        $this->assertArrayHasKey(0, $result);
+        $device = $result[0];
+
+        $this->assertEquals('schneider_electric', $device->vendor);
+        $this->assertEquals('Back-UPS BK650M2-CH', $device->fingerprint);
+        $this->assertEquals('3.14.14 (31 May 2016) slackware', $device->version);
+        $this->assertEquals('000000000000', $device->sn);
+        $this->assertNull($device->device_mac);
+        $this->assertNull($device->modbus_project_info);
+        $this->assertNull($device->opc_ua_security_policy);
+        $this->assertNull($device->is_guest_account_active);
+        $this->assertNull($device->registration_info);
+        $this->assertNull($device->secure_power_app);
+        $this->assertNull($device->nmc_card_num);
+        $this->assertEquals('Back-UPS BK650M2-CH', $device->fingerprint_raw);
+    }
 }

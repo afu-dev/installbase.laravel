@@ -43,7 +43,9 @@ raw data collected
 
 ## vendor
 in bitsight: name
+
 in shodan: vendor name
+
 in censys: vendor
 
 if value in brands then schneider electric

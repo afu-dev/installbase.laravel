@@ -40,7 +40,7 @@ class ModbusParser extends AbstractJsonDataParser
             version: $version ?? $this->extract("revision"),
             sn: $this->extract("serial_num"),
             device_mac: $this->extract("mac_address"),
-            fingerprint_raw: $this->extractArray("fingerprint"),
+            fingerprint_raw: $this->extract(["Fingerprint", "fingerprint"]),
         )];
     }
 

@@ -9,10 +9,30 @@ class CodesysParser extends AbstractJsonDataParser
 {
     protected function parseData(): array
     {
-        return [
-            new ParsedDeviceData(
-                vendor: 'not_parsed',
-            ),
-        ];
+        $devices = [];
+
+        $codesysData = $this->extractJson(["Codesys", "codesys"]);
+        if (!empty($codesysData["devices"])) {
+            foreach ($codesysData["devices"] as $index => $codesysDatum) {
+                $deviceId = trim(explode("@", $codesysDatum["node_name"])[1] ?? $index);
+                $devices[$deviceId] = new ParsedDeviceData(
+                    vendor: $codesysDatum["vendor_name"] ?? "Unknown",
+                    fingerprint: $codesysDatum["device_name"] ?? null,
+                    version: $codesysDatum["firmware_version"] ?? null,
+                    sn: $codesysDatum["serial_nr"] ?? null,
+                    fingerprint_raw: $this->extract(["Fingerprint", "fingerprint"]),
+                );
+            }
+        } else {
+            return [
+                new ParsedDeviceData(
+                    vendor: "Unknown",
+                    fingerprint: $codesysData["product"] ?? null,
+                    version: $codesysData["os_details"] ?? null,
+                ),
+            ];
+        }
+
+        return $devices;
     }
 }

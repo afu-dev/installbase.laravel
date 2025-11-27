@@ -31,8 +31,7 @@ class IonParserTest extends ParserTestCase
         $this->assertNull($device->registration_info);
         $this->assertNull($device->secure_power_app);
         $this->assertNull($device->nmc_card_num);
-        $this->assertIsArray($device->fingerprint_raw);
-        $this->assertEmpty($device->fingerprint_raw);
+        $this->assertEquals('[{"fingerprint":"8650","annotation":"cpe:2.3:h:schneider-electric:powerlogic_ion8650:-:*:*:*:*:*:*:*"}]', $device->fingerprint_raw);
     }
 
     public function test_it_parses_bitsight_ion_data_2()
@@ -58,9 +57,9 @@ class IonParserTest extends ParserTestCase
         $this->assertNull($device->registration_info);
         $this->assertNull($device->secure_power_app);
         $this->assertNull($device->nmc_card_num);
-        $this->assertIsArray($device->fingerprint_raw);
-        $this->assertEmpty($device->fingerprint_raw);
+        $this->assertNull($device->fingerprint_raw);
     }
+
     public function test_it_parses_bitsight_ion_data_3()
     {
         $parser = new IonParser();
@@ -84,7 +83,6 @@ class IonParserTest extends ParserTestCase
         $this->assertNull($device->registration_info);
         $this->assertNull($device->secure_power_app);
         $this->assertNull($device->nmc_card_num);
-        $this->assertIsArray($device->fingerprint_raw);
-        $this->assertEmpty($device->fingerprint_raw);
+        $this->assertEquals('[{"fingerprint":"7650","annotation":"cpe:2.3:h:schneider-electric:powerlogic_ion7650:-:*:*:*:*:*:*:*"}]', $device->fingerprint_raw);
     }
 }
