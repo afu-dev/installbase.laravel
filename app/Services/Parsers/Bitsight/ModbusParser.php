@@ -7,7 +7,7 @@ use App\Services\Parsers\ParsedDeviceData;
 
 class ModbusParser extends AbstractJsonDataParser
 {
-    protected function parseData(): ParsedDeviceData
+    protected function parseData(): array
     {
         // vendor: in bitsight & shodan: extract from device identification
         //if cpu module value != NULL then schneider electric
@@ -33,14 +33,15 @@ class ModbusParser extends AbstractJsonDataParser
         // Default to Schneider Electric for modbus if vendor not found
         $extractedVendor = $vendor ?? $this->extract(["Vendor", "vendor", "vendor_name"]);
 
-        return new ParsedDeviceData(
+        // @TODO: RETURN ONE PARSED DEVICE PER UNIT ID
+        return [new ParsedDeviceData(
             vendor: $extractedVendor ?: "Schneider Electric",
             fingerprint: $this->extract("device_type"),
             version: $version ?? $this->extract("revision"),
             sn: $this->extract("serial_num"),
             device_mac: $this->extract("mac_address"),
             fingerprint_raw: $this->extractArray("fingerprint"),
-        );
+        )];
     }
 
     private function parseDevice(array $device): array

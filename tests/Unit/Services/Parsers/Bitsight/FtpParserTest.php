@@ -4,8 +4,9 @@ namespace Tests\Unit\Services\Parsers\Bitsight;
 
 use App\Services\Parsers\Bitsight\FtpParser;
 use PHPUnit\Framework\TestCase;
+use Tests\Unit\Services\Parsers\ParserTestCase;
 
-class FtpParserTest extends TestCase
+class FtpParserTest extends ParserTestCase
 {
     public function test_it_parses_bitsight_ftp_data_1(): void
     {
@@ -14,19 +15,23 @@ class FtpParserTest extends TestCase
         $data = file_get_contents("tests/fixtures/parsers/ftp/bitsight_ftp_1.json");
 
         $result = $parser->parse($data);
+        $this->assertAllDevices($result);
+        $this->assertCount(1, $result);
+        $this->assertArrayHasKey(0, $result);
+        $device = $result[0];
 
-        $this->assertEquals('not_parsed', $result->vendor);
-        $this->assertNull($result->fingerprint);
-        $this->assertNull($result->version);
-        $this->assertNull($result->sn);
-        $this->assertNull($result->device_mac);
-        $this->assertNull($result->modbus_project_info);
-        $this->assertNull($result->opc_ua_security_policy);
-        $this->assertNull($result->is_guest_account_active);
-        $this->assertNull($result->registration_info);
-        $this->assertNull($result->secure_power_app);
-        $this->assertNull($result->nmc_card_num);
-        $this->assertNull($result->fingerprint_raw);
+        $this->assertEquals('not_parsed', $device->vendor);
+        $this->assertNull($device->fingerprint);
+        $this->assertNull($device->version);
+        $this->assertNull($device->sn);
+        $this->assertNull($device->device_mac);
+        $this->assertNull($device->modbus_project_info);
+        $this->assertNull($device->opc_ua_security_policy);
+        $this->assertNull($device->is_guest_account_active);
+        $this->assertNull($device->registration_info);
+        $this->assertNull($device->secure_power_app);
+        $this->assertNull($device->nmc_card_num);
+        $this->assertNull($device->fingerprint_raw);
     }
 
     public function test_it_parses_bitsight_ftp_data_2(): void
@@ -36,19 +41,23 @@ class FtpParserTest extends TestCase
         $data = file_get_contents("tests/fixtures/parsers/ftp/bitsight_ftp_2.json");
 
         $result = $parser->parse($data);
+        $this->assertAllDevices($result);
+        $this->assertCount(1, $result);
+        $this->assertArrayHasKey(0, $result);
+        $device = $result[0];
 
-        $this->assertEquals('not_parsed', $result->vendor);
-        $this->assertNull($result->fingerprint);
-        $this->assertNull($result->version);
-        $this->assertNull($result->sn);
-        $this->assertNull($result->device_mac);
-        $this->assertNull($result->modbus_project_info);
-        $this->assertNull($result->opc_ua_security_policy);
-        $this->assertNull($result->is_guest_account_active);
-        $this->assertNull($result->registration_info);
-        $this->assertNull($result->secure_power_app);
-        $this->assertNull($result->nmc_card_num);
-        $this->assertNull($result->fingerprint_raw);
+        $this->assertEquals('not_parsed', $device->vendor);
+        $this->assertNull($device->fingerprint);
+        $this->assertNull($device->version);
+        $this->assertNull($device->sn);
+        $this->assertNull($device->device_mac);
+        $this->assertNull($device->modbus_project_info);
+        $this->assertNull($device->opc_ua_security_policy);
+        $this->assertNull($device->is_guest_account_active);
+        $this->assertNull($device->registration_info);
+        $this->assertNull($device->secure_power_app);
+        $this->assertNull($device->nmc_card_num);
+        $this->assertNull($device->fingerprint_raw);
     }
 
     public function test_it_parses_bitsight_ftp_data_3(): void
@@ -58,19 +67,23 @@ class FtpParserTest extends TestCase
         $data = file_get_contents("tests/fixtures/parsers/ftp/bitsight_ftp_3.json");
 
         $result = $parser->parse($data);
+        $this->assertAllDevices($result);
+        $this->assertCount(1, $result);
+        $this->assertArrayHasKey(0, $result);
+        $device = $result[0];
 
-        $this->assertEquals('not_parsed', $result->vendor);
-        $this->assertNull($result->fingerprint);
-        $this->assertNull($result->version);
-        $this->assertNull($result->sn);
-        $this->assertNull($result->device_mac);
-        $this->assertNull($result->modbus_project_info);
-        $this->assertNull($result->opc_ua_security_policy);
-        $this->assertNull($result->is_guest_account_active);
-        $this->assertNull($result->registration_info);
-        $this->assertNull($result->secure_power_app);
-        $this->assertNull($result->nmc_card_num);
-        $this->assertNull($result->fingerprint_raw);
+        $this->assertEquals('not_parsed', $device->vendor);
+        $this->assertNull($device->fingerprint);
+        $this->assertNull($device->version);
+        $this->assertNull($device->sn);
+        $this->assertNull($device->device_mac);
+        $this->assertNull($device->modbus_project_info);
+        $this->assertNull($device->opc_ua_security_policy);
+        $this->assertNull($device->is_guest_account_active);
+        $this->assertNull($device->registration_info);
+        $this->assertNull($device->secure_power_app);
+        $this->assertNull($device->nmc_card_num);
+        $this->assertNull($device->fingerprint_raw);
     }
 
     public function test_it_parses_bitsight_ftp_data_4(): void
@@ -80,19 +93,23 @@ class FtpParserTest extends TestCase
         $data = file_get_contents("tests/fixtures/parsers/ftp/bitsight_ftp_4.json");
 
         $result = $parser->parse($data);
+        $this->assertAllDevices($result);
+        $this->assertCount(1, $result);
+        $this->assertArrayHasKey(0, $result);
+        $device = $result[0];
 
-        $this->assertEquals('not_parsed', $result->vendor);
-        $this->assertNull($result->fingerprint);
-        $this->assertNull($result->version);
-        $this->assertNull($result->sn);
-        $this->assertNull($result->device_mac);
-        $this->assertNull($result->modbus_project_info);
-        $this->assertNull($result->opc_ua_security_policy);
-        $this->assertNull($result->is_guest_account_active);
-        $this->assertNull($result->registration_info);
-        $this->assertNull($result->secure_power_app);
-        $this->assertNull($result->nmc_card_num);
-        $this->assertNull($result->fingerprint_raw);
+        $this->assertEquals('not_parsed', $device->vendor);
+        $this->assertNull($device->fingerprint);
+        $this->assertNull($device->version);
+        $this->assertNull($device->sn);
+        $this->assertNull($device->device_mac);
+        $this->assertNull($device->modbus_project_info);
+        $this->assertNull($device->opc_ua_security_policy);
+        $this->assertNull($device->is_guest_account_active);
+        $this->assertNull($device->registration_info);
+        $this->assertNull($device->secure_power_app);
+        $this->assertNull($device->nmc_card_num);
+        $this->assertNull($device->fingerprint_raw);
     }
 
     public function test_it_parses_bitsight_ftp_data_5(): void
@@ -102,19 +119,23 @@ class FtpParserTest extends TestCase
         $data = file_get_contents("tests/fixtures/parsers/ftp/bitsight_ftp_5.json");
 
         $result = $parser->parse($data);
+        $this->assertAllDevices($result);
+        $this->assertCount(1, $result);
+        $this->assertArrayHasKey(0, $result);
+        $device = $result[0];
 
-        $this->assertEquals('not_parsed', $result->vendor);
-        $this->assertNull($result->fingerprint);
-        $this->assertNull($result->version);
-        $this->assertNull($result->sn);
-        $this->assertNull($result->device_mac);
-        $this->assertNull($result->modbus_project_info);
-        $this->assertNull($result->opc_ua_security_policy);
-        $this->assertNull($result->is_guest_account_active);
-        $this->assertNull($result->registration_info);
-        $this->assertNull($result->secure_power_app);
-        $this->assertNull($result->nmc_card_num);
-        $this->assertNull($result->fingerprint_raw);
+        $this->assertEquals('not_parsed', $device->vendor);
+        $this->assertNull($device->fingerprint);
+        $this->assertNull($device->version);
+        $this->assertNull($device->sn);
+        $this->assertNull($device->device_mac);
+        $this->assertNull($device->modbus_project_info);
+        $this->assertNull($device->opc_ua_security_policy);
+        $this->assertNull($device->is_guest_account_active);
+        $this->assertNull($device->registration_info);
+        $this->assertNull($device->secure_power_app);
+        $this->assertNull($device->nmc_card_num);
+        $this->assertNull($device->fingerprint_raw);
     }
 
 }

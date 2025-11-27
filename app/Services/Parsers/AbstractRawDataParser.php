@@ -8,14 +8,16 @@ abstract class AbstractRawDataParser implements DataParserInterface
 {
     protected string $rawData;
 
-    public function parse(string $rawData): ParsedDeviceData
+    /** @return ParsedDeviceData[] */
+    public function parse(string $rawData): array
     {
         $this->rawData = $rawData;
 
         return $this->parseData();
     }
 
-    abstract protected function parseData(): ParsedDeviceData;
+    /** @return ParsedDeviceData[] */
+    abstract protected function parseData(): array;
 
     protected function extract(string $pattern, mixed $default = null): mixed
     {

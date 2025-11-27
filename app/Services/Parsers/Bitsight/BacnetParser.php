@@ -7,10 +7,12 @@ use App\Services\Parsers\ParsedDeviceData;
 
 class BacnetParser extends AbstractJsonDataParser
 {
-    protected function parseData(): ParsedDeviceData
+    protected function parseData(): array
     {
-        return new ParsedDeviceData(
-            vendor: 'not_parsed',
-        );
+        return [
+            new ParsedDeviceData(
+                vendor: 'not_parsed',
+            ),
+        ];
     }
 }
