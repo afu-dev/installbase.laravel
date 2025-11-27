@@ -5,17 +5,19 @@ namespace App\Console\Commands\Temporary;
 use App\Models\BitsightExposedAsset;
 use Illuminate\Console\Command;
 
-class AnalyzeDnp3Data extends Command
+class AnalyzeProtocolData extends Command
 {
-    protected $signature = 'temporary:analyze-dnp3';
+    protected $signature = 'temporary:analyze-protocol {protocol}';
 
-    protected $description = 'Analyze dnp3 module data quality in bitsight_exposed_assets';
+    protected $description = 'Analyze protocol module data quality in bitsight_exposed_assets';
+
+    private string $protocol;
 
     private int $totalRecords = 0;
 
     private int $validRawDataCount = 0;
 
-    private int $validDnp3Count = 0;
+    private int $validProtocolCount = 0;
 
     private array $keyFrequency = [];
 
@@ -23,19 +25,21 @@ class AnalyzeDnp3Data extends Command
     {
         $startTime = microtime(true);
 
-        $this->info('Starting dnp3 data analysis...');
+        $this->protocol = $this->argument('protocol');
+
+        $this->info("Starting {$this->protocol} data analysis...");
         $this->newLine();
 
         // Get total count for progress bar
-        $this->totalRecords = BitsightExposedAsset::where('module', 'dnp3')->count();
+        $this->totalRecords = BitsightExposedAsset::where('module', $this->protocol)->count();
 
         if ($this->totalRecords === 0) {
-            $this->warn('No records found with module = "dnp3"');
+            $this->warn("No records found with module = '{$this->protocol}'");
 
             return Command::SUCCESS;
         }
 
-        $this->info("Found {$this->totalRecords} records with module = 'dnp3'");
+        $this->info("Found {$this->totalRecords} records with module = '{$this->protocol}'");
         $this->newLine();
 
         // Create progress bar
@@ -43,7 +47,7 @@ class AnalyzeDnp3Data extends Command
         $progressBar->start();
 
         // Process records in chunks
-        BitsightExposedAsset::where('module', 'dnp3')
+        BitsightExposedAsset::where('module', $this->protocol)
             ->select('id', 'raw_data')
             ->chunk(1000, function ($assets) use ($progressBar) {
                 foreach ($assets as $asset) {
@@ -76,33 +80,28 @@ class AnalyzeDnp3Data extends Command
 
         $this->validRawDataCount++;
 
-        // Try to find the dnp3 key (case-sensitive variants)
-        $dnp3String = null;
-        if (isset($decodedData['Dnp3'])) {
-            $dnp3String = $decodedData['Dnp3'];
-        } elseif (isset($decodedData['dnp3'])) {
-            $dnp3String = $decodedData['dnp3'];
-        }
+        // Try to find the protocol key (case-sensitive variants)
+        $protocolData = $this->findProtocolKey($decodedData, $this->protocol);
 
-        if ($dnp3String === null) {
-            // No dnp3 key found
+        if ($protocolData === null) {
+            // No protocol key found
             return;
         }
 
-        // Second decode: parse nested dnp3 JSON string
-        $dnp3Data = json_decode($dnp3String, true);
+        // Second decode: parse nested protocol JSON string
+        $nestedData = json_decode($protocolData['value'], true);
 
         if (json_last_error() !== JSON_ERROR_NONE) {
-            // Invalid dnp3 JSON
+            // Invalid protocol JSON
             return;
         }
 
-        $this->validDnp3Count++;
+        $this->validProtocolCount++;
 
         // Count key frequencies
-        if (is_array($dnp3Data)) {
-            foreach (array_keys($dnp3Data) as $key) {
-                if (!isset($this->keyFrequency[$key])) {
+        if (is_array($nestedData)) {
+            foreach (array_keys($nestedData) as $key) {
+                if (! isset($this->keyFrequency[$key])) {
                     $this->keyFrequency[$key] = 0;
                 }
                 $this->keyFrequency[$key]++;
@@ -110,9 +109,32 @@ class AnalyzeDnp3Data extends Command
         }
     }
 
+    private function findProtocolKey(array $data, string $protocol): ?array
+    {
+        $variations = [
+            ucfirst(strtolower($protocol)), // Dnp3, Apcupsd
+            strtolower($protocol),          // dnp3, apcupsd
+            strtoupper($protocol),          // DNP3, APCUPSD
+            $protocol,                      // as-is
+        ];
+
+        foreach ($variations as $variation) {
+            if (isset($data[$variation])) {
+                return [
+                    'key' => $variation,
+                    'value' => $data[$variation],
+                ];
+            }
+        }
+
+        return null;
+    }
+
     private function displayResults(float $executionTime): void
     {
-        $this->info('Dnp3 Data Analysis Results');
+        $protocolCapitalized = ucfirst(strtolower($this->protocol));
+
+        $this->info("{$protocolCapitalized} Data Analysis Results");
         $this->info(str_repeat('=', 50));
         $this->newLine();
 
@@ -121,18 +143,18 @@ class AnalyzeDnp3Data extends Command
             ? round(($this->validRawDataCount / $this->totalRecords) * 100, 2)
             : 0;
 
-        $validDnp3Percentage = $this->totalRecords > 0
-            ? round(($this->validDnp3Count / $this->totalRecords) * 100, 2)
+        $validProtocolPercentage = $this->totalRecords > 0
+            ? round(($this->validProtocolCount / $this->totalRecords) * 100, 2)
             : 0;
 
-        $this->info("Total Records (module='dnp3'): {$this->totalRecords}");
+        $this->info("Total Records (module='{$this->protocol}'): {$this->totalRecords}");
         $this->info("Valid raw_data JSON: {$this->validRawDataCount} ({$validRawDataPercentage}%)");
-        $this->info("Valid dnp3 nested JSON: {$this->validDnp3Count} ({$validDnp3Percentage}%)");
+        $this->info("Valid {$this->protocol} nested JSON: {$this->validProtocolCount} ({$validProtocolPercentage}%)");
         $this->newLine();
 
         // Key frequency table
-        if (!empty($this->keyFrequency)) {
-            $this->info('Dnp3 Key Frequency:');
+        if (! empty($this->keyFrequency)) {
+            $this->info("{$protocolCapitalized} Key Frequency:");
 
             // Sort by count descending
             arsort($this->keyFrequency);
@@ -140,8 +162,8 @@ class AnalyzeDnp3Data extends Command
             // Prepare table data
             $tableData = [];
             foreach ($this->keyFrequency as $key => $count) {
-                $percentage = $this->validDnp3Count > 0
-                    ? round(($count / $this->validDnp3Count) * 100, 2)
+                $percentage = $this->validProtocolCount > 0
+                    ? round(($count / $this->validProtocolCount) * 100, 2)
                     : 0;
 
                 $tableData[] = [
@@ -156,7 +178,7 @@ class AnalyzeDnp3Data extends Command
                 $tableData
             );
         } else {
-            $this->warn('No keys found in dnp3 data');
+            $this->warn("No keys found in {$this->protocol} data");
         }
 
         $this->newLine();

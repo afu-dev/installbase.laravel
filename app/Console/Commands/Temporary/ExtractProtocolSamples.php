@@ -6,27 +6,15 @@ use App\Models\BitsightExposedAsset;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
 
-class ExtractDnp3Samples extends Command
+class ExtractProtocolSamples extends Command
 {
-    protected $signature = 'temporary:extract-dnp3-samples';
+    protected $signature = 'temporary:extract-samples {protocol} {--keys=* : Comma-separated list of keys to extract}';
 
-    protected $description = 'Extract raw_data samples for dnp3 protocol covering all unique keys';
+    protected $description = 'Extract raw_data samples for a protocol covering specified keys';
 
-    private array $targetKeys = [
-        'source_address',
-        'destination_address',
-        'control_code',
-        'status',
-        'device_manufacturer',
-        'device_model',
-        'dnp3_conformance',
-        'firmware_version',
-        'hardware_version',
-        'device_id_code',
-        'device_location',
-        'device_name',
-        'serial_number',
-    ];
+    private string $protocol;
+
+    private array $targetKeys = [];
 
     private array $uncoveredKeys = [];
 
@@ -42,12 +30,26 @@ class ExtractDnp3Samples extends Command
     {
         $startTime = microtime(true);
 
-        $this->info('Extracting DNP3 raw_data samples...');
+        $this->protocol = $this->argument('protocol');
+
+        // Parse keys option
+        $this->targetKeys = $this->parseKeysOption();
+
+        if (empty($this->targetKeys)) {
+            $this->error('The --keys option is required and cannot be empty.');
+            $this->newLine();
+            $this->info('Example usage:');
+            $this->info("  php artisan temporary:extract-samples {$this->protocol} --keys=source_address,destination_address,status");
+
+            return Command::FAILURE;
+        }
+
+        $this->info("Extracting {$this->protocol} raw_data samples...");
         $this->newLine();
 
         // Initialize tracking
         $this->uncoveredKeys = $this->targetKeys;
-        $this->outputDir = base_path('tests/fixtures/parsers/dnp3');
+        $this->outputDir = base_path("tests/fixtures/parsers/{$this->protocol}");
 
         // Create output directory if it doesn't exist
         if (! File::exists($this->outputDir)) {
@@ -57,27 +59,28 @@ class ExtractDnp3Samples extends Command
         }
 
         // Get total count
-        $totalRecords = BitsightExposedAsset::where('module', 'dnp3')->count();
+        $totalRecords = BitsightExposedAsset::where('module', $this->protocol)->count();
 
         if ($totalRecords === 0) {
-            $this->warn('No records found with module = "dnp3"');
+            $this->warn("No records found with module = '{$this->protocol}'");
 
             return Command::SUCCESS;
         }
 
-        $this->info("Found {$totalRecords} records with module = 'dnp3'");
+        $this->info("Found {$totalRecords} records with module = '{$this->protocol}'");
+        $this->info('Target keys: '.implode(', ', $this->targetKeys));
         $this->newLine();
 
         // Process records
         $shouldStop = false;
-        BitsightExposedAsset::where('module', 'dnp3')
+        BitsightExposedAsset::where('module', $this->protocol)
             ->select('id', 'raw_data')
             ->chunk(1000, function ($assets) use (&$shouldStop) {
                 foreach ($assets as $asset) {
                     $this->processRecord($asset->raw_data);
 
                     // Check if we're done
-                    if (empty($this->uncoveredKeys) && count($this->caseVariationsFound) === 2) {
+                    if (empty($this->uncoveredKeys) && count($this->caseVariationsFound) >= 2) {
                         $shouldStop = true;
 
                         return false; // Break chunk processing
@@ -94,6 +97,24 @@ class ExtractDnp3Samples extends Command
         return Command::SUCCESS;
     }
 
+    private function parseKeysOption(): array
+    {
+        $keysOption = $this->option('keys');
+
+        if (empty($keysOption)) {
+            return [];
+        }
+
+        // Handle both array format and comma-separated string
+        if (is_array($keysOption)) {
+            $keysString = implode(',', $keysOption);
+        } else {
+            $keysString = $keysOption;
+        }
+
+        return array_map('trim', explode(',', $keysString));
+    }
+
     private function processRecord(string $rawData): void
     {
         // Decode raw_data JSON
@@ -103,37 +124,30 @@ class ExtractDnp3Samples extends Command
             return;
         }
 
-        // Try to find the dnp3 key (case-sensitive variants)
-        $dnp3String = null;
-        $caseVariation = null;
+        // Try to find the protocol key (case-sensitive variants)
+        $protocolData = $this->findProtocolKey($decodedData, $this->protocol);
 
-        if (isset($decodedData['Dnp3'])) {
-            $dnp3String = $decodedData['Dnp3'];
-            $caseVariation = 'Dnp3';
-        } elseif (isset($decodedData['dnp3'])) {
-            $dnp3String = $decodedData['dnp3'];
-            $caseVariation = 'dnp3';
-        }
-
-        if ($dnp3String === null) {
+        if ($protocolData === null) {
             return;
         }
 
-        // Decode nested dnp3 JSON
-        $dnp3Data = json_decode($dnp3String, true);
+        $caseVariation = $protocolData['key'];
+
+        // Decode nested protocol JSON
+        $nestedData = json_decode($protocolData['value'], true);
 
         if (json_last_error() !== JSON_ERROR_NONE) {
             return;
         }
 
-        if (! is_array($dnp3Data)) {
+        if (! is_array($nestedData)) {
             return;
         }
 
         // Check which uncovered keys exist in this record
         $keysFoundInRecord = [];
         foreach ($this->uncoveredKeys as $key) {
-            if (isset($dnp3Data[$key])) {
+            if (isset($nestedData[$key])) {
                 $keysFoundInRecord[] = $key;
             }
         }
@@ -152,9 +166,30 @@ class ExtractDnp3Samples extends Command
         }
     }
 
+    private function findProtocolKey(array $data, string $protocol): ?array
+    {
+        $variations = [
+            ucfirst(strtolower($protocol)), // Dnp3, Apcupsd
+            strtolower($protocol),          // dnp3, apcupsd
+            strtoupper($protocol),          // DNP3, APCUPSD
+            $protocol,                      // as-is
+        ];
+
+        foreach ($variations as $variation) {
+            if (isset($data[$variation])) {
+                return [
+                    'key' => $variation,
+                    'value' => $data[$variation],
+                ];
+            }
+        }
+
+        return null;
+    }
+
     private function exportRawData(string $rawData, array $keysFound, string $caseVariation): void
     {
-        $filename = "bitsight_dnp3_{$this->exportIndex}.json";
+        $filename = "bitsight_{$this->protocol}_{$this->exportIndex}.json";
         $filepath = $this->outputDir.'/'.$filename;
 
         // Write raw_data to file (pretty-printed)
@@ -178,15 +213,23 @@ class ExtractDnp3Samples extends Command
 
     private function displayResults(float $executionTime): void
     {
+        $protocolCapitalized = ucfirst(strtolower($this->protocol));
+
         $this->newLine();
-        $this->info('DNP3 Sample Extraction Results');
+        $this->info("{$protocolCapitalized} Sample Extraction Results");
         $this->info(str_repeat('=', 50));
         $this->newLine();
 
         // Summary
         $totalExported = count($this->exportedFiles);
         $this->info("Total files exported: {$totalExported}");
-        $this->info('Case variations found: '.implode(', ', $this->caseVariationsFound));
+
+        if (! empty($this->caseVariationsFound)) {
+            $this->info('Case variations found: '.implode(', ', $this->caseVariationsFound));
+        } else {
+            $this->warn('No case variations found');
+        }
+
         $this->newLine();
 
         // Files table
