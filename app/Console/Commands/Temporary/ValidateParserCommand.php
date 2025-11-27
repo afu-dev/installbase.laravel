@@ -11,7 +11,7 @@ use Symfony\Component\Console\Helper\ProgressBar;
 
 class ValidateParserCommand extends Command
 {
-    protected $signature = 'temp:validate-parser {vendor} {module}';
+    protected $signature = 'temporary:validate-parser {vendor} {module}';
 
     protected $description = 'Validate parser against all database records (fail-fast mode)';
 
