@@ -20,7 +20,7 @@ class Iec104ParserTest extends ParserTestCase
         $this->assertArrayHasKey(0, $result);
         $device = $result[0];
 
-        $this->assertEquals('not_parsed', $device->vendor);
+        $this->assertEquals('unknown', $device->vendor);
         $this->assertNull($device->fingerprint);
         $this->assertNull($device->version);
         $this->assertNull($device->sn);
@@ -46,7 +46,7 @@ class Iec104ParserTest extends ParserTestCase
         $this->assertArrayHasKey(0, $result);
         $device = $result[0];
 
-        $this->assertEquals('not_parsed', $device->vendor);
+        $this->assertEquals('unknown', $device->vendor);
         $this->assertNull($device->fingerprint);
         $this->assertNull($device->version);
         $this->assertNull($device->sn);
@@ -72,7 +72,7 @@ class Iec104ParserTest extends ParserTestCase
         $this->assertArrayHasKey(0, $result);
         $device = $result[0];
 
-        $this->assertEquals('not_parsed', $device->vendor);
+        $this->assertEquals('unknown', $device->vendor);
         $this->assertNull($device->fingerprint);
         $this->assertNull($device->version);
         $this->assertNull($device->sn);
@@ -98,7 +98,7 @@ class Iec104ParserTest extends ParserTestCase
         $this->assertArrayHasKey(0, $result);
         $device = $result[0];
 
-        $this->assertEquals('not_parsed', $device->vendor);
+        $this->assertEquals('unknown', $device->vendor);
         $this->assertNull($device->fingerprint);
         $this->assertNull($device->version);
         $this->assertNull($device->sn);
@@ -124,7 +124,7 @@ class Iec104ParserTest extends ParserTestCase
         $this->assertArrayHasKey(0, $result);
         $device = $result[0];
 
-        $this->assertEquals('not_parsed', $device->vendor);
+        $this->assertEquals('unknown', $device->vendor);
         $this->assertNull($device->fingerprint);
         $this->assertNull($device->version);
         $this->assertNull($device->sn);

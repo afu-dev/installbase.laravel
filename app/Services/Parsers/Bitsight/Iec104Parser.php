@@ -28,7 +28,7 @@ class Iec104Parser extends AbstractJsonDataParser
     {
         return [
             new ParsedDeviceData(
-                vendor: 'not_parsed',
+                vendor: $this->extract(["Vendor", "vendor", "vendor_name"]) ?? "unknown",
             ),
         ];
     }
