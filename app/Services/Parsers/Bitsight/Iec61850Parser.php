@@ -30,7 +30,11 @@ class Iec61850Parser extends AbstractJsonDataParser
     {
         return [
             new ParsedDeviceData(
-                vendor: 'not_parsed',
+                vendor: $this->extractNested(["iec-61850", "Iec-61850"], "vendor")
+                    ?? $this->extract(["Vendor", "vendor", "vendor_name"])
+                    ?? "unknown",
+                fingerprint: $this->extractNested(["iec-61850", "Iec-61850"], "product"),
+                version: $this->extractNested(["iec-61850", "Iec-61850"], "version"),
             ),
         ];
     }

@@ -20,9 +20,9 @@ class Iec61850ParserTest extends ParserTestCase
         $this->assertArrayHasKey(0, $result);
         $device = $result[0];
 
-        $this->assertEquals('not_parsed', $device->vendor);
-        $this->assertNull($device->fingerprint);
-        $this->assertNull($device->version);
+        $this->assertEquals('Schneider Electric', $device->vendor);
+        $this->assertEquals('S61850 for Easergy Relays', $device->fingerprint);
+        $this->assertEquals('0.0.1', $device->version);
         $this->assertNull($device->sn);
         $this->assertNull($device->device_mac);
         $this->assertNull($device->modbus_project_info);
@@ -46,9 +46,9 @@ class Iec61850ParserTest extends ParserTestCase
         $this->assertArrayHasKey(0, $result);
         $device = $result[0];
 
-        $this->assertEquals('not_parsed', $device->vendor);
-        $this->assertNull($device->fingerprint);
-        $this->assertNull($device->version);
+        $this->assertEquals('Schneider Electric', $device->vendor);
+        $this->assertEquals('S61850 for Easergy Relays', $device->fingerprint);
+        $this->assertEquals('0.0.1', $device->version);
         $this->assertNull($device->sn);
         $this->assertNull($device->device_mac);
         $this->assertNull($device->modbus_project_info);
@@ -72,9 +72,9 @@ class Iec61850ParserTest extends ParserTestCase
         $this->assertArrayHasKey(0, $result);
         $device = $result[0];
 
-        $this->assertEquals('not_parsed', $device->vendor);
-        $this->assertNull($device->fingerprint);
-        $this->assertNull($device->version);
+        $this->assertEquals('Unipower', $device->vendor);
+        $this->assertEquals('UP2210', $device->fingerprint);
+        $this->assertEquals('1.1.2', $device->version);
         $this->assertNull($device->sn);
         $this->assertNull($device->device_mac);
         $this->assertNull($device->modbus_project_info);
@@ -98,9 +98,9 @@ class Iec61850ParserTest extends ParserTestCase
         $this->assertArrayHasKey(0, $result);
         $device = $result[0];
 
-        $this->assertEquals('not_parsed', $device->vendor);
-        $this->assertNull($device->fingerprint);
-        $this->assertNull($device->version);
+        $this->assertEquals('iGrid T&D', $device->vendor);
+        $this->assertEquals('iGComms', $device->fingerprint);
+        $this->assertEquals('2.12.0', $device->version);
         $this->assertNull($device->sn);
         $this->assertNull($device->device_mac);
         $this->assertNull($device->modbus_project_info);
@@ -124,9 +124,9 @@ class Iec61850ParserTest extends ParserTestCase
         $this->assertArrayHasKey(0, $result);
         $device = $result[0];
 
-        $this->assertEquals('not_parsed', $device->vendor);
-        $this->assertNull($device->fingerprint);
-        $this->assertNull($device->version);
+        $this->assertEquals('VAMP Ltd.', $device->vendor);
+        $this->assertEquals('S61850 for VAMP Relays', $device->fingerprint);
+        $this->assertEquals('0.0.1', $device->version);
         $this->assertNull($device->sn);
         $this->assertNull($device->device_mac);
         $this->assertNull($device->modbus_project_info);
