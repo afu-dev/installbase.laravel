@@ -20,11 +20,11 @@ class KnxParserTest extends ParserTestCase
         $this->assertArrayHasKey(0, $result);
         $device = $result[0];
 
-        $this->assertEquals('not_parsed', $device->vendor);
-        $this->assertNull($device->fingerprint);
-        $this->assertNull($device->version);
-        $this->assertNull($device->sn);
-        $this->assertNull($device->device_mac);
+        $this->assertEquals('Siemens AG', $device->vendor);
+        $this->assertEquals('IP_KNX_Interface', $device->fingerprint);
+        $this->assertEquals('1.1.4', $device->version);
+        $this->assertEquals('0001004c7f02', $device->sn);
+        $this->assertEquals('00:0E:8C:01:93:93', $device->device_mac);
         $this->assertNull($device->modbus_project_info);
         $this->assertNull($device->opc_ua_security_policy);
         $this->assertNull($device->is_guest_account_active);
@@ -46,11 +46,11 @@ class KnxParserTest extends ParserTestCase
         $this->assertArrayHasKey(0, $result);
         $device = $result[0];
 
-        $this->assertEquals('not_parsed', $device->vendor);
-        $this->assertNull($device->fingerprint);
-        $this->assertNull($device->version);
-        $this->assertNull($device->sn);
-        $this->assertNull($device->device_mac);
+        $this->assertEquals('F & S Elektronik Systeme GmbH', $device->vendor);
+        $this->assertEquals('Servidor Visu NFF', $device->fingerprint);
+        $this->assertEquals('1.1.6', $device->version);
+        $this->assertEquals('00ef510b9476', $device->sn);
+        $this->assertEquals('00:05:51:0B:94:76', $device->device_mac);
         $this->assertNull($device->modbus_project_info);
         $this->assertNull($device->opc_ua_security_policy);
         $this->assertNull($device->is_guest_account_active);
@@ -72,11 +72,11 @@ class KnxParserTest extends ParserTestCase
         $this->assertArrayHasKey(0, $result);
         $device = $result[0];
 
-        $this->assertEquals('not_parsed', $device->vendor);
-        $this->assertNull($device->fingerprint);
-        $this->assertNull($device->version);
-        $this->assertNull($device->sn);
-        $this->assertNull($device->device_mac);
+        $this->assertEquals('Loxone Electronics GmbH', $device->vendor);
+        $this->assertEquals('Rapp Fabrice', $device->fingerprint);
+        $this->assertEquals('1.1.250', $device->version);
+        $this->assertEquals('504f94112a90', $device->sn);
+        $this->assertEquals('50:4F:94:11:2A:90', $device->device_mac);
         $this->assertNull($device->modbus_project_info);
         $this->assertNull($device->opc_ua_security_policy);
         $this->assertNull($device->is_guest_account_active);
@@ -98,11 +98,11 @@ class KnxParserTest extends ParserTestCase
         $this->assertArrayHasKey(0, $result);
         $device = $result[0];
 
-        $this->assertEquals('not_parsed', $device->vendor);
-        $this->assertNull($device->fingerprint);
-        $this->assertNull($device->version);
-        $this->assertNull($device->sn);
-        $this->assertNull($device->device_mac);
+        $this->assertEquals('ABB STOTZ-KONTAKT GmbH', $device->vendor);
+        $this->assertEquals('ABB IP-Router IPR/S', $device->fingerprint);
+        $this->assertEquals('1.0.200', $device->version);
+        $this->assertEquals('0002e8c0ff50', $device->sn);
+        $this->assertEquals('00:0C:DE:C0:50:E8', $device->device_mac);
         $this->assertNull($device->modbus_project_info);
         $this->assertNull($device->opc_ua_security_policy);
         $this->assertNull($device->is_guest_account_active);
@@ -124,11 +124,11 @@ class KnxParserTest extends ParserTestCase
         $this->assertArrayHasKey(0, $result);
         $device = $result[0];
 
-        $this->assertEquals('not_parsed', $device->vendor);
-        $this->assertNull($device->fingerprint);
-        $this->assertNull($device->version);
-        $this->assertNull($device->sn);
-        $this->assertNull($device->device_mac);
+        $this->assertEquals('Loxone Electronics GmbH', $device->vendor);
+        $this->assertEquals('Govaere Bouw', $device->fingerprint);
+        $this->assertEquals('1.1.250', $device->version);
+        $this->assertEquals('504f94117d33', $device->sn);
+        $this->assertEquals('50:4F:94:11:7D:33', $device->device_mac);
         $this->assertNull($device->modbus_project_info);
         $this->assertNull($device->opc_ua_security_policy);
         $this->assertNull($device->is_guest_account_active);

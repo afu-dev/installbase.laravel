@@ -42,10 +42,10 @@ class IonParser extends AbstractJsonDataParser
         return [
             new ParsedDeviceData(
                 vendor: $this->extract(["Vendor", "vendor", "vendor_name"]),
-                fingerprint: $this->extract("device_type"),
-                version: $this->extract("revision"),
-                sn: $this->extract("serial_num"),
-                device_mac: $this->extract("mac_address"),
+                fingerprint: $this->extractNested(["Ion", "ion"], "device_type"),
+                version: $this->extractNested(["Ion", "ion"], "revision"),
+                sn: $this->extractNested(["Ion", "ion"], "serial_num"),
+                device_mac: $this->extractNested(["Ion", "ion"], "mac_address"),
                 fingerprint_raw: $this->extract(["Fingerprint", "fingerprint"]),
             ),
         ];
