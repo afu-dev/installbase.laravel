@@ -5,6 +5,33 @@ namespace App\Services\Parsers\Bitsight;
 use App\Services\Parsers\AbstractJsonDataParser;
 use App\Services\Parsers\ParsedDeviceData;
 
+/**
+ * Should only return one device per detection.
+ *
+ * ---
+ *
+ * This parser checks for Schneider Electric APC devices by detecting the APXXXX pattern
+ * (where XXXX = exactly 4 digits, e.g., AP7900, AP9630) in the ftp_data field.
+ *
+ * If the APXXXX pattern is found:
+ * - Extracts model number (e.g., AP7900)
+ * - Extracts version if available (e.g., v3.7.0)
+ * - Returns ParsedDeviceData with vendor='Schneider Electric'
+ *
+ * If the APXXXX pattern is NOT found:
+ * - Delegates to OtherParser which returns vendor='not_parsed'
+ *
+ * ---
+ *
+ * Ftp Key Frequency:
+ * +--------------+---------+------------+
+ * | Key          | Count   | Percentage |
+ * +--------------+---------+------------+
+ * | ftp_data     | 129,056 | 93.34%     |
+ * | hash_data    | 80,290  | 58.07%     |
+ * | product_name | 16,449  | 11.9%      |
+ * +--------------+---------+------------+
+ */
 class FtpParser extends AbstractJsonDataParser
 {
     protected function parseData(): array
