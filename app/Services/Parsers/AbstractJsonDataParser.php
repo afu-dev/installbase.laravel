@@ -7,11 +7,13 @@ use App\Contracts\DataParserInterface;
 abstract class AbstractJsonDataParser implements DataParserInterface
 {
     protected array $jsonData;
+    protected string $rawData;
     private array $nestedCache = [];
 
     /** @return ParsedDeviceData[] */
     public function parse(string $rawData): array
     {
+        $this->rawData = $rawData;
         $this->jsonData = json_decode($rawData, true);
 
         if (json_last_error() !== JSON_ERROR_NONE) {

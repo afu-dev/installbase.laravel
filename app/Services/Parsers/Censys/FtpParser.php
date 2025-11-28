@@ -9,10 +9,9 @@ class FtpParser extends AbstractJsonDataParser
 {
     protected function parseData(): array
     {
-        return [
-            new ParsedDeviceData(
-                vendor: 'not_parsed',
-            ),
-        ];
+        // TODO: Awaiting Censys FTP data structure clarification
+        // For now, delegate all cases to OtherParser
+        $otherParser = new OtherParser();
+        return $otherParser->parse($this->rawData);
     }
 }

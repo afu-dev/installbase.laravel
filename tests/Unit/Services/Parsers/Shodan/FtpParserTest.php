@@ -20,9 +20,9 @@ class FtpParserTest extends ParserTestCase
         $this->assertArrayHasKey(0, $result);
         $device = $result[0];
 
-        $this->assertEquals('not_parsed', $device->vendor);
-        $this->assertNull($device->fingerprint);
-        $this->assertNull($device->version);
+        $this->assertEquals('Schneider Electric', $device->vendor);
+        $this->assertEquals('AP9630', $device->fingerprint);
+        $this->assertEquals('v6.4.6', $device->version);
         $this->assertNull($device->sn);
         $this->assertNull($device->device_mac);
         $this->assertNull($device->modbus_project_info);
@@ -30,7 +30,7 @@ class FtpParserTest extends ParserTestCase
         $this->assertNull($device->is_guest_account_active);
         $this->assertNull($device->registration_info);
         $this->assertNull($device->secure_power_app);
-        $this->assertNull($device->nmc_card_num);
+        $this->assertEquals('AP9630', $device->nmc_card_num);
         $this->assertNull($device->fingerprint_raw);
     }
 
@@ -46,9 +46,9 @@ class FtpParserTest extends ParserTestCase
         $this->assertArrayHasKey(0, $result);
         $device = $result[0];
 
-        $this->assertEquals('not_parsed', $device->vendor);
-        $this->assertNull($device->fingerprint);
-        $this->assertNull($device->version);
+        $this->assertEquals('Schneider Electric', $device->vendor);
+        $this->assertEquals('AP9630', $device->fingerprint);
+        $this->assertEquals('v6.7.2', $device->version);
         $this->assertNull($device->sn);
         $this->assertNull($device->device_mac);
         $this->assertNull($device->modbus_project_info);
@@ -56,7 +56,7 @@ class FtpParserTest extends ParserTestCase
         $this->assertNull($device->is_guest_account_active);
         $this->assertNull($device->registration_info);
         $this->assertNull($device->secure_power_app);
-        $this->assertNull($device->nmc_card_num);
+        $this->assertEquals('AP9630', $device->nmc_card_num);
         $this->assertNull($device->fingerprint_raw);
     }
 
@@ -72,9 +72,9 @@ class FtpParserTest extends ParserTestCase
         $this->assertArrayHasKey(0, $result);
         $device = $result[0];
 
-        $this->assertEquals('not_parsed', $device->vendor);
-        $this->assertNull($device->fingerprint);
-        $this->assertNull($device->version);
+        $this->assertEquals('Schneider Electric', $device->vendor);
+        $this->assertEquals('AP9630', $device->fingerprint);
+        $this->assertEquals('v6.0.6', $device->version);
         $this->assertNull($device->sn);
         $this->assertNull($device->device_mac);
         $this->assertNull($device->modbus_project_info);
@@ -82,7 +82,7 @@ class FtpParserTest extends ParserTestCase
         $this->assertNull($device->is_guest_account_active);
         $this->assertNull($device->registration_info);
         $this->assertNull($device->secure_power_app);
-        $this->assertNull($device->nmc_card_num);
+        $this->assertEquals('AP9630', $device->nmc_card_num);
         $this->assertNull($device->fingerprint_raw);
     }
 
@@ -98,9 +98,9 @@ class FtpParserTest extends ParserTestCase
         $this->assertArrayHasKey(0, $result);
         $device = $result[0];
 
-        $this->assertEquals('not_parsed', $device->vendor);
-        $this->assertNull($device->fingerprint);
-        $this->assertNull($device->version);
+        $this->assertEquals('Schneider Electric', $device->vendor);
+        $this->assertEquals('AP9630', $device->fingerprint);
+        $this->assertEquals('v6.0.6', $device->version);
         $this->assertNull($device->sn);
         $this->assertNull($device->device_mac);
         $this->assertNull($device->modbus_project_info);
@@ -108,7 +108,7 @@ class FtpParserTest extends ParserTestCase
         $this->assertNull($device->is_guest_account_active);
         $this->assertNull($device->registration_info);
         $this->assertNull($device->secure_power_app);
-        $this->assertNull($device->nmc_card_num);
+        $this->assertEquals('AP9630', $device->nmc_card_num);
         $this->assertNull($device->fingerprint_raw);
     }
 
@@ -124,9 +124,9 @@ class FtpParserTest extends ParserTestCase
         $this->assertArrayHasKey(0, $result);
         $device = $result[0];
 
-        $this->assertEquals('not_parsed', $device->vendor);
-        $this->assertNull($device->fingerprint);
-        $this->assertNull($device->version);
+        $this->assertEquals('Schneider Electric', $device->vendor);
+        $this->assertEquals('AP9643', $device->fingerprint);
+        $this->assertEquals('v3.2.0', $device->version);
         $this->assertNull($device->sn);
         $this->assertNull($device->device_mac);
         $this->assertNull($device->modbus_project_info);
@@ -134,7 +134,7 @@ class FtpParserTest extends ParserTestCase
         $this->assertNull($device->is_guest_account_active);
         $this->assertNull($device->registration_info);
         $this->assertNull($device->secure_power_app);
-        $this->assertNull($device->nmc_card_num);
+        $this->assertEquals('AP9643', $device->nmc_card_num);
         $this->assertNull($device->fingerprint_raw);
     }
 
