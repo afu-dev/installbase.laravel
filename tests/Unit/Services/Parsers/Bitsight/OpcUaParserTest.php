@@ -20,13 +20,13 @@ class OpcUaParserTest extends ParserTestCase
         $this->assertArrayHasKey(0, $result);
         $device = $result[0];
 
-        $this->assertEquals('not_parsed', $device->vendor);
-        $this->assertNull($device->fingerprint);
-        $this->assertNull($device->version);
+        $this->assertEquals('Beijer Electronics AB', $device->vendor);
+        $this->assertEquals('iX Developer 2.20', $device->fingerprint);
+        $this->assertEquals('2.20 SP1', $device->version);
         $this->assertNull($device->sn);
         $this->assertNull($device->device_mac);
         $this->assertNull($device->modbus_project_info);
-        $this->assertNull($device->opc_ua_security_policy);
+        $this->assertEquals('http://opcfoundation.org/UA/SecurityPolicy#None', $device->opc_ua_security_policy);
         $this->assertNull($device->is_guest_account_active);
         $this->assertNull($device->registration_info);
         $this->assertNull($device->secure_power_app);
@@ -46,13 +46,13 @@ class OpcUaParserTest extends ParserTestCase
         $this->assertArrayHasKey(0, $result);
         $device = $result[0];
 
-        $this->assertEquals('not_parsed', $device->vendor);
+        $this->assertEquals('unknown', $device->vendor);
         $this->assertNull($device->fingerprint);
         $this->assertNull($device->version);
         $this->assertNull($device->sn);
         $this->assertNull($device->device_mac);
         $this->assertNull($device->modbus_project_info);
-        $this->assertNull($device->opc_ua_security_policy);
+        $this->assertEquals('http://opcfoundation.org/UA/SecurityPolicy#None', $device->opc_ua_security_policy);
         $this->assertNull($device->is_guest_account_active);
         $this->assertNull($device->registration_info);
         $this->assertNull($device->secure_power_app);
@@ -72,13 +72,13 @@ class OpcUaParserTest extends ParserTestCase
         $this->assertArrayHasKey(0, $result);
         $device = $result[0];
 
-        $this->assertEquals('not_parsed', $device->vendor);
-        $this->assertNull($device->fingerprint);
-        $this->assertNull($device->version);
+        $this->assertEquals('Schneider Electric', $device->vendor);
+        $this->assertEquals('M241-251 UA Server', $device->fingerprint);
+        $this->assertEquals('V1.7.0 FOR INTERNAL USE ONLY - DO NOT DISTRIBUTE', $device->version);
         $this->assertNull($device->sn);
         $this->assertNull($device->device_mac);
         $this->assertNull($device->modbus_project_info);
-        $this->assertNull($device->opc_ua_security_policy);
+        $this->assertEquals('http://opcfoundation.org/UA/SecurityPolicy#None', $device->opc_ua_security_policy);
         $this->assertNull($device->is_guest_account_active);
         $this->assertNull($device->registration_info);
         $this->assertNull($device->secure_power_app);
@@ -98,13 +98,13 @@ class OpcUaParserTest extends ParserTestCase
         $this->assertArrayHasKey(0, $result);
         $device = $result[0];
 
-        $this->assertEquals('not_parsed', $device->vendor);
-        $this->assertNull($device->fingerprint);
-        $this->assertNull($device->version);
+        $this->assertEquals('WAGO', $device->vendor);
+        $this->assertEquals('WAGO 750-8207 PFC200 2ETH RS 3G', $device->fingerprint);
+        $this->assertEquals('3.5.14.30', $device->version);
         $this->assertNull($device->sn);
         $this->assertNull($device->device_mac);
         $this->assertNull($device->modbus_project_info);
-        $this->assertNull($device->opc_ua_security_policy);
+        $this->assertEquals('http://opcfoundation.org/UA/SecurityPolicy#None', $device->opc_ua_security_policy);
         $this->assertNull($device->is_guest_account_active);
         $this->assertNull($device->registration_info);
         $this->assertNull($device->secure_power_app);
@@ -124,13 +124,13 @@ class OpcUaParserTest extends ParserTestCase
         $this->assertArrayHasKey(0, $result);
         $device = $result[0];
 
-        $this->assertEquals('not_parsed', $device->vendor);
+        $this->assertEquals('unknown', $device->vendor);
         $this->assertNull($device->fingerprint);
         $this->assertNull($device->version);
         $this->assertNull($device->sn);
         $this->assertNull($device->device_mac);
         $this->assertNull($device->modbus_project_info);
-        $this->assertNull($device->opc_ua_security_policy);
+        $this->assertEquals('http://opcfoundation.org/UA/SecurityPolicy#Basic128Rsa15', $device->opc_ua_security_policy);
         $this->assertNull($device->is_guest_account_active);
         $this->assertNull($device->registration_info);
         $this->assertNull($device->secure_power_app);
