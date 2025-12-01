@@ -46,15 +46,15 @@ class AnalyzeProtocolData extends Command
         $progressBar = $this->output->createProgressBar($this->totalRecords);
         $progressBar->start();
 
-        // Process records in chunks
-        BitsightExposedAsset::where('module', $this->protocol)
+        // Process records using keyset pagination (fast for large datasets)
+        $assets = BitsightExposedAsset::where('module', $this->protocol)
             ->select('id', 'raw_data')
-            ->chunk(1000, function ($assets) use ($progressBar) {
-                foreach ($assets as $asset) {
-                    $this->analyzeRecord($asset->raw_data);
-                    $progressBar->advance();
-                }
-            });
+            ->lazyById(1000);
+
+        foreach ($assets as $asset) {
+            $this->analyzeRecord($asset->raw_data);
+            $progressBar->advance();
+        }
 
         $progressBar->finish();
         $this->newLine(2);
