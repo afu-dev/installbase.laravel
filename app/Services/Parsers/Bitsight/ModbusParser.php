@@ -19,68 +19,128 @@ class ModbusParser extends AbstractJsonDataParser
 {
     protected function parseData(): array
     {
-        // vendor: in bitsight & shodan: extract from device identification
-        //if cpu module value != NULL then schneider electric
-        //in censys: vendor
-        //
-        //if value in brands then schneider electric
+        $devices = [];
+        $modbusData = $this->extractJson(["Modbus", "modbus"]);
 
-        $deviceIdentifications = [];
-        $modbus = $this->extractJson("Modbus") ?: $this->extractJson("modbus");
-        if (!empty($modbus)) {
-            foreach ($modbus as $device) {
-                $deviceIdentifications[] = $this->parseDevice($device);
+        if (empty($modbusData)) {
+            // No Modbus data - return single device with root-level vendor
+            return [new ParsedDeviceData(
+                vendor: $this->extract(["Vendor", "vendor"]) ?? "Unknown",
+                fingerprint: $this->extractFingerprintFromJson(),
+                fingerprint_raw: $this->extract(["Fingerprint", "fingerprint"]),
+            )];
+        }
+
+        foreach ($modbusData as $index => $device) {
+            $uid = $device["uid"] ?? $index;
+
+            // Skip devices with errors or error messages in device_identification
+            if (isset($device["error"])
+                || !isset($device["device_identification"])
+                || stripos($device["device_identification"], "error") !== false) {
+                continue;
             }
+
+            $parsedInfo = $this->parseDeviceIdentification(
+                $device["device_identification"],
+                $device["cpu_module"] ?? null
+            );
+
+            // Vendor: parsed from device_identification → root Vendor/vendor → "Unknown"
+            $vendor = $parsedInfo["vendor"]
+                ?? $this->extract(["Vendor", "vendor"])
+                ?? "Unknown";
+
+            // Fingerprint priority: root Fingerprint JSON → explicit cpu_module field → parsed cpu
+            $fingerprint = $this->extractFingerprintFromJson()
+                ?? $device["cpu_module"]
+                ?? $parsedInfo["cpu"];
+
+            // Version: parsed from device_identification
+            $version = $parsedInfo["version"];
+
+            $devices[$uid] = new ParsedDeviceData(
+                vendor: $vendor,
+                fingerprint: $fingerprint,
+                version: $version,
+                modbus_project_info: $device["project_information"] ?? null,
+                fingerprint_raw: $this->extract(["Fingerprint", "fingerprint"]),
+            );
         }
 
-        if (isset($deviceIdentifications[0])) {
-            $vendor = $deviceIdentifications[0]["vendor"] ?? null;
-            $version = $deviceIdentifications[0]["version"] ?? null;
-        }
-
-        // @todo: use $deviceIdentifications array to insert multiple detected exposure?
-
-        // Default to Schneider Electric for modbus if vendor not found
-        $extractedVendor = $vendor ?? $this->extract(["Vendor", "vendor", "vendor_name"]);
-
-        // @TODO: RETURN ONE PARSED DEVICE PER UNIT ID
-        return [new ParsedDeviceData(
-            vendor: $extractedVendor ?: "Schneider Electric",
-            fingerprint: $this->extract("device_type"),
-            version: $version ?? $this->extract("revision"),
-            sn: $this->extract("serial_num"),
-            device_mac: $this->extract("mac_address"),
-            fingerprint_raw: $this->extract(["Fingerprint", "fingerprint"]),
-        )];
+        return $devices;
     }
 
-    private function parseDevice(array $device): array
+    /**
+     * Parse device_identification string to extract vendor, cpu_module, and version.
+     *
+     * Expected format: "Vendor CPU_Module vVersion"
+     * Examples:
+     *   - "TELEMECANIQUE TWDLCAE40DRF 05.40"
+     *   - "Schneider Electric TM251MESE V04.00.06.38"
+     *   - "Schneider Electric BMX P34 2020 v2.4"
+     *
+     * @param string $deviceIdentification
+     * @param string|null $cpuModule Known CPU module (if available) to help parse
+     * @return array{vendor: string|null, cpu: string|null, version: string|null}
+     */
+    private function parseDeviceIdentification(string $deviceIdentification, ?string $cpuModule = null): array
     {
-        $deviceInfo = [];
+        $info = ["vendor" => null, "cpu" => null, "version" => null];
 
-        $matches = [];
-        if (isset($device["device_identification"])) {
-            preg_match('/^\s*(Schneider Electric)\s+([A-Z0-9 ]+?)\s+([vV]\d+(?:\.\d+)*)/i', $device["device_identification"], $matches);
-        }
-
-        if (!empty($matches[1])) {
-            $deviceInfo["vendor"] = $matches[1];
-        }
-        if (!empty($matches[2])) {
-            $deviceInfo["cpu"] = $matches[2];
-        }
-        if (!empty($matches[3])) {
-            $deviceInfo["version"] = $matches[3];
+        // Skip error messages
+        if (stripos($deviceIdentification, "error") !== false) {
+            return $info;
         }
 
-        if (isset($device["uid"]) && is_numeric($device["uid"])) {
-            $deviceInfo["uid"] = (int)$device["uid"];
+        // If cpu_module is known, use it to split device_identification
+        if ($cpuModule && str_contains($deviceIdentification, $cpuModule)) {
+            $parts = explode($cpuModule, $deviceIdentification, 2);
+
+            // Vendor is everything before cpu_module
+            $info["vendor"] = trim($parts[0]);
+            $info["cpu"] = $cpuModule;
+
+            // Version is after cpu_module (extract digits with optional v/V prefix)
+            if (isset($parts[1]) && preg_match('/[vV]?(\d+(?:\.\d+)*)/', $parts[1], $versionMatch)) {
+                $info["version"] = $versionMatch[1];
+            }
+
+            return $info;
         }
 
-        if (!empty($device["project_information"])) {
-            $deviceInfo["project_information"] = $device["project_information"];
+        // Fallback: regex-based parsing when cpu_module not available
+        // Pattern 1: Try "Schneider Electric" first (known two-word vendor)
+        if (preg_match('/^\s*(Schneider\s+Electric)\s+(.+?)\s+[vV]?(\d+(?:\.\d+)*)\s*$/i', $deviceIdentification, $matches)) {
+            $info["vendor"] = trim($matches[1]);
+            $info["cpu"] = trim($matches[2]);
+            $info["version"] = trim($matches[3]);
+            return $info;
         }
 
-        return $deviceInfo;
+        // Pattern 2: Single-word vendor (e.g., "TELEMECANIQUE")
+        if (preg_match('/^\s*([A-Za-z]+)\s+(.+?)\s+[vV]?([A-Z0-9]+(?:\.[A-Z0-9]+)*)\s*$/i', $deviceIdentification, $matches)) {
+            $info["vendor"] = trim($matches[1]);
+            $info["cpu"] = trim($matches[2]);
+            $info["version"] = trim($matches[3]);
+        }
+
+        return $info;
+    }
+
+    /**
+     * Extract fingerprint value from root-level Fingerprint JSON field.
+     *
+     * @return string|null
+     */
+    private function extractFingerprintFromJson(): ?string
+    {
+        $fingerprintJson = $this->extractJson(["Fingerprint", "fingerprint"]);
+
+        if (!empty($fingerprintJson) && isset($fingerprintJson[0]["fingerprint"])) {
+            return $fingerprintJson[0]["fingerprint"];
+        }
+
+        return null;
     }
 }
