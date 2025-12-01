@@ -68,6 +68,15 @@ class ModbusParser extends AbstractJsonDataParser
             );
         }
 
+        // If no valid devices were found, return single device with root-level vendor
+        if (empty($devices)) {
+            return [new ParsedDeviceData(
+                vendor: $this->extract(["Vendor", "vendor"]) ?? "Unknown",
+                fingerprint: $this->extractFingerprintFromJson(),
+                fingerprint_raw: $this->extract(["Fingerprint", "fingerprint"]),
+            )];
+        }
+
         return $devices;
     }
 

@@ -45,8 +45,15 @@ class ModbusParserTest extends ParserTestCase
         $result = $parser->parse($data);
         $this->assertAllDevices($result);
 
-        // All devices have errors, no device_identification - should return empty
-        $this->assertCount(0, $result);
+        // All devices have errors - return single fallback device
+        $this->assertCount(1, $result);
+        $this->assertArrayHasKey(0, $result);
+
+        $device = $result[0];
+        $this->assertEquals("Unknown", $device->vendor); // Empty Vendor field in fixture
+        $this->assertNull($device->fingerprint); // Empty Fingerprint field
+        $this->assertNull($device->version);
+        $this->assertNull($device->modbus_project_info);
     }
 
     public function test_it_parses_bitsight_modbus_data_3(): void
@@ -58,8 +65,15 @@ class ModbusParserTest extends ParserTestCase
         $result = $parser->parse($data);
         $this->assertAllDevices($result);
 
-        // All devices have "Illegal Function (Error)" - should be skipped
-        $this->assertCount(0, $result);
+        // All devices have "Illegal Function (Error)" - return single fallback device
+        $this->assertCount(1, $result);
+        $this->assertArrayHasKey(0, $result);
+
+        $device = $result[0];
+        $this->assertEquals("Unknown", $device->vendor); // Empty Vendor field in fixture
+        $this->assertNull($device->fingerprint); // Empty Fingerprint field
+        $this->assertNull($device->version);
+        $this->assertNull($device->modbus_project_info);
     }
 
     public function test_it_parses_bitsight_modbus_data_4(): void
@@ -94,8 +108,15 @@ class ModbusParserTest extends ParserTestCase
         $result = $parser->parse($data);
         $this->assertAllDevices($result);
 
-        // Device has error, no device_identification - should return empty
-        $this->assertCount(0, $result);
+        // Device has error - return single fallback device
+        $this->assertCount(1, $result);
+        $this->assertArrayHasKey(0, $result);
+
+        $device = $result[0];
+        $this->assertEquals("Unknown", $device->vendor); // Empty Vendor field in fixture
+        $this->assertNull($device->fingerprint); // Empty Fingerprint field
+        $this->assertNull($device->version);
+        $this->assertNull($device->modbus_project_info);
     }
 
     public function test_it_parses_bitsight_modbus_data_6(): void
