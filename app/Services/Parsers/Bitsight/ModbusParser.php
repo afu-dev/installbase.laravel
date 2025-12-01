@@ -5,6 +5,16 @@ namespace App\Services\Parsers\Bitsight;
 use App\Services\Parsers\AbstractJsonDataParser;
 use App\Services\Parsers\ParsedDeviceData;
 
+/**
+ * Modbus Key Frequency:
+ * +-----+-----------+------------+
+ * | Key | Count     | Percentage |
+ * +-----+-----------+------------+
+ * | 0   | 5,512,002 | 100%       |
+ * | 1   | 4,651,586 | 84.39%     |
+ * | 2   | 3,435,384 | 62.33%     |
+ * +-----+-----------+------------+
+ */
 class ModbusParser extends AbstractJsonDataParser
 {
     protected function parseData(): array

@@ -43,15 +43,15 @@ class DisplayFieldValues extends Command
         $progressBar = $this->output->createProgressBar($this->totalRecords);
         $progressBar->start();
 
-        // Process records in chunks
-        BitsightExposedAsset::where('module', $protocol)
+        // Process records using keyset pagination (fast for large datasets)
+        $assets = BitsightExposedAsset::where('module', $protocol)
             ->select('id', 'raw_data')
-            ->chunk(1000, function ($assets) use ($progressBar, $protocol, $field) {
-                foreach ($assets as $asset) {
-                    $this->extractFieldValue($asset->raw_data, $protocol, $field);
-                    $progressBar->advance();
-                }
-            });
+            ->lazyById(1000);
+
+        foreach ($assets as $asset) {
+            $this->extractFieldValue($asset->raw_data, $protocol, $field);
+            $progressBar->advance();
+        }
 
         $progressBar->finish();
         $this->newLine(2);

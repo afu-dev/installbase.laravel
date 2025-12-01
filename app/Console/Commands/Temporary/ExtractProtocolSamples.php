@@ -71,11 +71,11 @@ class ExtractProtocolSamples extends Command
         $this->info('Target keys: '.implode(', ', $this->targetKeys));
         $this->newLine();
 
-        // Process records
+        // Process records using keyset pagination (fast for large datasets)
         $shouldStop = false;
         BitsightExposedAsset::where('module', $this->protocol)
             ->select('id', 'raw_data')
-            ->chunk(1000, function ($assets) use (&$shouldStop) {
+            ->chunkById(1000, function ($assets) use (&$shouldStop) {
                 foreach ($assets as $asset) {
                     $this->processRecord($asset->raw_data);
 
