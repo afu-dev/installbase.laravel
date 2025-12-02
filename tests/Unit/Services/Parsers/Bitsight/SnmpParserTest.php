@@ -21,7 +21,7 @@ class SnmpParserTest extends ParserTestCase
         $this->assertArrayHasKey(0, $result);
         $device = $result[0];
 
-        $this->assertEquals('not_parsed', $device->vendor);
+        $this->assertEquals('schneider_electric', $device->vendor);
         $this->assertNull($device->fingerprint);
         $this->assertNull($device->version);
         $this->assertNull($device->sn);
@@ -47,17 +47,17 @@ class SnmpParserTest extends ParserTestCase
         $this->assertArrayHasKey(0, $result);
         $device = $result[0];
 
-        $this->assertEquals('not_parsed', $device->vendor);
-        // $this->assertEquals("AP7920", $device->fingerprint); // value: MN
-        $this->assertNull($device->version);
+        $this->assertEquals('Schneider Electric', $device->vendor);
+        $this->assertEquals('AP7920', $device->fingerprint);
+        $this->assertEquals('v3.9.2', $device->version);
         $this->assertNull($device->sn);
         $this->assertNull($device->device_mac);
         $this->assertNull($device->modbus_project_info);
         $this->assertNull($device->opc_ua_security_policy);
         $this->assertNull($device->is_guest_account_active);
         $this->assertNull($device->registration_info);
-        // $this->assertEquals("rpdu", $device->secure_power_app); // value: AN1
-        // $this->assertEquals("AP7920", $device->nmc_card_num); // value: MN
+        $this->assertEquals('apc_hw02_rpdu_392.bin', $device->secure_power_app);
+        $this->assertEquals('7920', $device->nmc_card_num);
         $this->assertNull($device->fingerprint_raw);
     }
 
@@ -73,16 +73,16 @@ class SnmpParserTest extends ParserTestCase
         $this->assertArrayHasKey(0, $result);
         $device = $result[0];
 
-        $this->assertEquals('not_parsed', $device->vendor);
-        $this->assertNull($device->fingerprint);
-        $this->assertNull($device->version);
+        $this->assertEquals('Schneider Electric', $device->vendor);
+        $this->assertEquals('NBRK0200', $device->fingerprint);
+        $this->assertEquals('v3.7.5', $device->version);
         $this->assertNull($device->sn);
         $this->assertNull($device->device_mac);
         $this->assertNull($device->modbus_project_info);
         $this->assertNull($device->opc_ua_security_policy);
         $this->assertNull($device->is_guest_account_active);
         $this->assertNull($device->registration_info);
-        $this->assertNull($device->secure_power_app);
+        $this->assertEquals('apc_hw03_nb200_375.bin', $device->secure_power_app);
         $this->assertNull($device->nmc_card_num);
         $this->assertNull($device->fingerprint_raw);
     }
@@ -99,7 +99,7 @@ class SnmpParserTest extends ParserTestCase
         $this->assertArrayHasKey(0, $result);
         $device = $result[0];
 
-        $this->assertEquals('not_parsed', $device->vendor);
+        $this->assertEquals('schneider_electric', $device->vendor);
         $this->assertNull($device->fingerprint);
         $this->assertNull($device->version);
         $this->assertNull($device->sn);
@@ -125,17 +125,17 @@ class SnmpParserTest extends ParserTestCase
         $this->assertArrayHasKey(0, $result);
         $device = $result[0];
 
-        $this->assertEquals('not_parsed', $device->vendor);
-        $this->assertNull($device->fingerprint);
-        $this->assertNull($device->version);
+        $this->assertEquals('Schneider Electric', $device->vendor);
+        $this->assertEquals('AP7931', $device->fingerprint);
+        $this->assertEquals('v3.7.4', $device->version);
         $this->assertNull($device->sn);
         $this->assertNull($device->device_mac);
         $this->assertNull($device->modbus_project_info);
         $this->assertNull($device->opc_ua_security_policy);
         $this->assertNull($device->is_guest_account_active);
         $this->assertNull($device->registration_info);
-        $this->assertNull($device->secure_power_app);
-        $this->assertNull($device->nmc_card_num);
+        $this->assertEquals('apc_hw02_rpdu_374.bin', $device->secure_power_app);
+        $this->assertEquals('7931', $device->nmc_card_num);
         $this->assertNull($device->fingerprint_raw);
     }
 
