@@ -1,4 +1,4 @@
-220 AP9630 Network Management Card AOS v6.0.6 FTP server ready.
+220 AP9630FJ Network Management Card AOS v6.4.0 FTP server ready.
 530 Not logged in.
 502 HELP command not implemented, or not allowed.
 211-Features:
@@ -7,7 +7,7 @@
  USER
  PASS
  ACCT
- CWD 
+ CWD
  CDUP
  QUIT
  SMNT
@@ -27,9 +27,9 @@
  RNTO
  ABOR
  DELE
- RMD 
- MKD 
- PWD 
+ RMD
+ MKD
+ PWD
  LIST
  NLST
  SITE
@@ -46,8 +46,8 @@
  ADAT
  PROT
  PBSZ
- CCC 
- ENC 
+ CCC
+ ENC
  FEAT
  NOOP
 211 End

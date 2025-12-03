@@ -9,28 +9,20 @@ class FtpParser extends AbstractRawDataParser
 {
     protected function parseData(): array
     {
-        // Check for APXXXX pattern in raw FTP banner
-        if (preg_match('/AP\d{4}/', $this->rawData, $matches)) {
-            $model = $matches[0]; // e.g., "AP9630"
-
-            // Extract version (pattern: v6.4.6)
-            $version = null;
-            if (preg_match('/v\d+\.\d+\.\d+/', $this->rawData, $versionMatches)) {
-                $version = $versionMatches[0];
-            }
-
-            return [
-                new ParsedDeviceData(
-                    vendor: 'Schneider Electric',
-                    fingerprint: $model,
-                    version: $version,
-                    nmc_card_num: $model,
-                ),
-            ];
+        preg_match('/ (AP(\d{4})[A-Z]{0,2}) /', $this->rawData, $matches);
+        if (empty($matches[2])) {
+            $otherParser = new OtherParser();
+            return $otherParser->parse($this->rawData);
         }
+        [, $fingerprint, $cardNum] = $matches;
 
-        // Delegate to OtherParser if pattern not found
-        $otherParser = new OtherParser();
-        return $otherParser->parse($this->rawData);
+        return [
+            new ParsedDeviceData(
+                vendor: "Schneider Electric",
+                fingerprint: $fingerprint,
+                version: $this->extract("/ (v\d+(?:\.\d+)+)/"),
+                nmc_card_num: $cardNum,
+            )
+        ];
     }
 }
