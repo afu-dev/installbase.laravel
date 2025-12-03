@@ -70,7 +70,7 @@ class AnalyzeShodanProtocolData extends Command
         // done in alphabetical order, if multiple protocol have the same construction, it goes into the first one.
         match ($this->protocol) {
             "apcupsd" => $this->analyzeApcupsd($rawData),
-            "bacnet", "ethernetip" => $this->analyzeBacnet($rawData),
+            "bacnet", "ethernetip", "iec-61850" => $this->analyzeBacnet($rawData),
         };
     }
 
