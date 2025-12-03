@@ -67,9 +67,10 @@ class AnalyzeShodanProtocolData extends Command
 
     private function analyzeRecord(string $rawData): void
     {
+        // done in alphabetical order, if multiple protocol have the same construction, it goes into the first one.
         match ($this->protocol) {
             "apcupsd" => $this->analyzeApcupsd($rawData),
-            "bacnet" => $this->analyzeBacnet($rawData),
+            "bacnet", "ethernetip" => $this->analyzeBacnet($rawData),
         };
     }
 

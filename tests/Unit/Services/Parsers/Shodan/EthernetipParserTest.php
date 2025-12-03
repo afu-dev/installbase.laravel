@@ -20,10 +20,10 @@ class EthernetipParserTest extends ParserTestCase
         $this->assertArrayHasKey(0, $result);
         $device = $result[0];
 
-        $this->assertEquals('not_parsed', $device->vendor);
-        $this->assertNull($device->fingerprint);
+        $this->assertEquals('Schneider Electric', $device->vendor);
+        $this->assertEquals('PM5560', $device->fingerprint);
         $this->assertNull($device->version);
-        $this->assertNull($device->sn);
+        $this->assertEquals('0x23c7193a', $device->sn);
         $this->assertNull($device->device_mac);
         $this->assertNull($device->modbus_project_info);
         $this->assertNull($device->opc_ua_security_policy);
@@ -46,10 +46,10 @@ class EthernetipParserTest extends ParserTestCase
         $this->assertArrayHasKey(0, $result);
         $device = $result[0];
 
-        $this->assertEquals('not_parsed', $device->vendor);
-        $this->assertNull($device->fingerprint);
+        $this->assertEquals('Schneider Electric', $device->vendor);
+        $this->assertEquals('PM5560', $device->fingerprint);
         $this->assertNull($device->version);
-        $this->assertNull($device->sn);
+        $this->assertEquals('0x23c6d120', $device->sn);
         $this->assertNull($device->device_mac);
         $this->assertNull($device->modbus_project_info);
         $this->assertNull($device->opc_ua_security_policy);
@@ -72,10 +72,10 @@ class EthernetipParserTest extends ParserTestCase
         $this->assertArrayHasKey(0, $result);
         $device = $result[0];
 
-        $this->assertEquals('not_parsed', $device->vendor);
-        $this->assertNull($device->fingerprint);
+        $this->assertEquals('Schneider Electric', $device->vendor);
+        $this->assertEquals('PM5560', $device->fingerprint);
         $this->assertNull($device->version);
-        $this->assertNull($device->sn);
+        $this->assertEquals('0x23c5453d', $device->sn);
         $this->assertNull($device->device_mac);
         $this->assertNull($device->modbus_project_info);
         $this->assertNull($device->opc_ua_security_policy);
@@ -98,10 +98,10 @@ class EthernetipParserTest extends ParserTestCase
         $this->assertArrayHasKey(0, $result);
         $device = $result[0];
 
-        $this->assertEquals('not_parsed', $device->vendor);
-        $this->assertNull($device->fingerprint);
+        $this->assertEquals('Schneider Electric', $device->vendor);
+        $this->assertEquals('PM5560', $device->fingerprint);
         $this->assertNull($device->version);
-        $this->assertNull($device->sn);
+        $this->assertEquals('0x23c54a57', $device->sn);
         $this->assertNull($device->device_mac);
         $this->assertNull($device->modbus_project_info);
         $this->assertNull($device->opc_ua_security_policy);
@@ -124,10 +124,10 @@ class EthernetipParserTest extends ParserTestCase
         $this->assertArrayHasKey(0, $result);
         $device = $result[0];
 
-        $this->assertEquals('not_parsed', $device->vendor);
-        $this->assertNull($device->fingerprint);
+        $this->assertEquals('Schneider Electric', $device->vendor);
+        $this->assertEquals('PM5560', $device->fingerprint);
         $this->assertNull($device->version);
-        $this->assertNull($device->sn);
+        $this->assertEquals('0x23c54a75', $device->sn);
         $this->assertNull($device->device_mac);
         $this->assertNull($device->modbus_project_info);
         $this->assertNull($device->opc_ua_security_policy);
