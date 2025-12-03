@@ -20,10 +20,10 @@ class ApcupsdParserTest extends ParserTestCase
         $this->assertArrayHasKey(0, $result);
         $device = $result[0];
 
-        $this->assertEquals('not_parsed', $device->vendor);
-        $this->assertNull($device->fingerprint);
-        $this->assertNull($device->version);
-        $this->assertNull($device->sn);
+        $this->assertEquals('unknown', $device->vendor);
+        $this->assertEquals('Smart-UPS RT 5000 XL', $device->fingerprint);
+        $this->assertEquals('3.14.14 (31 May 2016) redhat', $device->version);
+        $this->assertEquals('IS1042007402', $device->sn);
         $this->assertNull($device->device_mac);
         $this->assertNull($device->modbus_project_info);
         $this->assertNull($device->opc_ua_security_policy);
@@ -46,9 +46,9 @@ class ApcupsdParserTest extends ParserTestCase
         $this->assertArrayHasKey(0, $result);
         $device = $result[0];
 
-        $this->assertEquals('not_parsed', $device->vendor);
+        $this->assertEquals('unknown', $device->vendor);
         $this->assertNull($device->fingerprint);
-        $this->assertNull($device->version);
+        $this->assertEquals('3.14.14 (31 May 2016) freebsd', $device->version);
         $this->assertNull($device->sn);
         $this->assertNull($device->device_mac);
         $this->assertNull($device->modbus_project_info);
@@ -72,9 +72,9 @@ class ApcupsdParserTest extends ParserTestCase
         $this->assertArrayHasKey(0, $result);
         $device = $result[0];
 
-        $this->assertEquals('not_parsed', $device->vendor);
+        $this->assertEquals('unknown', $device->vendor);
         $this->assertNull($device->fingerprint);
-        $this->assertNull($device->version);
+        $this->assertEquals('3.14.14 (31 May 2016) freebsd', $device->version);
         $this->assertNull($device->sn);
         $this->assertNull($device->device_mac);
         $this->assertNull($device->modbus_project_info);
@@ -98,10 +98,10 @@ class ApcupsdParserTest extends ParserTestCase
         $this->assertArrayHasKey(0, $result);
         $device = $result[0];
 
-        $this->assertEquals('not_parsed', $device->vendor);
-        $this->assertNull($device->fingerprint);
-        $this->assertNull($device->version);
-        $this->assertNull($device->sn);
+        $this->assertEquals('unknown', $device->vendor);
+        $this->assertEquals('Smart-UPS_1500', $device->fingerprint);
+        $this->assertEquals('3.14.14 (31 May 2016) freebsd', $device->version);
+        $this->assertEquals('AS2017150708', $device->sn);
         $this->assertNull($device->device_mac);
         $this->assertNull($device->modbus_project_info);
         $this->assertNull($device->opc_ua_security_policy);
@@ -124,10 +124,10 @@ class ApcupsdParserTest extends ParserTestCase
         $this->assertArrayHasKey(0, $result);
         $device = $result[0];
 
-        $this->assertEquals('not_parsed', $device->vendor);
-        $this->assertNull($device->fingerprint);
-        $this->assertNull($device->version);
-        $this->assertNull($device->sn);
+        $this->assertEquals('unknown', $device->vendor);
+        $this->assertEquals('Back-UPS RS 1500G', $device->fingerprint);
+        $this->assertEquals('3.14.14 (31 May 2016) mingw', $device->version);
+        $this->assertEquals('4B1822P37733', $device->sn);
         $this->assertNull($device->device_mac);
         $this->assertNull($device->modbus_project_info);
         $this->assertNull($device->opc_ua_security_policy);
