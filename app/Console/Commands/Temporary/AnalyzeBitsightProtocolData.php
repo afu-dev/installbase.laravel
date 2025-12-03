@@ -5,9 +5,9 @@ namespace App\Console\Commands\Temporary;
 use App\Models\BitsightExposedAsset;
 use Illuminate\Console\Command;
 
-class AnalyzeProtocolData extends Command
+class AnalyzeBitsightProtocolData extends Command
 {
-    protected $signature = 'temporary:analyze-protocol {protocol}';
+    protected $signature = 'temporary:analyze-bitsight-protocol {protocol}';
 
     protected $description = 'Analyze protocol module data quality in bitsight_exposed_assets';
 

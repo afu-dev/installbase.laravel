@@ -3,13 +3,14 @@
 namespace App\Console\Commands\Temporary;
 
 use App\Models\BitsightExposedAsset;
+use App\Models\ShodanExposedAsset;
 use Illuminate\Console\Command;
 
-class DisplayFieldValues extends Command
+class DisplayShodanFieldValues extends Command
 {
-    protected $signature = 'temporary:display-field {protocol} {field}';
+    protected $signature = 'temporary:display-shodan-field {protocol} {field}';
 
-    protected $description = 'Display unique values and counts for a specific field in a protocol\'s nested JSON data';
+    protected $description = 'Display unique values and counts for a specific field in a protocol\'s shodan data';
 
     private array $fieldValues = [];
 
@@ -28,7 +29,7 @@ class DisplayFieldValues extends Command
         $this->newLine();
 
         // Get total count for progress bar
-        $this->totalRecords = BitsightExposedAsset::where('module', $protocol)->count();
+        $this->totalRecords = ShodanExposedAsset::where('module', $protocol)->count();
 
         if ($this->totalRecords === 0) {
             $this->warn("No records found with module = '{$protocol}'");
@@ -44,7 +45,7 @@ class DisplayFieldValues extends Command
         $progressBar->start();
 
         // Process records using keyset pagination (fast for large datasets)
-        $assets = BitsightExposedAsset::where('module', $protocol)
+        $assets = ShodanExposedAsset::where('module', $protocol)
             ->select('id', 'raw_data')
             ->lazyById(1000);
 
@@ -67,56 +68,27 @@ class DisplayFieldValues extends Command
 
     private function extractFieldValue(string $rawData, string $protocol, string $field): void
     {
-        // First decode: parse raw_data JSON
-        $decodedData = json_decode($rawData, true);
+        match ($protocol) {
+            "apcupsd" => $this->extractApcupsdFieldValue($rawData, $field),
+        };
+    }
 
-        if (json_last_error() !== JSON_ERROR_NONE) {
-            return;
-        }
-
-        // Try to find the protocol key (case-insensitive variants)
-        $protocolString = null;
-        $protocolCapitalized = ucfirst(strtolower($protocol));
-
-        if (isset($decodedData[$protocolCapitalized])) {
-            $protocolString = $decodedData[$protocolCapitalized];
-        } elseif (isset($decodedData[strtolower($protocol)])) {
-            $protocolString = $decodedData[strtolower($protocol)];
-        } elseif (isset($decodedData[strtoupper($protocol)])) {
-            $protocolString = $decodedData[strtoupper($protocol)];
-        }
-
-        if ($protocolString === null) {
-            return;
-        }
-
-        // Second decode: parse nested protocol JSON string
-        $protocolData = json_decode($protocolString, true);
-
-        if (json_last_error() !== JSON_ERROR_NONE) {
-            return;
+    private function extractApcupsdFieldValue(string $rawData, string $field): void
+    {
+        $apcuData = [];
+        $lines = explode("\n", trim($rawData));
+        foreach ($lines as $line) {
+            [$key, $value] = explode(':', $line, 2);
+            $apcuData[trim($key)] = trim($value);
         }
 
         // Check if field exists
-        if (!isset($protocolData[$field])) {
+        if (!isset($apcuData[$field])) {
             return;
         }
 
         $this->recordsWithField++;
-
-        // Collect field value (convert to string for consistency)
-        $value = $protocolData[$field];
-        if (is_array($value)) {
-            $value = json_encode($value);
-        } elseif (is_bool($value)) {
-            $value = $value ? 'true' : 'false';
-        } elseif (is_null($value)) {
-            $value = 'null';
-        } else {
-            $value = (string) $value;
-        }
-
-        $this->fieldValues[] = $value;
+        $this->fieldValues[] = (string)$apcuData[$field];
     }
 
     private function displayResults(string $protocol, string $field, float $executionTime): void
@@ -151,7 +123,7 @@ class DisplayFieldValues extends Command
                     : 0;
 
                 // Truncate long values for display
-                $displayValue = strlen($value) > 80 ? substr($value, 0, 77).'...' : $value;
+                $displayValue = strlen($value) > 80 ? substr($value, 0, 77) . '...' : $value;
 
                 $tableData[] = [
                     $displayValue,
@@ -169,6 +141,6 @@ class DisplayFieldValues extends Command
         }
 
         $this->newLine();
-        $this->info('Execution time: '.round($executionTime, 2).' seconds');
+        $this->info('Execution time: ' . round($executionTime, 2) . ' seconds');
     }
 }
