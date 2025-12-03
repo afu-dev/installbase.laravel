@@ -69,6 +69,7 @@ class AnalyzeShodanProtocolData extends Command
     {
         match ($this->protocol) {
             "apcupsd" => $this->analyzeApcupsd($rawData),
+            "bacnet" => $this->analyzeBacnet($rawData),
         };
     }
 
@@ -81,7 +82,24 @@ class AnalyzeShodanProtocolData extends Command
             $apcuKeys[] = trim($key);
         }
 
-        foreach ($apcuKeys as $key) {
+        $this->addKeys($apcuKeys);
+    }
+
+    private function analyzeBacnet(string $rawData): void
+    {
+        $bacnetKeys = [];
+        $lines = explode("\n", trim($rawData));
+        foreach ($lines as $line) {
+            [$key,] = explode(':', $line, 2);
+            $bacnetKeys[] = trim($key);
+        }
+
+        $this->addKeys($bacnetKeys);
+    }
+
+    private function addKeys(array $keys): void
+    {
+        foreach ($keys as $key) {
             if (!isset($this->keyFrequency[$key])) {
                 $this->keyFrequency[$key] = 0;
             }
