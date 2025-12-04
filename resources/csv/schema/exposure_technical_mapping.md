@@ -402,7 +402,7 @@ raw data collected
 schneider electric
 
 ## fingerprint
-Apxxxx
+Apxxxx[A-Z]{0,2}
 
 ## version
 extract from ftp_data
@@ -422,7 +422,7 @@ extract from ftp_data
 ## secure_power_app
 
 ## nmc_card_num
-Apxxxx
+Apxxxx[A-Z]{0,2}
 
 ## fingerprint_raw
 bitsight fingerprint column

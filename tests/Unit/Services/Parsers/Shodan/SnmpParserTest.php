@@ -20,17 +20,17 @@ class SnmpParserTest extends ParserTestCase
         $this->assertArrayHasKey(0, $result);
         $device = $result[0];
 
-        $this->assertEquals('not_parsed', $device->vendor);
-        $this->assertNull($device->fingerprint);
-        $this->assertNull($device->version);
+        $this->assertEquals('Schneider Electric', $device->vendor);
+        $this->assertEquals('AP8841', $device->fingerprint);
+        $this->assertEquals('v5.1.4', $device->version);
         $this->assertNull($device->sn);
         $this->assertNull($device->device_mac);
         $this->assertNull($device->modbus_project_info);
         $this->assertNull($device->opc_ua_security_policy);
         $this->assertNull($device->is_guest_account_active);
         $this->assertNull($device->registration_info);
-        $this->assertNull($device->secure_power_app);
-        $this->assertNull($device->nmc_card_num);
+        $this->assertEquals('rpdu2g', $device->secure_power_app);
+        $this->assertEquals('AP8841', $device->nmc_card_num);
         $this->assertNull($device->fingerprint_raw);
     }
 
@@ -46,17 +46,17 @@ class SnmpParserTest extends ParserTestCase
         $this->assertArrayHasKey(0, $result);
         $device = $result[0];
 
-        $this->assertEquals('not_parsed', $device->vendor);
-        $this->assertNull($device->fingerprint);
-        $this->assertNull($device->version);
+        $this->assertEquals('Schneider Electric', $device->vendor);
+        $this->assertEquals('AP9640', $device->fingerprint);
+        $this->assertEquals('v2.5.0.8', $device->version);
         $this->assertNull($device->sn);
         $this->assertNull($device->device_mac);
         $this->assertNull($device->modbus_project_info);
         $this->assertNull($device->opc_ua_security_policy);
         $this->assertNull($device->is_guest_account_active);
         $this->assertNull($device->registration_info);
-        $this->assertNull($device->secure_power_app);
-        $this->assertNull($device->nmc_card_num);
+        $this->assertEquals('su', $device->secure_power_app);
+        $this->assertEquals('AP9640', $device->nmc_card_num);
         $this->assertNull($device->fingerprint_raw);
     }
 
@@ -72,17 +72,17 @@ class SnmpParserTest extends ParserTestCase
         $this->assertArrayHasKey(0, $result);
         $device = $result[0];
 
-        $this->assertEquals('not_parsed', $device->vendor);
-        $this->assertNull($device->fingerprint);
-        $this->assertNull($device->version);
+        $this->assertEquals('Schneider Electric', $device->vendor);
+        $this->assertEquals('AP9630', $device->fingerprint);
+        $this->assertEquals('v6.0.6', $device->version);
         $this->assertNull($device->sn);
         $this->assertNull($device->device_mac);
         $this->assertNull($device->modbus_project_info);
         $this->assertNull($device->opc_ua_security_policy);
         $this->assertNull($device->is_guest_account_active);
         $this->assertNull($device->registration_info);
-        $this->assertNull($device->secure_power_app);
-        $this->assertNull($device->nmc_card_num);
+        $this->assertEquals('sumx', $device->secure_power_app);
+        $this->assertEquals('AP9630', $device->nmc_card_num);
         $this->assertNull($device->fingerprint_raw);
     }
 
@@ -98,17 +98,17 @@ class SnmpParserTest extends ParserTestCase
         $this->assertArrayHasKey(0, $result);
         $device = $result[0];
 
-        $this->assertEquals('not_parsed', $device->vendor);
-        $this->assertNull($device->fingerprint);
-        $this->assertNull($device->version);
+        $this->assertEquals('Schneider Electric', $device->vendor);
+        $this->assertEquals('AP9631', $device->fingerprint);
+        $this->assertEquals('v6.5.6', $device->version);
         $this->assertNull($device->sn);
         $this->assertNull($device->device_mac);
         $this->assertNull($device->modbus_project_info);
         $this->assertNull($device->opc_ua_security_policy);
         $this->assertNull($device->is_guest_account_active);
         $this->assertNull($device->registration_info);
-        $this->assertNull($device->secure_power_app);
-        $this->assertNull($device->nmc_card_num);
+        $this->assertEquals('sumx', $device->secure_power_app);
+        $this->assertEquals('AP9631', $device->nmc_card_num);
         $this->assertNull($device->fingerprint_raw);
     }
 
@@ -124,17 +124,17 @@ class SnmpParserTest extends ParserTestCase
         $this->assertArrayHasKey(0, $result);
         $device = $result[0];
 
-        $this->assertEquals('not_parsed', $device->vendor);
-        $this->assertNull($device->fingerprint);
-        $this->assertNull($device->version);
+        $this->assertEquals('Schneider Electric', $device->vendor);
+        $this->assertEquals('AP9631', $device->fingerprint);
+        $this->assertEquals('v6.0.6', $device->version);
         $this->assertNull($device->sn);
         $this->assertNull($device->device_mac);
         $this->assertNull($device->modbus_project_info);
         $this->assertNull($device->opc_ua_security_policy);
         $this->assertNull($device->is_guest_account_active);
         $this->assertNull($device->registration_info);
-        $this->assertNull($device->secure_power_app);
-        $this->assertNull($device->nmc_card_num);
+        $this->assertEquals('sumx', $device->secure_power_app);
+        $this->assertEquals('AP9631', $device->nmc_card_num);
         $this->assertNull($device->fingerprint_raw);
     }
 
@@ -150,17 +150,17 @@ class SnmpParserTest extends ParserTestCase
         $this->assertArrayHasKey(0, $result);
         $device = $result[0];
 
-        $this->assertEquals('not_parsed', $device->vendor);
-        $this->assertNull($device->fingerprint);
-        $this->assertNull($device->version);
+        $this->assertEquals('Schneider Electric', $device->vendor);
+        $this->assertEquals('AP7932', $device->fingerprint);
+        $this->assertEquals('v3.5.7', $device->version);
         $this->assertNull($device->sn);
         $this->assertNull($device->device_mac);
         $this->assertNull($device->modbus_project_info);
         $this->assertNull($device->opc_ua_security_policy);
         $this->assertNull($device->is_guest_account_active);
         $this->assertNull($device->registration_info);
-        $this->assertNull($device->secure_power_app);
-        $this->assertNull($device->nmc_card_num);
+        $this->assertEquals('rpdu', $device->secure_power_app);
+        $this->assertEquals('AP7932', $device->nmc_card_num);
         $this->assertNull($device->fingerprint_raw);
     }
 
@@ -176,17 +176,17 @@ class SnmpParserTest extends ParserTestCase
         $this->assertArrayHasKey(0, $result);
         $device = $result[0];
 
-        $this->assertEquals('not_parsed', $device->vendor);
-        $this->assertNull($device->fingerprint);
-        $this->assertNull($device->version);
+        $this->assertEquals('Schneider Electric', $device->vendor);
+        $this->assertEquals('AP7750A', $device->fingerprint);
+        $this->assertEquals('v3.7.4', $device->version);
         $this->assertNull($device->sn);
         $this->assertNull($device->device_mac);
         $this->assertNull($device->modbus_project_info);
         $this->assertNull($device->opc_ua_security_policy);
         $this->assertNull($device->is_guest_account_active);
         $this->assertNull($device->registration_info);
-        $this->assertNull($device->secure_power_app);
-        $this->assertNull($device->nmc_card_num);
+        $this->assertEquals('g2ats', $device->secure_power_app);
+        $this->assertEquals('AP7750A', $device->nmc_card_num);
         $this->assertNull($device->fingerprint_raw);
     }
 
@@ -202,17 +202,17 @@ class SnmpParserTest extends ParserTestCase
         $this->assertArrayHasKey(0, $result);
         $device = $result[0];
 
-        $this->assertEquals('not_parsed', $device->vendor);
-        $this->assertNull($device->fingerprint);
-        $this->assertNull($device->version);
+        $this->assertEquals('Schneider Electric', $device->vendor);
+        $this->assertEquals('AP9538', $device->fingerprint);
+        $this->assertEquals('v6.4.4', $device->version);
         $this->assertNull($device->sn);
         $this->assertNull($device->device_mac);
         $this->assertNull($device->modbus_project_info);
         $this->assertNull($device->opc_ua_security_policy);
         $this->assertNull($device->is_guest_account_active);
         $this->assertNull($device->registration_info);
-        $this->assertNull($device->secure_power_app);
-        $this->assertNull($device->nmc_card_num);
+        $this->assertEquals('nb250', $device->secure_power_app);
+        $this->assertEquals('AP9538', $device->nmc_card_num);
         $this->assertNull($device->fingerprint_raw);
     }
 
@@ -228,17 +228,17 @@ class SnmpParserTest extends ParserTestCase
         $this->assertArrayHasKey(0, $result);
         $device = $result[0];
 
-        $this->assertEquals('not_parsed', $device->vendor);
-        $this->assertNull($device->fingerprint);
-        $this->assertNull($device->version);
+        $this->assertEquals('Schneider Electric', $device->vendor);
+        $this->assertEquals('AP9630', $device->fingerprint);
+        $this->assertEquals('v6.5.6', $device->version);
         $this->assertNull($device->sn);
         $this->assertNull($device->device_mac);
         $this->assertNull($device->modbus_project_info);
         $this->assertNull($device->opc_ua_security_policy);
         $this->assertNull($device->is_guest_account_active);
         $this->assertNull($device->registration_info);
-        $this->assertNull($device->secure_power_app);
-        $this->assertNull($device->nmc_card_num);
+        $this->assertEquals('sumx', $device->secure_power_app);
+        $this->assertEquals('AP9630', $device->nmc_card_num);
         $this->assertNull($device->fingerprint_raw);
     }
 
@@ -254,17 +254,17 @@ class SnmpParserTest extends ParserTestCase
         $this->assertArrayHasKey(0, $result);
         $device = $result[0];
 
-        $this->assertEquals('not_parsed', $device->vendor);
-        $this->assertNull($device->fingerprint);
-        $this->assertNull($device->version);
+        $this->assertEquals('Schneider Electric', $device->vendor);
+        $this->assertEquals('AP9630', $device->fingerprint);
+        $this->assertEquals('v6.1.1', $device->version);
         $this->assertNull($device->sn);
         $this->assertNull($device->device_mac);
         $this->assertNull($device->modbus_project_info);
         $this->assertNull($device->opc_ua_security_policy);
         $this->assertNull($device->is_guest_account_active);
         $this->assertNull($device->registration_info);
-        $this->assertNull($device->secure_power_app);
-        $this->assertNull($device->nmc_card_num);
+        $this->assertEquals('sumx', $device->secure_power_app);
+        $this->assertEquals('AP9630', $device->nmc_card_num);
         $this->assertNull($device->fingerprint_raw);
     }
 
