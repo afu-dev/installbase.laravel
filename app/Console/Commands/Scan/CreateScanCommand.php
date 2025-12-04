@@ -31,6 +31,7 @@ class CreateScanCommand extends Command
     public function handle(): int
     {
         $queries = Query::all();
+        // $queries = Query::where("vendor", Vendor::CENSYS)->limit(10)->get();
 
         if ($queries->isEmpty()) {
             $this->error('No queries found. Cannot create scan.');
@@ -68,11 +69,11 @@ class CreateScanCommand extends Command
                 $this->info("Found " . count($csvFiles) . " Bitsight CSV file(s) to process.");
             } else {
                 // For other vendors, create a single execution
-                /*$executions[] = [
+                $executions[] = [
                     'scan_id' => $scan->id,
                     'query_id' => $query->id,
                     'source_file' => null,
-                ];*/
+                ];
             }
         }
 
