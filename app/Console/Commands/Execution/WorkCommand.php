@@ -328,12 +328,13 @@ class WorkCommand extends Command
         $records = array_map(function ($hit) use ($executionId) {
             // Extract first service for port, transport, and protocol info
             $firstService = data_get($hit, 'services.0', []);
+            $matchedService = data_get($hit, 'matched_services.0', []);
 
             return [
                 'execution_id' => $executionId,
                 'ip' => data_get($hit, 'ip'),
-                'port' => data_get($firstService, 'port'),
-                'module' => data_get($firstService, 'service_name'),
+                'port' => data_get($matchedService, 'port'),
+                'module' => data_get($matchedService, 'service_name'),
                 'detected_at' => data_get($hit, 'last_updated_at'),
                 'raw_data' => json_encode($hit),
                 'hostnames' => implode(';', array_merge(
@@ -346,7 +347,7 @@ class WorkCommand extends Command
                 'city' => data_get($hit, 'location.city'),
                 'os' => null,
                 'asn' => data_get($hit, 'autonomous_system.asn'),
-                'transport' => data_get($firstService, 'transport_protocol'),
+                'transport' => data_get($matchedService, 'transport_protocol'),
                 'product' => data_get($firstService, 'software.product'),
                 'product_sn' => null,
                 'version' => data_get($firstService, 'software.version'),
