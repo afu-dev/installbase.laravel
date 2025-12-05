@@ -248,6 +248,17 @@ namespace App\Models{
  * @property \App\Enums\Vendor $source
  * @property string|null $transport
  * @property string|null $module
+ * @property string $vendor
+ * @property string|null $fingerprint
+ * @property string|null $sn
+ * @property string|null $device_mac
+ * @property string|null $modbus_project_info
+ * @property string|null $opc-ua_security_policy
+ * @property string|null $is_guest_account_active
+ * @property string|null $registration_info
+ * @property string|null $secure_power_app
+ * @property string|null $nmc_card_number
+ * @property string|null $fingerprint_raw
  * @property \Illuminate\Support\Carbon $first_detected_at
  * @property \Illuminate\Support\Carbon $last_detected_at
  * @property \Illuminate\Support\Carbon|null $deleted_at
@@ -267,15 +278,26 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|DetectedExposure query()
  * @method static \Illuminate\Database\Eloquent\Builder<static>|DetectedExposure whereCreatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|DetectedExposure whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|DetectedExposure whereDeviceMac($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|DetectedExposure whereFingerprint($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|DetectedExposure whereFingerprintRaw($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|DetectedExposure whereFirstDetectedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|DetectedExposure whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|DetectedExposure whereIp($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|DetectedExposure whereIsGuestAccountActive($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|DetectedExposure whereLastDetectedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|DetectedExposure whereModbusProjectInfo($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|DetectedExposure whereModule($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|DetectedExposure whereNmcCardNumber($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|DetectedExposure whereOpcUaSecurityPolicy($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|DetectedExposure wherePort($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|DetectedExposure whereRegistrationInfo($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|DetectedExposure whereSecurePowerApp($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|DetectedExposure whereSn($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|DetectedExposure whereSource($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|DetectedExposure whereTransport($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|DetectedExposure whereUpdatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|DetectedExposure whereVendor($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|DetectedExposure withTrashed(bool $withTrashed = true)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|DetectedExposure withoutTrashed()
  * @mixin \Eloquent
