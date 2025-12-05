@@ -30,8 +30,7 @@ class CreateScanCommand extends Command
      */
     public function handle(): int
     {
-        $queries = Query::all();
-        // $queries = Query::where("vendor", Vendor::CENSYS)->limit(10)->get();
+        $queries = Query::whereNot("vendor", Vendor::CENSYS)->get();
 
         if ($queries->isEmpty()) {
             $this->error('No queries found. Cannot create scan.');
@@ -46,11 +45,11 @@ class CreateScanCommand extends Command
             // For Bitsight, create one execution per CSV file in the input directory
             if ($query->vendor === Vendor::BITSIGHT) {
                 $csvFiles = Storage::disk('bitsight-input')->files();
-                $csvFiles = array_filter($csvFiles, fn ($file) => str_ends_with(strtolower($file), '.csv'));
+                $csvFiles = array_filter($csvFiles, fn($file) => str_ends_with(strtolower($file), '.csv'));
                 if ($query->query_type === "monthly_csv_import") {
-                    $csvFiles = array_filter($csvFiles, fn ($file) => str_contains(strtolower($file), 'merged_events'));
+                    $csvFiles = array_filter($csvFiles, fn($file) => str_contains(strtolower($file), 'merged_events'));
                 } elseif ($query->query_type === "historical_csv_import") {
-                    $csvFiles = array_filter($csvFiles, fn ($file) => str_contains(strtolower($file), 'historical'));
+                    $csvFiles = array_filter($csvFiles, fn($file) => str_contains(strtolower($file), 'historical'));
                 }
 
                 if (empty($csvFiles)) {

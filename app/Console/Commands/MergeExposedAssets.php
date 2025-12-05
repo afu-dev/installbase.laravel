@@ -5,7 +5,6 @@ namespace App\Console\Commands;
 use App\Enums\Vendor;
 use App\Models\Attribution;
 use App\Models\BitsightExposedAsset;
-use App\Models\CensysExposedAsset;
 use App\Models\DetectedExposure;
 use App\Models\Scan;
 use App\Models\ShodanExposedAsset;
@@ -60,6 +59,9 @@ class MergeExposedAssets extends Command
 
         $this->processExecutions($executionIdsRanges);
 
+        $executionTime = microtime(true) - $startTime;
+        $this->info("Execution time: $executionTime seconds");
+
         return Command::SUCCESS;
     }
 
@@ -67,7 +69,6 @@ class MergeExposedAssets extends Command
     {
         $ips = array_unique(array_merge(
             $this->processVendorExecutions(Vendor::SHODAN, ShodanExposedAsset::class, $executionIdsRanges),
-            $this->processVendorExecutions(Vendor::CENSYS, CensysExposedAsset::class, $executionIdsRanges),
             $this->processVendorExecutions(Vendor::BITSIGHT, BitsightExposedAsset::class, $executionIdsRanges),
         ));
 
@@ -86,7 +87,7 @@ class MergeExposedAssets extends Command
 
             // Upsert Attribution (one record per IP)
             // Filter out null values to preserve existing data
-            $attributionUpsertData = array_filter($attributionData, fn ($value) => $value !== null);
+            $attributionUpsertData = array_filter($attributionData, fn($value) => $value !== null);
 
             Attribution::updateOrCreate(
                 ['ip' => $ip],
@@ -121,7 +122,7 @@ class MergeExposedAssets extends Command
                 // Prepare upsert data with calculated dates
                 $exposureUpsertData = array_filter(
                     $exposure,
-                    fn ($value, $key) => !str_starts_with($key, '_') && $value !== null,
+                    fn($value, $key) => !str_starts_with($key, '_') && $value !== null,
                     ARRAY_FILTER_USE_BOTH
                 );
 
@@ -144,7 +145,7 @@ class MergeExposedAssets extends Command
 
     /**
      * @param Vendor $vendor
-     * @param class-string<BitsightExposedAsset|ShodanExposedAsset|CensysExposedAsset> $modelClass
+     * @param class-string<BitsightExposedAsset|ShodanExposedAsset> $modelClass
      * @param array $executionIdsRanges
      * @return array
      */
@@ -219,10 +220,10 @@ class MergeExposedAssets extends Command
      * Merge vendor data for a single IP across all ports.
      * Returns array of records, one per unique (ip, port) combination.
      *
-     * Priority order: Bitsight > Shodan > Censys
+     * Priority order: Bitsight > Shodan
      * For each field, use first non-null value following priority order.
      *
-     * @param array $vendorsData Array with keys 'bitsight', 'shodan', 'censys', values are Collections
+     * @param array $vendorsData Array with keys 'bitsight', 'shodan', values are Collections
      * @return array Array of arrays, each containing merged data for one (ip, port) combo
      */
     private function mergeVendorData(array $vendorsData): array
@@ -245,7 +246,6 @@ class MergeExposedAssets extends Command
             // Get first record from each vendor for this port (or null if vendor has no records)
             $bitsight = $vendorsData['bitsight']->where('port', $port)->first();
             $shodan = $vendorsData['shodan']->where('port', $port)->first();
-            $censys = $vendorsData['censys']->where('port', $port)->first();
 
             // Determine source vendor (first vendor that has this port)
             $source = null;
@@ -253,8 +253,6 @@ class MergeExposedAssets extends Command
                 $source = 'bitsight';
             } elseif ($shodan) {
                 $source = 'shodan';
-            } elseif ($censys) {
-                $source = 'censys';
             }
 
             // Skip if no vendor has this port (shouldn't happen)
@@ -263,16 +261,16 @@ class MergeExposedAssets extends Command
             }
 
             // Get IP from first available record
-            $ip = $bitsight->ip ?? $shodan->ip ?? $censys->ip;
+            $ip = $bitsight->ip ?? $shodan->ip;
 
-            // Step 3: Apply null coalescing for each field (Bitsight > Shodan > Censys)
-            $transport = $bitsight->transport ?? $shodan->transport ?? $censys->transport ?? null;
-            $module = $bitsight->module ?? $shodan->module ?? $censys->module ?? null;
+            // Step 3: Apply null coalescing for each field (Bitsight > Shodan)
+            $transport = $bitsight->transport ?? $shodan->transport ?? null;
+            $module = $bitsight->module ?? $shodan->module ?? null;
 
             // Step 4: Merge hostnames from all vendors for this port
             $allHostnames = [];
 
-            foreach ([$bitsight, $shodan, $censys] as $record) {
+            foreach ([$bitsight, $shodan] as $record) {
                 if ($record && !empty($record->hostnames)) {
                     // Split by comma or semicolon (in case vendors use different separators)
                     $hostnames = preg_split('/[,;]\s*/', $record->hostnames);
@@ -289,7 +287,7 @@ class MergeExposedAssets extends Command
             // Step 5: Calculate first_detected_at (MIN) and last_detected_at (MAX)
             $allDates = [];
 
-            foreach ([$bitsight, $shodan, $censys] as $record) {
+            foreach ([$bitsight, $shodan] as $record) {
                 if ($record && $record->detected_at) {
                     $allDates[] = $record->detected_at;
                 }
@@ -299,15 +297,15 @@ class MergeExposedAssets extends Command
             $lastDetectedAt = !empty($allDates) ? max($allDates) : null;
 
             // Step 6: Apply null coalescing for attribution fields (for later use)
-            $entity = $bitsight->entity ?? $shodan->entity ?? $censys->entity ?? null;
-            $isp = $bitsight->isp ?? $shodan->isp ?? $censys->isp ?? null;
-            $country_code = $bitsight->country_code ?? $shodan->country_code ?? $censys->country_code ?? null;
-            $city = $bitsight->city ?? $shodan->city ?? $censys->city ?? null;
-            $asn = $bitsight->asn ?? $shodan->asn ?? $censys->asn ?? null;
-            $os = $bitsight->os ?? $shodan->os ?? $censys->os ?? null;
-            $product = $bitsight->product ?? $shodan->product ?? $censys->product ?? null;
-            $product_sn = $bitsight->product_sn ?? $shodan->product_sn ?? $censys->product_sn ?? null;
-            $version = $bitsight->version ?? $shodan->version ?? $censys->version ?? null;
+            $entity = $bitsight->entity ?? $shodan->entity ?? null;
+            $isp = $bitsight->isp ?? $shodan->isp ?? null;
+            $country_code = $bitsight->country_code ?? $shodan->country_code ?? null;
+            $city = $bitsight->city ?? $shodan->city ?? null;
+            $asn = $bitsight->asn ?? $shodan->asn ?? null;
+            $os = $bitsight->os ?? $shodan->os ?? null;
+            $product = $bitsight->product ?? $shodan->product ?? null;
+            $product_sn = $bitsight->product_sn ?? $shodan->product_sn ?? null;
+            $version = $bitsight->version ?? $shodan->version ?? null;
 
             // Step 7: Build merged record
             $mergedRecords[] = [
@@ -341,7 +339,7 @@ class MergeExposedAssets extends Command
      * Merge attribution data from exposure records.
      * Creates a single attribution record per IP by aggregating data from all ports.
      *
-     * Priority order: Bitsight > Shodan > Censys
+     * Priority order: Bitsight > Shodan
      * For each field, use first non-null value from exposures following priority order.
      *
      * @param array $exposuresData Array of exposure records (one per IP:Port)
@@ -356,9 +354,9 @@ class MergeExposedAssets extends Command
         // Get IP from first exposure (all have same IP)
         $ip = $exposuresData[0]['ip'];
 
-        // Step 1: Sort exposures by priority (bitsight first, then shodan, then censys)
-        $priorityOrder = ['bitsight' => 1, 'shodan' => 2, 'censys' => 3];
-        usort($exposuresData, fn ($a, $b) => ($priorityOrder[$a['source']] ?? 999) <=> ($priorityOrder[$b['source']] ?? 999));
+        // Step 1: Sort exposures by priority (bitsight first, then shodan)
+        $priorityOrder = ['bitsight' => 1, 'shodan' => 2];
+        usort($exposuresData, fn($a, $b) => ($priorityOrder[$a['source']] ?? 999) <=> ($priorityOrder[$b['source']] ?? 999));
 
         // Step 2: Apply null coalescing for each attribution field
         $entity = null;
@@ -429,7 +427,6 @@ class MergeExposedAssets extends Command
         $vendorsData = [];
         foreach (Vendor::cases() as $vendor) {
             $modelClass = match ($vendor) {
-                Vendor::CENSYS => CensysExposedAsset::class,
                 Vendor::SHODAN => ShodanExposedAsset::class,
                 Vendor::BITSIGHT => BitsightExposedAsset::class,
             };
