@@ -11,7 +11,7 @@ class OtherParser extends AbstractJsonDataParser
     {
         return [
             new ParsedDeviceData(
-                vendor: $this->extract(["Vendor", "vendor"]),
+                vendor: $this->extract(["Vendor", "vendor"]) ?? "unknown",
             ),
         ];
     }

@@ -3,11 +3,13 @@
 namespace App\Console\Commands;
 
 use App\Enums\Vendor;
-use App\Models\Attribution;
 use App\Models\BitsightExposedAsset;
 use App\Models\DetectedExposure;
 use App\Models\Scan;
 use App\Models\ShodanExposedAsset;
+use App\Services\Parsers\DataParserFactory;
+use App\Services\Parsers\ParsedDeviceData;
+use Exception;
 use Illuminate\Console\Command;
 use Illuminate\Database\Eloquent\Builder;
 use Symfony\Component\Console\Helper\ProgressBar;
@@ -48,7 +50,7 @@ class MergeExposedAssets extends Command
         $unfinishedCount = $executions->whereNull("finished_at")->count();
 
         if ($unfinishedCount > 0) {
-            $this->error("Scan has $unfinishedCount unfinished execution(s). Cannot merge until all executions complete.");
+            $this->error("Scan has $unfinishedCount unfinished execution(s).");
 
             return Command::FAILURE;
         }
@@ -57,83 +59,73 @@ class MergeExposedAssets extends Command
 
         $executionIdsRanges = $this->groupIntoRanges($executions->pluck('id')->toArray());
 
-        $this->processExecutions($executionIdsRanges);
+        // Process each vendor sequentially
+        $this->processVendorRecords(Vendor::BITSIGHT, $executionIdsRanges);
+        $this->processVendorRecords(Vendor::SHODAN, $executionIdsRanges);
 
         $executionTime = microtime(true) - $startTime;
-        $this->info("Execution time: $executionTime seconds");
+        $this->info("Execution time: " . round($executionTime, 2) . " seconds");
 
         return Command::SUCCESS;
     }
 
-    private function processExecutions(array $executionIdsRanges): void
+    private function processVendorRecords(Vendor $vendor, array $executionIdsRanges): void
     {
-        $ips = array_unique(array_merge(
-            $this->processVendorExecutions(Vendor::SHODAN, ShodanExposedAsset::class, $executionIdsRanges),
-            $this->processVendorExecutions(Vendor::BITSIGHT, BitsightExposedAsset::class, $executionIdsRanges),
-        ));
+        $this->newLine();
+        $this->info("--- Processing {$vendor->value} ---");
 
-        $finalCount = count($ips);
+        // Get model class
+        $modelClass = match ($vendor) {
+            Vendor::BITSIGHT => BitsightExposedAsset::class,
+            Vendor::SHODAN => ShodanExposedAsset::class,
+        };
 
-        $progressBar = $this->output->createProgressBar($finalCount);
+        // Build query with execution_id filters
+        $query = $modelClass::query();
+        $query->where(function (Builder $q) use ($executionIdsRanges) {
+            foreach ($executionIdsRanges as $range) {
+                if ($range["start"] === $range["end"]) {
+                    $q->orWhere("execution_id", $range["start"]);
+                } else {
+                    $q->orWhereBetween("execution_id", [$range["start"], $range["end"]]);
+                }
+            }
+        });
+
+        // Count for progress bar
+        $total = $query->count();
+        $this->info("Processing $total records");
+
+        // Progress tracking
+        $progressBar = $this->output->createProgressBar($total);
         $progressBar->setFormat(ProgressBar::FORMAT_VERBOSE);
 
-        foreach ($ips as $ip) {
-            $progressBar->setMessage("Processing IP: $ip");
+        $parseFailures = 0;
+        $factory = app(DataParserFactory::class);
 
-            $vendorsData = $this->getVendorsData($ip, $executionIdsRanges);
+        // CRITICAL: Use lazyById for keyset pagination
+        foreach ($query->lazyById(1000, 'id') as $record) {
+            $progressBar->setMessage("Processing {$record->ip}:{$record->port}");
 
-            $exposuresData = $this->mergeVendorData($vendorsData);
-            $attributionData = $this->mergeAttributionData($exposuresData);
+            try {
+                // Parse raw data
+                $parser = $factory->make($vendor->value, $record->module ?? 'other');
+                $devices = $parser->parse($record->raw_data);
 
-            // Upsert Attribution (one record per IP)
-            // Filter out null values to preserve existing data
-            $attributionUpsertData = array_filter($attributionData, fn($value) => $value !== null);
-
-            Attribution::updateOrCreate(
-                ['ip' => $ip],
-                $attributionUpsertData
-            );
-
-            // Upsert DetectedExposures (one per IP:Port)
-            foreach ($exposuresData as $exposure) {
-                // Find existing record or create new
-                $existingExposure = DetectedExposure::forIpPort($exposure['ip'], $exposure['port'])->first();
-
-                // Calculate proper dates (MIN for first, MAX for last)
-                $firstDetectedAt = $exposure['first_detected_at'];
-                $lastDetectedAt = $exposure['last_detected_at'];
-
-                if ($existingExposure) {
-                    // Use MIN for first_detected_at
-                    if ($existingExposure->first_detected_at && $firstDetectedAt) {
-                        $firstDetectedAt = min($existingExposure->first_detected_at, $firstDetectedAt);
-                    } elseif ($existingExposure->first_detected_at) {
-                        $firstDetectedAt = $existingExposure->first_detected_at;
-                    }
-
-                    // Use MAX for last_detected_at
-                    if ($existingExposure->last_detected_at && $lastDetectedAt) {
-                        $lastDetectedAt = max($existingExposure->last_detected_at, $lastDetectedAt);
-                    } elseif ($existingExposure->last_detected_at) {
-                        $lastDetectedAt = $existingExposure->last_detected_at;
+                // Create/update exposure for each parsed device
+                if (empty($devices)) {
+                    // Empty result, create exposure without device data
+                    $this->upsertDetectedExposure($vendor, $record, null);
+                } else {
+                    foreach ($devices as $device) {
+                        $this->upsertDetectedExposure($vendor, $record, $device);
                     }
                 }
-
-                // Prepare upsert data with calculated dates
-                $exposureUpsertData = array_filter(
-                    $exposure,
-                    fn($value, $key) => !str_starts_with($key, '_') && $value !== null,
-                    ARRAY_FILTER_USE_BOTH
-                );
-
-                // Override dates with calculated values
-                $exposureUpsertData['first_detected_at'] = $firstDetectedAt;
-                $exposureUpsertData['last_detected_at'] = $lastDetectedAt;
-
-                DetectedExposure::updateOrCreate(
-                    ['ip' => $exposure['ip'], 'port' => $exposure['port']],
-                    $exposureUpsertData
-                );
+            } catch (Exception $e) {
+                dd($e);
+                // Parse failed, create exposure without device data
+                $parseFailures++;
+                $this->upsertDetectedExposure($vendor, $record, null);
             }
 
             $progressBar->advance();
@@ -141,37 +133,70 @@ class MergeExposedAssets extends Command
 
         $progressBar->finish();
         $this->newLine();
+        $this->info("Completed: $total records processed, $parseFailures parse failures");
     }
 
-    /**
-     * @param Vendor $vendor
-     * @param class-string<BitsightExposedAsset|ShodanExposedAsset> $modelClass
-     * @param array $executionIdsRanges
-     * @return array
-     */
-    private function processVendorExecutions(Vendor $vendor, string $modelClass, array $executionIdsRanges): array
+    private function upsertDetectedExposure(
+        Vendor                                  $vendor,
+        BitsightExposedAsset|ShodanExposedAsset $record,
+        ?ParsedDeviceData                       $device
+    ): void
     {
-        $this->newLine();
-        $this->info("--- Processing {$vendor->value} ---");
+        // Find existing exposure
+        $existing = DetectedExposure::forIpPort($record->ip, $record->port)->first();
 
-        $ipQuery = \DB::table((new $modelClass())->getTable())->select("ip");
+        // Calculate dates (MIN for first, MAX for last)
+        $firstDetectedAt = $existing
+            ? min($existing->first_detected_at, $record->detected_at)
+            : $record->detected_at;
 
-        foreach ($executionIdsRanges as $executionIdRange) {
-            if ($executionIdRange["start"] === $executionIdRange["end"]) {
-                $ipQuery->orWhere("execution_id", $executionIdRange["start"]);
-            } else {
-                $ipQuery->orWhereBetween("execution_id", [$executionIdRange["start"], $executionIdRange["end"]]);
-            }
+        $lastDetectedAt = $existing
+            ? max($existing->last_detected_at, $record->detected_at)
+            : $record->detected_at;
+
+        // Build data array
+        $data = [
+            'ip' => $record->ip,
+            'port' => $record->port,
+            'source' => $vendor->value,
+            'transport' => $record->transport,
+            'module' => $record->module,
+            'first_detected_at' => $firstDetectedAt,
+            'last_detected_at' => $lastDetectedAt,
+        ];
+
+        // Add device fields if parsing succeeded
+        if ($device) {
+            $deviceData = [
+                'vendor' => $device->vendor,
+                'fingerprint' => $device->fingerprint,
+                'version' => $device->version,
+                'sn' => $device->sn,
+                'device_mac' => $device->device_mac,
+                'modbus_project_info' => $device->modbus_project_info,
+                'opc-ua_security_policy' => $device->opc_ua_security_policy,
+                'is_guest_account_active' => $device->is_guest_account_active,
+                'registration_info' => $device->registration_info,
+                'secure_power_app' => $device->secure_power_app,
+                'nmc_card_number' => $device->nmc_card_num,
+                'fingerprint_raw' => $device->fingerprint_raw,
+            ];
+        } else {
+            $deviceData = [
+                "vendor" => "not_parsed",
+            ];
         }
 
-        $ips = $ipQuery->get()
-            ->pluck("ip")
-            ->toArray();
+        $data = array_merge($data, $deviceData);
 
-        $ipsCount = count($ips);
-        $this->info("Got $ipsCount ips");
+        // Filter nulls to preserve existing data
+        $data = array_filter($data, fn($value) => $value !== null);
 
-        return $ips;
+        // Upsert
+        DetectedExposure::updateOrCreate(
+            ['ip' => $record->ip, 'port' => $record->port],
+            $data
+        );
     }
 
     /**
@@ -214,234 +239,5 @@ class MergeExposedAssets extends Command
         $ranges[] = ['start' => $rangeStart, 'end' => $rangeEnd];
 
         return $ranges;
-    }
-
-    /**
-     * Merge vendor data for a single IP across all ports.
-     * Returns array of records, one per unique (ip, port) combination.
-     *
-     * Priority order: Bitsight > Shodan
-     * For each field, use first non-null value following priority order.
-     *
-     * @param array $vendorsData Array with keys 'bitsight', 'shodan', values are Collections
-     * @return array Array of arrays, each containing merged data for one (ip, port) combo
-     */
-    private function mergeVendorData(array $vendorsData): array
-    {
-        // Step 1: Extract all unique ports from all vendors
-        $allPorts = [];
-
-        foreach ($vendorsData as $vendorKey => $collection) {
-            foreach ($collection as $record) {
-                $allPorts[] = $record->port;
-            }
-        }
-
-        $uniquePorts = array_unique($allPorts);
-
-        // Step 2: For each port, merge data from all vendors
-        $mergedRecords = [];
-
-        foreach ($uniquePorts as $port) {
-            // Get first record from each vendor for this port (or null if vendor has no records)
-            $bitsight = $vendorsData['bitsight']->where('port', $port)->first();
-            $shodan = $vendorsData['shodan']->where('port', $port)->first();
-
-            // Determine source vendor (first vendor that has this port)
-            $source = null;
-            if ($bitsight) {
-                $source = 'bitsight';
-            } elseif ($shodan) {
-                $source = 'shodan';
-            }
-
-            // Skip if no vendor has this port (shouldn't happen)
-            if (!$source) {
-                continue;
-            }
-
-            // Get IP from first available record
-            $ip = $bitsight->ip ?? $shodan->ip;
-
-            // Step 3: Apply null coalescing for each field (Bitsight > Shodan)
-            $transport = $bitsight->transport ?? $shodan->transport ?? null;
-            $module = $bitsight->module ?? $shodan->module ?? null;
-
-            // Step 4: Merge hostnames from all vendors for this port
-            $allHostnames = [];
-
-            foreach ([$bitsight, $shodan] as $record) {
-                if ($record && !empty($record->hostnames)) {
-                    // Split by comma or semicolon (in case vendors use different separators)
-                    $hostnames = preg_split('/[,;]\s*/', $record->hostnames);
-                    $allHostnames = array_merge($allHostnames, $hostnames);
-                }
-            }
-
-            // Sort, unique, and implode hostnames
-            $allHostnames = array_filter($allHostnames); // Remove empty values
-            $allHostnames = array_unique($allHostnames);
-            sort($allHostnames);
-            $mergedHostnames = implode(',', $allHostnames);
-
-            // Step 5: Calculate first_detected_at (MIN) and last_detected_at (MAX)
-            $allDates = [];
-
-            foreach ([$bitsight, $shodan] as $record) {
-                if ($record && $record->detected_at) {
-                    $allDates[] = $record->detected_at;
-                }
-            }
-
-            $firstDetectedAt = !empty($allDates) ? min($allDates) : null;
-            $lastDetectedAt = !empty($allDates) ? max($allDates) : null;
-
-            // Step 6: Apply null coalescing for attribution fields (for later use)
-            $entity = $bitsight->entity ?? $shodan->entity ?? null;
-            $isp = $bitsight->isp ?? $shodan->isp ?? null;
-            $country_code = $bitsight->country_code ?? $shodan->country_code ?? null;
-            $city = $bitsight->city ?? $shodan->city ?? null;
-            $asn = $bitsight->asn ?? $shodan->asn ?? null;
-            $os = $bitsight->os ?? $shodan->os ?? null;
-            $product = $bitsight->product ?? $shodan->product ?? null;
-            $product_sn = $bitsight->product_sn ?? $shodan->product_sn ?? null;
-            $version = $bitsight->version ?? $shodan->version ?? null;
-
-            // Step 7: Build merged record
-            $mergedRecords[] = [
-                // DetectedExposure fields
-                'ip' => $ip,
-                'port' => $port,
-                'source' => $source,
-                'transport' => $transport,
-                'module' => $module,
-                'first_detected_at' => $firstDetectedAt,
-                'last_detected_at' => $lastDetectedAt,
-
-                // Attribution fields (prefixed with _ for now, will be used in attribution merge)
-                '_hostnames' => $mergedHostnames,
-                '_entity' => $entity,
-                '_isp' => $isp,
-                '_country_code' => $country_code,
-                '_city' => $city,
-                '_asn' => $asn,
-                '_os' => $os,
-                '_product' => $product,
-                '_product_sn' => $product_sn,
-                '_version' => $version,
-            ];
-        }
-
-        return $mergedRecords;
-    }
-
-    /**
-     * Merge attribution data from exposure records.
-     * Creates a single attribution record per IP by aggregating data from all ports.
-     *
-     * Priority order: Bitsight > Shodan
-     * For each field, use first non-null value from exposures following priority order.
-     *
-     * @param array $exposuresData Array of exposure records (one per IP:Port)
-     * @return array Attribution data for the IP
-     */
-    private function mergeAttributionData(array $exposuresData): array
-    {
-        if (empty($exposuresData)) {
-            return [];
-        }
-
-        // Get IP from first exposure (all have same IP)
-        $ip = $exposuresData[0]['ip'];
-
-        // Step 1: Sort exposures by priority (bitsight first, then shodan)
-        $priorityOrder = ['bitsight' => 1, 'shodan' => 2];
-        usort($exposuresData, fn($a, $b) => ($priorityOrder[$a['source']] ?? 999) <=> ($priorityOrder[$b['source']] ?? 999));
-
-        // Step 2: Apply null coalescing for each attribution field
-        $entity = null;
-        $isp = null;
-        $asn = null;
-        $city = null;
-        $country_code = null;
-
-        foreach ($exposuresData as $exposure) {
-            $entity ??= $exposure['_entity'];
-            $isp ??= $exposure['_isp'];
-            $asn ??= $exposure['_asn'];
-            $city ??= $exposure['_city'];
-            $country_code ??= $exposure['_country_code'];
-        }
-
-        // Step 3: Merge hostnames from all ports
-        $allHostnames = [];
-
-        foreach ($exposuresData as $exposure) {
-            if (!empty($exposure['_hostnames'])) {
-                $hostnames = explode(',', $exposure['_hostnames']);
-                $allHostnames = array_merge($allHostnames, $hostnames);
-            }
-        }
-
-        // Sort, unique, and implode hostnames
-        $allHostnames = array_filter($allHostnames); // Remove empty values
-        $allHostnames = array_unique($allHostnames);
-        sort($allHostnames);
-        $mergedHostnames = implode(',', $allHostnames);
-
-        // Step 4: Calculate last_exposure_at as MAX of all last_detected_at
-        $allLastDates = [];
-
-        foreach ($exposuresData as $exposure) {
-            if (!empty($exposure['last_detected_at'])) {
-                $allLastDates[] = $exposure['last_detected_at'];
-            }
-        }
-
-        $lastExposureAt = !empty($allLastDates) ? max($allLastDates) : null;
-
-        // Step 5: Build attribution data
-        return [
-            'ip' => $ip,
-            'entity' => $entity,
-            // 'sector' => null, // Manual field, not populated from vendors
-            // 'domain' => null, // Manual field, not populated from vendors
-            'hostnames' => $mergedHostnames,
-            'isp' => $isp,
-            'asn' => $asn,
-            // 'whois' => null, // Manual field, not populated from vendors
-            'city' => $city,
-            'country_code' => $country_code,
-            // 'source_of_attribution' => null, // Manual field
-            'last_exposure_at' => $lastExposureAt,
-        ];
-    }
-
-    /**
-     * @param mixed $ip
-     * @param array $executionIdsRanges
-     * @return array
-     */
-    private function getVendorsData(mixed $ip, array $executionIdsRanges): array
-    {
-        $vendorsData = [];
-        foreach (Vendor::cases() as $vendor) {
-            $modelClass = match ($vendor) {
-                Vendor::SHODAN => ShodanExposedAsset::class,
-                Vendor::BITSIGHT => BitsightExposedAsset::class,
-            };
-            $query = $modelClass::where("ip", $ip);
-            $query->where(function (Builder $query) use ($executionIdsRanges) {
-                foreach ($executionIdsRanges as $executionIdRange) {
-                    if ($executionIdRange["start"] === $executionIdRange["end"]) {
-                        $query->orWhere("execution_id", $executionIdRange["start"]);
-                    } else {
-                        $query->orWhereBetween("execution_id", [$executionIdRange["start"], $executionIdRange["end"]]);
-                    }
-                }
-            });
-            $vendorsData[$vendor->value] = $query->get();
-        }
-        return $vendorsData;
     }
 }

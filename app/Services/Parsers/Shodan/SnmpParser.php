@@ -40,7 +40,9 @@ class SnmpParser extends AbstractRawDataParser
 
         $securePowerApp = null;
         if (!empty($snmpValues["AN1"])) {
-            $securePowerApp = explode("_", $snmpValues["AN1"])[2];
+            $securePowerApp = substr_count($snmpValues["AN1"], "_") === 3
+                ? explode("_", $snmpValues["AN1"])[2]
+                : $snmpValues["AN1"];
         }
 
         return [

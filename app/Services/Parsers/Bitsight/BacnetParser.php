@@ -26,7 +26,9 @@ class BacnetParser extends AbstractJsonDataParser
     {
         $vendor = $this->extractNested(["Bacnet", "bacnet"], ["Name", "name"]);
         if ($vendor === null && $this->extractNested(["Bacnet", "bacnet"], ["Error", "error"])) {
-            $vendor = "Error";
+            $vendor = "bacnet_error";
+        } else {
+            $vendor = "unknown";
         }
 
         return [

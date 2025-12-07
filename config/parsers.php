@@ -15,10 +15,10 @@ return [
         "bitsight.knx" => App\Services\Parsers\Bitsight\KnxParser::class,
         "bitsight.modbus" => App\Services\Parsers\Bitsight\ModbusParser::class,
         "bitsight.opc-ua" => App\Services\Parsers\Bitsight\OpcUaParser::class,
-        "bitsight.other" => App\Services\Parsers\Bitsight\OtherParser::class,
         "bitsight.snmp" => App\Services\Parsers\Bitsight\SnmpParser::class,
         "bitsight.snmp_v2" => App\Services\Parsers\Bitsight\SnmpParser::class,
         "bitsight.snmp_v3" => App\Services\Parsers\Bitsight\SnmpParser::class,
+        "bitsight.other" => App\Services\Parsers\Bitsight\OtherParser::class,
 
         // Shodan parsers (7 modules + SNMP variants)
         "shodan.apcupsd" => App\Services\Parsers\Shodan\ApcupsdParser::class,
@@ -30,6 +30,7 @@ return [
         "shodan.snmp" => App\Services\Parsers\Shodan\SnmpParser::class,
         "shodan.snmp_v2" => App\Services\Parsers\Shodan\SnmpParser::class,
         "shodan.snmp_v3" => App\Services\Parsers\Shodan\SnmpParser::class,
+        "shodan.other" => App\Services\Parsers\Shodan\OtherParser::class,
 
         // Censys parsers (14 modules - future-proofing)
         "censys.apcupsd" => App\Services\Parsers\Censys\ApcupsdParser::class,

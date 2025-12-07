@@ -249,6 +249,7 @@ namespace App\Models{
  * @property string|null $transport
  * @property string|null $module
  * @property string $vendor
+ * @property string|null $version
  * @property string|null $fingerprint
  * @property string|null $sn
  * @property string|null $device_mac
@@ -298,6 +299,7 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|DetectedExposure whereTransport($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|DetectedExposure whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|DetectedExposure whereVendor($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|DetectedExposure whereVersion($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|DetectedExposure withTrashed(bool $withTrashed = true)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|DetectedExposure withoutTrashed()
  * @mixin \Eloquent

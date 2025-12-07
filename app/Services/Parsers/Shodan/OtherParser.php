@@ -11,7 +11,7 @@ class OtherParser extends AbstractRawDataParser
     {
         return [
             new ParsedDeviceData(
-                vendor: 'not_parsed',
+                vendor: 'other_not_parsed',
             ),
         ];
     }

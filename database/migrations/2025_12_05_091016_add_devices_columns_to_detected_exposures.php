@@ -12,7 +12,8 @@ return new class extends Migration {
     {
         Schema::table('detected_exposures', function (Blueprint $table) {
             $table->string("vendor", 100)->nullable(false)->after("module");
-            $table->text("fingerprint")->nullable()->after("vendor");
+            $table->text("version")->nullable()->after("vendor");
+            $table->text("fingerprint")->nullable()->after("version");
             $table->text("sn")->nullable()->after("fingerprint");
             $table->text("device_mac")->nullable()->after("sn");
             $table->text("modbus_project_info")->nullable()->after("device_mac");
@@ -32,6 +33,7 @@ return new class extends Migration {
     {
         Schema::table('detected_exposures', function (Blueprint $table) {
             $table->dropColumn("vendor");
+            $table->dropColumn("version");
             $table->dropColumn("fingerprint");
             $table->dropColumn("sn");
             $table->dropColumn("device_mac");
