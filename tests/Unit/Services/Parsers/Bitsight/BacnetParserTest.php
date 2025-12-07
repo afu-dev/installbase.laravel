@@ -124,7 +124,7 @@ class BacnetParserTest extends ParserTestCase
         $this->assertArrayHasKey(0, $result);
         $device = $result[0];
 
-        $this->assertEquals('Error', $device->vendor);
+        $this->assertEquals('bacnet_error', $device->vendor);
         $this->assertNull($device->fingerprint);
         $this->assertNull($device->version);
         $this->assertNull($device->sn);
