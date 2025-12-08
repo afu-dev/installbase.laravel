@@ -59,13 +59,13 @@ class PopulateCountriesCommand extends Command
             }
 
             $countries[] = [
-                'country_code2' => $countryDatum[1] ? trim($countryDatum[1]) : null,
-                'country_code3' => $countryDatum[2] ? trim($countryDatum[2]) : null,
-                'country' => $countryDatum[0] ? trim($countryDatum[0]) : null,
-                'region' => $countryDatum[3] ? trim($countryDatum[3]) : null,
-                'ciso_region' => $countryDatum[5] ? trim($countryDatum[5]) : null,
-                'ciso_zone' => $countryDatum[4] ? trim($countryDatum[4]) : null,
-                'operation_zone' => $countryDatum[6] ? trim($countryDatum[6]) : null,
+                'country_code2' => $countryDatum[1] ? trim((string) $countryDatum[1]) : null,
+                'country_code3' => $countryDatum[2] ? trim((string) $countryDatum[2]) : null,
+                'country' => $countryDatum[0] ? trim((string) $countryDatum[0]) : null,
+                'region' => $countryDatum[3] ? trim((string) $countryDatum[3]) : null,
+                'ciso_region' => $countryDatum[5] ? trim((string) $countryDatum[5]) : null,
+                'ciso_zone' => $countryDatum[4] ? trim((string) $countryDatum[4]) : null,
+                'operation_zone' => $countryDatum[6] ? trim((string) $countryDatum[6]) : null,
             ];
         }
 

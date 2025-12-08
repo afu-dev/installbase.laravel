@@ -123,7 +123,7 @@ class DisplayShodanFieldValues extends Command
                     : 0;
 
                 // Truncate long values for display
-                $displayValue = strlen($value) > 80 ? substr($value, 0, 77) . '...' : $value;
+                $displayValue = strlen((string) $value) > 80 ? substr((string) $value, 0, 77) . '...' : $value;
 
                 $tableData[] = [
                     $displayValue,

@@ -34,7 +34,7 @@ class CodesysParser extends AbstractJsonDataParser
         $codesysData = $this->extractJson(["Codesys", "codesys"]);
         if (!empty($codesysData["devices"])) {
             foreach ($codesysData["devices"] as $index => $codesysDatum) {
-                $deviceId = trim(explode("@", $codesysDatum["node_name"])[1] ?? $index);
+                $deviceId = trim(explode("@", (string) $codesysDatum["node_name"])[1] ?? $index);
                 $devices[$deviceId] = new ParsedDeviceData(
                     vendor: $codesysDatum["vendor_name"] ?? "Unknown",
                     fingerprint: $codesysDatum["device_name"] ?? null,

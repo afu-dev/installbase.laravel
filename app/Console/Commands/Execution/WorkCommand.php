@@ -235,27 +235,25 @@ class WorkCommand extends Command
 
     private function insertShodanMatches(int $executionId, array $matches): void
     {
-        $records = array_map(function ($match) use ($executionId) {
-            return [
-                'execution_id' => $executionId,
-                'ip' => data_get($match, 'ip_str'),
-                'port' => data_get($match, 'port'),
-                'module' => data_get($match, '_shodan.module'),
-                'detected_at' => data_get($match, 'timestamp'),
-                'raw_data' => data_get($match, 'data'),
-                'hostnames' => implode(';', data_get($match, 'hostnames', [])),
-                'entity' => data_get($match, 'org'),
-                'isp' => data_get($match, 'isp'),
-                'country_code' => data_get($match, 'location.country_code'),
-                'city' => data_get($match, 'location.city'),
-                'os' => data_get($match, 'os'),
-                'asn' => data_get($match, 'asn'),
-                'transport' => data_get($match, 'transport'),
-                'product' => data_get($match, 'product'),
-                'product_sn' => null, // @TODO: affect something f or product_sn?
-                'version' => data_get($match, 'version'),
-            ];
-        }, $matches);
+        $records = array_map(fn($match) => [
+            'execution_id' => $executionId,
+            'ip' => data_get($match, 'ip_str'),
+            'port' => data_get($match, 'port'),
+            'module' => data_get($match, '_shodan.module'),
+            'detected_at' => data_get($match, 'timestamp'),
+            'raw_data' => data_get($match, 'data'),
+            'hostnames' => implode(';', data_get($match, 'hostnames', [])),
+            'entity' => data_get($match, 'org'),
+            'isp' => data_get($match, 'isp'),
+            'country_code' => data_get($match, 'location.country_code'),
+            'city' => data_get($match, 'location.city'),
+            'os' => data_get($match, 'os'),
+            'asn' => data_get($match, 'asn'),
+            'transport' => data_get($match, 'transport'),
+            'product' => data_get($match, 'product'),
+            'product_sn' => null, // @TODO: affect something f or product_sn?
+            'version' => data_get($match, 'version'),
+        ], $matches);
 
         ShodanExposedAsset::fillAndInsert($records);
     }
@@ -265,9 +263,7 @@ class WorkCommand extends Command
         // Load all field configurations once (case-insensitive key)
         static $fieldConfigs = null;
         if ($fieldConfigs === null) {
-            $fieldConfigs = CensysFieldConfiguration::all()->keyBy(function ($item) {
-                return strtolower($item->protocol);
-            });
+            $fieldConfigs = CensysFieldConfiguration::all()->keyBy(fn($item) => strtolower((string) $item->protocol));
         }
 
         // Normalize protocol to lowercase for lookup
@@ -383,7 +379,7 @@ class WorkCommand extends Command
         try {
             $filePath = $inputDisk->path($filename);
             $totalLines = (int)trim(shell_exec("wc -l < " . escapeshellarg($filePath)));
-        } catch (\Exception $e) {
+        } catch (\Exception) {
             // If path() fails (e.g., S3), we'll track progress without percentage
             $this->line("Unable to get line count (remote storage?) - will track rows processed");
         }
@@ -616,7 +612,7 @@ class WorkCommand extends Command
         try {
             $filePath = $inputDisk->path($filename);
             $totalLines = (int)trim(shell_exec("wc -l < " . escapeshellarg($filePath)));
-        } catch (\Exception $e) {
+        } catch (\Exception) {
             // If path() fails (e.g., S3), we'll track progress without percentage
             $this->line("Unable to get line count (remote storage?) - will track rows processed");
         }

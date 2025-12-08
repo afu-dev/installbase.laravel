@@ -149,7 +149,7 @@ class ValidateParserCommand extends Command
             file_put_contents($fixturePath, $record->raw_data);
         } else {
             // Bitsight/Censys: Save as pretty-printed JSON
-            $json = json_encode(json_decode($record->raw_data), JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
+            $json = json_encode(json_decode((string) $record->raw_data), JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES);
             file_put_contents($fixturePath, $json);
         }
 

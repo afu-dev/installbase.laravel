@@ -7,10 +7,9 @@ use Illuminate\Support\ServiceProvider;
 
 class DataParserServiceProvider extends ServiceProvider
 {
+    #[\Override]
     public function register(): void
     {
-        $this->app->singleton(DataParserFactory::class, function ($app) {
-            return new DataParserFactory();
-        });
+        $this->app->singleton(DataParserFactory::class, fn($app) => new DataParserFactory());
     }
 }

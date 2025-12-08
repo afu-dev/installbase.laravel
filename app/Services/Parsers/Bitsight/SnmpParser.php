@@ -51,26 +51,26 @@ class SnmpParser extends AbstractJsonDataParser
         }
 
         // Early return: delegate to OtherParser if APC not present
-        if (!str_contains($snmpData, 'APC')) {
+        if (!str_contains((string) $snmpData, 'APC')) {
             $otherParser = new OtherParser();
             return $otherParser->parse($this->rawData);
         }
 
         // Extract MN value (model/fingerprint)
         $fingerprint = null;
-        if (preg_match('/MN:(\S+)/', $snmpData, $mnMatches)) {
+        if (preg_match('/MN:(\S+)/', (string) $snmpData, $mnMatches)) {
             $fingerprint = $mnMatches[1];
         }
 
         // Extract PF value (version)
         $version = null;
-        if (preg_match('/PF:(\S+)/', $snmpData, $pfMatches)) {
+        if (preg_match('/PF:(\S+)/', (string) $snmpData, $pfMatches)) {
             $version = $pfMatches[1];
         }
 
         // Extract AN1 value (secure_power_app)
         $securePowerApp = null;
-        if (preg_match('/AN1:(\S+)/', $snmpData, $an1Matches)) {
+        if (preg_match('/AN1:(\S+)/', (string) $snmpData, $an1Matches)) {
             $securePowerApp = $an1Matches[1];
         }
 

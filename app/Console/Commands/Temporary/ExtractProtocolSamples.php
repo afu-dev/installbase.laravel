@@ -112,7 +112,7 @@ class ExtractProtocolSamples extends Command
             $keysString = $keysOption;
         }
 
-        return array_map('trim', explode(',', $keysString));
+        return array_map(trim(...), explode(',', $keysString));
     }
 
     private function processRecord(string $rawData): void
@@ -134,7 +134,7 @@ class ExtractProtocolSamples extends Command
         $caseVariation = $protocolData['key'];
 
         // Decode nested protocol JSON
-        $nestedData = json_decode($protocolData['value'], true);
+        $nestedData = json_decode((string) $protocolData['value'], true);
 
         if (json_last_error() !== JSON_ERROR_NONE) {
             return;

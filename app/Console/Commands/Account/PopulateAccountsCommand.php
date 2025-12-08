@@ -59,13 +59,13 @@ class PopulateAccountsCommand extends Command
             }
 
             $accounts[] = [
-                "entity" => $accountData[0] ? trim($accountData[0]) : null,
-                "sector" => $accountData[1] ? trim($accountData[1]) : null,
-                "entity_country" => $accountData[2] ? trim($accountData[2]) : null,
-                "url" => $accountData[3] ? trim($accountData[3]) : null,
-                "point_of_contact" => $accountData[4] ? trim($accountData[4]) : null,
-                "type_of_account" => $accountData[5] ? trim($accountData[5]) : null,
-                "account_manager" => $accountData[6] ? trim($accountData[6]) : null,
+                "entity" => $accountData[0] ? trim((string) $accountData[0]) : null,
+                "sector" => $accountData[1] ? trim((string) $accountData[1]) : null,
+                "entity_country" => $accountData[2] ? trim((string) $accountData[2]) : null,
+                "url" => $accountData[3] ? trim((string) $accountData[3]) : null,
+                "point_of_contact" => $accountData[4] ? trim((string) $accountData[4]) : null,
+                "type_of_account" => $accountData[5] ? trim((string) $accountData[5]) : null,
+                "account_manager" => $accountData[6] ? trim((string) $accountData[6]) : null,
             ];
         }
 

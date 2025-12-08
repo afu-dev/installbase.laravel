@@ -38,12 +38,12 @@ class PopulateQueriesCommand extends Command
         $this->info('Reading fingerprints.tsv...');
 
         $file = fopen($filePath, 'r');
-        fgetcsv($file, 0, "\t"); // Skip header row
+        fgetcsv($file, 0, "\t", escape: '\\'); // Skip header row
 
         $queries = [];
         $skipped = 0;
 
-        while (($row = fgetcsv($file, 0, "\t")) !== false) {
+        while (($row = fgetcsv($file, 0, "\t", escape: '\\')) !== false) {
             $id = trim($row[0] ?? '');
             if (empty($id) || !is_numeric($id)) {
                 $this->error("Error: invalid ID supplied");

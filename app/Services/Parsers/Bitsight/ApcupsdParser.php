@@ -47,7 +47,7 @@ class ApcupsdParser extends AbstractJsonDataParser
         if (!empty($fingerprints)) {
             foreach ($fingerprints as $fingerprint) {
                 if (!empty($fingerprint["fingerprint"])) {
-                    $fingerprintValue = str_starts_with($fingerprint["fingerprint"], "model/")
+                    $fingerprintValue = str_starts_with((string) $fingerprint["fingerprint"], "model/")
                         ? str_replace("model/", "", $fingerprint["fingerprint"])
                         : $fingerprint["fingerprint"];
                     break;

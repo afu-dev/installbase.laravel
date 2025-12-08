@@ -18,7 +18,7 @@ class DataParserFactory
         $parsers = config("parsers.map", []);
 
         foreach ($parsers as $key => $parserClass) {
-            [$vendor, $module] = explode('.', $key);
+            [$vendor, $module] = explode('.', (string) $key);
             $this->register($vendor, $module, $parserClass);
         }
     }

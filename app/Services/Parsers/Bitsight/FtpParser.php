@@ -40,12 +40,12 @@ class FtpParser extends AbstractJsonDataParser
         $ftpData = $this->extractNested(["Ftp", "ftp"], "ftp_data");
 
         // Check for APXXXX pattern (AP + exactly 4 digits)
-        if (!empty($ftpData) && preg_match('/AP\d{4}/', $ftpData, $matches)) {
+        if (!empty($ftpData) && preg_match('/AP\d{4}/', (string) $ftpData, $matches)) {
             $model = $matches[0]; // e.g., "AP7900"
 
             // Extract version (pattern: v3.7.0, v6.4.6, etc.)
             $version = null;
-            if (preg_match('/v\d+\.\d+\.\d+/', $ftpData, $versionMatches)) {
+            if (preg_match('/v\d+\.\d+\.\d+/', (string) $ftpData, $versionMatches)) {
                 $version = $versionMatches[0];
             }
 

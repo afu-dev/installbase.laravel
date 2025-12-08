@@ -58,7 +58,7 @@ class PopulateProtocolsCommand extends Command
                 continue;
             }
 
-            $module = $protocolData[0] ? trim($protocolData[0]) : null;
+            $module = $protocolData[0] ? trim((string) $protocolData[0]) : null;
             if (is_null($module)) {
                 $this->warn('Invalid module value (null), protocol is: ' . $protocolData[1]);
                 continue;
@@ -71,10 +71,10 @@ class PopulateProtocolsCommand extends Command
 
             $protocols[$module] = [
                 "module" => $module,
-                "protocol" => $protocolData[1] ? trim($protocolData[1]) : null,
-                "modifier" => $protocolData[3] ? trim($protocolData[3]) : null,
-                "severity" => $protocolData[4] ? trim($protocolData[4]) : null,
-                "description" => $protocolData[5] ? trim($protocolData[5]) : null,
+                "protocol" => $protocolData[1] ? trim((string) $protocolData[1]) : null,
+                "modifier" => $protocolData[3] ? trim((string) $protocolData[3]) : null,
+                "severity" => $protocolData[4] ? trim((string) $protocolData[4]) : null,
+                "description" => $protocolData[5] ? trim((string) $protocolData[5]) : null,
             ];
         }
 

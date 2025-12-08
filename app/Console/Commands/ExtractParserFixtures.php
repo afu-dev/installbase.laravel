@@ -166,10 +166,9 @@ class ExtractParserFixtures extends Command
             ->inRandomOrder()
             ->limit($sampleSize)
             ->get()
-            ->unique(function ($row) {
+            ->unique(fn($row) =>
                 // Deduplicate by IP prefix + country for diversity
-                return substr($row->ip, 0, 7) . ($row->country_code ?? 'unknown');
-            })
+                substr((string) $row->ip, 0, 7) . ($row->country_code ?? 'unknown'))
             ->take($limit)
             ->values();
     }
@@ -201,7 +200,7 @@ class ExtractParserFixtures extends Command
             }
 
             // Bitsight and Censys use JSON
-            $data = json_decode($row->raw_data, true);
+            $data = json_decode((string) $row->raw_data, true);
 
             if (!$data) {
                 $this->warn("      ⚠️  Sample {$index} has invalid JSON, skipping");

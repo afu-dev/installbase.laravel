@@ -91,7 +91,7 @@ class DisplayBitsightFieldValues extends Command
         }
 
         // Second decode: parse nested protocol JSON string
-        $protocolData = json_decode($protocolString, true);
+        $protocolData = json_decode((string) $protocolString, true);
 
         if (json_last_error() !== JSON_ERROR_NONE) {
             return;
@@ -151,7 +151,7 @@ class DisplayBitsightFieldValues extends Command
                     : 0;
 
                 // Truncate long values for display
-                $displayValue = strlen($value) > 80 ? substr($value, 0, 77).'...' : $value;
+                $displayValue = strlen((string) $value) > 80 ? substr((string) $value, 0, 77).'...' : $value;
 
                 $tableData[] = [
                     $displayValue,

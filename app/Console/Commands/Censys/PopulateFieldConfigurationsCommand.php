@@ -37,13 +37,13 @@ class PopulateFieldConfigurationsCommand extends Command
         $this->info('Reading censys-query-params.csv...');
 
         $file = fopen($filePath, 'r');
-        fgetcsv($file); // Skip header row
+        fgetcsv($file, escape: '\\'); // Skip header row
 
         $configurations = [];
         $skipped = 0;
         $line = 1;
 
-        while (($row = fgetcsv($file)) !== false) {
+        while (($row = fgetcsv($file, escape: '\\')) !== false) {
             $line++;
 
             // Skip rows that don't have enough columns

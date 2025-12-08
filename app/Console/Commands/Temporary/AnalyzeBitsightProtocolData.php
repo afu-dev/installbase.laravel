@@ -89,7 +89,7 @@ class AnalyzeBitsightProtocolData extends Command
         }
 
         // Second decode: parse nested protocol JSON string
-        $nestedData = json_decode($protocolData['value'], true);
+        $nestedData = json_decode((string) $protocolData['value'], true);
 
         if (json_last_error() !== JSON_ERROR_NONE) {
             // Invalid protocol JSON
