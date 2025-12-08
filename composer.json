@@ -73,6 +73,10 @@
         ],
         "pre-package-uninstall": [
             "Illuminate\\Foundation\\ComposerScripts::prePackageUninstall"
+        ],
+        "lint": [
+            "./vendor/bin/pint",
+            "./vendor/bin/rector process --dry-run"
         ]
     },
     "extra": {
