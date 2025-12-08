@@ -28,7 +28,7 @@ class PopulateProtocolsCommand extends Command
     public function handle()
     {
         $filename = "protocol.xlsx";
-        $filePath = resource_path("csv/schema/$filename");
+        $filePath = resource_path("csv/schema/{$filename}");
 
         if (!file_exists($filePath)) {
             $this->error("File not found: {$filePath}");
@@ -36,10 +36,11 @@ class PopulateProtocolsCommand extends Command
             return 1;
         }
 
-        $this->info("Reading $filename...");
+        $this->info("Reading {$filename}...");
 
         $reader = IOFactory::createReader("Xlsx");
         $reader->setReadDataOnly(true);
+
         $spreadsheet = $reader->load($filePath);
 
         $protocolsData = $spreadsheet->getActiveSheet()->toArray();
@@ -65,7 +66,7 @@ class PopulateProtocolsCommand extends Command
             }
 
             if (isset($protocols[$module])) {
-                $this->warn("Duplicate module value ($module)");
+                $this->warn("Duplicate module value ({$module})");
                 continue;
             }
 
@@ -88,7 +89,7 @@ class PopulateProtocolsCommand extends Command
         Protocol::fillAndInsert($protocols);
 
         $count = Protocol::count();
-        $this->info("Successfully imported $count protocols.");
+        $this->info("Successfully imported {$count} protocols.");
 
         return 0;
     }

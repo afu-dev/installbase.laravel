@@ -18,4 +18,7 @@ return RectorConfig::configure()
     ->withTypeCoverageLevel(5)
     ->withDeadCodeLevel(20)
     ->withCodeQualityLevel(24)
-    ->withCodingStyleLevel(10);
+    ->withCodingStyleLevel(20)
+    ->withSkip([
+        \Rector\CodingStyle\Rector\Encapsed\EncapsedStringsToSprintfRector::class
+    ]);

@@ -28,7 +28,7 @@ class PopulateAccountsCommand extends Command
     public function handle()
     {
         $filename = "account v2.xlsx";
-        $filePath = resource_path("csv/schema/$filename");
+        $filePath = resource_path("csv/schema/{$filename}");
 
         if (!file_exists($filePath)) {
             $this->error("File not found: {$filePath}");
@@ -36,10 +36,11 @@ class PopulateAccountsCommand extends Command
             return 1;
         }
 
-        $this->info("Reading $filename...");
+        $this->info("Reading {$filename}...");
 
         $reader = IOFactory::createReader("Xlsx");
         $reader->setReadDataOnly(true);
+
         $spreadsheet = $reader->load($filePath);
 
         $accountsData = $spreadsheet->getActiveSheet()->toArray();
@@ -79,7 +80,7 @@ class PopulateAccountsCommand extends Command
         Account::fillAndInsert($accounts);
 
         $count = Account::count();
-        $this->info("Successfully imported $count accounts.");
+        $this->info("Successfully imported {$count} accounts.");
 
         return 0;
     }

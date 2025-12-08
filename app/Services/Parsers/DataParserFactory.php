@@ -41,7 +41,7 @@ class DataParserFactory
         if (!isset($this->parsers[$key])) {
             $key = $vendor . "_other";
             if (!isset($this->parsers[$key])) {
-                throw new \InvalidArgumentException("No parser found for vendor $vendor and module $module (or module other)");
+                throw new \InvalidArgumentException("No parser found for vendor {$vendor} and module {$module} (or module other)");
             }
         }
 

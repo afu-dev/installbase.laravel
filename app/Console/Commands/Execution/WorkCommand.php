@@ -45,11 +45,11 @@ class WorkCommand extends Command
             ->first();
 
         if ($executionCount === 0 || !$execution) {
-            $this->error("No execution found (execution count: $executionCount)");
+            $this->error("No execution found (execution count: {$executionCount})");
             return self::FAILURE;
         }
 
-        $this->info("Execution left to do: <comment>$executionCount</comment>");
+        $this->info("Execution left to do: <comment>{$executionCount}</comment>");
 
         $execution->started_at = now();
         $execution->save();
@@ -84,7 +84,7 @@ class WorkCommand extends Command
     {
         $query = $execution->vendorQuery->query;
 
-        $this->info("Processing <comment>Shodan</comment> query: <comment>$query</comment>");
+        $this->info("Processing <comment>Shodan</comment> query: <comment>{$query}</comment>");
 
         // Validate API key
         $apiKey = config('services.shodan.api_key');
@@ -98,7 +98,7 @@ class WorkCommand extends Command
         $storage = Storage::disk('bronze');
         $slugger = new AsciiSlugger();
         $datePrefix = $execution->scan->created_at->format('Y/m/d');
-        $destinationFolder = "shodan/$datePrefix/" . $slugger->slug($query);
+        $destinationFolder = "shodan/{$datePrefix}/" . $slugger->slug($query);
 
         // First request
         $response = $client->get('https://api.shodan.io/shodan/host/search', ['query' => $query]);
@@ -116,10 +116,10 @@ class WorkCommand extends Command
         $total = $data['total'];
         $totalPages = (int)ceil($total / 100);
 
-        $this->info("Total results: <comment>$total</comment> | Total pages: <comment>$totalPages</comment>");
+        $this->info("Total results: <comment>{$total}</comment> | Total pages: <comment>{$totalPages}</comment>");
 
         // Save only the matches array from the first page
-        $storage->put("$destinationFolder/page_001.json", json_encode($data['matches'], JSON_PRETTY_PRINT));
+        $storage->put("{$destinationFolder}/page_001.json", json_encode($data['matches'], JSON_PRETTY_PRINT));
 
         $this->line("Stored page 1 - " . count($data['matches']) . ' matches');
 
@@ -136,23 +136,23 @@ class WorkCommand extends Command
 
                 // Validate response structure
                 if (!isset($data['matches'])) {
-                    $this->warn("Invalid response on page $page - skipping");
+                    $this->warn("Invalid response on page {$page} - skipping");
                     continue;
                 }
 
                 $pageString = sprintf('%03d', $page);
 
                 // Save only the matches array
-                $storage->put("$destinationFolder/page_$pageString.json", json_encode($data['matches'], JSON_PRETTY_PRINT));
+                $storage->put("{$destinationFolder}/page_{$pageString}.json", json_encode($data['matches'], JSON_PRETTY_PRINT));
 
-                $this->line("Stored page $page - " . count($data['matches']) . ' matches');
+                $this->line("Stored page {$page} - " . count($data['matches']) . ' matches');
 
                 // Insert matches into database
                 $this->insertShodanMatches($execution->id, $data['matches']);
             }
         }
 
-        $this->info("Completed <comment>Shodan</comment> query processing - Total hits: <comment>$total</comment>");
+        $this->info("Completed <comment>Shodan</comment> query processing - Total hits: <comment>{$total}</comment>");
 
         return $total;
     }
@@ -161,7 +161,7 @@ class WorkCommand extends Command
     {
         $query = $execution->vendorQuery->query;
 
-        $this->info("Processing <comment>Censys</comment> query: <comment>$query</comment>");
+        $this->info("Processing <comment>Censys</comment> query: <comment>{$query}</comment>");
 
         // Validate API credentials
         $apiId = config('services.censys.api_id');
@@ -184,12 +184,12 @@ class WorkCommand extends Command
         $protocol = $execution->vendorQuery->protocol ?: 'default';
         $fields = $this->getFieldsForProtocol($protocol);
 
-        $this->line("Protocol: $protocol | Fields: $fields");
+        $this->line("Protocol: {$protocol} | Fields: {$fields}");
 
         $storage = Storage::disk('bronze');
         $slugger = new AsciiSlugger();
         $datePrefix = $execution->scan->created_at->format('Y/m/d');
-        $destinationFolder = "censys/$datePrefix/" . $slugger->slug($query);
+        $destinationFolder = "censys/{$datePrefix}/" . $slugger->slug($query);
 
         // First request
         $result = $this->censysSearch($apiId, $apiSecret, $apiUrl, $query, $fields);
@@ -197,10 +197,10 @@ class WorkCommand extends Command
         $total = $result['total'];
         $totalPages = (int)ceil($total / 100);
 
-        $this->info("Total results: <comment>$total</comment> | Total pages: <comment>$totalPages</comment>");
+        $this->info("Total results: <comment>{$total}</comment> | Total pages: <comment>{$totalPages}</comment>");
 
         // Store first page
-        $storage->put("$destinationFolder/page_001.json", json_encode($result['hits'], JSON_PRETTY_PRINT));
+        $storage->put("{$destinationFolder}/page_001.json", json_encode($result['hits'], JSON_PRETTY_PRINT));
 
         $this->line("Stored page 1 - " . count($result['hits']) . ' hits');
 
@@ -212,7 +212,7 @@ class WorkCommand extends Command
 
         for ($page = 2; $page <= $totalPages; $page++) {
             if ($cursor === null) {
-                $this->warn("Cursor is null before reaching total pages (page $page/$totalPages)");
+                $this->warn("Cursor is null before reaching total pages (page {$page}/{$totalPages})");
                 break;
             }
 
@@ -221,9 +221,9 @@ class WorkCommand extends Command
             $result = $this->censysSearch($apiId, $apiSecret, $apiUrl, $query, $fields, $cursor);
 
             $pageString = sprintf('%03d', $page);
-            $storage->put("$destinationFolder/page_$pageString.json", json_encode($result['hits'], JSON_PRETTY_PRINT));
+            $storage->put("{$destinationFolder}/page_{$pageString}.json", json_encode($result['hits'], JSON_PRETTY_PRINT));
 
-            $this->line("Stored page $page - " . count($result['hits']) . ' hits');
+            $this->line("Stored page {$page} - " . count($result['hits']) . ' hits');
 
             // Insert hits into database
             $this->insertCensysMatches($execution->id, $result['hits']);
@@ -231,7 +231,7 @@ class WorkCommand extends Command
             $cursor = $result['next_cursor'] ?? null;
         }
 
-        $this->info("Completed <comment>Censys</comment> query processing - Total hits: <comment>$total</comment>");
+        $this->info("Completed <comment>Censys</comment> query processing - Total hits: <comment>{$total}</comment>");
 
         return $total;
     }

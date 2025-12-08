@@ -28,7 +28,7 @@ class PopulateCountriesCommand extends Command
     public function handle()
     {
         $filename = "countries.xlsx";
-        $filePath = resource_path("csv/schema/$filename");
+        $filePath = resource_path("csv/schema/{$filename}");
 
         if (!file_exists($filePath)) {
             $this->error("File not found: {$filePath}");
@@ -36,10 +36,11 @@ class PopulateCountriesCommand extends Command
             return 1;
         }
 
-        $this->info("Reading $filename...");
+        $this->info("Reading {$filename}...");
 
         $reader = IOFactory::createReader("Xlsx");
         $reader->setReadDataOnly(true);
+
         $spreadsheet = $reader->load($filePath);
 
         $countriesData = $spreadsheet->getActiveSheet()->toArray();
@@ -79,7 +80,7 @@ class PopulateCountriesCommand extends Command
         Country::fillAndInsert($countries);
 
         $count = Country::count();
-        $this->info("Successfully imported $count countries.");
+        $this->info("Successfully imported {$count} countries.");
 
         return 0;
     }

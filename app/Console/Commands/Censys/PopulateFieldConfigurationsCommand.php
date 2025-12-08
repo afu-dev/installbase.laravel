@@ -48,7 +48,7 @@ class PopulateFieldConfigurationsCommand extends Command
 
             // Skip rows that don't have enough columns
             if (count($row) < 2) {
-                $this->warn("Line $line: not enough columns (expected 2)");
+                $this->warn("Line {$line}: not enough columns (expected 2)");
                 $skipped++;
                 continue;
             }
@@ -58,14 +58,14 @@ class PopulateFieldConfigurationsCommand extends Command
 
             // Skip if protocol is empty
             if (empty($protocol)) {
-                $this->warn("Line $line: empty protocol");
+                $this->warn("Line {$line}: empty protocol");
                 $skipped++;
                 continue;
             }
 
             // Skip if fields is empty
             if (empty($fields)) {
-                $this->warn("Line $line: empty fields");
+                $this->warn("Line {$line}: empty fields");
                 $skipped++;
                 continue;
             }
@@ -89,10 +89,10 @@ class PopulateFieldConfigurationsCommand extends Command
         CensysFieldConfiguration::fillAndInsert($configurations);
 
         $count = CensysFieldConfiguration::count();
-        $this->info("Successfully imported $count configurations.");
+        $this->info("Successfully imported {$count} configurations.");
 
         if ($skipped > 0) {
-            $this->warn("Skipped $skipped rows (missing data).");
+            $this->warn("Skipped {$skipped} rows (missing data).");
         }
 
         return 0;

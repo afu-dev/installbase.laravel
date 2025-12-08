@@ -53,7 +53,7 @@ class PopulateQueriesCommand extends Command
 
             // Skip rows that don't have enough columns
             if (count($row) < 7) {
-                $this->warn("Row #$id: not enough column (min. 7)");
+                $this->warn("Row #{$id}: not enough column (min. 7)");
                 $skipped++;
                 continue;
             }
@@ -61,7 +61,7 @@ class PopulateQueriesCommand extends Command
             // Skip if the required product field is missing
             $product = trim($row[1] ?? '');
             if (empty($product)) {
-                $this->warn("Row #$id: empty product name");
+                $this->warn("Row #{$id}: empty product name");
                 $skipped++;
                 continue;
             }
@@ -69,7 +69,7 @@ class PopulateQueriesCommand extends Command
             // Skip if the required query field is missing
             $query = trim($row[3] ?? '');
             if (empty($query)) {
-                $this->warn("Row #$id: empty query field");
+                $this->warn("Row #{$id}: empty query field");
                 $skipped++;
                 continue;
             }
@@ -84,7 +84,7 @@ class PopulateQueriesCommand extends Command
 
             // Skip if no vendor is specified
             if ($vendor === null) {
-                $this->warn("Row #$id: invalid vendor!");
+                $this->warn("Row #{$id}: invalid vendor!");
                 $skipped++;
                 continue;
             }
@@ -125,10 +125,10 @@ class PopulateQueriesCommand extends Command
         Query::fillAndInsert($queries);
 
         $count = Query::count();
-        $this->info("Successfully imported $count queries.");
+        $this->info("Successfully imported {$count} queries.");
 
         if ($skipped > 0) {
-            $this->warn("Skipped $skipped rows (missing data or no vendor specified).");
+            $this->warn("Skipped {$skipped} rows (missing data or no vendor specified).");
         }
 
         return 0;

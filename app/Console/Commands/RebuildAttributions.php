@@ -39,13 +39,13 @@ class RebuildAttributions extends Command
             ->pluck('ip');
 
         $total = $uniqueIps->count();
-        $this->info("Processing $total unique IPs");
+        $this->info("Processing {$total} unique IPs");
 
         $progressBar = $this->output->createProgressBar($total);
         $progressBar->setFormat(ProgressBar::FORMAT_VERBOSE);
 
         foreach ($uniqueIps as $ip) {
-            $progressBar->setMessage("Processing IP: $ip");
+            $progressBar->setMessage("Processing IP: {$ip}");
 
             // Get attribution data from vendor tables (priority: Bitsight > Shodan)
             $bitsightRecord = BitsightExposedAsset::where('ip', $ip)->first();
@@ -90,7 +90,7 @@ class RebuildAttributions extends Command
         $this->newLine();
 
         $executionTime = microtime(true) - $startTime;
-        $this->info("Completed: $total attributions processed in " . round($executionTime, 2) . " seconds");
+        $this->info("Completed: {$total} attributions processed in " . round($executionTime, 2) . " seconds");
 
         return Command::SUCCESS;
     }

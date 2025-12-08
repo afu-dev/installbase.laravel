@@ -50,7 +50,7 @@ class MergeExposedAssets extends Command
         $unfinishedCount = $executions->whereNull("finished_at")->count();
 
         if ($unfinishedCount > 0) {
-            $this->error("Scan has $unfinishedCount unfinished execution(s).");
+            $this->error("Scan has {$unfinishedCount} unfinished execution(s).");
 
             return Command::FAILURE;
         }
@@ -94,7 +94,7 @@ class MergeExposedAssets extends Command
 
         // Count for progress bar
         $total = $query->count();
-        $this->info("Processing $total records");
+        $this->info("Processing {$total} records");
 
         // Progress tracking
         $progressBar = $this->output->createProgressBar($total);
@@ -133,7 +133,7 @@ class MergeExposedAssets extends Command
 
         $progressBar->finish();
         $this->newLine();
-        $this->info("Completed: $total records processed, $parseFailures parse failures");
+        $this->info("Completed: {$total} records processed, {$parseFailures} parse failures");
     }
 
     private function upsertDetectedExposure(
