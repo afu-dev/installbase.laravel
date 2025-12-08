@@ -14,6 +14,7 @@ class FtpParser extends AbstractRawDataParser
             $otherParser = new OtherParser();
             return $otherParser->parse($this->rawData);
         }
+
         [, $fingerprint, $cardNum] = $matches;
 
         return [

@@ -103,6 +103,7 @@ class AnalyzeShodanProtocolData extends Command
             if (!isset($this->keyFrequency[$key])) {
                 $this->keyFrequency[$key] = 0;
             }
+
             $this->keyFrequency[$key]++;
         }
     }

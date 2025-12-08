@@ -65,9 +65,9 @@ class WorkCommand extends Command
             };
 
             $execution->count = $count;
-        } catch (Exception $e) {
+        } catch (Exception $exception) {
             $this->error("Caught the following exception:");
-            $this->error($e->getMessage());
+            $this->error($exception->getMessage());
             $execution->errored = true;
         }
 
@@ -108,6 +108,7 @@ class WorkCommand extends Command
         if (!isset($data['total'])) {
             throw new Exception('Invalid Shodan API response: missing "total" key');
         }
+
         if (!isset($data['matches'])) {
             throw new Exception('Invalid Shodan API response: missing "matches" key');
         }
@@ -170,9 +171,11 @@ class WorkCommand extends Command
         if (empty($apiId)) {
             throw new Exception('CENSYS_API_ID is not configured');
         }
+
         if (empty($apiSecret)) {
             throw new Exception('CENSYS_API_SECRET is not configured');
         }
+
         if (empty($apiUrl)) {
             throw new Exception('CENSYS_API_URL is not configured');
         }
@@ -450,9 +453,11 @@ class WorkCommand extends Command
                 if (empty($ip)) {
                     $missing[] = 'Ip Str';
                 }
+
                 if (empty($port)) {
                     $missing[] = 'Port';
                 }
+
                 if (empty($date)) {
                     $missing[] = 'Date';
                 }
@@ -683,9 +688,11 @@ class WorkCommand extends Command
                 if (empty($ip)) {
                     $missing[] = 'ip_str';
                 }
+
                 if (empty($port)) {
                     $missing[] = 'port';
                 }
+
                 if (empty($date)) {
                     $missing[] = 'date';
                 }

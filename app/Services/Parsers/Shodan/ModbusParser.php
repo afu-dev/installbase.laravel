@@ -19,6 +19,7 @@ class ModbusParser extends AbstractRawDataParser
                 if ($index === 0) {
                     $unitId = trim($value);
                 }
+
                 $modbusData[$unitId][trim($key)] = trim($value);
             }
         }
@@ -29,6 +30,7 @@ class ModbusParser extends AbstractRawDataParser
             if (empty($vendor)) {
                 continue;
             }
+
             $devices[$unitId] = new ParsedDeviceData(
                 vendor: $vendor,
                 fingerprint: $model,

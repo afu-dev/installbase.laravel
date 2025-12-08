@@ -9,7 +9,7 @@ class DisplayBitsightFieldValues extends Command
 {
     protected $signature = 'temporary:display-bitsight-field {protocol} {field}';
 
-    protected $description = 'Display unique values and counts for a specific field in a protocol\'s nested JSON data';
+    protected $description = "Display unique values and counts for a specific field in a protocol's nested JSON data";
 
     private array $fieldValues = [];
 

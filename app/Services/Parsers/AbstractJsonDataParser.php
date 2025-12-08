@@ -7,7 +7,9 @@ use App\Contracts\DataParserInterface;
 abstract class AbstractJsonDataParser implements DataParserInterface
 {
     protected array $jsonData;
+
     protected string $rawData;
+
     private array $nestedCache = [];
 
     /** @return ParsedDeviceData[] */

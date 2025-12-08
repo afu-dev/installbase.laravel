@@ -9,7 +9,7 @@ class DisplayShodanFieldValues extends Command
 {
     protected $signature = 'temporary:display-shodan-field {protocol} {field}';
 
-    protected $description = 'Display unique values and counts for a specific field in a protocol\'s shodan data';
+    protected $description = "Display unique values and counts for a specific field in a protocol's shodan data";
 
     private array $fieldValues = [];
 

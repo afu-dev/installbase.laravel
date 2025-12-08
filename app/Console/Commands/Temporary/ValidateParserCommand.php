@@ -49,8 +49,8 @@ class ValidateParserCommand extends Command
         try {
             $factory = new DataParserFactory();
             $parser = $factory->make($vendor, $module);
-        } catch (\InvalidArgumentException $e) {
-            $this->error("Failed to create parser: {$e->getMessage()}");
+        } catch (\InvalidArgumentException $invalidArgumentException) {
+            $this->error("Failed to create parser: {$invalidArgumentException->getMessage()}");
             return Command::FAILURE;
         }
 
@@ -98,9 +98,9 @@ class ValidateParserCommand extends Command
                         }
                     }
                 });
-        } catch (\Exception $e) {
+        } catch (\Exception $exception) {
             // This shouldn't happen, but just in case
-            $this->error("Unexpected error: {$e->getMessage()}");
+            $this->error("Unexpected error: {$exception->getMessage()}");
             return Command::FAILURE;
         }
 
