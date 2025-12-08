@@ -20,5 +20,6 @@ return RectorConfig::configure()
     ->withCodeQualityLevel(24)
     ->withCodingStyleLevel(20)
     ->withSkip([
+        __DIR__ . '/bootstrap/cache/*',
         \Rector\CodingStyle\Rector\Encapsed\EncapsedStringsToSprintfRector::class
     ]);

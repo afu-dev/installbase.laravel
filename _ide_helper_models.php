@@ -42,7 +42,6 @@ namespace App\Models{
 
 namespace App\Models{
 /**
- * @property int $id
  * @property string $ip
  * @property string|null $entity
  * @property string|null $sector
@@ -70,7 +69,6 @@ namespace App\Models{
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Attribution whereDomain($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Attribution whereEntity($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Attribution whereHostnames($value)
- * @method static \Illuminate\Database\Eloquent\Builder<static>|Attribution whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Attribution whereIp($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Attribution whereIsp($value)
  * @method static \Illuminate\Database\Eloquent\Builder<static>|Attribution whereLastExposureAt($value)

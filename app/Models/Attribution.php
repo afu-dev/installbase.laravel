@@ -11,6 +11,21 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
  */
 class Attribution extends Model
 {
+    /**
+     * The primary key for the model.
+     */
+    protected $primaryKey = 'ip';
+
+    /**
+     * The "type" of the auto-incrementing ID.
+     */
+    protected $keyType = 'string';
+
+    /**
+     * Indicates if the IDs are auto-incrementing.
+     */
+    public $incrementing = false;
+
     protected $fillable = [
         'ip',
         'entity',

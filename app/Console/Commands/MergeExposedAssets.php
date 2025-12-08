@@ -28,7 +28,7 @@ class MergeExposedAssets extends Command
      *
      * @var string
      */
-    protected $description = "Merge vendor exposed assets into detected_exposures and attributions tables";
+    protected $description = "Merge vendor exposed assets into detected_exposures table";
 
     /**
      * Execute the console command.
@@ -38,7 +38,7 @@ class MergeExposedAssets extends Command
         $startTime = microtime(true);
 
         $scan = $this->getScan();
-        if (!$scan instanceof \App\Models\Scan) {
+        if (!$scan instanceof Scan) {
             $this->error("No scan found.");
 
             return Command::FAILURE;
@@ -103,7 +103,6 @@ class MergeExposedAssets extends Command
         $parseFailures = 0;
         $factory = app(DataParserFactory::class);
 
-        // CRITICAL: Use lazyById for keyset pagination
         foreach ($query->lazyById(1000, 'id') as $record) {
             $progressBar->setMessage("Processing {$record->ip}:{$record->port}");
 
@@ -121,8 +120,9 @@ class MergeExposedAssets extends Command
                         $this->upsertDetectedExposure($vendor, $record, $device);
                     }
                 }
-            } catch (Exception $e) {
-                dd($e);
+            } catch (Exception $exception) {
+                $this->error("For record $record->ip, got the following parser error:");
+                $this->error($exception->getMessage());
                 // Parse failed, create exposure without device data
                 $parseFailures++;
                 $this->upsertDetectedExposure($vendor, $record, null);
@@ -165,7 +165,7 @@ class MergeExposedAssets extends Command
         ];
 
         // Add device fields if parsing succeeded
-        if ($device instanceof \App\Services\Parsers\ParsedDeviceData) {
+        if ($device instanceof ParsedDeviceData) {
             $deviceData = [
                 'vendor' => $device->vendor,
                 'fingerprint' => $device->fingerprint,
