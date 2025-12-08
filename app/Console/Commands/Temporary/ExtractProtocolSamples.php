@@ -106,11 +106,7 @@ class ExtractProtocolSamples extends Command
         }
 
         // Handle both array format and comma-separated string
-        if (is_array($keysOption)) {
-            $keysString = implode(',', $keysOption);
-        } else {
-            $keysString = $keysOption;
-        }
+        $keysString = is_array($keysOption) ? implode(',', $keysOption) : $keysOption;
 
         return array_map(trim(...), explode(',', $keysString));
     }
