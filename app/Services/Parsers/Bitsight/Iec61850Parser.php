@@ -34,13 +34,13 @@ class Iec61850Parser extends AbstractJsonDataParser
         $fingerprint = $this->extractNested(["iec-61850", "Iec-61850"], "product");
         $version = $this->extractNested(["iec-61850", "Iec-61850"], "version");
 
-        $vendor = str_contains($vendor, "Unknown command") || str_contains($vendor, "<recording>") ? "unknown" : $vendor;
-        $fingerprint = str_contains($fingerprint, "Unknown command") || str_contains($fingerprint, "<recording>") ? null : $fingerprint;
-        $version = str_contains($version, "Unknown command") || str_contains($version, "<recording>") ? null : $version;
+        $vendor = str_contains($vendor, "Unknown command") || (str_contains($vendor, "<") && str_contains($vendor, ">")) ? "unknown" : $vendor;
+        $fingerprint = $fingerprint !== null && (str_contains($fingerprint, "Unknown command") || str_contains($fingerprint, "<") && str_contains($fingerprint, ">")) ? null : $fingerprint;
+        $version = $version !== null && (str_contains($version, "Unknown command") || (str_contains($version, "<") && str_contains($version, ">"))) ? null : $version;
 
         return [
             new ParsedDeviceData(
-                vendor: $vendor,
+                vendor: preg_replace('/[^\x20-\x7E]/', '', str_replace("\n", " ", $vendor)),
                 fingerprint: $fingerprint,
                 version: $version,
             ),
