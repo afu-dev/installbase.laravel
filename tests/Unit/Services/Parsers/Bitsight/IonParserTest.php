@@ -7,7 +7,7 @@ use Tests\Unit\Services\Parsers\ParserTestCase;
 
 class IonParserTest extends ParserTestCase
 {
-    public function test_it_parses_bitsight_ion_data_1()
+    public function test_it_parses_bitsight_ion_data_1(): void
     {
         $parser = new IonParser();
 
@@ -33,7 +33,7 @@ class IonParserTest extends ParserTestCase
         $this->assertEquals('[{"fingerprint":"7550","annotation":"cpe:2.3:h:schneider-electric:powerlogic_ion7550:-:*:*:*:*:*:*:*"}]', $device->fingerprint_raw);
     }
 
-    public function test_it_parses_bitsight_ion_data_2()
+    public function test_it_parses_bitsight_ion_data_2(): void
     {
         $parser = new IonParser();
 
@@ -59,7 +59,7 @@ class IonParserTest extends ParserTestCase
         $this->assertEquals('[{"fingerprint":"7650","annotation":"cpe:2.3:h:schneider-electric:powerlogic_ion7650:-:*:*:*:*:*:*:*"}]', $device->fingerprint_raw);
     }
 
-    public function test_it_parses_bitsight_ion_data_3()
+    public function test_it_parses_bitsight_ion_data_3(): void
     {
         $parser = new IonParser();
 
@@ -85,7 +85,7 @@ class IonParserTest extends ParserTestCase
         $this->assertNull($device->fingerprint_raw);
     }
 
-    public function test_it_parses_bitsight_ion_data_4()
+    public function test_it_parses_bitsight_ion_data_4(): void
     {
         $parser = new IonParser();
 
@@ -111,7 +111,7 @@ class IonParserTest extends ParserTestCase
         $this->assertEquals('[{"fingerprint":"8650","annotation":"cpe:2.3:h:schneider-electric:powerlogic_ion8650:-:*:*:*:*:*:*:*"}]', $device->fingerprint_raw);
     }
 
-    public function test_it_parses_bitsight_ion_data_5()
+    public function test_it_parses_bitsight_ion_data_5(): void
     {
         $parser = new IonParser();
 
