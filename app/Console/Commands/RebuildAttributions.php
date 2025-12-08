@@ -34,17 +34,17 @@ class RebuildAttributions extends Command
         $this->info("--- Rebuilding Attributions ---");
 
         // Get all unique IPs from detected_exposures
-        $uniqueIps = DetectedExposure::query()
-            ->distinct()
-            ->pluck('ip');
+        $uniqueIpsCount = DetectedExposure::query()
+            ->distinct("ip")
+            ->count();
 
-        $total = $uniqueIps->count();
-        $this->info("Processing {$total} unique IPs");
+        $this->info("Processing {$uniqueIpsCount} unique IPs");
 
-        $progressBar = $this->output->createProgressBar($total);
+        $progressBar = $this->output->createProgressBar($uniqueIpsCount);
         $progressBar->setFormat(ProgressBar::FORMAT_VERBOSE);
 
-        foreach ($uniqueIps as $ip) {
+        foreach (DetectedExposure::select(["id", "ip"])->distinct("ip")->lazyById() as $detectedExposure) {
+            $ip = $detectedExposure->ip;
             $progressBar->setMessage("Processing IP: {$ip}");
 
             // Get attribution data from vendor tables (priority: Bitsight > Shodan)
@@ -90,7 +90,7 @@ class RebuildAttributions extends Command
         $this->newLine();
 
         $executionTime = microtime(true) - $startTime;
-        $this->info("Completed: {$total} attributions processed in " . round($executionTime, 2) . " seconds");
+        $this->info("Completed: {$uniqueIpsCount} attributions processed in " . round($executionTime, 2) . " seconds");
 
         return Command::SUCCESS;
     }
