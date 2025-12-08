@@ -88,7 +88,7 @@ class DisplayShodanFieldValues extends Command
         }
 
         $this->recordsWithField++;
-        $this->fieldValues[] = (string)$apcuData[$field];
+        $this->fieldValues[] = $apcuData[$field];
     }
 
     private function displayResults(string $protocol, string $field, float $executionTime): void
