@@ -398,7 +398,7 @@ class WorkCommand extends Command
         }
 
         $header = str_getcsv(rtrim($headerLine), ',', '"', '');
-        if (!$header) {
+        if ($header === []) {
             fclose($stream);
             throw new Exception('Failed to read CSV header');
         }
@@ -631,7 +631,7 @@ class WorkCommand extends Command
         }
 
         $header = str_getcsv(rtrim($headerLine), ',', '"', '');
-        if (!$header) {
+        if ($header === []) {
             fclose($stream);
             throw new Exception('Failed to read CSV header');
         }

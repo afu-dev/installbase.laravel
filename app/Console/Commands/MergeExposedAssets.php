@@ -38,7 +38,7 @@ class MergeExposedAssets extends Command
         $startTime = microtime(true);
 
         $scan = $this->getScan();
-        if (!$scan) {
+        if (!$scan instanceof \App\Models\Scan) {
             $this->error("No scan found.");
 
             return Command::FAILURE;
@@ -166,7 +166,7 @@ class MergeExposedAssets extends Command
         ];
 
         // Add device fields if parsing succeeded
-        if ($device) {
+        if ($device instanceof \App\Services\Parsers\ParsedDeviceData) {
             $deviceData = [
                 'vendor' => $device->vendor,
                 'fingerprint' => $device->fingerprint,
