@@ -82,7 +82,7 @@ class MergeExposedAssets extends Command
 
         // Build query with execution_id filters
         $query = $modelClass::query();
-        $query->where(function (Builder $q) use ($executionIdsRanges) {
+        $query->where(function (Builder $q) use ($executionIdsRanges): void {
             foreach ($executionIdsRanges as $range) {
                 if ($range["start"] === $range["end"]) {
                     $q->orWhere("execution_id", $range["start"]);

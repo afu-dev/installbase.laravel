@@ -74,7 +74,7 @@ class ExportDetectedExposures extends Command
 
         $exportedCount = 0;
 
-        DetectedExposure::with('attribution')->chunk(1000, function ($exposures) use ($file, &$exportedCount, $progressBar) {
+        DetectedExposure::with('attribution')->chunk(1000, function ($exposures) use ($file, &$exportedCount, $progressBar): void {
             foreach ($exposures as $exposure) {
                 fputcsv($file, [
                     $exposure->ip,

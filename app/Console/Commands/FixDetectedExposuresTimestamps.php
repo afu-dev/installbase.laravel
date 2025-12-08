@@ -37,7 +37,7 @@ class FixDetectedExposuresTimestamps extends Command
         $updatedCount = 0;
         $noDataCount = 0;
 
-        DetectedExposure::chunk(1000, function ($exposures) use (&$updatedCount, &$noDataCount, $progressBar, $dryRun) {
+        DetectedExposure::chunk(1000, function ($exposures) use (&$updatedCount, &$noDataCount, $progressBar, $dryRun): void {
             foreach ($exposures as $exposure) {
                 $timestamps = $this->getTimestampsFromVendors($exposure->ip, $exposure->port);
 

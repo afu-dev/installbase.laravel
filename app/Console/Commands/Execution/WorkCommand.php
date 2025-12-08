@@ -822,7 +822,7 @@ class WorkCommand extends Command
 
     private function insertBitsightAssets(array &$assets, int &$duplicates): void
     {
-        DB::transaction(function () use (&$assets, &$duplicates) {
+        DB::transaction(function () use (&$assets, &$duplicates): void {
             foreach ($assets as $asset) {
                 try {
                     BitsightExposedAsset::create($asset);
