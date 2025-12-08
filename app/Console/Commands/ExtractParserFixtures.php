@@ -166,7 +166,7 @@ class ExtractParserFixtures extends Command
             ->inRandomOrder()
             ->limit($sampleSize)
             ->get()
-            ->unique(fn($row) =>
+            ->unique(fn ($row) =>
                 // Deduplicate by IP prefix + country for diversity
                 substr((string) $row->ip, 0, 7) . ($row->country_code ?? 'unknown'))
             ->take($limit)

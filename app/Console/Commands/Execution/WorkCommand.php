@@ -235,7 +235,7 @@ class WorkCommand extends Command
 
     private function insertShodanMatches(int $executionId, array $matches): void
     {
-        $records = array_map(fn($match) => [
+        $records = array_map(fn ($match) => [
             'execution_id' => $executionId,
             'ip' => data_get($match, 'ip_str'),
             'port' => data_get($match, 'port'),
@@ -263,7 +263,7 @@ class WorkCommand extends Command
         // Load all field configurations once (case-insensitive key)
         static $fieldConfigs = null;
         if ($fieldConfigs === null) {
-            $fieldConfigs = CensysFieldConfiguration::all()->keyBy(fn($item) => strtolower((string) $item->protocol));
+            $fieldConfigs = CensysFieldConfiguration::all()->keyBy(fn ($item) => strtolower((string) $item->protocol));
         }
 
         // Normalize protocol to lowercase for lookup

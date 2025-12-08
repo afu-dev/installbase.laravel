@@ -2,7 +2,6 @@
 
 namespace App\Console\Commands\Temporary;
 
-use App\Models\BitsightExposedAsset;
 use App\Models\ShodanExposedAsset;
 use Illuminate\Console\Command;
 

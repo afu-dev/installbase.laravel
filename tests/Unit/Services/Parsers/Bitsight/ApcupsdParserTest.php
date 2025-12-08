@@ -3,7 +3,6 @@
 namespace Tests\Unit\Services\Parsers\Bitsight;
 
 use App\Services\Parsers\Bitsight\ApcupsdParser;
-use PHPUnit\Framework\TestCase;
 use Tests\Unit\Services\Parsers\ParserTestCase;
 
 class ApcupsdParserTest extends ParserTestCase

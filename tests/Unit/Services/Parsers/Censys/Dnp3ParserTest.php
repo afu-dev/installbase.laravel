@@ -3,7 +3,6 @@
 namespace Tests\Unit\Services\Parsers\Censys;
 
 use App\Services\Parsers\Censys\Dnp3Parser;
-use PHPUnit\Framework\TestCase;
 use Tests\Unit\Services\Parsers\ParserTestCase;
 
 class Dnp3ParserTest extends ParserTestCase

@@ -3,7 +3,6 @@
 namespace Tests\Unit\Services\Parsers\Bitsight;
 
 use App\Services\Parsers\Bitsight\KnxParser;
-use PHPUnit\Framework\TestCase;
 use Tests\Unit\Services\Parsers\ParserTestCase;
 
 class KnxParserTest extends ParserTestCase

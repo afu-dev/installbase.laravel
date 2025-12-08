@@ -3,7 +3,6 @@
 namespace Tests\Unit\Services\Parsers\Shodan;
 
 use App\Services\Parsers\Shodan\FtpParser;
-use PHPUnit\Framework\TestCase;
 use Tests\Unit\Services\Parsers\ParserTestCase;
 
 class FtpParserTest extends ParserTestCase

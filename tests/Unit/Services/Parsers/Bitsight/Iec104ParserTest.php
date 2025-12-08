@@ -3,7 +3,6 @@
 namespace Tests\Unit\Services\Parsers\Bitsight;
 
 use App\Services\Parsers\Bitsight\Iec104Parser;
-use PHPUnit\Framework\TestCase;
 use Tests\Unit\Services\Parsers\ParserTestCase;
 
 class Iec104ParserTest extends ParserTestCase

@@ -3,7 +3,6 @@
 namespace Tests\Unit\Services\Parsers\Shodan;
 
 use App\Services\Parsers\Shodan\Iec61850Parser;
-use PHPUnit\Framework\TestCase;
 use Tests\Unit\Services\Parsers\ParserTestCase;
 
 class Iec61850ParserTest extends ParserTestCase

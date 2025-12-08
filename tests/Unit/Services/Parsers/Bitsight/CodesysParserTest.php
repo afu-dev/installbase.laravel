@@ -3,7 +3,6 @@
 namespace Tests\Unit\Services\Parsers\Bitsight;
 
 use App\Services\Parsers\Bitsight\CodesysParser;
-use PHPUnit\Framework\TestCase;
 use Tests\Unit\Services\Parsers\ParserTestCase;
 
 class CodesysParserTest extends ParserTestCase
@@ -44,7 +43,7 @@ class CodesysParserTest extends ParserTestCase
         $this->assertAllDevices($result);
         $this->assertCount(4, $result);
         $deviceIds = ["0080F40A9E7D", "0080F40A9E84", "0080F40A9E85", "0080F40A9E81"];
-        foreach($deviceIds as $deviceId) {
+        foreach ($deviceIds as $deviceId) {
             $this->assertArrayHasKey($deviceId, $result);
             $device = $result[$deviceId];
 

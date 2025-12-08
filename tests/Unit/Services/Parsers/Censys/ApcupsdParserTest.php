@@ -3,7 +3,6 @@
 namespace Tests\Unit\Services\Parsers\Censys;
 
 use App\Services\Parsers\Censys\ApcupsdParser;
-use PHPUnit\Framework\TestCase;
 use Tests\Unit\Services\Parsers\ParserTestCase;
 
 class ApcupsdParserTest extends ParserTestCase

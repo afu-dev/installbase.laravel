@@ -3,7 +3,6 @@
 namespace Tests\Unit\Services\Parsers\Shodan;
 
 use App\Services\Parsers\Shodan\BacnetParser;
-use PHPUnit\Framework\TestCase;
 use Tests\Unit\Services\Parsers\ParserTestCase;
 
 class BacnetParserTest extends ParserTestCase

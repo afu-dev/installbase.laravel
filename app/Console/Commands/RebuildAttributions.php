@@ -79,7 +79,7 @@ class RebuildAttributions extends Command
                 'city' => $city,
                 'country_code' => $countryCode,
                 'last_exposure_at' => $lastExposureAt,
-            ], fn($value) => $value !== null);
+            ], fn ($value) => $value !== null);
 
             Attribution::updateOrCreate(['ip' => $ip], $data);
 

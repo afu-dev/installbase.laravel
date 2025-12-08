@@ -3,7 +3,6 @@
 namespace Tests\Unit\Services\Parsers\Censys;
 
 use App\Services\Parsers\Censys\Iec61850Parser;
-use PHPUnit\Framework\TestCase;
 use Tests\Unit\Services\Parsers\ParserTestCase;
 
 class Iec61850ParserTest extends ParserTestCase

@@ -3,7 +3,6 @@
 namespace Tests\Unit\Services\Parsers\Censys;
 
 use App\Services\Parsers\Censys\IonParser;
-use PHPUnit\Framework\TestCase;
 use Tests\Unit\Services\Parsers\ParserTestCase;
 
 class IonParserTest extends ParserTestCase

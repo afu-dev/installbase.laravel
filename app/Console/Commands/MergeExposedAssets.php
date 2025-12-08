@@ -140,8 +140,7 @@ class MergeExposedAssets extends Command
         Vendor                                  $vendor,
         BitsightExposedAsset|ShodanExposedAsset $record,
         ?ParsedDeviceData                       $device
-    ): void
-    {
+    ): void {
         // Find existing exposure
         $existing = DetectedExposure::forIpPort($record->ip, $record->port)->first();
 
@@ -190,7 +189,7 @@ class MergeExposedAssets extends Command
         $data = array_merge($data, $deviceData);
 
         // Filter nulls to preserve existing data
-        $data = array_filter($data, fn($value) => $value !== null);
+        $data = array_filter($data, fn ($value) => $value !== null);
 
         // Upsert
         DetectedExposure::updateOrCreate(
