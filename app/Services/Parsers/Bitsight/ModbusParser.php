@@ -89,7 +89,6 @@ class ModbusParser extends AbstractJsonDataParser
      *   - "Schneider Electric TM251MESE V04.00.06.38"
      *   - "Schneider Electric BMX P34 2020 v2.4"
      *
-     * @param string $deviceIdentification
      * @param string|null $cpuModule Known CPU module (if available) to help parse
      * @return array{vendor: string|null, cpu: string|null, version: string|null}
      */
@@ -139,8 +138,6 @@ class ModbusParser extends AbstractJsonDataParser
 
     /**
      * Extract fingerprint value from root-level Fingerprint JSON field.
-     *
-     * @return string|null
      */
     private function extractFingerprintFromJson(): ?string
     {

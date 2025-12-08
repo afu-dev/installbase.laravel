@@ -43,7 +43,6 @@ class ModbusParser extends AbstractRawDataParser
     }
 
     /**
-     * @param array $unitData
      * @return ?array{vendor: string, model: ?string, version: ?string}
      */
     private function extractDeviceInformations(array $unitData): ?array
