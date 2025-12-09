@@ -3,6 +3,7 @@
 namespace App\Console\Commands;
 
 use App\Enums\Vendor;
+use App\Models\Attribution;
 use App\Models\BitsightExposedAsset;
 use App\Models\DetectedExposure;
 use App\Models\Scan;
@@ -196,6 +197,55 @@ class MergeExposedAssets extends Command
             ['ip' => $record->ip, 'port' => $record->port],
             $data
         );
+
+        // Update attribution for this IP
+        $this->upsertAttribution($record);
+    }
+
+    /**
+     * Upsert attribution record for the given vendor record's IP.
+     */
+    private function upsertAttribution(
+        BitsightExposedAsset|ShodanExposedAsset $record
+    ): void {
+        // Get last exposure date from detected_exposures
+        $lastExposureAt = DetectedExposure::where('ip', $record->ip)
+            ->max('last_detected_at');
+
+        // Get existing attribution to preserve manual fields and merge hostnames
+        $existing = Attribution::find($record->ip);
+
+        // Handle hostnames: combine and deduplicate
+        $allHostnames = [];
+
+        if ($existing?->hostnames) {
+            $allHostnames = explode(';', (string) $existing->hostnames);
+        }
+
+        if ($record->hostnames) {
+            $newHostnames = explode(';', $record->hostnames);
+            $allHostnames = array_merge($allHostnames, $newHostnames);
+        }
+
+        $allHostnames = array_unique(array_filter(array_map(trim(...), $allHostnames)));
+        $hostnames = ! empty($allHostnames) ? implode(';', $allHostnames) : null;
+
+        // Build attribution data (nulls will be filtered out)
+        $attribution = [
+            'entity' => $record->entity,
+            'hostnames' => $hostnames,
+            'isp' => $record->isp,
+            'asn' => $record->asn,
+            'city' => $record->city,
+            'country_code' => $record->country_code,
+            'last_exposure_at' => $lastExposureAt,
+        ];
+
+        // Remove nulls to preserve existing data (including manual fields)
+        $attribution = array_filter($attribution, fn ($value) => $value !== null);
+
+        // Upsert attribution
+        Attribution::updateOrCreate(['ip' => $record->ip], $attribution);
     }
 
     /**
