@@ -120,6 +120,34 @@ class PopulateQueriesCommand extends Command
             'vendor' => Vendor::BITSIGHT->value,
         ];
 
+        // Add hardcoded Shodan queries
+        $queries[] = [
+            'id' => 99998,
+            'product' => null,
+            'protocol' => 'ethernetip',
+            'query' => 'port:"44818" tag:"ics"',
+            'query_type' => null,
+            'vendor' => Vendor::SHODAN->value,
+        ];
+
+        $queries[] = [
+            'id' => 99997,
+            'product' => null,
+            'protocol' => 'modbus',
+            'query' => 'port:"502,503" tag:"ics"',
+            'query_type' => null,
+            'vendor' => Vendor::SHODAN->value,
+        ];
+
+        $queries[] = [
+            'id' => 99996,
+            'product' => null,
+            'protocol' => 'bacnet',
+            'query' => 'port:"47808" tag:"ics"',
+            'query_type' => null,
+            'vendor' => Vendor::SHODAN->value,
+        ];
+
         $this->info('Truncating and inserting ' . count($queries) . ' queries...');
         Query::truncate();
         Query::fillAndInsert($queries);
