@@ -123,7 +123,7 @@ class PopulateQueriesCommand extends Command
         // Add hardcoded Shodan queries
         $queries[] = [
             'id' => 99998,
-            'product' => null,
+            'product' => "Shodan EthernetIP Broad Query",
             'protocol' => 'ethernetip',
             'query' => 'port:"44818" tag:"ics"',
             'query_type' => null,
@@ -132,7 +132,7 @@ class PopulateQueriesCommand extends Command
 
         $queries[] = [
             'id' => 99997,
-            'product' => null,
+            'product' => "Shodan Modbus Broad Query",
             'protocol' => 'modbus',
             'query' => 'port:"502,503" tag:"ics"',
             'query_type' => null,
@@ -141,7 +141,7 @@ class PopulateQueriesCommand extends Command
 
         $queries[] = [
             'id' => 99996,
-            'product' => null,
+            'product' => "Shodan Bacnet Broad Query",
             'protocol' => 'bacnet',
             'query' => 'port:"47808" tag:"ics"',
             'query_type' => null,
