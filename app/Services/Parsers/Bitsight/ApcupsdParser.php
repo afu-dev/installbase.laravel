@@ -47,7 +47,7 @@ class ApcupsdParser extends AbstractJsonDataParser
         if (!empty($fingerprints)) {
             foreach ($fingerprints as $fingerprint) {
                 if (!empty($fingerprint["fingerprint"])) {
-                    $fingerprintValue = str_starts_with((string) $fingerprint["fingerprint"], "model/")
+                    $fingerprintValue = str_starts_with((string)$fingerprint["fingerprint"], "model/")
                         ? str_replace("model/", "", $fingerprint["fingerprint"])
                         : $fingerprint["fingerprint"];
                     break;
@@ -57,9 +57,23 @@ class ApcupsdParser extends AbstractJsonDataParser
             $fingerprintValue = $this->extract(["Fingerprint", "fingerprint"]);
         }
 
+        $brandVendor = null;
+        foreach ($this->extractJson(["Apcupsd", "apcupsd"]) as $key => $value) {
+            if (!in_array($key, ["vendor", "Vendor"])) { // can also match for model/Model
+                continue;
+            }
+            $brandVendor = $this->detectBrand($value);
+            if ($brandVendor !== null) {
+                break;
+            }
+        }
+        $vendor = $brandVendor
+            ?? $this->extract(["Vendor", "vendor", "vendor_name"])
+            ?? "unknown";
+
         return [
             new ParsedDeviceData(
-                vendor: $this->extractNested(["Apcupsd", "apcupsd"], ["vendor", "Vendor"]) ?? $this->extract(["Vendor", "vendor", "vendor_name"]) ?? "unknown",
+                vendor: $this->detectBrand($vendor) ?? $vendor,
                 fingerprint: $this->extractNested(["Apcupsd", "apcupsd"], ["model", "Model"]),
                 version: $this->extractNested(["Apcupsd", "apcupsd"], ["version", "Version"]),
                 sn: $this->extractNested(["Apcupsd", "apcupsd"], ["serialno", "Serialno"]),

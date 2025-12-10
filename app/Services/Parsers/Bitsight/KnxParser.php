@@ -29,9 +29,15 @@ class KnxParser extends AbstractJsonDataParser
 {
     protected function parseData(): array
     {
+        // Brand detection first, then fallback to existing vendor extraction
+        $vendor = $this->detectBrand($this->extract(["Knx", "knx"]))
+            ?? $this->extractNested(["Knx", "knx"], "device_mac_vendor")
+            ?? $this->extract(["Vendor", "vendor", "vendor_name"])
+            ?? "unknown";
+
         return [
             new ParsedDeviceData(
-                vendor: $this->extractNested(["Knx", "knx"], "device_mac_vendor") ?? $this->extract(["Vendor", "vendor", "vendor_name"]) ?? "unknown",
+                vendor: $this->detectBrand($vendor) ?? $vendor,
                 fingerprint: $this->extractNested(["Knx", "knx"], "device_friendly_name"),
                 version: $this->extractNested(["Knx", "knx"], "device_knx_address"),
                 sn: $this->extractNested(["Knx", "knx"], "device_serial"),

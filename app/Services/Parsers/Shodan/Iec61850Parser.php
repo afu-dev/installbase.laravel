@@ -26,9 +26,15 @@ class Iec61850Parser extends AbstractRawDataParser
             $iecData[trim($key)] = trim($value);
         }
 
+        // Brand detection first, then fallback to existing vendor extraction
+        $vendor = $this->detectBrand($this->rawData);
+        if ($vendor === null) {
+            $vendor = $iecData["Vendor"] ?? "unknown";
+        }
+
         return [
             new ParsedDeviceData(
-                vendor: $iecData["Vendor"] ?? "unknown",
+                vendor: $vendor,
                 fingerprint: $iecData["Model"] ?? null,
                 version: $iecData["Version"] ?? null,
             ),

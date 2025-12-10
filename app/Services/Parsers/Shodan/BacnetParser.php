@@ -34,9 +34,15 @@ class BacnetParser extends AbstractRawDataParser
             $bacnetData[trim($key)] = trim($value);
         }
 
+        // Brand detection first, then fallback to existing vendor extraction
+        $vendor = $this->detectBrand($this->rawData);
+        if ($vendor === null) {
+            $vendor = $bacnetData["Vendor Name"] ?? "unknown";
+        }
+
         return [
             new ParsedDeviceData(
-                vendor: $bacnetData["Vendor Name"] ?? "unknown",
+                vendor: $vendor,
                 fingerprint: $bacnetData["Model Name"] ?? null,
                 version: $bacnetData["Firmware"] ?? null,
             ),

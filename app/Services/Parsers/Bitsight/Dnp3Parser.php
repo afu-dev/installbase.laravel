@@ -33,9 +33,14 @@ class Dnp3Parser extends AbstractJsonDataParser
 {
     protected function parseData(): array
     {
+        $vendor = $this->detectBrand($this->extract(["Dnp3", "dnp3"]))
+            ?? $this->extractNested(["Dnp3", "dnp3"], "device_manufacturer")
+            ?? $this->extract(["Vendor", "vendor"])
+            ?? "unknown";
+
         return [
             new ParsedDeviceData(
-                vendor: $this->extractNested(["Dnp3", "dnp3"], "device_manufacturer", "Unknown"),
+                vendor: $this->detectBrand($vendor) ?? $vendor,
                 fingerprint: $this->extractNested(["Dnp3", "dnp3"], "device_model"),
                 version: $this->extractNested(["Dnp3", "dnp3"], ["firmware_version"]),
                 sn: $this->extractNested(["Dnp3", "dnp3"], ["hardware_version"]),

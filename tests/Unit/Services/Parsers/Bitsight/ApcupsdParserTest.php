@@ -149,7 +149,7 @@ class ApcupsdParserTest extends ParserTestCase
         $this->assertArrayHasKey(0, $result);
         $device = $result[0];
 
-        $this->assertEquals('schneider_electric', $device->vendor);
+        $this->assertEquals('Schneider Electric', $device->vendor);
         $this->assertEquals('Back-UPS BK650M2-CH', $device->fingerprint);
         $this->assertEquals('3.14.14 (31 May 2016) slackware', $device->version);
         $this->assertEquals('000000000000', $device->sn);

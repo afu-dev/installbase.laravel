@@ -136,6 +136,23 @@ namespace App\Models{
 
 namespace App\Models{
 /**
+ * @property string $brand
+ * @property \Illuminate\Support\Carbon|null $created_at
+ * @property \Illuminate\Support\Carbon|null $updated_at
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Brand newModelQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Brand newQuery()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Brand query()
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Brand whereBrand($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Brand whereCreatedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder<static>|Brand whereUpdatedAt($value)
+ * @mixin \Eloquent
+ */
+	#[\AllowDynamicProperties]
+	class IdeHelperBrand {}
+}
+
+namespace App\Models{
+/**
  * @property int $id
  * @property int $execution_id
  * @property string $ip

@@ -39,9 +39,13 @@ class IonParser extends AbstractJsonDataParser
 {
     protected function parseData(): array
     {
+        $vendor = $this->detectBrand($this->extract(["Ion", "ion"]))
+            ?? $this->extract(["Vendor", "vendor", "vendor_name"])
+            ?? "unknown";
+
         return [
             new ParsedDeviceData(
-                vendor: $this->extract(["Vendor", "vendor", "vendor_name"]),
+                vendor: $this->detectBrand($vendor) ?? $vendor,
                 fingerprint: $this->extractNested(["Ion", "ion"], "device_type"),
                 version: $this->extractNested(["Ion", "ion"], "revision"),
                 sn: $this->extractNested(["Ion", "ion"], "serial_num"),

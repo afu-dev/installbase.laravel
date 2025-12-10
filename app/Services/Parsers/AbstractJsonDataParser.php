@@ -3,6 +3,10 @@
 namespace App\Services\Parsers;
 
 use App\Contracts\DataParserInterface;
+use App\Models\Brand;
+use Error;
+use Exception;
+use InvalidArgumentException;
 
 abstract class AbstractJsonDataParser implements DataParserInterface
 {
@@ -12,6 +16,8 @@ abstract class AbstractJsonDataParser implements DataParserInterface
 
     private array $nestedCache = [];
 
+    protected static ?array $brands = null;
+
     /** @return ParsedDeviceData[] */
     public function parse(string $rawData): array
     {
@@ -19,7 +25,7 @@ abstract class AbstractJsonDataParser implements DataParserInterface
         $this->jsonData = json_decode($rawData, true);
 
         if (json_last_error() !== JSON_ERROR_NONE) {
-            throw new \InvalidArgumentException('Invalid JSON data: ' . json_last_error_msg());
+            throw new InvalidArgumentException('Invalid JSON data: ' . json_last_error_msg());
         }
 
         return $this->parseData();
@@ -97,5 +103,41 @@ abstract class AbstractJsonDataParser implements DataParserInterface
         }
 
         return $default;
+    }
+
+    /**
+     * Lazy-load brands once per request lifecycle.
+     * Shared across all parser instances for performance.
+     * Returns empty array if database not available (e.g., unit tests).
+     */
+    protected function getBrands(): array
+    {
+        if (self::$brands === null) {
+            try {
+                self::$brands = Brand::pluck('brand')->all();
+            } catch (Exception|Error) {
+                // Database not available (unit tests, etc.) - return static array
+                self::$brands = ["apc", "areva", "etap", "invensys", "merlin", "pro face", "pro-face", "proface", "schneider", "square d", "square-d", "TAC", "telemecanique", "vamp", "veris", "wiser",];
+            }
+        }
+
+        return self::$brands;
+    }
+
+    /**
+     * Detect if raw data contains any known brand (case-insensitive).
+     * Returns "Schneider Electric" if match found, null otherwise.
+     */
+    protected function detectBrand(?string $rawData): ?string
+    {
+        if ($rawData === null) {
+            return null;
+        }
+
+        if (array_any($this->getBrands(), fn($brand) => str_contains(strtolower($rawData), strtolower($brand)))) {
+            return "Schneider Electric";
+        }
+
+        return null;
     }
 }

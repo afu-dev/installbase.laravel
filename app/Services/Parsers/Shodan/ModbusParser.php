@@ -10,6 +10,7 @@ class ModbusParser extends AbstractRawDataParser
     protected function parseData(): array
     {
         $modbusData = [];
+        $unitRawDataMap = []; // Store raw text per unit for brand detection
         $units = explode("\n\n", trim($this->rawData));
         foreach ($units as $unit) {
             $lines = explode("\n-- ", trim($unit));
@@ -18,6 +19,7 @@ class ModbusParser extends AbstractRawDataParser
                 [$key, $value] = explode(':', (string)preg_replace('/[^\x20-\x7E]/', '', str_replace("\n", " ", $line)), 2);
                 if ($index === 0) {
                     $unitId = trim($value);
+                    $unitRawDataMap[$unitId] = $unit; // Store raw chunk for this unit
                 }
 
                 if (str_contains($value, "(Error)")) {
@@ -30,9 +32,24 @@ class ModbusParser extends AbstractRawDataParser
 
         $devices = [];
         foreach ($modbusData as $unitId => $unitData) {
-            ["vendor" => $vendor, "model" => $model, "version" => $version] = $this->extractDeviceInformations($unitData);
-            if (empty($vendor)) {
-                $vendor = "unknown";
+            // Brand detection first (per-unit raw data), then fallback to existing logic
+            $vendor = $this->detectBrand($unitRawDataMap[$unitId] ?? '');
+
+            $model = null;
+            $version = null;
+
+            if ($vendor === null) {
+                ["vendor" => $vendor, "model" => $model, "version" => $version] = $this->extractDeviceInformations($unitData);
+                if (empty($vendor)) {
+                    $vendor = "unknown";
+                }
+            } else {
+                // Still extract model/version even if brand detected
+                $extracted = $this->extractDeviceInformations($unitData);
+                if ($extracted !== null) {
+                    $model = $extracted["model"];
+                    $version = $extracted["version"];
+                }
             }
 
             $devices[$unitId] = new ParsedDeviceData(

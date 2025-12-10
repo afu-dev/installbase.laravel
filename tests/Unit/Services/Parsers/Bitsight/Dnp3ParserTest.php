@@ -19,7 +19,7 @@ class Dnp3ParserTest extends ParserTestCase
         $this->assertArrayHasKey(0, $result);
         $device = $result[0];
 
-        $this->assertEquals('Unknown', $device->vendor);
+        $this->assertEquals('unknown', $device->vendor);
         $this->assertNull($device->fingerprint);
         $this->assertNull($device->version);
         $this->assertNull($device->sn);
@@ -45,7 +45,7 @@ class Dnp3ParserTest extends ParserTestCase
         $this->assertArrayHasKey(0, $result);
         $device = $result[0];
 
-        $this->assertEquals('Unknown', $device->vendor);
+        $this->assertEquals('unknown', $device->vendor);
         $this->assertNull($device->fingerprint);
         $this->assertNull($device->version);
         $this->assertNull($device->sn);

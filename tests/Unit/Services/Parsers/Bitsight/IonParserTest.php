@@ -19,7 +19,7 @@ class IonParserTest extends ParserTestCase
         $this->assertArrayHasKey(0, $result);
         $device = $result[0];
 
-        $this->assertEquals("schneider_electric", $device->vendor);
+        $this->assertEquals("Schneider Electric", $device->vendor);
         $this->assertEquals('7550', $device->fingerprint);
         $this->assertEquals('7550V350', $device->version);
         $this->assertEquals('PI-0807A008-01', $device->sn);
@@ -45,7 +45,7 @@ class IonParserTest extends ParserTestCase
         $this->assertArrayHasKey(0, $result);
         $device = $result[0];
 
-        $this->assertEquals("schneider_electric", $device->vendor);
+        $this->assertEquals("Schneider Electric", $device->vendor);
         $this->assertEquals('7650', $device->fingerprint);
         $this->assertEquals('7650V371s', $device->version);
         $this->assertEquals('MJ-1408A459-04', $device->sn);
@@ -71,7 +71,7 @@ class IonParserTest extends ParserTestCase
         $this->assertArrayHasKey(0, $result);
         $device = $result[0];
 
-        $this->assertEquals("schneider_electric", $device->vendor);
+        $this->assertEquals("Schneider Electric", $device->vendor);
         $this->assertEquals('<Password Protected>', $device->fingerprint);
         $this->assertEquals('<Password Protected>', $device->version);
         $this->assertEquals('<Password Protected>', $device->sn);
@@ -97,7 +97,7 @@ class IonParserTest extends ParserTestCase
         $this->assertArrayHasKey(0, $result);
         $device = $result[0];
 
-        $this->assertEquals("schneider_electric", $device->vendor);
+        $this->assertEquals("Schneider Electric", $device->vendor);
         $this->assertEquals('8650', $device->fingerprint);
         $this->assertEquals('8650V409', $device->version);
         $this->assertEquals('MW-1511A101-02', $device->sn);
@@ -123,7 +123,7 @@ class IonParserTest extends ParserTestCase
         $this->assertArrayHasKey(0, $result);
         $device = $result[0];
 
-        $this->assertEquals("schneider_electric", $device->vendor);
+        $this->assertEquals("Schneider Electric", $device->vendor);
         $this->assertEquals('7400', $device->fingerprint);
         $this->assertEquals('004.005.000', $device->version);
         $this->assertEquals('MR-2402A255-03', $device->sn);

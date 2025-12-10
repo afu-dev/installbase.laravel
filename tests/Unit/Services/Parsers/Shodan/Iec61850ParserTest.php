@@ -19,7 +19,7 @@ class Iec61850ParserTest extends ParserTestCase
         $this->assertArrayHasKey(0, $result);
         $device = $result[0];
 
-        $this->assertEquals('VAMP Ltd.', $device->vendor);
+        $this->assertEquals('Schneider Electric', $device->vendor);
         $this->assertEquals('S61850 for VAMP Relays', $device->fingerprint);
         $this->assertEquals('0.0.1', $device->version);
         $this->assertNull($device->sn);
@@ -97,7 +97,7 @@ class Iec61850ParserTest extends ParserTestCase
         $this->assertArrayHasKey(0, $result);
         $device = $result[0];
 
-        $this->assertEquals('VAMP Ltd.', $device->vendor);
+        $this->assertEquals('Schneider Electric', $device->vendor);
         $this->assertEquals('S61850 for VAMP Relays', $device->fingerprint);
         $this->assertEquals('0.0.1', $device->version);
         $this->assertNull($device->sn);

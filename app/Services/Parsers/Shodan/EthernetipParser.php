@@ -30,9 +30,13 @@ class EthernetipParser extends AbstractRawDataParser
         // check individually each values
         // we need to exclude when values are empty string or a string containing zero
 
-        $vendor = "unknown";
-        if (!empty($ethernetipData["Vendor ID"])) {
-            $vendor = $ethernetipData["Vendor ID"];
+        // Brand detection first, then fallback to existing vendor extraction
+        $vendor = $this->detectBrand($this->rawData);
+        if ($vendor === null) {
+            $vendor = "unknown";
+            if (!empty($ethernetipData["Vendor ID"])) {
+                $vendor = $ethernetipData["Vendor ID"];
+            }
         }
 
         $fingerprint = null;

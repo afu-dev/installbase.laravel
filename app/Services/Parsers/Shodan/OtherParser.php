@@ -9,9 +9,15 @@ class OtherParser extends AbstractRawDataParser
 {
     protected function parseData(): array
     {
+        // Brand detection first, then fallback to 'other_not_parsed'
+        $vendor = $this->detectBrand($this->rawData);
+        if ($vendor === null) {
+            $vendor = 'unknown';
+        }
+
         return [
             new ParsedDeviceData(
-                vendor: 'other_not_parsed',
+                vendor: $vendor,
             ),
         ];
     }

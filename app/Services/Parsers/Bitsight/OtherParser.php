@@ -9,9 +9,12 @@ class OtherParser extends AbstractJsonDataParser
 {
     protected function parseData(): array
     {
+        // Brand detection first, then fallback to existing vendor extraction
+        $vendor = $this->extract(["Vendor", "vendor"]) ?? "unknown";
+
         return [
             new ParsedDeviceData(
-                vendor: $this->extract(["Vendor", "vendor"]) ?? "unknown",
+                vendor: $this->detectBrand($vendor) ?? $vendor,
             ),
         ];
     }

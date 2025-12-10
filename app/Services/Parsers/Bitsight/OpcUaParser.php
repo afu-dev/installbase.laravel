@@ -28,16 +28,10 @@ class OpcUaParser extends AbstractJsonDataParser
     protected function parseData(): array
     {
         // Extract vendor: prioritize ManufacturerName from server, fallback to root vendor keys
-        $vendor = $this->extractNested(
-            ['Opc-Ua', 'Opc-ua', 'opc-ua', 'opc_ua'],
-            ['server.ManufacturerName', 'server.manufacturerName', 'server.manufacturer_name']
-        );
-
-        if (empty($vendor)) {
-            $vendor = $this->extract(['vendor', 'Vendor', 'vendor_name', 'Vendor_Name']);
-        }
-
-        $vendor = !empty($vendor) ? $vendor : 'unknown';
+        $vendor = $this->detectBrand($this->extract(['Opc-Ua', 'Opc-ua', 'opc-ua', 'opc_ua']))
+            ?? $this->extractNested(['Opc-Ua', 'Opc-ua', 'opc-ua', 'opc_ua'], ['server.ManufacturerName', 'server.manufacturerName', 'server.manufacturer_name'])
+            ?? $this->extract(['vendor', 'Vendor', 'vendor_name', 'Vendor_Name'])
+            ?? "unknown";
 
         // Extract fingerprint: prioritize ProductName, fallback to organization from ProductUri
         $fingerprint = $this->extractNested(

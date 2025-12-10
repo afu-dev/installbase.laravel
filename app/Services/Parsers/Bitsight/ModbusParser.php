@@ -24,8 +24,12 @@ class ModbusParser extends AbstractJsonDataParser
 
         if (empty($modbusData)) {
             // No Modbus data - return single device with root-level vendor
+            // Brand detection first, then fallback to root-level vendor
+            $vendor = $this->extract(["Vendor", "vendor"])
+                ?? "Unknown";
+
             return [new ParsedDeviceData(
-                vendor: $this->extract(["Vendor", "vendor"]) ?? "Unknown",
+                vendor: $this->detectBrand($vendor) ?? $vendor,
                 fingerprint: $this->extractFingerprintFromJson(),
                 fingerprint_raw: $this->extract(["Fingerprint", "fingerprint"]),
             )];
@@ -41,23 +45,43 @@ class ModbusParser extends AbstractJsonDataParser
                 continue;
             }
 
-            $parsedInfo = $this->parseDeviceIdentification(
-                $device["device_identification"],
-                $device["cpu_module"] ?? null
-            );
+            // Brand detection first (per-device JSON), then fallback to existing logic
+            $deviceRawData = json_encode($device);
+            $vendor = $this->detectBrand($deviceRawData);
 
-            // Vendor: parsed from device_identification → root Vendor/vendor → "Unknown"
-            $vendor = $parsedInfo["vendor"]
-                ?? $this->extract(["Vendor", "vendor"])
-                ?? "Unknown";
+            $fingerprint = null;
+            $version = null;
 
-            // Fingerprint priority: root Fingerprint JSON → explicit cpu_module field → parsed cpu
-            $fingerprint = $this->extractFingerprintFromJson()
-                ?? $device["cpu_module"]
-                ?? $parsedInfo["cpu"];
+            if ($vendor === null) {
+                $parsedInfo = $this->parseDeviceIdentification(
+                    $device["device_identification"],
+                    $device["cpu_module"] ?? null
+                );
 
-            // Version: parsed from device_identification
-            $version = $parsedInfo["version"];
+                // Vendor: parsed from device_identification → root Vendor/vendor → "Unknown"
+                $vendor = $parsedInfo["vendor"]
+                    ?? $this->extract(["Vendor", "vendor"])
+                    ?? "Unknown";
+
+                // Fingerprint priority: root Fingerprint JSON → explicit cpu_module field → parsed cpu
+                $fingerprint = $this->extractFingerprintFromJson()
+                    ?? $device["cpu_module"]
+                    ?? $parsedInfo["cpu"];
+
+                // Version: parsed from device_identification
+                $version = $parsedInfo["version"];
+            } else {
+                // Still extract fingerprint/version even if brand detected
+                $parsedInfo = $this->parseDeviceIdentification(
+                    $device["device_identification"],
+                    $device["cpu_module"] ?? null
+                );
+
+                $fingerprint = $this->extractFingerprintFromJson()
+                    ?? $device["cpu_module"]
+                    ?? $parsedInfo["cpu"];
+                $version = $parsedInfo["version"];
+            }
 
             $devices[$uid] = new ParsedDeviceData(
                 vendor: $vendor,
@@ -70,8 +94,11 @@ class ModbusParser extends AbstractJsonDataParser
 
         // If no valid devices were found, return single device with root-level vendor
         if (empty($devices)) {
+            // Brand detection first, then fallback to root-level vendor
+            $vendor = $this->extract(["Vendor", "vendor"]) ?? "Unknown";
+
             return [new ParsedDeviceData(
-                vendor: $this->extract(["Vendor", "vendor"]) ?? "Unknown",
+                vendor: $this->detectBrand($vendor) ?? $vendor,
                 fingerprint: $this->extractFingerprintFromJson(),
                 fingerprint_raw: $this->extract(["Fingerprint", "fingerprint"]),
             )];

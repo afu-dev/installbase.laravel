@@ -81,10 +81,20 @@ class ApcupsdParser extends AbstractRawDataParser
             [$key, $value] = explode(':', $line, 2);
             $apcuData[trim($key)] = trim($value);
         }
+        $vendor = null;
+        foreach ($apcuData as $key => $value) {
+            if (!in_array($key, [])) { // TODO: ready to integrate
+                continue;
+            }
+            $vendor = $this->detectBrand($value);
+            if ($vendor !== null) {
+                break;
+            }
+        }
 
         return [
             new ParsedDeviceData(
-                vendor: str_contains("schneider", strtolower($this->rawData)) ? "Schneider Electric" : "unknown",
+                vendor: $vendor ?? "unknown",
                 fingerprint: $apcuData["MODEL"] ?? null,
                 version: $apcuData["VERSION"] ?? null,
                 sn: $apcuData["SERIALNO"] ?? null,

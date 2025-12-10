@@ -24,12 +24,14 @@ class BacnetParser extends AbstractJsonDataParser
 {
     protected function parseData(): array
     {
-        $vendor = $this->extractNested(["Bacnet", "bacnet"], ["Name", "name"])
+        // Brand detection first, then fallback to existing vendor extraction
+        $vendor = $this->detectBrand($this->extract(["Bacnet", "bacnet"]))
+            ?? $this->extractNested(["Bacnet", "bacnet"], ["Name", "name"])
             ?? (!empty($this->extractNested(["Bacnet", "bacnet"], ["Error", "error"])) ? "bacnet_error" : "unknown");
 
         return [
             new ParsedDeviceData(
-                vendor: $vendor,
+                vendor: $this->detectBrand($vendor) ?? $vendor,
                 fingerprint: $this->extractNested(["Bacnet", "bacnet"], ["Model", "model"]),
                 version: $this->extractNested(["Bacnet", "bacnet"], ["Firmware", "firmware"]),
                 fingerprint_raw: $this->extract(["Fingerprint", "fingerprint"])

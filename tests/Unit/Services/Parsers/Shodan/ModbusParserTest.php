@@ -99,8 +99,10 @@ class ModbusParserTest extends ParserTestCase
         $this->assertArrayHasKey(255, $result);
         $device255 = $result[255];
 
+        $this->assertEquals("unknown", $device0->vendor);
+        $this->assertEquals("Schneider Electric", $device1->vendor);
+
         foreach ([$device0, $device1] as $device) {
-            $this->assertEquals("unknown", $device->vendor);
             $this->assertNull($device->fingerprint);
             $this->assertNull($device->version);
         }
@@ -109,7 +111,7 @@ class ModbusParserTest extends ParserTestCase
         $this->assertEquals('Smart Logger', $device127->fingerprint);
         $this->assertEquals('300R001C00SPC110', $device127->version);
 
-        $this->assertEquals('TELEMECANIQUE', $device255->vendor);
+        $this->assertEquals('Schneider Electric', $device255->vendor);
         $this->assertEquals('TWDLCAE40DRF', $device255->fingerprint);
         $this->assertEquals('05.40', $device255->version);
 

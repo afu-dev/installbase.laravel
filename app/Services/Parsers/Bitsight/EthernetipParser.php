@@ -42,9 +42,14 @@ class EthernetipParser extends AbstractJsonDataParser
 {
     protected function parseData(): array
     {
+        $vendor = $this->detectBrand($this->extract(["ethernetip", "Ethernetip"]))
+            ?? $this->extractNested(["ethernetip", "Ethernetip"], "vendor_id")
+            ?? $this->extract(["Vendor", "vendor"])
+            ?? "unknown";
+
         return [
             new ParsedDeviceData(
-                vendor: $this->extractNested(["ethernetip", "Ethernetip"], "vendor_id") ?? $this->extract(["Vendor", "vendor"]) ?? "unknown",
+                vendor: $this->detectBrand($vendor) ?? $vendor,
                 fingerprint: $this->extractNested(["ethernetip", "Ethernetip"], "product_name"),
                 version: $this->extractNested(["ethernetip", "Ethernetip"], "revision_major") . "." . $this->extractNested(["ethernetip", "Ethernetip"], "revision_minor"),
             ),

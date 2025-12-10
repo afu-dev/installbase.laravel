@@ -34,9 +34,16 @@ class CodesysParser extends AbstractJsonDataParser
         $codesysData = $this->extractJson(["Codesys", "codesys"]);
         if (!empty($codesysData["devices"])) {
             foreach ($codesysData["devices"] as $index => $codesysDatum) {
-                $deviceId = trim(explode("@", (string) $codesysDatum["node_name"])[1] ?? $index);
+                $deviceId = trim(explode("@", (string)$codesysDatum["node_name"])[1] ?? $index);
+
+                // Brand detection first (per-device JSON), then fallback to vendor_name
+                $deviceRawData = json_encode($codesysDatum);
+                $vendor = $this->detectBrand($deviceRawData)
+                    ?? $codesysDatum["vendor_name"]
+                    ?? "Unknown";
+
                 $devices[$deviceId] = new ParsedDeviceData(
-                    vendor: $codesysDatum["vendor_name"] ?? "Unknown",
+                    vendor: $this->detectBrand($vendor) ?? $vendor,
                     fingerprint: $codesysDatum["device_name"] ?? null,
                     version: $codesysDatum["firmware_version"] ?? null,
                     sn: $codesysDatum["serial_nr"] ?? null,
@@ -44,9 +51,16 @@ class CodesysParser extends AbstractJsonDataParser
                 );
             }
         } else {
+            // Single device case - check Codesys JSON for brand
+            $codesysRawData = json_encode($codesysData);
+            $vendor = $this->detectBrand($codesysRawData);
+            if ($vendor === null) {
+                $vendor = "Unknown";
+            }
+
             return [
                 new ParsedDeviceData(
-                    vendor: "Unknown",
+                    vendor: $vendor,
                     fingerprint: $codesysData["product"] ?? null,
                     version: $codesysData["os_details"] ?? null,
                 ),

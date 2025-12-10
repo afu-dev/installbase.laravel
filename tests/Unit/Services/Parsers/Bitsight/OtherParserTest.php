@@ -19,7 +19,7 @@ class OtherParserTest extends ParserTestCase
         $this->assertArrayHasKey(0, $result);
         $device = $result[0];
 
-        $this->assertEquals('schneider_electric', $device->vendor);
+        $this->assertEquals('Schneider Electric', $device->vendor);
         $this->assertNull($device->fingerprint);
         $this->assertNull($device->version);
         $this->assertNull($device->sn);
@@ -45,7 +45,7 @@ class OtherParserTest extends ParserTestCase
         $this->assertArrayHasKey(0, $result);
         $device = $result[0];
 
-        $this->assertEquals('schneider_electric', $device->vendor);
+        $this->assertEquals('Schneider Electric', $device->vendor);
         $this->assertNull($device->fingerprint);
         $this->assertNull($device->version);
         $this->assertNull($device->sn);
@@ -71,7 +71,7 @@ class OtherParserTest extends ParserTestCase
         $this->assertArrayHasKey(0, $result);
         $device = $result[0];
 
-        $this->assertEquals('schneider_electric', $device->vendor);
+        $this->assertEquals('Schneider Electric', $device->vendor);
         $this->assertNull($device->fingerprint);
         $this->assertNull($device->version);
         $this->assertNull($device->sn);
@@ -97,7 +97,7 @@ class OtherParserTest extends ParserTestCase
         $this->assertArrayHasKey(0, $result);
         $device = $result[0];
 
-        $this->assertEquals('schneider_electric', $device->vendor);
+        $this->assertEquals('Schneider Electric', $device->vendor);
         $this->assertNull($device->fingerprint);
         $this->assertNull($device->version);
         $this->assertNull($device->sn);
@@ -123,7 +123,7 @@ class OtherParserTest extends ParserTestCase
         $this->assertArrayHasKey(0, $result);
         $device = $result[0];
 
-        $this->assertEquals('schneider_electric', $device->vendor);
+        $this->assertEquals('Schneider Electric', $device->vendor);
         $this->assertNull($device->fingerprint);
         $this->assertNull($device->version);
         $this->assertNull($device->sn);

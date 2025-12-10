@@ -24,7 +24,7 @@ class ModbusParserTest extends ParserTestCase
 
         // Check first device (uid 0)
         $device = $result[0];
-        $this->assertEquals("TELEMECANIQUE", $device->vendor);
+        $this->assertEquals("Schneider Electric", $device->vendor);
         $this->assertEquals("TWDLCAE40DRF", $device->fingerprint); // From root Fingerprint JSON
         $this->assertEquals("05.40", $device->version);
         $this->assertNull($device->modbus_project_info);
