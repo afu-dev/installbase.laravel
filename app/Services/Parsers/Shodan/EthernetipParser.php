@@ -27,11 +27,29 @@ class EthernetipParser extends AbstractRawDataParser
             $ethernetipData[trim($key)] = trim($value);
         }
 
+        // check individually each values
+        // we need to exclude when values are empty string or a string containing zero
+
+        $vendor = "unknown";
+        if (!empty($ethernetipData["Vendor ID"])) {
+            $vendor = $ethernetipData["Vendor ID"];
+        }
+
+        $fingerprint = null;
+        if (!empty($ethernetipData["Product name"])) {
+            $fingerprint = $ethernetipData["Product name"];
+        }
+
+        $sn = null;
+        if (!empty($ethernetipData["Serial number"]) && $ethernetipData["Serial number"] !== "0x00000000") {
+            $sn = $ethernetipData["Serial number"];
+        }
+
         return [
             new ParsedDeviceData(
-                vendor: $ethernetipData["Vendor ID"] ?? "unknown",
-                fingerprint: $ethernetipData["Product name"] ?? null,
-                sn: $ethernetipData["Serial number"] ?? null,
+                vendor: $vendor,
+                fingerprint: $fingerprint,
+                sn: $sn,
             ),
         ];
     }

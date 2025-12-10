@@ -137,4 +137,55 @@ class EthernetipParserTest extends ParserTestCase
         $this->assertNull($device->fingerprint_raw);
     }
 
+    public function test_it_parses_shodan_ethernetip_data_6(): void
+    {
+        $parser = new EthernetipParser();
+
+        $data = file_get_contents("tests/fixtures/parsers/ethernetip/shodan_ethernetip_6.txt");
+
+        $result = $parser->parse($data);
+        $this->assertAllDevices($result);
+        $this->assertCount(1, $result);
+        $this->assertArrayHasKey(0, $result);
+        $device = $result[0];
+
+        $this->assertEquals('unknown', $device->vendor);
+        $this->assertNull($device->fingerprint);
+        $this->assertNull($device->version);
+        $this->assertNull($device->sn);
+        $this->assertNull($device->device_mac);
+        $this->assertNull($device->modbus_project_info);
+        $this->assertNull($device->opc_ua_security_policy);
+        $this->assertNull($device->is_guest_account_active);
+        $this->assertNull($device->registration_info);
+        $this->assertNull($device->secure_power_app);
+        $this->assertNull($device->nmc_card_num);
+        $this->assertNull($device->fingerprint_raw);
+    }
+
+    public function test_it_parses_shodan_ethernetip_data_7(): void
+    {
+        $parser = new EthernetipParser();
+
+        $data = file_get_contents("tests/fixtures/parsers/ethernetip/shodan_ethernetip_7.txt");
+
+        $result = $parser->parse($data);
+        $this->assertAllDevices($result);
+        $this->assertCount(1, $result);
+        $this->assertArrayHasKey(0, $result);
+        $device = $result[0];
+
+        $this->assertEquals('unknown', $device->vendor);
+        $this->assertNull($device->fingerprint);
+        $this->assertNull($device->version);
+        $this->assertNull($device->sn);
+        $this->assertNull($device->device_mac);
+        $this->assertNull($device->modbus_project_info);
+        $this->assertNull($device->opc_ua_security_policy);
+        $this->assertNull($device->is_guest_account_active);
+        $this->assertNull($device->registration_info);
+        $this->assertNull($device->secure_power_app);
+        $this->assertNull($device->nmc_card_num);
+        $this->assertNull($device->fingerprint_raw);
+    }
 }

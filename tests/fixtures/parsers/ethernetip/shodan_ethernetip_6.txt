@@ -1,0 +1,5 @@
+Product name:
+Vendor ID: 0
+Serial number: 0x00000000
+Device type: Generic Device (deprecated)
+Device IP: 0.0.0.0
