@@ -1,0 +1,9 @@
+Instance ID: 200
+Object Name: Tadoussac Garage municipal
+Vendor Name: Delta Controls
+Application Software: V3.40
+Firmware: 329735
+Model Name: eBMGR
+
+BACnet Broadcast Management Device (BBMD):
+    192.168.2.14:47808

@@ -1,0 +1,14 @@
+Instance ID: 14100
+Object Name: AHU_1, Sump - E
+Vendor Name: Delta Controls
+Application Software: V3.40
+Firmware: 159693
+Model Name: DSC_1616E
+Description: AHU_1_1		THEATRE		2 STAGE HTG & CLG
+AHU_1_2		REC ROOM, GAME ROOM, CRAFT ROOM	2 STAGE HTG & CLG
+AHU_1_3		EXERCISE ROOM		2 STAGE HTG & CLG
+AHU_1_4		SPORT COURT		2 STAGE HTG & CLG
+AHU_1_5		POKER ROOM		2 STAGE HTG & CLG
+
+BACnet Broadcast Management Device (BBMD):
+    192.168.63.101:47808

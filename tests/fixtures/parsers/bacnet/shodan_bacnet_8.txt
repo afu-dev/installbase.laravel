@@ -1,0 +1,13 @@
+Instance ID: 100
+Object Name: 235_BASTION_MZU1
+Vendor Name: Delta Controls
+Application Software: V3.40
+Firmware: 189697
+Model Name: DSC_1616E
+Description: AHU is located in Basement, outside entrance at the back of building
+
+
+DNT-103 has 1 analogue input and 3 triac outputs.
+
+BACnet Broadcast Management Device (BBMD):
+    75.157.245.6:47808

@@ -1,0 +1,11 @@
+Unit ID: 0
+-- Slave ID Data: Illegal Function (Error)
+-- Device Identification: Illegal Function (Error)
+
+Unit ID: 1
+-- Slave ID Data: Illegal Function (Error)
+-- Device Identification: Illegal Function (Error)
+
+Unit ID: 255
+-- Slave ID Data: Illegal Function (Error)
+-- Device Identification: Illegal Function (Error)

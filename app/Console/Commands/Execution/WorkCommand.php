@@ -10,8 +10,10 @@ use App\Models\Execution;
 use App\Models\ImportError;
 use App\Models\ShodanExposedAsset;
 use DateTime;
+use Error;
 use Exception;
 use Illuminate\Console\Command;
+use Illuminate\Database\QueryException;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
@@ -65,7 +67,7 @@ class WorkCommand extends Command
             };
 
             $execution->count = $count;
-        } catch (Exception $exception) {
+        } catch (Exception|Error $exception) {
             $this->error("Caught the following exception:");
             $this->error($exception->getMessage());
             $execution->errored = true;
@@ -118,13 +120,22 @@ class WorkCommand extends Command
 
         $this->info("Total results: <comment>{$total}</comment> | Total pages: <comment>{$totalPages}</comment>");
 
+        // Strip http.html from matches before storage to reduce memory usage
+        $matchesForStorage = $this->stripHttpHtml($data['matches']);
+
         // Save only the matches array from the first page
-        $storage->put("{$destinationFolder}/page_001.json", json_encode($data['matches'], JSON_PRETTY_PRINT));
+        $storage->put("{$destinationFolder}/page_001.json", json_encode($matchesForStorage, JSON_PRETTY_PRINT));
+
+        // Important: free up the memory because response can be huge
+        unset($matchesForStorage);
 
         $this->line("Stored page 1 - " . count($data['matches']) . ' matches');
 
         // Insert matches into database
         $this->insertShodanMatches($execution->id, $data['matches']);
+
+        // Important: free up the memory because response can be huge
+        unset($data);
 
         // Only fetch additional pages if there are more results
         if ($totalPages > 1) {
@@ -142,13 +153,22 @@ class WorkCommand extends Command
 
                 $pageString = sprintf('%03d', $page);
 
+                // Strip http.html from matches before storage
+                $matchesForStorage = $this->stripHttpHtml($data['matches']);
+
                 // Save only the matches array
-                $storage->put("{$destinationFolder}/page_{$pageString}.json", json_encode($data['matches'], JSON_PRETTY_PRINT));
+                $storage->put("{$destinationFolder}/page_{$pageString}.json", json_encode($matchesForStorage, JSON_PRETTY_PRINT));
+
+                // Important: free up the memory because response can be huge
+                unset($matchesForStorage);
 
                 $this->line("Stored page {$page} - " . count($data['matches']) . ' matches');
 
                 // Insert matches into database
                 $this->insertShodanMatches($execution->id, $data['matches']);
+
+                // Important: free up the memory because response can be huge
+                unset($data);
             }
         }
 
@@ -266,7 +286,7 @@ class WorkCommand extends Command
         // Load all field configurations once (case-insensitive key)
         static $fieldConfigs = null;
         if ($fieldConfigs === null) {
-            $fieldConfigs = CensysFieldConfiguration::all()->keyBy(fn ($item) => strtolower((string) $item->protocol));
+            $fieldConfigs = CensysFieldConfiguration::all()->keyBy(fn ($item) => strtolower((string)$item->protocol));
         }
 
         // Normalize protocol to lowercase for lookup
@@ -382,7 +402,7 @@ class WorkCommand extends Command
         try {
             $filePath = $inputDisk->path($filename);
             $totalLines = (int)trim(shell_exec("wc -l < " . escapeshellarg($filePath)));
-        } catch (\Exception) {
+        } catch (Exception) {
             // If path() fails (e.g., S3), we'll track progress without percentage
             $this->line("Unable to get line count (remote storage?) - will track rows processed");
         }
@@ -617,7 +637,7 @@ class WorkCommand extends Command
         try {
             $filePath = $inputDisk->path($filename);
             $totalLines = (int)trim(shell_exec("wc -l < " . escapeshellarg($filePath)));
-        } catch (\Exception) {
+        } catch (Exception) {
             // If path() fails (e.g., S3), we'll track progress without percentage
             $this->line("Unable to get line count (remote storage?) - will track rows processed");
         }
@@ -833,7 +853,7 @@ class WorkCommand extends Command
             foreach ($assets as $asset) {
                 try {
                     BitsightExposedAsset::create($asset);
-                } catch (\Illuminate\Database\QueryException $e) {
+                } catch (QueryException $e) {
                     // Check if it's a duplicate key error (unique constraint violation)
                     if ($e->getCode() === '23000' || str_contains($e->getMessage(), 'Duplicate entry') || str_contains($e->getMessage(), 'UNIQUE constraint failed')) {
                         $duplicates++;
@@ -844,5 +864,24 @@ class WorkCommand extends Command
                 }
             }
         });
+    }
+
+    private function stripHttpHtml(array $matches): array
+    {
+        return array_map(function ($match) {
+            if (isset($match['http']['html'])) {
+                unset($match['http']['html']);
+            }
+
+            if (isset($match['vulns'])) {
+                unset($match['vulns']);
+            }
+
+            if (isset($match['http']['favicon'])) {
+                unset($match['http']['favicon']);
+            }
+
+            return $match;
+        }, $matches);
     }
 }

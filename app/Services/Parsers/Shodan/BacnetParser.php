@@ -24,8 +24,12 @@ class BacnetParser extends AbstractRawDataParser
     protected function parseData(): array
     {
         $bacnetData = [];
-        $lines = explode("\n", trim($this->rawData));
+        $lines = explode("\n", trim(str_replace("\r\n", "\t\t", $this->rawData)));
         foreach ($lines as $line) {
+            if (empty($line) || !str_contains($line, ":")) {
+                continue;
+            }
+
             [$key, $value] = explode(":", $line, 2);
             $bacnetData[trim($key)] = trim($value);
         }
