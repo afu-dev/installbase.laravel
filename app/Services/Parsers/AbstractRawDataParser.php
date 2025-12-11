@@ -43,7 +43,7 @@ abstract class AbstractRawDataParser implements DataParserInterface
         if (self::$brands === null) {
             try {
                 self::$brands = Brand::pluck('brand')->all();
-            } catch (Exception|Error $e) {
+            } catch (Exception|Error) {
                 // Database not available (unit tests, etc.) - return empty array
                 self::$brands = ["apc", "areva", "etap", "invensys", "merlin", "pro face", "pro-face", "proface", "schneider", "square d", "square-d", "TAC", "telemecanique", "vamp", "veris", "wiser",];
             }
@@ -58,7 +58,7 @@ abstract class AbstractRawDataParser implements DataParserInterface
      */
     protected function detectBrand(string $rawData): ?string
     {
-        if (array_any($this->getBrands(), fn($brand) => str_contains(strtolower($rawData), strtolower($brand)))) {
+        if (array_any($this->getBrands(), fn ($brand) => str_contains(strtolower($rawData), strtolower((string) $brand)))) {
             return "Schneider Electric";
         }
 

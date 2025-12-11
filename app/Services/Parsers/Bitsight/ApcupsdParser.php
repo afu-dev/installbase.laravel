@@ -62,11 +62,13 @@ class ApcupsdParser extends AbstractJsonDataParser
             if (!in_array($key, ["vendor", "Vendor"])) { // can also match for model/Model
                 continue;
             }
+
             $brandVendor = $this->detectBrand($value);
             if ($brandVendor !== null) {
                 break;
             }
         }
+
         $vendor = $brandVendor
             ?? $this->extract(["Vendor", "vendor", "vendor_name"])
             ?? "unknown";

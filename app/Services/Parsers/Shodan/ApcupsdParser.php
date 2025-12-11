@@ -81,11 +81,13 @@ class ApcupsdParser extends AbstractRawDataParser
             [$key, $value] = explode(':', $line, 2);
             $apcuData[trim($key)] = trim($value);
         }
+
         $vendor = null;
         foreach ($apcuData as $key => $value) {
             if (!in_array($key, [])) { // TODO: ready to integrate
                 continue;
             }
+
             $vendor = $this->detectBrand($value);
             if ($vendor !== null) {
                 break;

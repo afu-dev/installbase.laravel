@@ -39,6 +39,7 @@ class Iec61850Parser extends AbstractJsonDataParser
 
         $vendor = str_contains((string)$vendor, "Unknown command") || (str_contains((string)$vendor, "<") && str_contains((string)$vendor, ">")) ? "unknown" : $vendor;
         $vendor = preg_replace('/[^\x20-\x7E]/', '', str_replace("\n", " ", $vendor));
+
         $fingerprint = $fingerprint !== null && (str_contains((string)$fingerprint, "Unknown command") || str_contains((string)$fingerprint, "<") && str_contains((string)$fingerprint, ">")) ? null : $fingerprint;
         $version = $version !== null && (str_contains((string)$version, "Unknown command") || (str_contains((string)$version, "<") && str_contains((string)$version, ">"))) ? null : $version;
 

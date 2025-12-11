@@ -134,7 +134,7 @@ abstract class AbstractJsonDataParser implements DataParserInterface
             return null;
         }
 
-        if (array_any($this->getBrands(), fn($brand) => str_contains(strtolower($rawData), strtolower($brand)))) {
+        if (array_any($this->getBrands(), fn ($brand) => str_contains(strtolower($rawData), strtolower((string) $brand)))) {
             return "Schneider Electric";
         }
 

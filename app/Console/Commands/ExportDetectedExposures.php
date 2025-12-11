@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use App\Models\DetectedExposure;
 use Illuminate\Console\Command;
+use Symfony\Component\Console\Helper\ProgressBar;
 
 class ExportDetectedExposures extends Command
 {
@@ -16,7 +17,7 @@ class ExportDetectedExposures extends Command
         $path = $this->option('path');
 
         // Ensure directory exists
-        if (! is_dir($path)) {
+        if (!is_dir($path)) {
             $this->error("Directory does not exist: {$path}");
 
             return self::FAILURE;
@@ -36,7 +37,7 @@ class ExportDetectedExposures extends Command
 
     private function exportDetectedExposures(string $path): void
     {
-        $filePath = rtrim($path, '/').'/detected_exposures.csv';
+        $filePath = rtrim($path, '/') . '/detected_exposures.csv';
         $file = fopen($filePath, 'w');
 
         if ($file === false) {
@@ -70,11 +71,12 @@ class ExportDetectedExposures extends Command
         $totalCount = DetectedExposure::count();
         $this->info("Exporting {$totalCount} detected_exposures records...");
         $progressBar = $this->output->createProgressBar($totalCount);
+        $progressBar->setFormat(ProgressBar::FORMAT_DEBUG);
         $progressBar->start();
 
         $exportedCount = 0;
 
-        DetectedExposure::with('attribution')->chunk(1000, function ($exposures) use ($file, &$exportedCount, $progressBar): void {
+        DetectedExposure::with('attribution')->chunkById(1000, function ($exposures) use ($file, &$exportedCount, $progressBar): void {
             foreach ($exposures as $exposure) {
                 fputcsv($file, [
                     $exposure->ip,
