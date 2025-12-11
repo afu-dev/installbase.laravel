@@ -22,7 +22,7 @@ class ParseAllCountSchneiderCommand extends Command
     public function handle(DataParserFactory $parserFactory): void
     {
         $this->handleVendor(Vendor::SHODAN, $parserFactory);
-        // $this->handleVendor(Vendor::BITSIGHT, $parserFactory);
+        $this->handleVendor(Vendor::BITSIGHT, $parserFactory);
     }
 
     /**
