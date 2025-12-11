@@ -99,7 +99,7 @@ class MergeExposedAssets extends Command
 
         // Progress tracking
         $progressBar = $this->output->createProgressBar($total);
-        $progressBar->setFormat(ProgressBar::FORMAT_VERBOSE);
+        $progressBar->setFormat(ProgressBar::FORMAT_DEBUG);
 
         $parseFailures = 0;
         $factory = app(DataParserFactory::class);
@@ -219,7 +219,7 @@ class MergeExposedAssets extends Command
         $allHostnames = [];
 
         if ($existing?->hostnames) {
-            $allHostnames = explode(';', (string) $existing->hostnames);
+            $allHostnames = explode(';', (string)$existing->hostnames);
         }
 
         if ($record->hostnames) {
@@ -228,7 +228,7 @@ class MergeExposedAssets extends Command
         }
 
         $allHostnames = array_unique(array_filter(array_map(trim(...), $allHostnames)));
-        $hostnames = ! empty($allHostnames) ? implode(';', $allHostnames) : null;
+        $hostnames = !empty($allHostnames) ? implode(';', $allHostnames) : null;
 
         // Build attribution data (nulls will be filtered out)
         $attribution = [
