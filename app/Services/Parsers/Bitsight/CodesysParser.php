@@ -40,7 +40,7 @@ class CodesysParser extends AbstractJsonDataParser
                 $deviceRawData = json_encode($codesysDatum);
                 $vendor = $this->detectBrand($deviceRawData)
                     ?? $codesysDatum["vendor_name"]
-                    ?? "Unknown";
+                    ?? "unknown";
 
                 $devices[$deviceId] = new ParsedDeviceData(
                     vendor: $this->detectBrand($vendor) ?? $vendor,
@@ -55,7 +55,7 @@ class CodesysParser extends AbstractJsonDataParser
             $codesysRawData = json_encode($codesysData);
             $vendor = $this->detectBrand($codesysRawData);
             if ($vendor === null) {
-                $vendor = "Unknown";
+                $vendor = "unknown";
             }
 
             return [

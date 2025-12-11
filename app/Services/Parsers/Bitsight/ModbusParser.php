@@ -26,7 +26,7 @@ class ModbusParser extends AbstractJsonDataParser
             // No Modbus data - return single device with root-level vendor
             // Brand detection first, then fallback to root-level vendor
             $vendor = $this->extract(["Vendor", "vendor"])
-                ?? "Unknown";
+                ?? "unknown";
 
             return [new ParsedDeviceData(
                 vendor: $this->detectBrand($vendor) ?? $vendor,
@@ -50,7 +50,6 @@ class ModbusParser extends AbstractJsonDataParser
             $vendor = $this->detectBrand($deviceRawData);
 
             $fingerprint = null;
-            $version = null;
 
             if ($vendor === null) {
                 $parsedInfo = $this->parseDeviceIdentification(
@@ -58,10 +57,10 @@ class ModbusParser extends AbstractJsonDataParser
                     $device["cpu_module"] ?? null
                 );
 
-                // Vendor: parsed from device_identification → root Vendor/vendor → "Unknown"
+                // Vendor: parsed from device_identification → root Vendor/vendor → "unknown"
                 $vendor = $parsedInfo["vendor"]
                     ?? $this->extract(["Vendor", "vendor"])
-                    ?? "Unknown";
+                    ?? "unknown";
 
                 // Fingerprint priority: root Fingerprint JSON → explicit cpu_module field → parsed cpu
                 $fingerprint = $this->extractFingerprintFromJson()
@@ -84,7 +83,7 @@ class ModbusParser extends AbstractJsonDataParser
             }
 
             $devices[$uid] = new ParsedDeviceData(
-                vendor: $vendor,
+                vendor: $this->detectBrand($vendor) ?? $vendor,
                 fingerprint: $fingerprint,
                 version: $version,
                 modbus_project_info: $device["project_information"] ?? null,
@@ -95,7 +94,7 @@ class ModbusParser extends AbstractJsonDataParser
         // If no valid devices were found, return single device with root-level vendor
         if (empty($devices)) {
             // Brand detection first, then fallback to root-level vendor
-            $vendor = $this->extract(["Vendor", "vendor"]) ?? "Unknown";
+            $vendor = $this->extract(["Vendor", "vendor"]) ?? "unknown";
 
             return [new ParsedDeviceData(
                 vendor: $this->detectBrand($vendor) ?? $vendor,

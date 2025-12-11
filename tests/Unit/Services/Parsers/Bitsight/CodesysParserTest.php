@@ -19,7 +19,7 @@ class CodesysParserTest extends ParserTestCase
         $this->assertArrayHasKey(0, $result);
         $device = $result[0];
 
-        $this->assertEquals('Unknown', $device->vendor);
+        $this->assertEquals('unknown', $device->vendor);
         $this->assertEquals('3S-Smart Software Solutions', $device->fingerprint);
         $this->assertEquals('4.9.47-rt37-w02.02.00_01+14 [ru', $device->version);
         $this->assertNull($device->sn);
@@ -74,7 +74,7 @@ class CodesysParserTest extends ParserTestCase
         $this->assertArrayHasKey(0, $result);
         $device = $result[0];
 
-        $this->assertEquals('Unknown', $device->vendor);
+        $this->assertEquals('unknown', $device->vendor);
         $this->assertEquals('3S-Smart Software Solutions', $device->fingerprint);
         $this->assertEquals('Nucleus PLUS version unknown', $device->version);
         $this->assertNull($device->sn);
@@ -100,7 +100,7 @@ class CodesysParserTest extends ParserTestCase
         $this->assertArrayHasKey(0, $result);
         $device = $result[0];
 
-        $this->assertEquals('Unknown', $device->vendor);
+        $this->assertEquals('unknown', $device->vendor);
         $this->assertEquals('3S-Smart Software Solutions', $device->fingerprint);
         $this->assertEquals('Nucleus PLUS version unknown', $device->version);
         $this->assertNull($device->sn);
@@ -126,7 +126,7 @@ class CodesysParserTest extends ParserTestCase
         $this->assertArrayHasKey(0, $result);
         $device = $result[0];
 
-        $this->assertEquals('Unknown', $device->vendor);
+        $this->assertEquals('unknown', $device->vendor);
         $this->assertNull($device->fingerprint);
         $this->assertEquals('3.0 or higher', $device->version);
         $this->assertNull($device->sn);

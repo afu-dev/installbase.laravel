@@ -49,7 +49,7 @@ class ModbusParserTest extends ParserTestCase
         $this->assertArrayHasKey(0, $result);
 
         $device = $result[0];
-        $this->assertEquals("Unknown", $device->vendor); // Empty Vendor field in fixture
+        $this->assertEquals("unknown", $device->vendor); // Empty Vendor field in fixture
         $this->assertNull($device->fingerprint); // Empty Fingerprint field
         $this->assertNull($device->version);
         $this->assertNull($device->modbus_project_info);
@@ -69,7 +69,7 @@ class ModbusParserTest extends ParserTestCase
         $this->assertArrayHasKey(0, $result);
 
         $device = $result[0];
-        $this->assertEquals("Unknown", $device->vendor); // Empty Vendor field in fixture
+        $this->assertEquals("unknown", $device->vendor); // Empty Vendor field in fixture
         $this->assertNull($device->fingerprint); // Empty Fingerprint field
         $this->assertNull($device->version);
         $this->assertNull($device->modbus_project_info);
@@ -112,7 +112,7 @@ class ModbusParserTest extends ParserTestCase
         $this->assertArrayHasKey(0, $result);
 
         $device = $result[0];
-        $this->assertEquals("Unknown", $device->vendor); // Empty Vendor field in fixture
+        $this->assertEquals("unknown", $device->vendor); // Empty Vendor field in fixture
         $this->assertNull($device->fingerprint); // Empty Fingerprint field
         $this->assertNull($device->version);
         $this->assertNull($device->modbus_project_info);
